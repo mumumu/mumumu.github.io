@@ -1,0 +1,101 @@
+---
+layout: post
+title: "dpkg related command"
+date: 2014-08-09 23:37
+comments: true
+categories: [debian, debug]
+---
+最近 dpkg コマンドでパッケージ自体のデバッグをすることが多くなった。[Debian|Ubuntu] のアーカイブとはサポートポリシーが異なるアーカイブ のパッケージを採用することで、Pin Priority を設定する機会が増えたからだ。
+
+Debian のパッケージには優先度(Priority) が設定されている。パッケージを apt-get コマンドなどに指定した場合、複数のインストール候補がある場合、優先度が高いモノがインストールされる。よって、、この優先度を操作することで、強制的にダウングレードを行わせたり、特定の条件に当てはまるパッケージのインストールを禁止することすら可能である。
+
+stable や unstable や testing などの ディストリビューションを指定することはまずない (本番環境ではstableでしょJK的な) ので、優先度を操作することが多い。
+
+ここでは、パッケージ単体の情報を扱うのにいくつか重宝しているコマンドがあるので、それをメモしておく。
+
+## dpkg
+
+dpkg コマンドは、パッケージを扱う基本コマンドである。パッケージのインストールや情報の表示などを行う。dpkg は deb ファイルを扱う。
+
+ちなみに、これを内部的に使うことで apt は作られている。apt関連コマンド (apt-get, apt-cache ...etc) はそれをラップし、パッケージ名だけで扱えるようにしてくれ、依存関係の整理や debファイルの取得をネットワークから行い、dpkg に渡してくれる。
+
+### dpkg -l
+
+インストール済みのパッケージの一覧を表示する。これを grep することで、特定のパッケージがインストールされているかを知るのによく使う
+
+### dpkg -S
+
+ファイルのフルパスを与えることで、そのファイルがどのパッケージに属しているかを表示してくれる。自分はこれは apt-file コマンドでしかこれまでできないものだと思っていたが、インストール済みのファイルであれば dpkg でできたらしい(´ー｀; )
+
+```
+$ dpkg -S /usr/bin/which
+debianutils: /usr/bin/which
+```
+
+逆に、インストールされていないファイルのパッケージを検索したいなら、apt-file とかが便利なようだ。
+
+### dpkg -i
+
+dpkg は deb ファイルを扱う。それを指定して直接パッケージをインストールしてくれる。但し、依存関係を管理してくれるわけではないので、それが管理できていない、またはよくわからない状態で使うべきではない
+
+## apt
+
+自分は一般ユーザなので、apt 関連コマンドを欠かすことは出来ない。けど、dpkg だとイマイチな出力をしない部分とかを補うのに使っているというのが正直なところか(\*゜ー゜)
+
+### apt-cache show
+
+パッケージ名を与えることで、その詳細を表示してくれる。apt show や dpkg -s でもほぼ同様の情報が見られたりもするが、日本語で詳細情報の説明が見れたりするので、自分はこれを使っている。
+
+```
+$ apt-cache show build-essential 
+Package: build-essential
+Priority: optional
+Section: devel
+Installed-Size: 37
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Matthias Klose <doko@debian.org>
+Architecture: amd64
+Version: 11.6ubuntu6
+Depends: libc6-dev | libc-dev, gcc (>= 4:4.4.3), g++ (>= 4:4.4.3), make, dpkg-dev (>= 1.13.5)
+Filename: pool/main/b/build-essential/build-essential_11.6ubuntu6_amd64.deb
+Size: 4838
+MD5sum: 6fa3d082885a7440d512236685cd24fd
+SHA1: 488c10084cd20cafec7f8b917e752bad45a4f983
+SHA256: 50c00d2da704e131855abda2f823f3ac2589ab1579f511ccd005be421f0a3954
+Description-ja: build-essential なパッケージの一覧情報
+ Debian パッケージを構築するつもりがないのであれば、本パッケージは不要です。 1.14.18 以降の dpkg では、Debian
+ パッケージの構築に本パッケージは必須です。
+ .
+
+...
+```
+
+### apt-cache policy
+
+これがパッケージが衝突したときや特定のパッケージのバージョンが意図したモノにならない場合などに特によく使う。  
+パッケージ名を与えない場合は、各パッケージリポジトリ毎の優先度が表示される。
+
+```
+$ apt-cache policy 
+パッケージファイル:
+ 100 /var/lib/dpkg/status
+     release a=now
+ 500 http://dl.google.com/linux/chrome/deb/ stable/main i386 Packages
+     release v=1.0,o=Google, Inc.,a=stable,n=stable,l=Google,c=main
+     origin dl.google.com
+
+...
+```
+
+パッケージ名を与えることで、インストール候補とそれぞれに与えられる優先度が表示される。
+
+```
+$ apt-cache policy build-essential
+build-essential:
+  インストールされているバージョン: 11.6ubuntu6
+  候補:               11.6ubuntu6
+  バージョンテーブル:
+ `***` 11.6ubuntu6 0
+        500 http://jp.archive.ubuntu.com/ubuntu/ trusty/main amd64 Packages
+        100 /var/lib/dpkg/status
+```

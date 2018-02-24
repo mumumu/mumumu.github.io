@@ -1,0 +1,78 @@
+---
+layout: post
+title: "seq -w and zero padding"
+date: 2014-01-20 12:03
+comments: true
+categories: [tips]
+---
+[http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html](http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html)  
+[http://at-aka.blogspot.jp/2006/11/seq-0-padding.html](http://at-aka.blogspot.jp/2006/11/seq-0-padding.html)
+
+seq(1) ってコマンドラインから連番を作るときにとても便利だ。ただ、この値を0埋めしたいときがある。  
+その場合は -w オプションを付けろといろんなブログに書いてある。以下のような具合だ。
+
+```
+$ seq -w 1 10
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+```
+
+けど、これは指定する最大値が二桁以上の場合だ。上記の 10 を一桁の値、たとえば 5 に変えるとうまくいかなくなる。  
+
+```
+$ seq -w 1 5
+1
+2
+3
+4
+5
+```
+
+これは -w オプションが最大の桁数に合わせて0埋めするためだ。だから、以下のようにすると同じように通用する。
+
+```
+$ seq -w 01 5
+01
+02
+03
+04
+05
+```
+
+最初 -f オプションでフォーマットしようかと思ったのだけど、printf の %d を指定すると以下のように怒られる。  
+これは、数値を内部的に浮動小数点で扱っているためだった。 [マニュアル](http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html) にもしっかり書いてある。
+
+```
+$ seq -f "%02d" 01 5
+seq: FORMAT `%02d' に不明な %d 指定があります
+```
+
+なので、g を指定してあげるとちゃんとうまくいく。
+
+```
+$ seq -f "%02g" 1 5
+01
+02
+03
+04
+05
+```
+
+まあ、以下が一番スマートかなー、と思う次第(*´〜｀)
+
+```
+$ seq -w 01 5
+01
+02
+03
+04
+05
+```

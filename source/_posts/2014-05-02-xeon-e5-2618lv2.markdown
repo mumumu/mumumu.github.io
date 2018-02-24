@@ -1,0 +1,21 @@
+---
+layout: post
+title: "Xeon E5 2618Lv2"
+date: 2014-05-02 17:01
+comments: true
+categories: [hardware]
+---
+[http://ark.intel.com/ja/products/75788/Intel-Xeon-Processor-E5-2618L-v2-15M-Cache-2\_00-GHz](http://ark.intel.com/ja/products/75788/Intel-Xeon-Processor-E5-2618L-v2-15M-Cache-2_00-GHz)
+
+以前、次世代の自作サーバを作ろうと決めてからしばらく経った。CPU やマザーボードなど、多少構成は変わったものの、発注してから1ヶ月半、ようやくパーツが揃った。一番時間がかかったのはこのエントリでも記している Xeon E5 2618Lv2 である。
+
+3週間の見積もりが6週間かかった。理由は Intel 側の製造遅延、かつ代理店の連絡が遅れたことにある。発注した後に気付いたのだが、この低電圧版のXeonは産業用や組み込み等の特殊な用途に使われるモノで、一般の人が買う物ではない。よってリテール向けの箱ではなく、OEM 用のトレイに入って届いた。我ながら変なモノを頼んだものだ... (´ー｀; )
+
+CPU を毎回買う度に「美しい」と思う。今回手に入れた Xeon は、手に入れるのに一番苦労したCPUなので、多分思い入れも意識しないうちに相当あると思う。ピンを折らないように（！）大事に使っていきたい。
+
+<img src="/images/Intel_Xeon_e52618lv2_dai2.jpg"/>
+<img src="/images/Intel_Xeon_e52618lv2_dai.jpg"/>
+<img src="/images/Intel_Xeon_e52618lv2_tray.jpg"/>
+<img src="/images/Intel_Xeon_e52618lv2_outbox.jpg"/>
+<img src="/images/Intel_Xeon_e52618lv2_outbox2.jpg"/>
+<img src="/images/Intel_Xeon_e52618lv2_outbox3.jpg"/>

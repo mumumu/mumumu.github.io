@@ -1,0 +1,15 @@
+<div class="sharing">
+  {% if site.twitter_tweet_button %}
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="{% if index %}{{ site.url }}{{ post.url }}{% else %}{{ canonical }}{% endif %}" data-via="{{ site.twitter_user }}" data-counturl="{% if index %}{{ site.url }}{{ post.url }}{% else %}{{ canonical }}{% endif %}" >Tweet</a>
+  {% endif %}
+  <a href="http://b.hatena.ne.jp/entry/{% if index %}{{ site.url }}{{ post.url }}{% else %}{{ canonical }}{% endif %}" class="hatena-bookmark-button" data-hatena-bookmark-title="{{post.title}}" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  {% if site.facebook_like %}
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="{% if index %}{{ site.url }}{{ post.url }}{% else %}{{ canonical }}{% endif %}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  {% endif %}
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  {% if site.google_plus_one %}
+  <div class="g-plusone" data-size="{{ site.google_plus_one_size }}"></div>
+  {% endif %}
+</div>

@@ -1,0 +1,50 @@
+---
+layout: post
+title: "Fabric"
+date: 2013-05-09 01:32
+comments: true
+categories: [python]
+---
+[http://fabfile.org/](http://fabfile.org)
+
+以前から Python をちゃんと使いたいと思いながらやるやる詐欺をしていた mumumu です。こんばんは。 
+  
+最近 [Learning Python](http://shop.oreilly.com/product/9781565924642.do) をちゃんと読み終え、個人的なプログラムも書き始めた。現在も Python は 2.x と 3.x が過渡期のため、make altinstall をしつつ複数のバージョンを共存させながらいろんなことを試している。
+
+Fabric もそのひとつだ。いろんなコマンドを複数サーバ群で実行するためのデコレータとAPIが備わっている。以前から自宅の仮想マシン群で面倒臭いと思っていた Debian の アップデート作業をなんとかしたいと思っていたところに、[@volantus](https://twitter.com/Voluntas) さんが twitter で試している旨をつぶやいていたので自分もやってみることにした。
+
+setuptools の fork である [distribute](http://pythonhosted.org/distribute/) から入れてること自体が初心者丸出しですね。
+	
+	curl -O http://python-distribute.org/distribute_setup.py
+	sudo python distribute_setup.py 
+	curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+	sudo python get-pip.py 
+	sudo pip install fabric
+
+fabfile.py を以下のように書く。[local()](http://docs.fabfile.org/en/1.6/api/core/operations.html#fabric.operations.local) はssh接続せずにコマンドを実行する。[run()](http://docs.fabfile.org/en/1.6/api/core/operations.html#fabric.operations.run) は ssh 接続してコマンドを実行する。そして、リモートで sudo 権限が必要なら [sudo()](http://docs.fabfile.org/en/1.6/api/core/operations.html#fabric.operations.sudo) を使う。ローカルで sudo したいときは、local() を使うしか現状無いようだ。
+
+[@hosts デコレータ](http://docs.fabfile.org/en/1.6/api/core/decorators.html#fabric.decorators.hosts) で、リモートのサーバ群を指定できる。とっても簡単。
+
+	#!/usr/bin/env python
+	
+	from fabric.api import *
+	
+	env.password = 'XXXXXXX'
+	
+	def localup():
+	    local('echo %s | sudo -S apt-get update && sudo apt-get upgrade' % env.password)
+	
+	@hosts('host1', 'host2', 'host3')
+	def upgrade():
+	    sudo('apt-get update')
+	    sudo('apt-get upgrade')
+
+上記はパスワードベタ打ちなので、自分だけの環境に置くこと。 
+  
+あとは、fabfile.py があるディレクトリで、以下を実行すればよい。fabfile.py に定義した関数が、fab コマンドに引き渡すコマンド名になる。
+
+	fab localup
+	fab upgrade
+
+簡単で良いのだけど、ローカルの sudo が local() でしかできないのはなんとかならんもんかね(*゜ー゜)
+ちょい調べてみるか。
