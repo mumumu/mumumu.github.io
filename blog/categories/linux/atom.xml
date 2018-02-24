@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linux | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2018-02-25T00:42:31+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux で Mac のようにスクリーンショットを撮る]]></title>
+    <link href="http://mumumu.github.io/blog/2018/02/24/linux-de-mac-falseyounisukurinsiyotutowocuo-ru/"/>
+    <updated>2018-02-24T23:29:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/02/24/linux-de-mac-falseyounisukurinsiyotutowocuo-ru</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/naelstrof/maim">https://github.com/naelstrof/maim</a></p>
+
+<p>職場で Mac をデフォルトで充てがわれることが多くなり、スクリーンショットを撮るのに Cmd+Shift+4 するのに慣れてしまった。そんな自分が、Linux で同じことをしたくなったときどうするか？</p>
+
+<p>基本的には、以下のようになる。</p>
+
+<p>A) 範囲指定でスクリーンショットを撮ることが出来るプログラムを探し、インストールする<br/>
+　 但し、GUI が呼ばれるプログラムは不可。CLI である必要がある<br/>
+B) 上記を呼び出すようにショートカットキーを割り当てる</p>
+
+<p>だが、1. を満たすプログラムがなかなか見つからない。どれも GUI を呼ぶか、範囲指定ができてもborderがわからなかったりするなど使いにくいものばかりだった。 <a href="https://wiki.archlinux.org/index.php/taking_a_screenshot">Arch Linux のページ</a> にあるソフトウェアをもろもろ調べ、結局選んだのが maim だった。</p>
+
+<p>だが、こいつが Ubuntu だけ何故かパッケージが用意されていなかった(注1)ので、git リポジトリから最新版をインストールする羽目に。いろいろ依存していてビルドが大変だったが、Ubuntu 16.04 LTS では以下をインストールすれば(注2)、あとは <a href="https://github.com/naelstrof/maim#install-using-cmake-requires-cmake-git-libxrander-libxfixes-libglm">指示通りにすれば</a> インストールできる。</p>
+
+<pre><code>$ sudo apt-get install  cmake libxrender-dev libxfixes-dev libglm-dev libglew-dev libglfw3-dev libgles2-mesa-dev libx11-dev libxcomposite-dev
+</code></pre>
+
+<p>あとは、以下のコマンドを Ctrl+Shift+F4 にマッピングした。</p>
+
+<pre><code>$ maim -s ~/screenshot-$(date +%s).png
+</code></pre>
+
+<p>自分は KDE を使っているので <a href="https://docs.kde.org/trunk5/en/kde-workspace/kcontrol/khotkeys/manage.html#manage-add-shortcut">Command/URL を選んで Custom Shortcutを割り当てる</a> 方法を使ったが、他のデスクトップ環境でも似たような機能はきっとあるだろう。</p>
+
+<p>(注1) 他の主要ディストリビューションにはある (Debian 含) のに、Ubuntu だけ何故... (´ー｀; )<br/>
+(注2) 他に必要なものもあるかもしれない。build-essential とかは当然の前提よ(*゜ー゜)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[disk partition over 2TB]]></title>
+    <link href="http://mumumu.github.io/blog/2014/07/05/disk-partition-over-2tb/"/>
+    <updated>2014-07-05T22:22:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/07/05/disk-partition-over-2tb</id>
+    <content type="html"><![CDATA[<p>ストレージって普段意識せずに使うモノだから、ハードウェア障害とかでいざ交換とか再初期化とかいう話になると、オペレーションを思い出すのに一瞬うっとなることが多い。今日もそんな日だった。</p>
+
+<p>ちょっと重要なサーバのストレージが死にかけたので、代替機を作ろうという話になった。ストレージは 480GB のSSD と Western Digital の 3TB。/dev/sda, /dev/sdb に割り当てられているのはわかっている。どちらがSSDで、どちらがHDDか？</p>
+
+<p>今までは dmesg とかを目grepしてどちらが何であるかを見ていた。なんとも原始的で情けない話だ。<br/>
+けれども、hdparm 使えば簡単だということを教わった。</p>
+
+<pre><code>nn@op3:~$ sudo hdparm -i /dev/sda
+
+/dev/sda:
+
+ Model=WDC WD30EZRX-00AZ6B0, FwRev=80.00A80, SerialNo=WD-WCC070146118
+ Config={ HardSect NotMFM HdSw&gt;15uSec SpinMotCtl Fixed DTR&gt;5Mbs FmtGapReq }
+ RawCHS=16383/16/63, TrkSize=0, SectSize=0, ECCbytes=50
+ BuffType=unknown, BuffSize=unknown, MaxMultSect=16, MultSect=16
+ CurCHS=16383/16/63, CurSects=16514064, LBA=yes, LBAsects=5860533168
+ IORDY=on/off, tPIO={min:120,w/IORDY:120}, tDMA={min:120,rec:120}
+ PIO modes:  pio0 pio3 pio4 
+ DMA modes:  mdma0 mdma1 mdma2 
+ UDMA modes: udma0 udma1 udma2 udma3 udma4 udma5 *udma6 
+ AdvancedPM=no WriteCache=enabled
+ Drive conforms to: Unspecified:  ATA/ATAPI-1,2,3,4,5,6,7
+
+ * signifies the current active mode
+</code></pre>
+
+<p>今回は /dev/sda に何故か HDD が割り当てられていることがわかった。パーティーションを一つだけ切って、それに全ての容量を割り当て、ext4 でフォーマットしようぜ、という話になった。自分は fdisk でこれまでパーティーションを切ることに慣れていたので、fdiskでパーティーションを切ったところ、以下のように2TB分しか切られない。なんでだ。</p>
+
+<pre><code>/dev/sda1                2.0T  199M  1.9T   1% /hoge
+</code></pre>
+
+<p>と思ったら、Linux の fdisk は <a href="http://ja.wikipedia.org/wiki/GUID%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB">GUIDパーティーションテーブル(GPT)</a> に対応していないので、 2TiB 以上のパーティーションは作れないようだ。</p>
+
+<pre><code>$ sudo parted /dev/sda
+(parted) mklabel gpt
+(parted) mkpart primary 0% 100%
+(parted) print
+Model: ATA WDC WD30EZRX-00A (scsi)
+Disk /dev/sda: 3001GB
+Sector size (logical/physical): 512B/4096B
+Partition Table: gpt
+
+Number  Start   End     Size    File system  Name     Flags
+1      1049kB  3001GB  3001GB               primary
+</code></pre>
+
+<p>これで 2TB 以上のディスクを普通に扱えるようになった。これまでも2TB以上のディスクに普通に fdisk を使ってきた自分が恥ずかしいわ(´ー｀；)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debian GNU/Linux 7.0 Wheezy]]></title>
+    <link href="http://mumumu.github.io/blog/2013/05/05/debian-gnu-slash-linux-7-dot-0-wheezy/"/>
+    <updated>2013-05-05T23:21:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/05/05/debian-gnu-slash-linux-7-dot-0-wheezy</id>
+    <content type="html"><![CDATA[<p><a href="http://www.debian.org/News/2013/20130504">http://www.debian.org/News/2013/20130504</a><br/>
+<a href="http://www.debian.org/releases/wheezy/releasenotes]">http://www.debian.org/releases/wheezy/releasenotes</a></p>
+
+<p>今のところ手元で運用している全仮想マシンが Debian なので、早速アップデートした。アップグレードに関する手順や注意点はリリースノートに全て纏まっていることと、Fedora とかと違って Debian のアップグレードは凄く安定しているのでそんなに手間を掛けなくても移行できる。</p>
+
+<p>バックアップや細かいチェックを除けば、/etc/apt/sources.list の squeeze を wheezy に書き換えて以下を実行するのみだ。</p>
+
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get dist-upgrade
+</code></pre>
+
+<p>自分が <a href="http://www.nagios.org/">nagios</a> をソースから入れていたことから、<a href="http://wiki.debian.org/LSBInitScripts/DependencyBasedBoot">insserv</a> まわりで衝突が起きて止まったことと、 <a href="/blog/2013/04/27/ruby-2-dot-0-0-p0/">Ruby を 2.0.0-p0 にしていて</a> sudo -u mumumu ruby .... と rc.local に書いていた部分が動かなくなったことを除けば順調に進行。 楽チンだなー。この移行の安定性が サーバに Debian を使う一番の理由だったりする。</p>
+
+<p><img src="/images/debian_wheezy_upgrade_complete.png" alt="debian upgrade complete!" /></p>
+]]></content>
+  </entry>
+  
+</feed>

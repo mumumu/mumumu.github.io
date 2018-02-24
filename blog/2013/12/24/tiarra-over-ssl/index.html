@@ -1,0 +1,493 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Tiarra over SSL without stone - mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="Tiarra といえば Perl で書かれた日本では著名な IRC Proxy であるが、SSL 経由で接続しようと思ってぐぐる と 「stone 経由で接続する」 Howto がたくさん出てくる。果ては tiarra では SSL 接続できないから znc に移行した。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/blog/2013/12/24/tiarra-over-ssl/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="mumumu の日記" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+<script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>
+<script type="text/javascript">
+    Hatena.Star.Token = '2ff1b78d44567c93bf2a6a8400a11ea249acae79';
+    Hatena.Star.SiteConfig = {
+      entryNodes: {
+        'article': {
+          uri: 'h1 a',
+          title: 'h1',
+          container: 'span.hatenastar'
+        }
+      }
+    };
+</script>
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-674328-3', 'github.io');
+    ga('send', 'pageview');
+  
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Tiarra over SSL without stone</h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-24T00:08:00+09:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+
+  <div class="entry-content"><p><a href="http://www.clovery.jp/tiarra/">Tiarra</a> といえば Perl で書かれた日本では著名な IRC Proxy であるが、<a href="https://www.google.co.jp/search?q=tiarra+ssl&amp;amp;oq=tiarra+ssl">SSL 経由で接続しようと思ってぐぐる</a> と 「<a href="http://www.gcd.org/sengoku/stone/Welcome.ja.html">stone</a> 経由で接続する」 Howto がたくさん出てくる。果ては tiarra では SSL 接続できないから znc に移行した。とかいうエントリまで出てくる。</p>
+
+<p>けれども、Tiarra のソースをちょこっと読んでみると綺麗にモジュール化されており、ソケット周りも綺麗にラップされてるので、簡単なソース変更でSSL接続ができるんじゃないか。というか、ここまでやる以上、作者である <a href="http://www.clovery.jp/">Topiaたん</a> がそれを意図して書かないわけがない。と思った。</p>
+
+<p>そこで、<a href="http://search.cpan.org/~sullr/IO-Socket-SSL-1.962/">IO::Socket::SSL</a> で <a href="http://coderepos.org/share/browser/lang/perl/tiarra">tiarra の現時点での最新ソース</a> (rev.39276) を <a href="https://github.com/ggreer/the_silver_searcher">ag(Silver Searcher)</a> すると、 main/Tiarra/Socket/Connect.pm の _check_connect_dependency 関数に以下のようにある。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sub _check_connect_dependency {
+</span><span class='line'>    my $this = shift;
+</span><span class='line'>
+</span><span class='line'>    my $ssl = $this-&gt;current_ssl;
+</span><span class='line'>    if (defined $ssl && $ssl-&gt;{version}) {
+</span><span class='line'>        if (!Tiarra::OptionalModules-&gt;ssl) {
+</span><span class='line'>            $this-&gt;_warn(
+</span><span class='line'>                qq{You wants to connect with SSL, }.
+</span><span class='line'>                    qq{but SSL support is not enabled. }.
+</span><span class='line'>                        qq{Use non-SSL or install IO::Socket::SSL if possible.\n});
+</span><span class='line'>            return 0;
+</span><span class='line'>        }
+</span><span class='line'>    }
+</span><span class='line'>    return 1;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>$ssl と $ssl->{version} が定義されていれば SSL 接続に行くらしい。
+$ssl = $this-&gt;current_ssl なので、それを見ると</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sub current_ssl {
+</span><span class='line'>    my $this = shift;
+</span><span class='line'>
+</span><span class='line'>    utils-&gt;get_first_defined(
+</span><span class='line'>        $this-&gt;{connecting}-&gt;{ssl},
+</span><span class='line'>        $this-&gt;ssl);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>てな感じで、 $this-&gt;{connecting} に ssl が定義されてると、それを返すらしい。
+$this-&gt;connecting の中身は、下のようになっている。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$this-&gt;{connecting} = shift @{$this-&gt;{queue}};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>$this-&gt;{queue} の中身は以下のようになっている。どうやら接続オプションを渡すようだ。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>    foreach my $port (@ports) {
+</span><span class='line'>        push (@{$this-&gt;{queue}},
+</span><span class='line'>              map {
+</span><span class='line'>                  $struct = {
+</span><span class='line'>                      type =&gt; $sock_type,
+</span><span class='line'>                      addr =&gt; $_,
+</span><span class='line'>                      port =&gt; $port,
+</span><span class='line'>                  };
+</span><span class='line'>              } @{$addrs_by_types{$sock_type}});
+</span><span class='line'>    }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>じゃあ多分接続オプションって tiarra.conf に書けるよね、と思ったら、<a href="http://coderepos.org/share/browser/lang/perl/tiarra/trunk/all.conf#L296">all.conf</a> にあった。
+これを参考にして ssl ブロック以下を接続に追記すると、あっさり stone なしで接続できた。
+ただし、IO::Socket::SSL(と Net::SSLeay) が必要です。</p>
+
+<p>verify オプションはデフォルト有効になっているので、証明書の検証に失敗して対処法がわからないようであれば no を指定してみると良いと思います。たとえば SSL が有効な freenode サーバに接続するなら、自分は今以下のように指定しています。(Debian GNU/Linux 7.3 wheezy の環境)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>freenode {
+</span><span class='line'>  #  IP アドレスを指定すると名前解決が行われてエラーになる
+</span><span class='line'>  #  その場合は hosts の類に名前を書いてあげて、それを指定
+</span><span class='line'>  #  するようにする
+</span><span class='line'>  host: irc.freenode.net
+</span><span class='line'>  port: 7000
+</span><span class='line'>
+</span><span class='line'>  ssl {
+</span><span class='line'>      version: sslv23
+</span><span class='line'>      ca-path: /etc/ssl/certs
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但し、host に IP アドレスを指定すると、 main/Tiarra/Resolver.pm で必要ない名前解決をしに行くためエラーになります(多分バグ)。そのため、host に IP アドレスを指定したくなった場合は hosts に類するものに適当な名前を書いてあげて、それを host の設定に指定すると繋がるようになります。</p>
+
+<h3>まとめ</h3>
+
+<p>・ tiarra は 別に stone なしでも SSL 接続できる<br/>
+・ 要 IO::Socket::SSL(と Net::SSLeay)<br/>
+・ 必要な設定は最低限以下。 それ以外の設定は all.conf を参照。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssl {
+</span><span class='line'>    version: sslv23
+</span><span class='line'>
+</span><span class='line'>    # CA 鍵リストファイル。
+</span><span class='line'>    # verify (デフォルト有効)を行う場合は ca-file か ca-path の
+</span><span class='line'>    # どちらかを必ず指定してください。
+</span><span class='line'>    #ca-file: /usr/local/share/certs/ca-root-nss.crt
+</span><span class='line'>
+</span><span class='line'>    # CA 鍵パス
+</span><span class='line'>    # verify (デフォルト有効)を行う場合は ca-file か ca-path の
+</span><span class='line'>    # どちらかを必ず指定してください。
+</span><span class='line'>    #ca-path: /etc/ssl/certs
+</span><span class='line'>
+</span><span class='line'>    #  ca-path や ca-file を指定してもどうしても接続できない場合指定
+</span><span class='line'>    #verify: no
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>・<a href="http://znc.in/">znc</a> 皆いいとか言ってるけど日本語の扱いイマイチだしその他細かいところも気に入らないしなんでC++なのか意味わかんないしで tiarra を維持できた自分はとても幸せです。</p>
+
+<p>・どうでもいいけど <a href="http://coderepos.org/">CodeRepos</a> 落ちすぎな気がします。</p>
+
+<p><strong>[ Update December 24th 23:34 JST by m ]</strong></p>
+
+<p>Tiarra の作者の Topia たんから verify:no の件についていろいろ指摘を貰いました。 ca-path または ca-file で証明書のパスを指定しておかなかなったので verify に失敗していました。Debian GNU/Linux 7.3 wheezy の自分の環境では、ca-certificates パッケージと ssl-certs パッケージを入れて、 ca-path を指定すると freenode に verify した上で繋がるようになりました。</p>
+
+<p>これを踏まえて、「まとめ」と freenode の接続例を更新しておきました。 <a href="http://www.clovery.jp/">Topiaたん</a> ありがとう！</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">mumumu(Yoshinari Takaoka)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-24T00:08:00+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/irc/'>irc</a>, <a class='category' href='/blog/categories/tips/'>tips</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="" data-via="mumumu" data-counturl="" >Tweet</a>
+  
+  <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-title="" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/12/08/current-status-of-the-php-documentation/" title="Previous Post: Current status of the PHP Documentation">&laquo; Current status of the PHP Documentation</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/12/28/can-you-trust-cdn/" title="Next Post: Can you trust software distributed via CDN?">Can you trust software distributed via CDN? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python, translator, devoted husband. Interested in Linux, KDE, Embedded Linux, IRC, Translation, Web Application ... etc.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="http://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://delicious.com/mumumu">mumumu's delicious Bookmark</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/02/24/linux-de-mac-falseyounisukurinsiyotutowocuo-ru/">Linux で Mac のようにスクリーンショットを撮る</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/23/slack-mobile-notifications-not-working/">Slack mobile notifications not working (on Android)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/02/add-socks-support-to-ruby-httpclient/">[PATCH] added socks support to Ruby httpclient</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/05/10/cmos-error/">cmos error</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/specific-file-update-checker-on-git-repository/">Specific file update checker on Git Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/12/yang-xiang-kegoroqin-desuku/">Aomuke Gorone Desk</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

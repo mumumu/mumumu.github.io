@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Migrating MySQL 5.5 to 5.6 - mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="MySQL5.5 からビルドは cmake でするようになったが、ビルドオプションが手元に残らない（誰か Autotool でいうところの config.status みたいなものがあれば教えて!)。そして、MySQL &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/blog/2013/06/07/migrating-mysql-5-dot-5-to-5-dot-6/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="mumumu の日記" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+<script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>
+<script type="text/javascript">
+    Hatena.Star.Token = '2ff1b78d44567c93bf2a6a8400a11ea249acae79';
+    Hatena.Star.SiteConfig = {
+      entryNodes: {
+        'article': {
+          uri: 'h1 a',
+          title: 'h1',
+          container: 'span.hatenastar'
+        }
+      }
+    };
+</script>
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-674328-3', 'github.io');
+    ga('send', 'pageview');
+  
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Migrating MySQL 5.5 to 5.6</h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-07T12:47:00+09:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+
+  <div class="entry-content"><p><a href="http://www.mysql.com/">MySQL</a>5.5 からビルドは <a href="http://www.cmake.org">cmake</a> でするようになったが、ビルドオプションが手元に残らない（誰か <a href="http://www.gnu.org/software/automake/">Autotool</a> でいうところの config.status みたいなものがあれば教えて!)。そして、MySQL の新しいメジャーバージョンが出る度に公式ドキュメントの一般的な手順を追うのも面倒臭い。</p>
+
+<p>ということで、以下に私的な Debian GNU/Linux Wheezy 上でのアップグレード手順をメモしておく。家サーバの私的な手順なので参考にしてはいけない。ソースから入れているので apt-get install build-essential も当然しておくこと。</p>
+
+<p>また、mysql ユーザーとグループは作成済みとし、起動スクリプト /etc/init.d/mysqld も作成済みとする。</p>
+
+<hr />
+
+<p><br />
+マニュアルを読み、アップグレードに関する注意や非互換変更、リリースノートを読んでおく。</p>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.6/en/upgrading.html">http://dev.mysql.com/doc/refman/5.6/en/upgrading.html</a>
+<a href="http://dev.mysql.com/doc/refman/5.6/en/upgrading.html">http://dev.mysql.com/doc/refman/5.6/en/upgrading-from-previous-series.html</a>
+<a href="http://dev.mysql.com/doc/refman/5.6/en/upgrading.html">http://dev.mysql.com/doc/refman/5.6/en/mysql-upgrade.html</a>
+<a href="http://dev.mysql.com/doc/refman/5.6/en/upgrading.html">http://dev.mysql.com/doc/relnotes/mysql/5.6/en/</a></p>
+
+<p>次に、ソースアーカイブを展開して普通にビルドする。</p>
+
+<pre><code>$ tar zxvf mysql-5.6.12.tar.gz
+$ cd mysql-5.6.12
+$ cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql5.6 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=ON -DWITH_READLINE=ON  .
+$ make -j8
+$ sudo make install
+$ sudo -s
+</code></pre>
+
+<p>ここで root になり、/usr/local/mysql5.6 以下の権限を設定する。<br/>
+最後の data ディレクトリへの設定は意味ないが、様式美のようなものだ。</p>
+
+<pre><code># cd /usr/local/mysql5.6
+# chown -R root.mysql .
+# chown -R mysql data
+</code></pre>
+
+<p>mysqld を一度停止する。</p>
+
+<pre><code># /etc/init.d/mysqld stop
+</code></pre>
+
+<p>自分はデータを /home/mysql/data-VERSION 以下に置いているので、それを新たな場所にコピーし、権限を設定する。元データを残しておくのが mysqldump 等によるバックアップの代替だ。</p>
+
+<pre><code># cd /home/mysql
+# cp -pR data-5.5 data-5.6
+# chown -R mysql.mysql data-5.6
+</code></pre>
+
+<p>/etc/init.d/mysqld を編集する。自分は support-files/mysql.server をそのまま使っているので、basedir と datadir を以下のように書き換える。</p>
+
+<pre><code>--- mysqld-5.5  2013-06-07 12:58:13.075107498 +0900
++++ mysqld      2013-06-07 12:37:57.775074031 +0900
+@@ -43,8 +43,8 @@
+# If you change base dir, you must also change datadir. These may get
+# overwritten by settings in the MySQL configuration files.
+
+-basedir=/usr/local/mysql5.5
+-datadir=/home/mysql/data-5.5
++basedir=/usr/local/mysql5.6
++datadir=/home/mysql/data-5.6
+</code></pre>
+
+<p>MySQL を起動する。(この時点で既に5.6)</p>
+
+<pre><code># /etc/init.d/mysqld start
+</code></pre>
+
+<p>一度接続できることを確認する。</p>
+
+<pre><code># /usr/local/mysql5.6/bin/mysql -u root -p mysql
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 85
+Server version: 5.6.12-log Source distribution
+
+....
+</code></pre>
+
+<p>mysql_upgrade を実行する。 --basedir と --datadir は無視されるんだそうな。<br/>
+<a href="http://dev.mysql.com/doc/refman/5.6/en/mysql-upgrade.html">マニュアル通りですな。</a></p>
+
+<pre><code># /usr/local/mysql5.6/bin/mysql_upgrade --basedir=/usr/local/mysql5.6/ --datadir=/home/mysql/data-5.6/ -u root -p
+/usr/local/mysql5.6/bin/mysql_upgrade: the '--basedir' option is always ignored
+/usr/local/mysql5.6/bin/mysql_upgrade: the '--datadir' option is always ignored
+Enter password: 
+Looking for 'mysql' as: /usr/local/mysql5.6/bin/mysql
+Looking for 'mysqlcheck' as: /usr/local/mysql5.6/bin/mysqlcheck
+Running 'mysqlcheck' with connection arguments: '--port=3306' '--socket=/tmp/mysql.sock' 
+Warning: Using a password on the command line interface can be insecure.
+Running 'mysqlcheck' with connection arguments: '--port=3306' '--socket=/tmp/mysql.sock' 
+Warning: Using a password on the command line interface can be insecure.
+mysql.columns_priv                                 OK
+mysql.db                                           OK
+mysql.event                                        OK
+mysql.func                                         OK
+mysql.general_log                                  OK
+mysql.help_category                                OK
+mysql.help_keyword                                 OK
+mysql.help_relation                                OK
+mysql.help_topic                                   OK
+mysql.host                                         OK
+mysql.ndb_binlog_index                             OK
+mysql.plugin                                       OK
+mysql.proc                                         OK
+mysql.procs_priv                                   OK
+mysql.proxies_priv                                 OK
+mysql.servers                                      OK
+mysql.slow_log                                     OK
+mysql.tables_priv                                  OK
+mysql.test                                         OK
+mysql.time_zone                                    OK
+mysql.time_zone_leap_second                        OK
+mysql.time_zone_name                               OK
+mysql.time_zone_transition                         OK
+mysql.time_zone_transition_type                    OK
+mysql.user                                         OK
+Running 'mysql_fix_privilege_tables'...
+....
+OK
+</code></pre>
+
+<p>これで完了。何か起きたときは /etc/init.d/mysqld を古いモノに差し替えて mysqld を再起動すること。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">mumumu(Yoshinari Takaoka)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-07T12:47:00+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mysql/'>mysql</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="" data-via="mumumu" data-counturl="" >Tweet</a>
+  
+  <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-title="" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/05/jubatus-casual-talks-number-1/" title="Previous Post: Jubatus Casual Talks #1">&laquo; Jubatus Casual Talks #1</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/06/13/x-forwarded-for/" title="Next Post: X-Forwarded-For">X-Forwarded-For &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python, translator, devoted husband. Interested in Linux, KDE, Embedded Linux, IRC, Translation, Web Application ... etc.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="http://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://delicious.com/mumumu">mumumu's delicious Bookmark</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/02/24/linux-de-mac-falseyounisukurinsiyotutowocuo-ru/">Linux で Mac のようにスクリーンショットを撮る</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/23/slack-mobile-notifications-not-working/">Slack mobile notifications not working (on Android)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/02/add-socks-support-to-ruby-httpclient/">[PATCH] added socks support to Ruby httpclient</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/05/10/cmos-error/">cmos error</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/specific-file-update-checker-on-git-repository/">Specific file update checker on Git Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/12/yang-xiang-kegoroqin-desuku/">Aomuke Gorone Desk</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

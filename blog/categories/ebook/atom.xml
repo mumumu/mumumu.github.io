@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ebook | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/ebook/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2018-02-25T00:42:31+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ebook DIY Example]]></title>
+    <link href="http://mumumu.github.io/blog/2014/01/08/ebook-diy-example/"/>
+    <updated>2014-01-08T22:28:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/01/08/ebook-diy-example</id>
+    <content type="html"><![CDATA[<iframe src="http://www.slideshare.net/slideshow/embed_code/29792564" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px"></iframe>
+
+
+<p><br />
+<br />
+電子書籍の自炊について社内で LT をしたので記録しておく。</p>
+
+<p>このスライドには、「自炊代行業者は自分的にグレーゾーン」などと書いているが、はじめに調べた <a href="http://www.bookscan.co.jp/">BookScan</a> を見る限り、理屈の通った商売はしていると思う。だが、ユーザーに対して <a href="http://www.bookscan.co.jp/law.php">スキャンを頼む全ての著作物の著作権者への許可を求め</a> 、「何かトラブルがあったら許可を取らなかったあなたが悪い」的なやり方が (理屈が通っているとわかってはいても) どうにも気に入らなかったので、自分は自炊業者を使う気になれなかったというのが本当のところだ。</p>
+
+<p>そんなこんなでやってはみたものの、まあ後にも使えるノウハウが残ったのだから、自分的には別にいいや、という感じである。ただ本をバラバラにするという行為が、スライドを作っていてちょっと心が痛んだのも否定しない。だから、本当に後から紙で読み返したいと思う技術書については、やめとこうという気持ちになっている。</p>
+
+<p>「<a href="http://www.oversea-pub.com/books/gnu-development-tools">GNU Development Tools</a>」や、<a href="http://www.amazon.co.jp/dp/4756116396">エキスパートCプログラミング</a> などがそんな本だ。電子化して読んだ方が気持ちよいと思うのもあるが、やめとこうという気持ちになる本もあるという点は心に留めておきたい。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,520 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>phpenv without php-build - mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="https://github.com/phpenv/phpenv 来週から Python を仕事で使うというのに、未だに PHP ばかりやっている mumumu です。こんばんは。 さて、複数の PHP のバージョンをひとつのマシンに共存させ、使い分けたいと思った場合に、現在は CHH 版の &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/blog/2013/06/28/phpenv-without-php-build/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="mumumu の日記" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+<script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>
+<script type="text/javascript">
+    Hatena.Star.Token = '2ff1b78d44567c93bf2a6a8400a11ea249acae79';
+    Hatena.Star.SiteConfig = {
+      entryNodes: {
+        'article': {
+          uri: 'h1 a',
+          title: 'h1',
+          container: 'span.hatenastar'
+        }
+      }
+    };
+</script>
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-674328-3', 'github.io');
+    ga('send', 'pageview');
+  
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">phpenv without php-build</h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-28T18:09:00+09:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+
+  <div class="entry-content"><p><a href="https://github.com/phpenv/phpenv">https://github.com/phpenv/phpenv</a></p>
+
+<p>来週から Python を仕事で使うというのに、未だに PHP ばかりやっている mumumu です。こんばんは。</p>
+
+<p>さて、複数の PHP のバージョンをひとつのマシンに共存させ、使い分けたいと思った場合に、現在は <a href="https://github.com/CHH/phpenv">CHH 版の phpenv</a> が広まっているような気がする。けれども、自分は Ruby の複数バージョン共存に rbenv を使っているので、それと同じように使える phpenv/phpenv を使ってみたら思ったより便利だったので、ここで紹介する。</p>
+
+<hr />
+
+<p><br /></p>
+
+<p>ここでは、Ubuntu 12.10 (Quantal Quetzal) で、Apache2 のモジュールとしてPHPを複数共存させる手順を以下に示す。まずはインストールから。</p>
+
+<pre><code>$ git clone git://github.com/phpenv/phpenv.git .phpenv
+$ echo 'export PATH="$HOME/.phpenv/bin:$PATH"' &gt;&gt; ~/.bashrc
+$ echo 'eval "$(phpenv init -)"' &gt;&gt; ~/.bashrc
+$ . ~/.bashrc
+</code></pre>
+
+<p>これで完了。以下のように出れば成功である。</p>
+
+<pre><code>$ phpenv rehash
+phpenv v0.0.3-dev
+</code></pre>
+
+<p>インストール可能なバージョンを出してみる。<a href="https://github.com/php/php-src">github の php-src</a> をベースとしたバージョンが全てビルド可能であることが示されるはずだ。</p>
+
+<pre><code>$ phpenv install --releases
+phpenv v0.0.3-dev
+
+             init extensions  the clone source for additional extensions                      
+             init  the cloning source from php-src Github repo                     
+             Fetching  the latest PHP releases from Github repohpenv install --releases
+
+PHP releases as were available on:
+2013年  6月 28日 金曜日 18:49:23 JST
+
+php-5.5.0
+php-5.5.0RC1
+php-5.5.0RC2
+php-5.5.0RC3
+php-5.5.0alpha1
+php-5.5.0alpha2
+
+...
+
+php-5.4.17RC1
+php-5.4.16
+
+... 
+</code></pre>
+
+<p>PHP を Apacheモジュールとしてインストールしたことがある人なら御存知の通り、Linux での PHP のビルドには Apache モジュールをビルドするための apxs2、そして bison(re2c) 、Cコンパイラその他が必要なことは御存知な通りである。そこで、自分が必要なモノをここでインストールしておく。libcurl4, libreadlineとか、libxslt は自分がいつも設定しているモノなので正直適当である。</p>
+
+<pre><code>$ sudo apt-get install build-essential apache2-mpm-prefork apache2-prefork-dev bison re2c libxml2-dev libcurl4-openssl-dev libmcrypt-dev libreadline-dev libxslt-dev
+</code></pre>
+
+<p>さて、各バージョンのビルドである。ビルドオプションは各バージョンでコントロールできる。また、同じバージョンだが、ビルドオプションが違う複数のPHPをインストールすることもできる。ここでは、PHP 5.5.0 をインストールするので、それ用のオプションを設定しよう。</p>
+
+<pre><code>$ cd ~/.phpenv/etc
+$ vi php-5.5.Linux.source 
+</code></pre>
+
+<p>自分は以下のように設定した。はっきりいって適当である。ここは適宜調整し、ビルドに必要なヘッダファイルは適宜入れてください。</p>
+
+<p>あと、xdebug とかをデフォルトで入れようとしてくれるので、それはコメントアウトした。</p>
+
+<pre><code>CONFIGURE_OPTIONS="--with-apxs2=/usr/bin/apxs2
+                   --enable-zend-multibyte
+                   --enable-phar
+                   --disable-intl
+                   --with-libxml
+                   --with-openssl
+                   --with-kerberos=/usr
+                   --with-zlib
+                   --enable-mbstring
+                   --enable-mbregex
+                   --with-xmlrpc
+                   --with-xsl
+                   --with-pcre-regex
+                   --with-curl
+                   --with-mcrypt
+                   --with-gettext
+                   --with-mysql
+                   --with-mysqli
+                   --with-pdo-mysql
+                   --with-readline
+                   "
+
+#MANUAL_EXTENSIONS=('http' 'uri-template' 'xdebug')
+</code></pre>
+
+<p>そしてビルドし、インストールする。 成功したら、以下のように出るはずだ。</p>
+
+<pre><code>$ phpenv install php-5.5.0
+
+               [Fetching] |1| latest code from Github repo                                 
+               [Branching] |2| for a clean build environment                                
+               [Patching] |3| Applying patches to the source if any are applicable.        
+               [Configuring] |4| build options for selected release                           
+               [Compiling] |5| /home/mumumu/.phpenv/versions/5.5.0                          
+               make: success                                                          
+               make install: success                                                          
+               make clean: success                                                          
+               [Config ini] |6| appending add-on extention configuration to php.ini          
+                   [Pyrus] |7| downloading and installing from http://pear2.php.net/pyrus.phar
+               [Extensions] |8| No additional extensions configured for manual installation. 
+                   Success: The installation of the php-5.5.0 release was successfully completed.
+                   Info: The log files produced by the procedure are available, in the tmp folder, for your review:
+                   - Any warnings or messages sent to STDERR was logged to /tmp/phpenv-install-php-5.5.0.20130628182515.log.err
+                   - All messages sent to STDOUT was logged to /tmp/phpenv-install-php-5.5.0.20130628182515.log
+</code></pre>
+
+<p>インストールできたら、このマシンでは PHP 5.5.0 をメインで使う旨宣言する。</p>
+
+<pre><code>$ phpenv global 5.5.0
+phpenv v0.0.3-dev
+
+5.5.0
+$ php --version
+PHP 5.5.0 (cli) (built with phpenv v0.0.2: Jun 28 2013 18:31:35) 
+Copyright (c) 1997-2013 The PHP Group
+Zend Engine v2.5.0-dev, Copyright (c) 1998-2013 Zend Technologies
+</code></pre>
+
+<p>おっ、そういえば PHP 5.5.0 からは OPcache がデフォルトでビルドされるんだった。それも組み込んでおこう。php.ini もバージョン毎に使い分けができる</p>
+
+<pre><code>$ cd ~/.phpenv/versions/5.5.0/etc/php.ini
+</code></pre>
+
+<p>上記に以下を書き加えよう。</p>
+
+<pre><code>zend_extension=/home/mumumu/.phpenv/versions/5.5.0/lib/php/extensions/no-debug-non-zts-20121212/opcache.so
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=4000
+opcache.revalidate_freq=60
+opcache.fast_shutdown=1
+opcache.enable_cli=1
+</code></pre>
+
+<p>書き加えてバージョンを確かめると以下のようになる。</p>
+
+<pre><code>$ php --version
+PHP 5.5.0 (cli) (built with phpenv v0.0.2: Jun 28 2013 18:31:35) 
+Copyright (c) 1997-2013 The PHP Group
+Zend Engine v2.5.0-dev, Copyright (c) 1998-2013 Zend Technologies
+    with Zend OPcache v7.0.2-dev, Copyright (c) 1999-2013, by Zend Technologie
+</code></pre>
+
+<p>Apache モジュールも入っている。これは各バージョンの libexec ディレクトリ以下に入っているので、それを httpd.conf で切り替えれば Apache でのバージョンの切り替えも可能だ。</p>
+
+<pre><code>$ ls ~/.phpenv/versions/5.5.0/libexec
+libphp5.so
+</code></pre>
+
+<p>次に、PHP 5.5.0 をデバッグビルドして共存させてみる。ビルドの設定ファイルをコピーし、設定すればよいのだが、設定ファイルは &lt;php major release&gt;-&lt;optional specific build&gt;.&lt;platform&gt;.source という規約に従う必要がある。</p>
+
+<p>ここでは、PHP 5.5.0 のデバッグ版であることを示すために、optional specific build の部分を 550debug としている。ここでは、--enable-debug をオプションに加える。</p>
+
+<pre><code>$ cd ~/.phpenv/etc/
+$ cp php-5.5.Linux.source php-5.5-550debug.Linux.source
+</code></pre>
+
+<p>そしてインストールする。optional specific build をオプションとして指定し、さっき編集した設定ファイルが使われていることを確かめよう。</p>
+
+<pre><code>$ phpenv install php-5.5.0 550debug
+phpenv v0.0.3-dev
+
+Building 5.5.0-550debug with config options from: php-5.5-550debug.Linux.source
+....
+</code></pre>
+
+<p>ビルドが終わると、ふたつのバージョンが入っていることがわかる。</p>
+
+<pre><code>$ phpenv versions
+phpenv v0.0.3-dev
+
+* 5.5.0 (set by /home/mumumu/.phpenv/version)
+  5.5.0-550debug
+</code></pre>
+
+<p>最後に、5.5.0 のデバッグ版に切り替え、コンパイルオプションを確かめる。--enable-debug が加わっていること、デバッグ版としてバージョンが出ていることがわかる。</p>
+
+<pre><code>$ phpenv local 5.5.0-550debug
+$ php --version
+PHP 5.5.0 (cli) (built with phpenv v0.0.2: Jun 28 2013 19:27:20) (DEBUG)
+Copyright (c) 1997-2013 The PHP Group
+Zend Engine v2.5.0-dev, Copyright (c) 1998-2013 Zend Technologies
+$ php -i | grep configure
+Configure Command =&gt;  './configure'  '--with-apxs2=/usr/bin/apxs2' '--enable-zend-multibyte' '--enable-phar' '--disable-intl' '--with-libxml' '--with-openssl' '--with-kerberos=/usr' '--with-zlib' '--enable-mbstring' '--enable-mbregex' '--with-xmlrpc' '--with-xsl' '--with-pcre-regex' '--with-curl' '--with-mcrypt' '--with-gettext' '--with-mysql' '--with-mysqli' '--with-pdo-mysql' '--with-readline' '--enable-debug' '--with-config-file-path=/home/mumumu/.phpenv/versions/5.5.0-550debug/etc' '--with-config-file-scan-dir=/home/mumumu/.phpenv/versions/5.5.0-550debug/etc/conf.d' '--prefix=/home/mumumu/.phpenv/versions/5.5.0-550debug'
+</code></pre>
+
+<hr />
+
+<p><br />
+こんな感じだ。自分の中では rbenv と同じ感じで使えて、Apache モジュールの切り替えもうまいこといったのでいい感じである。また、同じバージョンで複数のビルドも共存できる。使っていて楽しい。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">mumumu(Yoshinari Takaoka)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-28T18:09:00+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/php/'>php</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="" data-via="mumumu" data-counturl="" >Tweet</a>
+  
+  <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-title="" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/27/chm-file-from-internet/" title="Previous Post: Chm file from internet">&laquo; Chm file from internet</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/06/29/php-manual-generate-howto/" title="Next Post: PHP manual generate HOWTO (version 2013-06-29)">PHP manual generate HOWTO (version 2013-06-29) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python, translator, devoted husband. Interested in Linux, KDE, Embedded Linux, IRC, Translation, Web Application ... etc.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="http://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://delicious.com/mumumu">mumumu's delicious Bookmark</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/02/24/linux-de-mac-falseyounisukurinsiyotutowocuo-ru/">Linux で Mac のようにスクリーンショットを撮る</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/23/slack-mobile-notifications-not-working/">Slack mobile notifications not working (on Android)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/02/add-socks-support-to-ruby-httpclient/">[PATCH] added socks support to Ruby httpclient</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/05/10/cmos-error/">cmos error</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/specific-file-update-checker-on-git-repository/">Specific file update checker on Git Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/12/yang-xiang-kegoroqin-desuku/">Aomuke Gorone Desk</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: delicious | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/delicious/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2018-02-25T00:42:31+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Put delicious Browser Extensions on Ice]]></title>
+    <link href="http://mumumu.github.io/blog/2013/06/22/put-delicious-browser-extensions-on-ice/"/>
+    <updated>2013-06-22T13:32:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/06/22/put-delicious-browser-extensions-on-ice</id>
+    <content type="html"><![CDATA[<p><a href="http://blog.delicious.com/2012/01/update-on-the-browser-extensions/">http://blog.delicious.com/2012/01/update-on-the-browser-extensions/</a></p>
+
+<p>ずっとソーシャルブックマークサービスは <a href="http://delicious.com/">delicious.com</a> を使ってるんだけど、ブラウザ向けエクステンションのデキが極めて良くないし、公式のものも出てこないのでなんでだろーって思っていたら、「delicious.com は ブラウザ向け Extention の開発を継続しない」という宣言を随分前にしていたことがわかった。。(´ー｀; )</p>
+
+<p>道理でいろんなアプリが百花繚乱でカオスだと思った。確かにかなりの数のブックマークを持っている人には、ブラウザ向けのエクステンションは使いづらい面があるのかもしれないし、表現しにくいモノもあるのかもしれない。ただ、「右クリックでブックマーク」「ブックマークをブラウザアクションで検索」くらいはあってもよいものだと思いつつ、それが両方揃った Google Chrome Extention がないのはどういうことだ( ;´Д⊂ヽ</p>
+
+<p>ということで、作ってみようと思った昼下がりでした。ハイ。</p>
+]]></content>
+  </entry>
+  
+</feed>

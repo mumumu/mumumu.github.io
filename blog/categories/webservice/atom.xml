@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: webservice | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/webservice/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2018-02-25T00:42:31+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Gunosy App on Android]]></title>
+    <link href="http://mumumu.github.io/blog/2013/04/28/gunosy-on-android/"/>
+    <updated>2013-04-28T00:31:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/04/28/gunosy-on-android</id>
+    <content type="html"><![CDATA[<p><a href="http://gunosy.com">http://gunosy.com/</a></p>
+
+<p>ユーザーのソーシャルストリームを学習してお勧め記事を配信してくれる Gunosy。精度は悪くないのだけれども、いかんせんシェア機能が糞過ぎる。Android の Intent 経由のシェアを使わせてくれないからだ。俺は <a href="https://play.google.com/store/apps/details?id=com.rhythm.hexise.delicious">Delicious App</a> 経由でブックマークしたいだけなのに( ;´Д⊂ヽ</p>
+
+<p>はじめは学習させるための情報をサーバに送信させたいからやらせないんだろう、と思っていたけれども、Intent を送信させる時点でそれはできる話なので理由にならない。精度が高いので使うこたぁ使うけど、うーん、という感じである。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>RapidSSL(2) - HeartBleed related - mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="http://heartbleed.com/ 以前 RapidSSL の証明書を遊びで取得した けれども、RapidSSL から以下のようなメールが来た。彼らも真っ当なSSL業者の端くれだったということか。 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+RapidSSL &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/blog/2014/04/13/rapidssl-2-heartbleed-related/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="mumumu の日記" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+<script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>
+<script type="text/javascript">
+    Hatena.Star.Token = '2ff1b78d44567c93bf2a6a8400a11ea249acae79';
+    Hatena.Star.SiteConfig = {
+      entryNodes: {
+        'article': {
+          uri: 'h1 a',
+          title: 'h1',
+          container: 'span.hatenastar'
+        }
+      }
+    };
+</script>
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-674328-3', 'github.io');
+    ga('send', 'pageview');
+  
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">RapidSSL(2) - HeartBleed related</h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-13T23:03:00+09:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+
+  <div class="entry-content"><p><a href="http://heartbleed.com/">http://heartbleed.com/</a></p>
+
+<p>以前 <a href="http://mumumuorg.blogspot.jp/2012/08/rapidssl.html">RapidSSL の証明書を遊びで取得した</a> けれども、RapidSSL から以下のようなメールが来た。彼らも真っ当なSSL業者の端くれだったということか。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>RapidSSL
+</span><span class='line'>Important Service Notification
+</span><span class='line'>
+</span><span class='line'>Dear Yoshinari Takaoka,
+</span><span class='line'>
+</span><span class='line'>RapidSSL is aware of the vulnerability, dubbed &ldquo;Heartbleed&rdquo;, which is a security concern for
+</span><span class='line'>users of OpenSSL, a widely-used opensource cryptographic software library. It can allow attackers
+</span><span class='line'>to read the memory of the systems using vulnerable versions of OpenSSL library (1.0.1 through 
+</span><span class='line'>1.0.1f). This may disclose the secret keys of vulnerable servers, which allows attackers to 
+</span><span class='line'>decrypt and eavesdrop on SSL encrypted communications and impersonate service providers. In
+</span><span class='line'>addition, other data in memory may be disclosed, which conceivably could include usernames and
+</span><span class='line'>passwords of users or other data stored in server memory.
+</span><span class='line'>
+</span><span class='line'>(...以下略。鍵を含めた証明書の更新と古い証明書の失効化を求める内容)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>基本的には <a href="https://knowledge.rapidssl.com/support/ssl-certificate-support/index?page=content&amp;id=AD834">手順に従って秘密鍵を含めた証明書の更新</a> をすればよいが、秘密鍵も含めたSSL通信の内容が漏れていることが前提なので、<strong>既存の秘密鍵や CSR を絶対に再利用してはいけない</strong>点は注意。その点は問題なくできたのだが、RapidSSL は古い証明書の失効化がオンラインで出来なかったので、以下にその手順をメモしておく。</p>
+
+<p>a) OpenSSL をアップデートする<br/>
+b) 古い証明書のシリアルナンバーと Common Name, 発行日時を以下のコマンドでメモする。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ openssl x509 -in server.pem.old -text
+</span><span class='line'>Certificate:
+</span><span class='line'>    Data:
+</span><span class='line'>        Version: 3 (0x2)
+</span><span class='line'>        Serial Number: 520431 (0x7f0ef)
+</span><span class='line'>    Signature Algorithm: sha1WithRSAEncryption
+</span><span class='line'>        Issuer: C=US, O=GeoTrust, Inc., CN=RapidSSL CA
+</span><span class='line'>        Validity
+</span><span class='line'>            Not Before: Aug 24 08:43:44 2012 GMT
+</span><span class='line'>            Not After : Aug 27 02:46:21 2014 GMT
+</span><span class='line'>        Subject: (.snip) CN=www.mumumu.org</span></code></pre></td></tr></table></div></figure>
+
+
+<p>c) 証明書を更新してインストールする<br/>
+d) RapidSSL の Order ID と 上記 a) の情報を証明を取得した業者にメールする。自分の場合は <a href="http://www.rapid-ssl.jp/">RapidSSL JP</a> から取得したので、そこに連絡しておいた。<a href="http://www.rapid-ssl.jp/rapidssl-news/archives/55">彼らは失効化に関する情報を公開している</a><br/>
+d-1) 上記の注意点として、特にシリアルナンバーを間違えると間違った証明書が失効してしまう。また、証明書を更新せずに今使っている証明書を失効化してしまうと再発行すらできなくなってしまう。マジで注意。</p>
+
+<p>オンラインでできると思ったけど、意外に面倒だったなぁ。という話(*´～｀)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">mumumu(Yoshinari Takaoka)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-13T23:03:00+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/security/'>security</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="" data-via="mumumu" data-counturl="" >Tweet</a>
+  
+  <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-title="" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/03/26/yet-another-pep8-japanese-version/" title="Previous Post: Yet Another PEP8 Japanese version">&laquo; Yet Another PEP8 Japanese version</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/04/24/fitbit-one/" title="Next Post: Fitbit One">Fitbit One &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python, translator, devoted husband. Interested in Linux, KDE, Embedded Linux, IRC, Translation, Web Application ... etc.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="http://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://delicious.com/mumumu">mumumu's delicious Bookmark</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/02/24/linux-de-mac-falseyounisukurinsiyotutowocuo-ru/">Linux で Mac のようにスクリーンショットを撮る</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/23/slack-mobile-notifications-not-working/">Slack mobile notifications not working (on Android)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/02/add-socks-support-to-ruby-httpclient/">[PATCH] added socks support to Ruby httpclient</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/05/10/cmos-error/">cmos error</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/specific-file-update-checker-on-git-repository/">Specific file update checker on Git Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/12/yang-xiang-kegoroqin-desuku/">Aomuke Gorone Desk</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
