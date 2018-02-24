@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>PHP manual generate HOWTO (version 2013-06-29) - mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="http://d.hatena.ne.jp/anatoo/20120430/1335725004 このエントリは、anatoo氏 による上記エントリの更新版である。
+大筋は変わっていないが、細かい箇所を補足しているのと、chm に関する記述が少し増えている。 PHPのマニュアルは、DocBook &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/blog/2013/06/29/php-manual-generate-howto/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="mumumu の日記" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+<script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>
+<script type="text/javascript">
+    Hatena.Star.Token = '2ff1b78d44567c93bf2a6a8400a11ea249acae79';
+    Hatena.Star.SiteConfig = {
+      entryNodes: {
+        'article': {
+          uri: 'h1 a',
+          title: 'h1',
+          container: 'span.hatenastar'
+        }
+      }
+    };
+</script>
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-674328-3', 'github.io');
+    ga('send', 'pageview');
+  
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">PHP manual generate HOWTO (version 2013-06-29)</h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-29T16:16:00+09:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+
+  <div class="entry-content"><p><a href="http://d.hatena.ne.jp/anatoo/20120430/1335725004">http://d.hatena.ne.jp/anatoo/20120430/1335725004</a></p>
+
+<p>このエントリは、anatoo氏 による上記エントリの更新版である。<br/>
+大筋は変わっていないが、細かい箇所を補足しているのと、chm に関する記述が少し増えている。</p>
+
+<hr />
+
+<p><br />
+PHPのマニュアルは、DocBook と呼ばれるフォーマットで記述されており、<a href="https://wiki.php.net/doc/phd">PhD という PHPマニュアル のためのツール</a> によってその DocBook から HTML や CHM、PDF などの複数の形式にビルドできる。</p>
+
+<p>この記事では、2013年6月末時点で実際にPHPのマニュアルをリポジトリから取ってきてビルドする方法を紹介する。PhD は PDF や manpage形式、epub 等多様な形式がビルドできるが、ここでは HTML および chm のみについて触れる。</p>
+
+<h3>a) ビルドするときに使うPHPについて</h3>
+
+<p>まず、PHP をインストールしなければはじまらない。<br/>
+PHP は 5.3.x が望ましい。今は 5.4.x や 5.5.0 とかが出ているが、Windows 用ヘルプファイル(chm)をビルドするときに、 5.3 でないと日本語の情報が欠落するバグが PhD には存在するからだ(後述)</p>
+
+<p>chm をビルドするつもりがないなら、PHP 5.4, 5.5 でも差し支えない。
+PHP をインストールするときも、PhD のために DOM, libXML2, XMLReader and SQLite3 は有効にしていなければならない。ただ、これらは 5.3 以降はデフォルトで有効になっているので、無効にしないよう注意しよう。</p>
+
+<h3>b) 必要なツールをインストール</h3>
+
+<p>subversionとpearを予めインストールしておいて、PhD と PhD_PHP をpear経由でインストールする。<br/>
+PhD_PHP は chm をビルドするのに必要だ。</p>
+
+<pre><code>$ pear version
+PEAR Version: 1.9.4
+PHP Version: 5.5.0
+Zend Engine Version: 2.5.0-dev
+$ pear install doc.php.net/PhD doc.php.net/PhD_PHP
+phpdocs/PhD can optionally use package "phpdocs/PhD_PEAR"
+phpdocs/PhD can optionally use package "phpdocs/PhD_IDE"
+phpdocs/PhD can optionally use PHP extension "haru"
+phpdocs/PhD_PHP can optionally use PHP extension "haru"
+phpdocs/PhD_PHP can optionally use PHP extension "bz2"
+phpdocs/PhD_Generic can optionally use PHP extension "haru"
+downloading PhD-1.1.6.tgz ...
+Starting to download PhD-1.1.6.tgz (47,079 bytes)
+.............done: 47,079 bytes
+PHP Deprecated:  Assigning the return value of new by reference is deprecated in /home/mumumu/.phpenv/versions/5.5.0/lib/php/PEAR/PackageFile/v2/Validator.php on line 1740
+
+Deprecated: Assigning the return value of new by reference is deprecated in /home/mumumu/.phpenv/versions/5.5.0/lib/php/PEAR/PackageFile/v2/Validator.php on line 1740
+downloading PhD_PHP-1.1.6.tgz ...
+Starting to download PhD_PHP-1.1.6.tgz (26,028 bytes)
+...done: 26,028 bytes
+downloading PhD_Generic-1.1.6.tgz ...
+Starting to download PhD_Generic-1.1.6.tgz (29,064 bytes)
+...done: 29,064 bytes
+install ok: channel://doc.php.net/PhD-1.1.6
+install ok: channel://doc.php.net/PhD_PHP-1.1.6
+install ok: channel://doc.php.net/PhD_Generic-1.1.6
+</code></pre>
+
+<h3>c) リポジトリからの取得</h3>
+
+<p>次にマニュアルのソースをリポジトリから取ってくる。作業用のディレクトリを作って、リポジトリをsvnからチェックアウトする。</p>
+
+<p>下記のURL には、 doc-base, en, ja への外部項目が設定されているので、以下のコマンド一つで3つのリポジトリが一気にチェックアウトできる。</p>
+
+<pre><code>$ mkdir phpdoc-ja
+$ cd phpdoc-ja
+$ svn co http://svn.php.net/repository/phpdoc/modules/doc-ja .
+</code></pre>
+
+<h3>d) HTML版の PHPマニュアルをビルドする</h3>
+
+<p>--enable-xml-details は、XMLに万が一文法エラーがあったときに細かい情報を出力するためのモノだ。また、phd は結構メモリを使うので、memory_limit の値を大きめにしておいた方がよいかもしれない。</p>
+
+<pre><code>$ php doc-base/configure.php --with-lang=ja --enable-xml-details
+$ phd -d doc-base/.manual.xml
+</code></pre>
+
+<p>成功すれば、 output ディレクトリ以下にマニュアルが生成される。</p>
+
+<h3>e) chm 版の PHPマニュアルをビルドする(PHP 5.3.x)</h3>
+
+<p>PHP 5.3.x ならば、以下のコマンドで何も考えなくても chm 版をビルドできる。--enable-chm は、chm特有のコンテンツを生成物に含めるために必要だ。 また、--with-lang や -L オプションで言語の指定も忘れずに。</p>
+
+<p>まあ、--enable-chm がなくても、chm特有のヘルプコンテンツが入らないだけで、皆が見たいメインのコンテンツは欠落しないので、問題はないのだけれども。</p>
+
+<pre><code>$ php doc-base/configure.php --enable-chm --with-lang=ja
+$ phd -f chm -P PHP -L ja -d doc-base/.manual.xml
+</code></pre>
+
+<p>成功すると、output/php-chm 以下に chm のコンテンツが生成される。</p>
+
+<pre><code>$ ls output/php-chm/
+php_manual_ja.hhc  php_manual_ja.hhk  php_manual_ja.hhp  res
+</code></pre>
+
+<p>chm 形式のファイルは LZX 形式で圧縮されており、Linux や Mac では chm 形式は生成できないので、以下、Windows 上で chm ファイルをコンパイルする必要がある。</p>
+
+<p>ここからは Windows での作業だ。まず、<a href="http://msdn.microsoft.com/en-us/library/ms669985.aspx">HTML Help Workshop</a> をインストールし、output/php-chm/php_manual_ja.hhp を File -> Open で開く。すると、以下のような画面になるはずだ。</p>
+
+<p><img src="/images/html_help_workshop.png" alt="/images/html_help_workshop.png" /></p>
+
+<p>この状態で、File -> Compile を 選択し、php_manual_ja.hhp を以下のようなダイアログで選び、OK を押すと
+php_manual_ja.hhp がある フォルダに php_manual_ja.chm が生成されるはずだ。</p>
+
+<p><img src="/images/html_help_workshop_compile.png" alt="/images/html_help_workshop_compile.png" /></p>
+
+<h3>f) chm 版の PHPマニュアルをビルドする(PHP 5.4.x以降)</h3>
+
+<p>既に述べた通り、PHP 5.4 以降で PhD を使うと、chm のセクションタイトル情報が欠落するバグがある。これについては<a href="https://github.com/php/phd/pull/3">既に修正コードが投稿されている</a> のだがまだ取り込まれていない。よって、PHP 5.4 以降で chm をビルドしたければ、<a href="https://github.com/mumumu/phd">修正されている git のコード</a> を使う。</p>
+
+<p>まずは、既にインストールされている PhD をアンインストールする</p>
+
+<pre><code>$ pear uninstall doc.php.net/PhD doc.php.net/PhD_Generic doc.php.net/PhD_PHP
+uninstall ok: channel://doc.php.net/PhD_PHP-1.1.6
+uninstall ok: channel://doc.php.net/PhD_Generic-1.1.6
+uninstall ok: channel://doc.php.net/PhD-1.1.6
+</code></pre>
+
+<p>修正版の git の PhD をインストールする</p>
+
+<pre><code>$ git clone https://github.com/mumumu/phd.git 
+$ cd phd
+$ pear install package.xml package_generic.xml package_php.xml 
+phpdocs/PhD can optionally use package "phpdocs/PhD_PEAR"
+phpdocs/PhD can optionally use package "phpdocs/PhD_IDE"
+phpdocs/PhD can optionally use PHP extension "haru"
+phpdocs/PhD_Generic can optionally use PHP extension "haru"
+phpdocs/PhD_PHP can optionally use PHP extension "haru"
+phpdocs/PhD_PHP can optionally use PHP extension "bz2"
+install ok: channel://doc.php.net/PhD-1.1.7
+install ok: channel://doc.php.net/PhD_Generic-1.1.7
+install ok: channel://doc.php.net/PhD_PHP-1.1.7
+$ cd ..
+</code></pre>
+
+<p>あとは普通にビルドし、既に述べたとおりのやり方で、Windows 上で chm をコンパイルすると良い。</p>
+
+<pre><code>$ php doc-base/configure.php --enable-chm --with-lang=ja
+$ phd -f chm -P PHP -L ja -d doc-base/.manual.xml
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">mumumu(Yoshinari Takaoka)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-29T16:16:00+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/howto/'>howto</a>, <a class='category' href='/blog/categories/php/'>php</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="" data-via="mumumu" data-counturl="" >Tweet</a>
+  
+  <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-title="" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/28/phpenv-without-php-build/" title="Previous Post: phpenv without php-build">&laquo; phpenv without php-build</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/06/30/very-simple-chrome-extension-for-delicious-dot-com/" title="Next Post: Very simple chrome extension for delicious.com">Very simple chrome extension for delicious.com &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python, translator, devoted husband. Interested in Linux, KDE, Embedded Linux, IRC, Translation, Web Application ... etc.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="http://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://delicious.com/mumumu">mumumu's delicious Bookmark</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/02/24/linux-de-mac-falseyounisukurinsiyotutowocuo-ru/">Linux で Mac のようにスクリーンショットを撮る</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/23/slack-mobile-notifications-not-working/">Slack mobile notifications not working (on Android)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/02/add-socks-support-to-ruby-httpclient/">[PATCH] added socks support to Ruby httpclient</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/05/10/cmos-error/">cmos error</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/specific-file-update-checker-on-git-repository/">Specific file update checker on Git Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/12/yang-xiang-kegoroqin-desuku/">Aomuke Gorone Desk</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

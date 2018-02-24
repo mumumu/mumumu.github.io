@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: hardware | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/hardware/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2018-02-25T00:42:31+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[cmos error]]></title>
+    <link href="http://mumumu.github.io/blog/2017/05/10/cmos-error/"/>
+    <updated>2017-05-10T03:44:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2017/05/10/cmos-error</id>
+    <content type="html"><![CDATA[<p><a href="http://mumumu.github.io/blog/2015/01/13/luvbook-j/">http://mumumu.github.io/blog/2015/01/13/luvbook-j/</a></p>
+
+<p>2年前に買った風変わりなノートパソコンだが、CMOS の電池切れエラーが。。(´ー｀; )</p>
+
+<p>通常ならウラ面をパカっと開けて電池を交換するところだ。少し試みたけど挫折... 分解はそもそも想定してないらしい。
+よって、大人しくサポートに問い合わせてみることに。このエントリはその症状の記録である。</p>
+
+<ul>
+<li>システムを起動すると、"CMOS battery is bad or was recently replaced." と表示される。</li>
+</ul>
+
+
+<p><img src="http://mumumu.github.io/images/CMOS_battery_is_bad.jpg"/></p>
+
+<ul>
+<li>上記でOKを押すと "The CMOS defaults were loaded" と表示され、このシステムが続くようならユーザーガイドを見て下さいと表示される</li>
+</ul>
+
+
+<p><img src="http://mumumu.github.io/images/CMOS_default_is_loaded.jpg"/></p>
+
+<p><a href="http://www.mouse-jp.co.jp/mcj_service/mcj_service_01.html">3年サポート</a> に入ってるんで、無償修理になる想定である。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mini router plan]]></title>
+    <link href="http://mumumu.github.io/blog/2015/04/26/mini-router-plan/"/>
+    <updated>2015-04-26T03:48:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2015/04/26/mini-router-plan</id>
+    <content type="html"><![CDATA[<p><a href="http://blog.livedoor.jp/connect_staff/archives/1804038.html">http://blog.livedoor.jp/connect_staff/archives/1804038.html</a></p>
+
+<p>自分が使っているプロバイダが突如サービス終了するというアナウンスがあった。<a href="http://www.din.or.jp/">代替のプロバイダはもうほぼ決めた</a> のだけど、これを機会にブロードバンドルータもどうにかしようという気になった。<a href="http://jp.yamaha.com/products/network/routers/rtx1210/">RTX1210</a> を中古で買うか、マシンをもう一台組んで <a href="http://vyos.net/wiki/Main_Page">VyOS</a> を入れてしまう案の二つが上がったが、結果として後者、つまりマシンを新たにもう一台組むことにした。</p>
+
+<p>・ ルータに使うマシンなので、大きなマシンは組みたくない<br/>
+　・ Mini-ITX がいいんじゃないですかね<br/>
+・ ファンレスがいいよね。じゃあ前欲しがってた Atom C2000 シリーズあたりでいきますか</p>
+
+<p>という思考から、以下のような構成を考えたのでメモしておく。メモリを16GBにする必要がどこにあるのかというツッコミは禁止します。</p>
+
+<p>Mini-ITX はそのコンパクトさ故に電源やケースの組み合わせに注意が必要で、特にケースと電源選びは非常に面倒であった。電源は SFX電源とか考えるのが面倒だったので ATX 電源、かつ奥行き140mm で300W 以下、となると玄人指向のものしか残らなかった。Mini-ITX のケースは自分が考える最小のコンパクトさと電源のサイズをベースに考えていった結果、バランスのとれたモノとして Silverstone のものを選んだということである。</p>
+
+<p>85k は安くはない。RTX1210 はこれより中古で安く買えるのでかつては迷ったが、やはり手元の自由度を選ぶと自作が最高だ。いつ組もうかなぁ(´ー｀；)</p>
+
+<table>
+<thead>
+<tr>
+<th>パーツ項目 </th>
+<th> 品名 </th>
+<th> 価格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU        </td>
+<td>  Intel Atom processor C2750, SoC, FCBGA 1283, 20W 8-Core </td>
+<td> -</td>
+</tr>
+<tr>
+<td>マザーボード </td>
+<td> <a href="http://www.supermicro.com/products/motherboard/atom/x10/a1sai-2750f.cfm">Supermicro A1SAi-2750F</a> </td>
+<td> 54,647</td>
+</tr>
+<tr>
+<td>RAM        </td>
+<td>  <a href="https://www.ark-pc.co.jp/i/11702324/">SanMax Technologies SMD-N16G28ECTP-16KL-D</a> </td>
+<td> 17,990</td>
+</tr>
+<tr>
+<td>ケース      </td>
+<td> <a href="https://www.ark-pc.co.jp/i/15300667/">Silverstone SST-SG13B</a> </td>
+<td> 7,538</td>
+</tr>
+<tr>
+<td>電源       </td>
+<td> <a href="http://www.kuroutoshikou.com/product/power/atx/krpw-pb300w_85_/">玄人志向 80PLUS BRONZE取得 ATX電源 300W KRPW-PB300W/85+</a>  </td>
+<td> 5,674</td>
+</tr>
+<tr>
+<td>合計       </td>
+<td>                                  </td>
+<td> 85,849</td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Luvbook J]]></title>
+    <link href="http://mumumu.github.io/blog/2015/01/13/luvbook-j/"/>
+    <updated>2015-01-13T00:34:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2015/01/13/luvbook-j</id>
+    <content type="html"><![CDATA[<p><a href="http://www.mouse-jp.co.jp/m-book/luvbookj/series.html">http://www.mouse-jp.co.jp/m-book/luvbookj/series.html</a></p>
+
+<p>以前ノートPCを買ってから4年、また訳のわからぬノートPCを買ってしまった。後悔はない。</p>
+
+<p>A) 林檎は嫌 (天の邪鬼的思考)<br/>
+B) メモリは16GB載せたい (前より上のものを思考)<br/>
+C) 割とHDDが遅くてイラっとする事案が頻発していたので、SSD 必須<br/>
+D) 前も13型だったので、それより大きなものは嫌だなー</p>
+
+<p>A) にこだわらなければ <a href="https://www.apple.com/jp/macbook-pro/">林檎で満たせる事案</a> である。この点に妙にこだわった結果、かつメモリが16GB載せられるものを探した結果、Thinkpad X230 とか 今回買った BTO パソコンしか道はなかったのである。そして天の邪鬼思考がさらに発揮された結果、マウスコンピューターのものが残ったというわけだ。</p>
+
+<p>2560 x 1440 とかいうかつて経験のない解像度も冒険という意味で後押しした。だが、Linux を入れた結果、林檎には不要な妙な調整が必要なことに気がついた。アプリを通常の状態で使うと、あまりにも小さく見えるのである(´ー｀；)</p>
+
+<p>自分は割とフォントを大きめにして使うので調整するのはいつものことなのだが、ブラウザで妙にツールバーが小さくなったりして非常に使いづらい見た目になってしまったり、サードパーティのアプリのアイコンとかがやたらと小さく見えるといった具合である。特にブラウザで適当な動きをするものがなかなか見つからないのには閉口した。</p>
+
+<p>いろいろと探した結果、Firefox の <a href="https://support.mozilla.org/en-US/questions/963759">デフォルトのCSS を調整する</a> ことでデフォルトのズームレベルを 1.6 倍にして快適なレベルに調整することで事なきを得た。</p>
+
+<p>フォントはやはり自分的には <a href="http://mix-mplus-ipa.sourceforge.jp/migu/">Migu 1M</a> が相性がよい。 <a href="https://github.com/yascentur/Ricty">Ricty</a> 使ってる人多いんでしょうけど、ターミナルと相性良いですかねあれ？(´ー｀；)</p>
+
+<p>とはいえ、非常にマシンのパフォーマンスは良く、キーボードも押す深さが自分にとっては快適で、ちょっと大きな打鍵音がするがちょうど良い。前の <a href="http://www.asus.com/jp/Notebooks_Ultrabooks/U31F/">ASUS U31F</a> と同様、長く使うことになろう。しばらく宜しく！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My DIY Server Spec final]]></title>
+    <link href="http://mumumu.github.io/blog/2014/05/12/my-diy-server-spec-final/"/>
+    <updated>2014-05-12T13:20:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/05/12/my-diy-server-spec-final</id>
+    <content type="html"><![CDATA[<p><a href="http://mumumu.github.io/blog/2014/05/02/my-diy-server-spec-2/">http://mumumu.github.io/blog/2014/05/02/my-diy-server-spec-2/</a></p>
+
+<p>紆余曲折あった末、最終的な構成は以下の通り。<br/>
+SSD と HDD は予備的なもの。はじめに予想してたモノより随分お高くはなったけど、<br/>
+流石にこれ以上おカネを使うことはない(´ー｀; )</p>
+
+<table>
+<thead>
+<tr>
+<th>パーツ項目 </th>
+<th> 品名 </th>
+<th> 価格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU       </td>
+<td> Xeon E5-2618Lv2 (2.0G) 6core/12thread TDP50W </td>
+<td> 69,929</td>
+</tr>
+<tr>
+<td>マザーボード </td>
+<td> GIGABYTE GA-6PXSV4 </td>
+<td> 41,999</td>
+</tr>
+<tr>
+<td>RAM        </td>
+<td> Kingston DDR3-1600(PC3-12800) ECC Registered DIMM KVR16R11D4/16 2枚 </td>
+<td> 43,390</td>
+</tr>
+<tr>
+<td>SSD      </td>
+<td> Samsung SSD840EVO 250GB MZ-7TE250B/IT </td>
+<td> 14,780</td>
+</tr>
+<tr>
+<td>HDD      </td>
+<td> Seagate ST3000DM001 3TB SATA </td>
+<td> 12,004</td>
+</tr>
+<tr>
+<td>ケース      </td>
+<td> Coolermaster Silencio 652 </td>
+<td> 18,900</td>
+</tr>
+<tr>
+<td>電源       </td>
+<td> 玄人志向 SSシリーズ 350W 80PLUS GOLD KRPW-SS350W/90+ </td>
+<td> 6,234</td>
+</tr>
+<tr>
+<td>CPUクーラー </td>
+<td>  Dynatron R24 </td>
+<td> 5,250</td>
+</tr>
+<tr>
+<td>合計       </td>
+<td>                                  </td>
+<td> 212,486</td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Narrow ILM v.s Square ILM]]></title>
+    <link href="http://mumumu.github.io/blog/2014/05/07/narrow-ilm-v-dot-s-square-ilm/"/>
+    <updated>2014-05-07T00:15:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/05/07/narrow-ilm-v-dot-s-square-ilm</id>
+    <content type="html"><![CDATA[<p><a href="http://www.servethehome.com/narrow-ilm-square-ilm-lga2011-heatsink-differences/">http://www.servethehome.com/narrow-ilm-square-ilm-lga2011-heatsink-differences/</a></p>
+
+<p>自作をやった人なら御存知かもしれないが、Intel な CPU をマザーボードのCPUソケットに固定するための部品を ILM (Independent Loading Mechanism) という。手元にあるマザーボードだと、以下の長方形の部分になる。レバーを上げてCPUをおいて、カバーを付けてレバーを下げると固定されるという具合だ。</p>
+
+<p><img src="http://mumumu.github.io/images/ilm.jpg" width="480" height="320" /></p>
+
+<p>今回自分が購入したマザーボードの CPUソケットは LGA 2011 である。LGA 2011 の ILM には二つの種類がある。Square ILM と Narrow ILM だ。</p>
+
+<p>a) Square ILM<br/>
+　- サイズ 80x80mm の正方形<br/>
+　- コンシューマー向けのマザーボードのソケットのほとんどはこれ<br/>
+b) Narrow ILM<br/>
+　- サイズ 56x94mm<br/>
+　- マザーボードに載せる機能が多いため、ヒートシンクの面積を制限する理由があるサーバ向けのマザーボードに採用例が多い</p>
+
+<p>これらの何が違うかというと、ソケットの上に載せることになるヒートシンクのサイズである。ほとんどの人が自作に使うマザーボードについては、Square ILM が前提になっており、ヒートシンクもそれを前提にして LGA 2011 対応とのみ謳っている。これがフツーのヒートシンクである。</p>
+
+<p>だが、今回自分が購入した <a href="http://b2b.gigabyte.com/products/product-page.aspx?pid=4466">GIGABYTE GA-6PXSV4</a> については、Narrow ILM が採用されていたため、フツーのヒートシンクが付かなかった。。 <a href="http://www.scythe.co.jp/cooler/katana4.html">Katana4</a>  というクーラーを買っていたのだが、これも Square ILM を前提にしていたのである。</p>
+
+<p>Narrow ILM はこのような性格から情報が少ない上、国内で Narrow ILM 対応と謳って売っているヒートシンクも少ない傾向にある。<a href="http://www.oliospec.com/index.php?action=item_search&amp;rootCategoryId=161">オリオで売っている Noctua のやつ</a> くらいだろうか。また、機能を詰め込んだマザーボードに採用されているため、推奨するヒートシンクの面積すら指定されているマザーボードだとますます適合品が少なくなる傾向にある。</p>
+
+<p>自分が買った Gigabyte GA-6PXSV4 だと、<a href="http://b2b.gigabyte.com/products/product-page.aspx?pid=4466#sp">「Recommended cooling device dimension: 70x106mm」となっていた</a> ため 泣く泣くそれに適合する <a href="http://www.dynatron-corp.com/en/product_detail_1.aspx?cv=&amp;id=238&amp;in=0">Dynatron のヒートシンク</a> を発注するハメになった。</p>
+
+<h2>まとめ</h2>
+
+<p>・ Supermicro とかのサーバ向けマザーボードでは、ILM のサイズに注意<br/>
+・ ILM に適合するヒートシンクを発注しよう！ 但しコンシューマー向けマザーボードでは気にする必要はない。<br/>
+・ 参考文献<br/>
+　- <a href="http://www.servethehome.com/narrow-ilm-square-ilm-lga2011-heatsink-differences/">Narrow ILM v. Square ILM – LGA2011 Heatsink Differences</a><br/>
+　- <a href="http://www.intel.com/content/dam/www/public/us/en/documents/design-guides/xeon-e5-1600-2600-4600-thermal-guide.pdf">Xeon E5-1600/2600/4600 v1 and v2 Thermal / Mechanical Design Guide(PDF)</a></p>
+]]></content>
+  </entry>
+  
+</feed>

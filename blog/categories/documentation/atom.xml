@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: documentation | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/documentation/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2018-02-25T00:42:31+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Current status of the PHP Documentation]]></title>
+    <link href="http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation/"/>
+    <updated>2013-12-08T00:00:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation</id>
+    <content type="html"><![CDATA[<p>この記事は、<a href="http://qiita.com/advent-calendar/2013/docja">doc-ja Advent Calendar</a> 8日目の参加記事です。</p>
+
+<p>ここでは、PHPを使うと必ず一度は目にするであろう <a href="http://www.php.net/manual/ja/">PHP マニュアル</a> についてつれづれと書いてみようと思います。「PHP のドキュメント」に関する日本語の文書が少なくなってきている気がすることが、このエントリを書く動機になっています。</p>
+
+<h3>PHPマニュアル の現状をざっくりと</h3>
+
+<p>PHP マニュアル はPHP 4系から現在 (このエントリを書いている時の最新は5.5.6) に至るまでの歴史が蓄積されており、非常に巨大なマニュアルです。これは <a href="http://www.docbook.org/">DocBook</a> を使って書かれており、それを適宜各ロケールの翻訳者がボランティアで日本語に置き換えていっています。それが php.net のインフラでビルドされ、週の一度 (正確には毎週金曜日の10:00 UTC) 世界中に公開されていくという具合です。</p>
+
+<p>Docbook は、SGML 由来であることによって文書構造が複雑であることや、タグの構造が壊れてしまうと即ビルドが失敗してしまうなどの欠点によって、他のフォーマットに置き換えようという話がこれまで出なかったわけではありません。ですが、DocBook の多彩な表現力にとってかわることと、現在までの巨大な蓄積を効率的に置き換えられる代替案を誰かが示せない限り、移行していくことはないでしょう。</p>
+
+<p>バージョン管理システムは <a href="http://subversion.apache.org/">Subversion</a> です。えー今の御時世に(ry という声が聞こえてきそうですが、これも Docbook と同じく強いモチベーションと代替案を示すことができる誰かがいないと、というところでしょう。</p>
+
+<h3>PHP マニュアル に間違いを見つけたら？</h3>
+
+<p>既に述べたとおり、PHP マニュアル はボランティアベースで作られているため、常に完全な翻訳を維持できているわけではありません。現在でもたくさんの未訳部分が残っていますし、人間がやるモノである以上、常に間違いが存在し得ます。</p>
+
+<p><a href="http://www.php.gr.jp">日本 PHP ユーザー会</a> では <a href="http://ml.php.gr.jp/mailman/listinfo/php-doc">php-doc ML</a> というメーリングリストをホストしており、ここを通じて PHPマニュアルに関する問い合わせや間違いの指摘などを受け付けています。ここで頂く多くの情報が、PHP マニュアル 日本語版の質の向上に大きく寄与していることは言うまでもありませんし、初期の頃からの多くの方々の協力によって現在のマニュアルは存在し、かつ維持されています。</p>
+
+<p>また、<a href="http://bugs.php.net/">PHP のバグトラッカー</a> で Documentation Problem と記して英語でバグ報告をするのもアリですが、こちらは気付かれないことも多いので php-doc ML の方をドキュメントの指摘についてはお勧めしています。</p>
+
+<h3>edit.php.net について</h3>
+
+<p><a href="https://edit.php.net/">edit.php.net </a> は、PHPマニュアルのオンラインエディタです。コミット権限を持っていない人でもソースの修正ができますが、英語版をSubmitしてレビューさせるには適したエディタに仕上がっていますが、英語以外のロケールをコラボレートしながら編集しながら編集するにはまだまだといったところ。。Patch を提出しても英語版以外のコミッタにはわかんないし。って Yannik (このエディタの作者) に報告するかそうしよう(´ー｀; )</p>
+
+<p>もう少しお勧めできるツールになればここでもまた紹介するかもしれません。</p>
+
+<h3>対応したフォーマット</h3>
+
+<p>PHP マニュアル は HTML や Windows の標準的なヘルプ形式である <a href="http://ja.wikipedia.org/wiki/Microsoft_Compiled_HTML_Help">chm</a> に対応したフォーマットが公開されていますが、Docbook からこれらの形式をビルドするための <a href="https://wiki.php.net/doc/phd">PhD</a> というツールが整備されています。これを使えばHTML形式のビルドは行えるようになっていますが、chm 形式については、それをビルドするのに Windows マシンの助けが必要です。PHP マニュアル のビルド方法については、以下に纏めておいたので参考にしてください。</p>
+
+<p><a href="http://mumumu.github.io/blog/2013/06/29/php-manual-generate-howto/">PHP Manual Generate Howto(2013年6月29日版)</a></p>
+
+<h3>PHP マニュアル のコミット権限を得るには？</h3>
+
+<p>PHPマニュアルをいろいろ見ていくと、継続して改善すべきだというモチベーションが強まってくるかもしれません。PHP-doc ML で指摘しまくっていてそれにも飽き足らないという人は、コミット権限を得て自分で直すことも考えてもよいかもしれません。以下は、そういうモチベーションが高い人向けです。</p>
+
+<p>PHPマニュアルのコミット権限を得るには、<a href="http://www.php.net/git-php.php">php.net のページで英語で申請をする</a> 必要があります。これを php.net の中の人が見てコミット権限を与えるかを決めているわけですが、彼らは何回か patch を提出した実績か、もしくは既存のコミッタの推薦があることを求めて来ます。patch については日本語版の PHP マニュアル の patch でも問題ないはずです。</p>
+
+<p>基本的には <a href="http://ml.php.gr.jp/mailman/listinfo/php-doc">php-doc ML</a> に話を通してから申請し、既存の PHP マニュアル 日本語版のコミッタからの推薦を得た方が早く話が進むと思います (自分もそうやって <a href="http://d.hatena.ne.jp/takagimasahiro">高木さん</a> の推薦を貰いました) 。</p>
+
+<p>尚、申請ページでは、最初から最後までちゃんと文章を読んでから申請フォームを埋めないと <strong>必ず失敗するようになっています</strong> ので気を付けてください。</p>
+
+<h4>(番外編) chmファイルが壊れたのでホストを引き継いだ話</h4>
+
+<p>さて、ここからちょっと本題からずれます。</p>
+
+<p>PHPマニュアル の chm 版をビルドするには、上で紹介したとおり Windows の助けが必要です。よって、chmファイルは世界のどこかのボランティアの Windows マシンでビルドされ、それを php.net 側が吸い取って世界中に公開しているわけです。</p>
+
+<p>今年の5月あたりから、この世界のどこかにあるボランティアのマシンが止まったらしく、<a href="https://bugs.php.net/bug.php?id=64842">chmファイルが壊れている</a> というバグレポートが届くようになりました。再現させようとしてみたところ、確かに<a href="http://svn.php.net/viewvc/phpdoc/doc-base/trunk/scripts/build-chms.php?r1=330908&amp;r2=330907&amp;pathrev=330908">ビルドシステムの一部が壊れていたのでそれを直し</a>、流石に Windows マシンをホストしている側がこのエラーに気付かんわけはあるまい、とその後は放置していました。</p>
+
+<p>その後、私事でばたばたしたりなどしていて10月になりました。たまたま本家のメーリングリストを見ていると、「chm ファイルはどうなってるんだ？」 という問い合わせがあったのが目に付きました。</p>
+
+<pre><code>&gt; On Fri, Oct 4, 2013 at 2:00 AM, Marvin D. &lt;marvin@phpugph.com&gt; wrote:
+&gt; &gt; To whom it may concern,
+&gt; &gt;
+&gt; &gt; I just went to the downloads section of the php manual, and I can't seem
+&gt; &gt; to find any downloadable file that is in ".chm" file format. when will that
+&gt; &gt; format be available for downloads of the php manual?. 
+&gt; 
+&gt; We no longer have access to a Windows machine to build the CHM format
+&gt; on, so we had to discontinue it.
+&gt; Sorry
+</code></pre>
+
+<p>「chm ファイルのビルドは止まってるから配布不能だ」としれっとメインの人が答えているのを見て驚愕。 いったいこいつは何を言ってるんだ？ どうやら彼らの管理下にマシンはない模様。であれば、自分が chm のビルドやるよ、と言っても文句は出ないよね。ということで最近引き継ぎました。</p>
+
+<p>基本は上で出したリンクでの <a href="http://mumumu.github.io/blog/2013/06/29/php-manual-generate-howto/">PHP Manual Generate Howto</a> を Windows でそのままやっただけですが、週に一度定期的にビルドしてアップロードする、という箇所を自動でやらないといけなかったので、そこは Dropbox と Jenkins で補完しました。 php.net の人たちはこれらを Windows でやるのが大変 Annoying なタスクと言ってましたが、確かに2000年代だとそうだったでしょう。2013 年には自動 sync やビルドツールが進化してくれていて大変助かりました(´ー｀; )</p>
+
+<p>そんな感じで、日本の片隅でビルドした成果物が世界中に配られているわけです。翻訳をやる動機の一つって、翻訳の広がりをいろんな点で感じられることにあると個人的には思っているんですが、こうやってインフラを支えるのもそのひとつだね。と思いました。まる。</p>
+
+<h3>まとめ</h3>
+
+<p>・ 日本語PHPマニュアルの現状を紹介<br/>
+・ マニュアルに間違いがあったら <a href="http://ml.php.gr.jp/mailman/listinfo/php-doc">php-doc ML</a> へ！！！１<br/>
+・ インフラを支えることを手伝うのもまた良いことだ</p>
+]]></content>
+  </entry>
+  
+</feed>

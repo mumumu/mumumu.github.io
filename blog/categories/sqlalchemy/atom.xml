@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sqlalchemy | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/sqlalchemy/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2018-02-25T00:42:31+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SQLAlchemy - When do I construct a Session, commit, and close it?]]></title>
+    <link href="http://mumumu.github.io/blog/2013/12/30/sqlalchemy-when-do-i-construct-a-session/"/>
+    <updated>2013-12-30T05:35:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/12/30/sqlalchemy-when-do-i-construct-a-session</id>
+    <content type="html"><![CDATA[<p>以下は、<a href="http://www.sqlalchemy.org/">SQLAlchemy</a> の <a href="http://docs.sqlalchemy.org/en/rel_0_8/orm/session.html#when-do-i-construct-a-session-when-do-i-commit-it-and-when-do-i-close-it">When do I construct a Session, when do I commit it, and when do I close it?</a> の全訳である。この文章はデータベースへのクエリを発行するのに使う <a href="http://docs.sqlalchemy.org/en/rel_0_8/orm/session.html#sqlalchemy.orm.session.Session">Sessionクラス</a> を原則的にどう扱うべきかを説明しているが、途中でスコープという概念を持ち込んで説明しているので異常に英語がわかりづらくなっている。</p>
+
+<p>さらに、<a href="http://docs.sqlalchemy.org/en/rel_0_8/orm/session.html#sqlalchemy.orm.scoping.scoped_session">scoped_session</a> というヘルパ関数も持ち込んでいるので、一見しただけだと <a href="http://docs.sqlalchemy.org/en/rel_0_8/orm/session.html#sqlalchemy.orm.scoping.scoped_session">scoped_session</a> がなんのためにあるのか非常にわかりづらくなっている。こうしたことから、全訳してメモとして残しておく。</p>
+
+<h3>まとめ</h3>
+
+<p><strong>・</strong> SQLAlchemy における Session の寿命は、データベースのデータにアクセスしたり管理したりするオブジェクトや関数と切り離し、それらの外部で扱うのが一般的なルール <br/>
+<strong>・</strong> Webアプリケーションの場合は、リクエストを処理し始めるときに Session のインスタンスを作り、終わるときに破棄すればよい。通常はフレームワークにそうしたフックが組み込まれているし、それを使うことを推奨 <br/>
+<strong>・</strong> 上記のような機構がない場合に、<a href="http://docs.sqlalchemy.org/en/rel_0_8/orm/session.html#sqlalchemy.orm.scoping.scoped_session">scoped_session</a> と呼ばれるヘルパがある。</p>
+
+<p>こうした内容に興味がある人は、以下の全訳を読むとよいと思う。</p>
+
+<h2><br /></h2>
+
+<p></br /></p>
+
+<h3>Sessionクラス のインスタンスを作ったり、commit や close メソッドを発行するタイミングはいつ？</h3>
+
+<pre style="font-size:17px">
+
+要約：
+
+Session の寿命は、データベースのデータにアクセスしたり管理したりするオブジェクトや
+関数と 「切り離し、そうした関数やオブジェクトの外部で」 扱うのが一般的なルールです。
+
+</pre>
+
+
+<p>Session クラスはデータベースへのアクセスがあると思われる操作のはじめに作られるのが一般的です。</p>
+
+<p>Session クラスは、 通信を始めるとすぐにトランザクションを開始します。 'autocommit' フラグを推奨されているデフォルトの 'False' にしたままだと、トランザクションは Session クラスの commit や、 rollback、そして close メソッドが実行されるまで続きます。 Session は再利用されると、以前のトランザクションが終了した後で新しいトランザクションを開始するでしょう。このことから、Session クラスは多くのトランザクションにまたがった寿命を持っているということになります。これらの二つの概念を <strong>トランザクションスコープ</strong> と <strong>セッションスコープ</strong> と呼ぶことにします。</p>
+
+<p>ここでわかるのは、SQLAlchemy は開発者がアプリケーションの中でこれらふたつのスコープをはっきりさせておくことを推奨しているということです。これは、いつスコープが始まり、終了するかということだけでなく、これらのスコープが適用される範囲も含みます。たとえば、Session クラスのインスタンスは特定の関数やメソッド内の実行フローに対してはローカルであるべきですが、アプリケーション全体で使われるものについてはグローバルであるべきですし、これらのふたつの中間にあるインスタンスもあってよいはずです。</p>
+
+<p>このスコープを決めることは、開発者にとって重荷ですし、SQLAlchemy が必然的にデータベースの扱い方に強い影響力を持つ領域です。 変更を集めて一定時間ごとにフラッシュし、メモリの状態をローカルのトランザクションと同期する <a href="http://docs.sqlalchemy.org/en/rel_0_8/glossary.html#term-unit-of-work">unit of work</a> パターンがあります。このパターンは意味のあるトランザクションスコープが存在する場合にだけ有用です。</p>
+
+<p>アプリケーションによって状況は様々ですが、最良な Sessionクラス のスコープを決めるのは通常はあまり難しくありません。</p>
+
+<p>Sessionクラス のインスタンスをトランザクションが終わると同時に破棄する方法がよくとられます。これはトランザクションスコープとセッションスコープが同じであることを意味しています。これは出発点としては良いやり方です。なぜなら、セッションスコープとトランザクションスコープを別に考える必要がないからです。</p>
+
+<p>トランザクションスコープを決めるやり方については万能なものはありませんが、一般的なパターンはあります。特に Webアプリケーションを書いているなら、選択肢は決まっています。</p>
+
+<p>Webアプリケーション は単一の一貫したスコープ - <strong>リクエスト</strong> - の範囲でアプリケーションが既に構築されているため、一番簡単です。このスコープはブラウザからリクエストを受け付け、レスポンスを作るためにそれを処理し、最後にブラウザにレスポンスを返すことまでを表しています。Webアプリケーションを Sessionクラス と統合するのは Sessionクラス のスコープをこのリクエストに結びつけるだけの素直なタスクです。 Session はリクエストがはじまるときに作ることもできますし、必要になったときに lazy initializationパターン を使って作ることもできます。リクエストの処理はさらに続き、アプリケーションロジックが実際のリクエストオブジェクトにアクセスするやり方と似たやり方で Session にアクセスできるシステムもあります。リクエストが終了すると、通常は Webフレームワークが提供しているイベントフックを使って Session も破棄されます。 Session によって使われたトランザクションもこの時点でコミットされます。アプリケーションが明示的にコミットするオプションもありますし、アプリケーションが保証した場合にだけコミットする場合もありますが、想定外のことが起きてリクエストが終了する際に破棄される可能性も常にあります。</p>
+
+<p>ほとんどの Webアプリケーションフレームワークは Session クラスを リクエスト と結びつける基盤を確立しており、Sessionオブジェクト が適切にインスタンス化され、リクエストの終了時に破棄されるようになっています。こうした基盤は Flask と組み合わせて SQLAlchemy を使う場合は <a href="http://pythonhosted.org/Flask-SQLAlchemy/">Flask-SQLAlchemy</a> に、 <a href="http://www.pylonsproject.org/">Pyramid</a> や <a href="http://www.zope.org/">Zope framework</a> と組み合わせて使う場合、<a href="https://pypi.python.org/pypi/zope.sqlalchemy">Zope-SQLAlchemy</a> のようなプロダクトに含まれています。SQLAlchemy はこれらのプロダクトをできる限り使うことを強く推奨しています。</p>
+
+<p>上記のようなライブラリが利用できない場合に、SQLAlchemy は <a href="http://docs.sqlalchemy.org/en/rel_0_8/orm/session.html#sqlalchemy.orm.scoping.scoped_session">scoped_session</a> というヘルパークラスを用意しています。このオブジェクトの使い方に関するチュートリアルが <a href="http://docs.sqlalchemy.org/en/rel_0_8/orm/session.html#contextual-thread-local-sessions">Contextual/Thread-local Sessions</a> のページにあります。このチュートリアルでは、Session を現在のスレッドに関連づける簡単な方法や、Sessionオブジェクト を他のスコープに関連づけるパターンも示しています。</p>
+
+<p>既に述べたとおり、Webアプリケーション以外では、アーキテクチャのパターンがひとつではないために明快なパターンはありません。一番良い戦略は、"オペレーション(操作)" の境界を決め、特定のスレッドが一連の操作をはじめるときに着目し、それが終わるときに commit メソッドを実行することです。以下に例を示します:</p>
+
+<p><strong>・</strong> 子プロセス を fork するバックグラウンドの デーモン は、 Session を子プロセスにローカルなものとして生成し、その子プロセスが実行するジョブが実行されている間それを使い、ジョブが完了したらそれを破棄したいと考えるでしょう。</p>
+
+<p><strong>・</strong> コマンドラインスクリプトのために、アプリケーションはグローバルな Session をひとつ作るでしょう。これはプログラムが開始されるときに作られ、タスクが完了したらすぐに commit メソッドを実行します。</p>
+
+<p><strong>・</strong> GUI インターフェイスを持つアプリケーションでは、Session のスコープは「ボタンを押したとき」のような、ユーザーが生成するイベントの範囲にするのがベストかもしれません。もしくは、明示的なユーザーの操作、たとえば一連のレコードを"取得"し、それを"保存"するといったものに対応付けてもよいかもしれません。</p>
+
+<p>一般的なルールとして、アプリケーションは Session の寿命を特定のデータを扱う関数とは <strong>別に</strong> 管理すべきです。これはデータに特有の操作と、データににアクセスし管理するコンテキストは基本的に別の関心事として扱うと言うことです。</p>
+
+<p>E.g. <strong>真似しないでね</strong></p>
+
+<pre style="font-size:15px">
+    ### 以下は **間違ったやり方です** ###
+
+    class ThingOne(object):
+        def go(self):
+            session = Session()
+            try:
+                session.query(FooBar).update({"x": 5})
+                session.commit()
+            except:
+                session.rollback()
+                raise
+
+    class ThingTwo(object):
+        def go(self):
+            session = Session()
+            try:
+                session.query(Widget).update({"q": 18})
+                session.commit()
+            except:
+                session.rollback()
+                raise
+
+    def run_my_program():
+        ThingOne().go()
+        ThingTwo().go()
+</pre>
+
+
+<p>そうではなくて、Session (と、通常はトランザクション)の寿命は、<strong>分離し、外側で扱いましょう</strong></p>
+
+<pre style="font-size:15px">
+    ### 以下は **より良い** (ですが唯一ではない) やり方です ###
+
+    class ThingOne(object):
+        def go(self, session):
+            session.query(FooBar).update({"x": 5})
+
+    class ThingTwo(object):
+        def go(self, session):
+            session.query(Widget).update({"q": 18})
+
+    def run_my_program():
+        session = Session()
+        try:
+            ThingOne().go(session)
+            ThingTwo().go(session)
+
+            session.commit()
+        except:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+</pre>
+
+
+<p>高度な開発者は、Session やトランザクションおよび例外のハンドリングを、プログラムがやっていることの詳細からできるだけ切り離そうとするでしょう。たとえば、<a href="http://docs.python.org/3/library/contextlib.html#contextlib.contextmanager">context manager</a> を使い、これらをさらに分離することができます。</p>
+
+<pre style="font-size:15px">
+    ### 別の (しかし *しつこいが唯一ではない*) やり方 ###
+
+    from contextlib import contextmanager
+
+    @contextmanager
+    def session_scope():
+        """Provide a transactional scope around a series of operations."""
+        session = Session()
+        try:
+            yield session
+            session.commit()
+        except:
+            session.rollback()
+            raise
+        finally:
+            session.close()
+
+
+    def run_my_program():
+        with session_scope() as session:
+            ThingOne().go(session)
+            ThingTwo().go(session)
+</pre>
+
+]]></content>
+  </entry>
+  
+</feed>

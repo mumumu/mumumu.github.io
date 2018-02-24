@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: misc | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/misc/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2018-02-25T00:42:31+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Slack mobile notifications not working (on Android)]]></title>
+    <link href="http://mumumu.github.io/blog/2017/10/23/slack-mobile-notifications-not-working/"/>
+    <updated>2017-10-23T00:59:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2017/10/23/slack-mobile-notifications-not-working</id>
+    <content type="html"><![CDATA[<p><a href="https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5">https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5</a></p>
+
+<p>システム運用時に、何かあった時のアラート等の通知を Slack で受け取っている人もいるだろう。</p>
+
+<p>特に、帰宅後や休暇時に一定の処置が必要なお知らせは重要である。Slack ではチャンネル単位でデスクトップとモバイルの通知の設定が細かく設定できるようになっているので、使い勝手では個人的にあまり困っていない。</p>
+
+<p>だが、自分に合った設定を施しても、一部の Notificaton が受け取れなかったり、通知が遅れたりするとちょっと問題だ。
+そういう時は、上記のリンクにあるヘルプの設定を確かめて設定をやり直してもうまくいかないことがある。そうした場合に、自分がやったのは、Android の電源設定を見直すことだった。</p>
+
+<p><img src="http://mumumu.github.io/images/Android_70_battery_setting.jpg" width="540" height="960"/></p>
+
+<p>最近の Android は、電源設定が割と細かくなっており、スリープ時にネットワーク接続が無効になる場合がある。</p>
+
+<p>自分はこれを上記のように常に接続されるように見なおしたところ、Slack のモバイル通知が思ったように受け取れるようになった。
+メモ程度の内容だが、これからも多分同じようなことが起こると思うので、ここにメモしておく。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Aomuke Gorone Desk]]></title>
+    <link href="http://mumumu.github.io/blog/2016/10/12/yang-xiang-kegoroqin-desuku/"/>
+    <updated>2016-10-12T05:58:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2016/10/12/yang-xiang-kegoroqin-desuku</id>
+    <content type="html"><![CDATA[<p><a href="http://www.thanko.jp/shopdetail/000000002595/">http://www.thanko.jp/shopdetail/000000002595/</a></p>
+
+<p>自分の寝室にはベッドしかなく、ノートPCを膝に乗せて長時間弄るのは非常に苦痛だ。寝たままPCを弄りたい！という動機は誰でも考えるようで、以前は<a href="http://www.thanko.jp/product/872.html">ゴロ寝deスクアルミ</a>というやつを買っていた。</p>
+
+<p>寝たままPCを弄れるという夢が叶うことに加え、デスクスタイル、ソファースタイル、ベッドスタイル等、利用シーンに合わせて形が変えられるというウリに飛びついたわけだが、以下の欠点があった。</p>
+
+<ul>
+<li>重い。2.4kg もある</li>
+<li>いろいろ形を変えられるのは事実だが、関節が硬く意外に扱いにくい</li>
+</ul>
+
+
+<p>使ってみてわかったのだが、寝たままでPCを打つ姿勢って意外に長く保てない。よって、場合によってはカジュアルに姿勢を動かしたいとか、移動したいとかいうニーズに上記の欠点が仇となり、あまり使わなくなっていた。やっぱ軽くて取り回しの効く奴が欲しいよねー、という思いがあったのは間違いない。</p>
+
+<p><img src="http://mumumu.github.io/images/goronedesk.jpg"/></p>
+
+<p>粗大ごみを始末していた時、この使わなくなったゴロ寝deスクに気づいた。ふっと軽くて取り回しの効く奴、という欲望を思い出し、調べてみると後継のシリーズが出ているではないか。我ながら懲りないなあと思いつつ、早速ポチってしまった。上の画像がそれである。</p>
+
+<p>「腕が疲れそう」とか、「おんなじじゃね」とかいろんなことを言われたが、1kg を切る重さに加え、調整すべき場所も天板と脚の部分と意外に少ないので、個人的には扱いやすくて気に入っている。ただ、新しいものだからプラシーボにかかっている疑いも否定できないので、暫く使ってみるつもりだ。</p>
+
+<p>とりあえずは、10ヶ月ぶりにエントリを書く気になった、というのがこれを買った一番の成果と言えるのではないだろうか(´ー｀; )</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[change of mind]]></title>
+    <link href="http://mumumu.github.io/blog/2014/08/30/change-of-mind/"/>
+    <updated>2014-08-30T05:46:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/08/30/change-of-mind</id>
+    <content type="html"><![CDATA[<p><a href="http://dictionary.goo.ne.jp/leaf/jn2/200443/m0u/">http://dictionary.goo.ne.jp/leaf/jn2/200443/m0u/</a></p>
+
+<pre><code>へん-せつ【変節】
+
+［名］(スル)節義を変えること。信念・主義・主張などを変えること。
+</code></pre>
+
+<p>昨日の出来事で何かが変わったのは確かだ(一行独白</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fitbit One]]></title>
+    <link href="http://mumumu.github.io/blog/2014/04/24/fitbit-one/"/>
+    <updated>2014-04-24T00:15:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/04/24/fitbit-one</id>
+    <content type="html"><![CDATA[<p><a href="https://www.fitbit.com/jp/one">https://www.fitbit.com/jp/one</a></p>
+
+<p>最近また<a href="http://mumumu-meshi.blogspot.jp/">飯日記</a> によるレコーディングダイエットをはじめたのだが、どうしても食べる量を記録しながら調整するだけではリバウンドしやすいし、ペースも維持しにくい。やはり運動との併用は不可欠だなと思っていたところなのだが、誰かに何か言われても自分からは絶対に運動なんてやらない。</p>
+
+<p>じゃあ飯日記と同じように可視化ツールを使おうぜ、という発想から <a href="https://www.fitbit.com/jp/one">Fitbit One</a> を購入した。万歩計であれば何でもいいわけでもなく、飯日記と同じ観点から、以下の要件を立てて選んだ。</p>
+
+<p>・ 歩数以外でも可視化する機能が多いこと<br/>
+・ スマホとの連携が簡単なこと</p>
+
+<p>これらを満たしているツールはそれなりにあるとは思うのだが、自分が持っている <a href="http://www.google.co.jp/nexus/5/">Nexus 5</a> との <a href="https://help.fitbit.com/customer/portal/articles/987861-android-device-compatibility">相性が保証されていて</a>、Bluetooth と アプリで簡単にWebとも連携できるという要件が揃っていたのは Fitbit One だけだった。</p>
+
+<p>ということで、早速職場から帰宅する時に10000歩歩いてみた。思ったよりきつい、、結局6駅分歩いた挙げ句、90分もかかった。これを毎日続けるのって至難の業じゃね？</p>
+
+<p>続けている人は余程の暇人か健脚の持ち主に相違ないと思う次第だ(´ー｀; )</p>
+
+<p><img src="http://mumumu.github.io/images/fitbitone_10000.png" width="360" height="640" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New environment]]></title>
+    <link href="http://mumumu.github.io/blog/2013/07/01/new-environment/"/>
+    <updated>2013-07-01T11:13:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/07/01/new-environment</id>
+    <content type="html"><![CDATA[<p>今日から新しい職場だ。とはいえ、よくある「XXXに入社しました！」とかいうエントリにはしない。<br/>
+自分の軸をブレさせることなく頑張る。それだけだ。</p>
+
+<blockquote>
+新しい仕事は新しい車に似ている。その車を買った翌朝は、ただ嬉しい。ガレージに停まっているのを見るだけで「ああ、新車だ。素晴らしい。何もかも新しい」そう思って感激する。しかし、車に乗り込んで実際に走らせてみると、はじめのう
+ちは、新車の匂いを感じて満足しているけれど、しばらくすると気づくのだ、「新車といえども車は車だ」と。
+
+転職先も同じである。新しい、というのはそれだけでいいように思えるが、新しさはすぐに失われる。新しさとは別の、独自の価値があるかどうかが大切である。もちろん、独自の価値、と一口に言っても、その種類は様々だろう。
+</blockquote>
+
+
+<p>(...中略)</p>
+
+<blockquote>
+会社に独自の価値があるか、また、その価値とは何かがわかれば、次に問うべきことは、「そこで本当に自分のやりたいことができるか」である。むしろこの方が重要な問いだろう。それが自分の将来を左右する。また、この問いに答えるには、自
+分が本当にやりたいことは何かを考えなくてはならない。
+</blockquote>
+
+
+
+
+<div style="float:rignt">(<a href="http://www.oreilly.co.jp/books/9784873114996/">Being Geek ギークであり続けるためのキャリア戦略</a><br /> P28. 「キャリアの形成」から引用)</div>
+
+]]></content>
+  </entry>
+  
+</feed>

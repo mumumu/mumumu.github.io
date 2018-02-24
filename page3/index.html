@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="github page を Octopress で公開している人は、きっと master が HTML と CSS だけで出来たリポジトリを github に持っており、かつ source ブランチでそれを生成するための Rakefile や _config.yml、ブログエントリの &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/page3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="mumumu の日記" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+<script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>
+<script type="text/javascript">
+    Hatena.Star.Token = '2ff1b78d44567c93bf2a6a8400a11ea249acae79';
+    Hatena.Star.SiteConfig = {
+      entryNodes: {
+        'article': {
+          uri: 'h1 a',
+          title: 'h1',
+          container: 'span.hatenastar'
+        }
+      }
+    };
+</script>
+
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-674328-3', 'github.io');
+    ga('send', 'pageview');
+  
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/04/26/restore-github-page-from-source-branch/">restore github page from source branch</a></h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-26T07:17:00+09:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+
+  <div class="entry-content"><p>github page を <a href="http://octopress.org/">Octopress</a> で公開している人は、きっと master が HTML と CSS だけで出来たリポジトリを github に持っており、かつ source ブランチでそれを生成するための Rakefile や <code>_config.yml</code>、ブログエントリの markdown、テーマなどをバックアップしているはずだ。</p>
+
+<p>では、何かの拍子にブログを書く環境を壊してしまい、source ブランチから復活させなければならなくなった場合はどうだろうか。今朝ちょうどそういう状況に陥ってしまい、復旧に少し手間取ったのでメモしておく。</p>
+
+<p>要するに clone した後、 <code>_deploy</code> ディレクトリを生成し、そこで git リポジトリを再初期化し、github page へのリポジトリを remote に加えるだけだ。 要するに、 <a href="https://github.com/imathis/octopress/blob/5080107cb9e4c7bad8feb719f7e57c1da3b20c65/Rakefile#L352">setup_github_pagesタスクの後半</a> を真似ただけである。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git@github.com:mumumu/mumumu.github.io.git blog
+</span><span class='line'>$ cd blog
+</span><span class='line'>$ mkdir _deploy
+</span><span class='line'>$ cd _deploy
+</span><span class='line'>$ git init
+</span><span class='line'>$ git remote add origin git@github.com:mumumu/mumumu.github.io</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとは <code>rake new_post["some title"]</code> で記事を書き、<code>rake generate</code> や <code>rake gen_deploy</code> の操作でいつも通り記事が公開できるようになる。</p>
+
+<p>こうしたリストアの操作と、 <code>git push origin source</code> というバックアップ操作が面倒くさかったので、以下のような patch を Rakefile に足しておいた。</p>
+
+<p>まずは バックアップの操作が <code>rake gen_deploy</code>後に自動で行われるようにした。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gu">@@ -252,16 +252,38 @@ multitask :push do</span>
+</span><span class='line'>   Rake::Task[:copydot].invoke(public_dir, deploy_dir)
+</span><span class='line'>   puts &quot;\n## copying #{public_dir} to #{deploy_dir}&quot;
+</span><span class='line'>   cp_r &quot;#{public_dir}/.&quot;, deploy_dir
+</span><span class='line'><span class="gi">+  message = &quot;Site updated at #{Time.now.utc}&quot;</span>
+</span><span class='line'>   cd &quot;#{deploy_dir}&quot; do
+</span><span class='line'>     system &quot;git add .&quot;
+</span><span class='line'>     system &quot;git add -u&quot;
+</span><span class='line'>     puts &quot;\n## Commiting: Site updated at #{Time.now.utc}&quot;
+</span><span class='line'><span class="gd">-    message = &quot;Site updated at #{Time.now.utc}&quot;</span>
+</span><span class='line'>     system &quot;git commit -m \&quot;#{message}\&quot;&quot;
+</span><span class='line'>     puts &quot;\n## Pushing generated #{deploy_dir} website&quot;
+</span><span class='line'>     system &quot;git push origin #{deploy_branch} --force&quot;
+</span><span class='line'><span class="gi">+  end</span>
+</span><span class='line'><span class="gi">+</span>
+</span><span class='line'><span class="gi">+  cd &quot;#{deploy_dir}/../source&quot; do</span>
+</span><span class='line'><span class="gi">+    system &quot;git add *&quot;</span>
+</span><span class='line'><span class="gi">+    puts &quot;\n## Commiting: Site updated at #{Time.now.utc}&quot;</span>
+</span><span class='line'><span class="gi">+    system &quot;git commit -m \&quot;#{message}\&quot;&quot;</span>
+</span><span class='line'><span class="gi">+    puts &quot;\n## Pushing source branch as backup&quot;</span>
+</span><span class='line'><span class="gi">+    system &quot;git push origin source&quot;</span>
+</span><span class='line'>     puts &quot;\n## Github Pages deploy complete&quot;
+</span><span class='line'>   end
+</span><span class='line'><span class="gi">+</span>
+</span><span class='line'><span class="gi">+end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>github page のソースを clone した後、<code>_deploy</code> ディレクトリを再生成し、master として remote を足すタスクも追加した。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gi">+</span>
+</span><span class='line'><span class="gi">+desc &quot;restore github pages directory&quot;</span>
+</span><span class='line'><span class="gi">+task :restore_github_pages_directory do</span>
+</span><span class='line'><span class="gi">+  puts &quot;\n## Re-creating deploy directory&quot;</span>
+</span><span class='line'><span class="gi">+  rm_rf deploy_dir</span>
+</span><span class='line'><span class="gi">+  mkdir_p deploy_dir</span>
+</span><span class='line'><span class="gi">+</span>
+</span><span class='line'><span class="gi">+  cd &quot;#{deploy_dir}&quot; do</span>
+</span><span class='line'><span class="gi">+    repo_url = &quot;git@github.com:mumumu/mumumu.github.io&quot;</span>
+</span><span class='line'><span class="gi">+    system &quot;git init&quot;</span>
+</span><span class='line'><span class="gi">+    system &quot;git remote add origin #{repo_url}&quot;</span>
+</span><span class='line'><span class="gi">+  end</span>
+</span><span class='line'><span class="gi">+ end</span>
+</span><span class='line'>
+</span><span class='line'> desc &quot;Update configurations to support publishing to root or sub directory&quot;
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+  
+    <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2015/04/26/restore-github-page-from-source-branch/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2015/04/26/restore-github-page-from-source-branch/" >Tweet</a>
+  
+  <a href="http://b.hatena.ne.jp/entry/http://mumumu.github.io/blog/2015/04/26/restore-github-page-from-source-branch/" class="hatena-bookmark-button" data-hatena-bookmark-title="restore github page from source branch" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="http://mumumu.github.io/blog/2015/04/26/restore-github-page-from-source-branch/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  
+</div>
+
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/04/26/mini-router-plan/">mini router plan</a></h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-26T03:48:00+09:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+
+  <div class="entry-content"><p><a href="http://blog.livedoor.jp/connect_staff/archives/1804038.html">http://blog.livedoor.jp/connect_staff/archives/1804038.html</a></p>
+
+<p>自分が使っているプロバイダが突如サービス終了するというアナウンスがあった。<a href="http://www.din.or.jp/">代替のプロバイダはもうほぼ決めた</a> のだけど、これを機会にブロードバンドルータもどうにかしようという気になった。<a href="http://jp.yamaha.com/products/network/routers/rtx1210/">RTX1210</a> を中古で買うか、マシンをもう一台組んで <a href="http://vyos.net/wiki/Main_Page">VyOS</a> を入れてしまう案の二つが上がったが、結果として後者、つまりマシンを新たにもう一台組むことにした。</p>
+
+<p>・ ルータに使うマシンなので、大きなマシンは組みたくない<br/>
+　・ Mini-ITX がいいんじゃないですかね<br/>
+・ ファンレスがいいよね。じゃあ前欲しがってた Atom C2000 シリーズあたりでいきますか</p>
+
+<p>という思考から、以下のような構成を考えたのでメモしておく。メモリを16GBにする必要がどこにあるのかというツッコミは禁止します。</p>
+
+<p>Mini-ITX はそのコンパクトさ故に電源やケースの組み合わせに注意が必要で、特にケースと電源選びは非常に面倒であった。電源は SFX電源とか考えるのが面倒だったので ATX 電源、かつ奥行き140mm で300W 以下、となると玄人指向のものしか残らなかった。Mini-ITX のケースは自分が考える最小のコンパクトさと電源のサイズをベースに考えていった結果、バランスのとれたモノとして Silverstone のものを選んだということである。</p>
+
+<p>85k は安くはない。RTX1210 はこれより中古で安く買えるのでかつては迷ったが、やはり手元の自由度を選ぶと自作が最高だ。いつ組もうかなぁ(´ー｀；)</p>
+
+<table>
+<thead>
+<tr>
+<th>パーツ項目 </th>
+<th> 品名 </th>
+<th> 価格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU        </td>
+<td>  Intel Atom processor C2750, SoC, FCBGA 1283, 20W 8-Core </td>
+<td> -</td>
+</tr>
+<tr>
+<td>マザーボード </td>
+<td> <a href="http://www.supermicro.com/products/motherboard/atom/x10/a1sai-2750f.cfm">Supermicro A1SAi-2750F</a> </td>
+<td> 54,647</td>
+</tr>
+<tr>
+<td>RAM        </td>
+<td>  <a href="https://www.ark-pc.co.jp/i/11702324/">SanMax Technologies SMD-N16G28ECTP-16KL-D</a> </td>
+<td> 17,990</td>
+</tr>
+<tr>
+<td>ケース      </td>
+<td> <a href="https://www.ark-pc.co.jp/i/15300667/">Silverstone SST-SG13B</a> </td>
+<td> 7,538</td>
+</tr>
+<tr>
+<td>電源       </td>
+<td> <a href="http://www.kuroutoshikou.com/product/power/atx/krpw-pb300w_85_/">玄人志向 80PLUS BRONZE取得 ATX電源 300W KRPW-PB300W/85+</a>  </td>
+<td> 5,674</td>
+</tr>
+<tr>
+<td>合計       </td>
+<td>                                  </td>
+<td> 85,849</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+  
+  
+  
+    <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2015/04/26/mini-router-plan/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2015/04/26/mini-router-plan/" >Tweet</a>
+  
+  <a href="http://b.hatena.ne.jp/entry/http://mumumu.github.io/blog/2015/04/26/mini-router-plan/" class="hatena-bookmark-button" data-hatena-bookmark-title="mini router plan" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="http://mumumu.github.io/blog/2015/04/26/mini-router-plan/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  
+</div>
+
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/13/luvbook-j/">Luvbook J</a></h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-13T00:34:00+09:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+
+  <div class="entry-content"><p><a href="http://www.mouse-jp.co.jp/m-book/luvbookj/series.html">http://www.mouse-jp.co.jp/m-book/luvbookj/series.html</a></p>
+
+<p>以前ノートPCを買ってから4年、また訳のわからぬノートPCを買ってしまった。後悔はない。</p>
+
+<p>A) 林檎は嫌 (天の邪鬼的思考)<br/>
+B) メモリは16GB載せたい (前より上のものを思考)<br/>
+C) 割とHDDが遅くてイラっとする事案が頻発していたので、SSD 必須<br/>
+D) 前も13型だったので、それより大きなものは嫌だなー</p>
+
+<p>A) にこだわらなければ <a href="https://www.apple.com/jp/macbook-pro/">林檎で満たせる事案</a> である。この点に妙にこだわった結果、かつメモリが16GB載せられるものを探した結果、Thinkpad X230 とか 今回買った BTO パソコンしか道はなかったのである。そして天の邪鬼思考がさらに発揮された結果、マウスコンピューターのものが残ったというわけだ。</p>
+
+<p>2560 x 1440 とかいうかつて経験のない解像度も冒険という意味で後押しした。だが、Linux を入れた結果、林檎には不要な妙な調整が必要なことに気がついた。アプリを通常の状態で使うと、あまりにも小さく見えるのである(´ー｀；)</p>
+
+<p>自分は割とフォントを大きめにして使うので調整するのはいつものことなのだが、ブラウザで妙にツールバーが小さくなったりして非常に使いづらい見た目になってしまったり、サードパーティのアプリのアイコンとかがやたらと小さく見えるといった具合である。特にブラウザで適当な動きをするものがなかなか見つからないのには閉口した。</p>
+
+<p>いろいろと探した結果、Firefox の <a href="https://support.mozilla.org/en-US/questions/963759">デフォルトのCSS を調整する</a> ことでデフォルトのズームレベルを 1.6 倍にして快適なレベルに調整することで事なきを得た。</p>
+
+<p>フォントはやはり自分的には <a href="http://mix-mplus-ipa.sourceforge.jp/migu/">Migu 1M</a> が相性がよい。 <a href="https://github.com/yascentur/Ricty">Ricty</a> 使ってる人多いんでしょうけど、ターミナルと相性良いですかねあれ？(´ー｀；)</p>
+
+<p>とはいえ、非常にマシンのパフォーマンスは良く、キーボードも押す深さが自分にとっては快適で、ちょっと大きな打鍵音がするがちょうど良い。前の <a href="http://www.asus.com/jp/Notebooks_Ultrabooks/U31F/">ASUS U31F</a> と同様、長く使うことになろう。しばらく宜しく！</p>
+</div>
+  
+  
+  
+    <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2015/01/13/luvbook-j/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2015/01/13/luvbook-j/" >Tweet</a>
+  
+  <a href="http://b.hatena.ne.jp/entry/http://mumumu.github.io/blog/2015/01/13/luvbook-j/" class="hatena-bookmark-button" data-hatena-bookmark-title="Luvbook J" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="http://mumumu.github.io/blog/2015/01/13/luvbook-j/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  
+</div>
+
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/05/baby-shutdowns-my-server/">baby shutdown my server</a></h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-05T00:01:00+09:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+
+  <div class="entry-content"><p><img src="/images/baby_close_to_my_server.jpg" /></p>
+
+<p>赤子に Xeonサーバをシャットダウンされました。。上の画像のような感じでサーバを置いていて、なんか触ってるなーと思ったらLEDの光が消えてました。。</p>
+
+<p>名前解決結果のキャッシュサーバをこのサーバが兼ねていたのでネットが不通になったり、ビルドが走っていたWindowsサーバが電プチによって起動しなくなったりなど、少なからざる被害をもたらしました。</p>
+
+<p>「子供の手の届かない場所に置きましょう」という注意書き一般を鼻で笑い飛ばしていたのを死ぬほど後悔した次第です(´ー｀; )</p>
+
+<p>この注意書きで言うところの「子供」とは、赤ちゃんが歩き始める時期が既に該当してるんですね。世界中の赤子と向き合うエンジニアに <strong>「サーバは子供の手の届かない場所に置きましょう」</strong> と注意喚起したいと思います...</p>
+</div>
+  
+  
+  
+    <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2015/01/05/baby-shutdowns-my-server/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2015/01/05/baby-shutdowns-my-server/" >Tweet</a>
+  
+  <a href="http://b.hatena.ne.jp/entry/http://mumumu.github.io/blog/2015/01/05/baby-shutdowns-my-server/" class="hatena-bookmark-button" data-hatena-bookmark-title="baby shutdown my server" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="http://mumumu.github.io/blog/2015/01/05/baby-shutdowns-my-server/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  
+</div>
+
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/03/look-back-at-2014/">look back at 2014</a></h1>
+    
+
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-03T02:19:00+09:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+
+  <div class="entry-content"><p>2014年を簡潔にまとめると、以下の３つに明け暮れた一年だった。</p>
+
+<p>A) ピアレビュー<br/>
+B) 少しのコード書き<br/>
+C) 本番運用</p>
+
+<p>特にピアレビューは比率が大きくて、人のコードを見て指摘したりされたりしていた。そうする中で、事故ることが許されない環境にふわっと本番のことを考えない無責任なコードを投げつけられそうになって憤慨するという事案が多発した。別に仲が悪くなったというわけではないのだが、2015年はそういった部分を少しずつ言語化してアウトプットできればと思う。</p>
+
+<p>DevOps って言うけれども、いくら仲良くしても無責任にコードを投げつけられるだけでは逆効果なだけだ。仲良くするにはお互いの意識が近くなければならないので、Ops の意識を何度でも言語化して伝えていかなければならないのだと強く感じた。</p>
+
+<p>あと、ひとつのまとまったプロダクトをローンチまで持って行ったのもひとつの成果だ。大規模なトラフィックと24時間365日戦う中でまだまだやることはあるけれども、一区切りを付けたことは素直に喜びたい。赤子と向き合うのが一番大変な時期にぶつかり、相方には様々な迷惑を掛けた。バランスを取るのはなかなか大変だったけれども、相方を一人で孤立させないことを心掛けたい。</p>
+
+<p>忙しさが大きくなると、周囲の動向に関する視野や問題意識が狭くなると思う。問題意識と視野あってこそのアウトプットなのだから、余裕を持って楽しもう。それが2015年の目標である。</p>
+</div>
+  
+  
+  
+    <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2015/01/03/look-back-at-2014/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2015/01/03/look-back-at-2014/" >Tweet</a>
+  
+  <a href="http://b.hatena.ne.jp/entry/http://mumumu.github.io/blog/2015/01/03/look-back-at-2014/" class="hatena-bookmark-button" data-hatena-bookmark-title="look back at 2014" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+  <div id="fb-like-box" style="margin-top:-40px;margin-left:200px">
+    <div class="fb-like" data-href="http://mumumu.github.io/blog/2015/01/03/look-back-at-2014/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+  </div>
+  
+  <span class="hatenastar">&nbsp;</span>&nbsp;
+  
+</div>
+
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="4">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="2">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python, translator, devoted husband. Interested in Linux, KDE, Embedded Linux, IRC, Translation, Web Application ... etc.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="http://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://delicious.com/mumumu">mumumu's delicious Bookmark</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/02/24/linux-de-mac-falseyounisukurinsiyotutowocuo-ru/">Linux で Mac のようにスクリーンショットを撮る</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/23/slack-mobile-notifications-not-working/">Slack mobile notifications not working (on Android)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/10/02/add-socks-support-to-ruby-httpclient/">[PATCH] added socks support to Ruby httpclient</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/05/10/cmos-error/">cmos error</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/specific-file-update-checker-on-git-repository/">Specific file update checker on Git Repository</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/10/12/yang-xiang-kegoroqin-desuku/">Aomuke Gorone Desk</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
