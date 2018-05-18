@@ -34,3 +34,7 @@ $ maim -s ~/screenshot-$(date +%s).png
 
 (\*注1) 他の主要ディストリビューションにはある (Debian 含) のに、Ubuntu だけ何故... (´ー｀; )  
 (\*注2) 他に必要なものもあるかもしれない。build-essential とかは当然の前提よ(*゜ー゜)
+
+**[Update 19th May 2018 05:39 JST by m]**  
+
+Kubuntu 18.04 LTS では、ソースからビルドしなくても maim パッケージ一発で maim が入るようになっていました。しあわせ(｀ー´)
