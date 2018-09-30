@@ -5,15 +5,19 @@ date: 2015-04-26 07:17
 comments: true
 categories: [tips]
 ---
+
 github page を [Octopress](http://octopress.org/) で公開している人は、きっと master が HTML と CSS だけで出来たリポジトリを github に持っており、かつ source ブランチでそれを生成するための Rakefile や `_config.yml`、ブログエントリの markdown、テーマなどをバックアップしているはずだ。
 
 では、何かの拍子にブログを書く環境を壊してしまい、source ブランチから復活させなければならなくなった場合はどうだろうか。今朝ちょうどそういう状況に陥ってしまい、復旧に少し手間取ったのでメモしておく。
 
-要するに clone した後、 `_deploy` ディレクトリを生成し、そこで git リポジトリを再初期化し、github page へのリポジトリを remote に加えるだけだ。 要するに、 [setup_github_pagesタスクの後半](https://github.com/imathis/octopress/blob/5080107cb9e4c7bad8feb719f7e57c1da3b20c65/Rakefile#L352) を真似ただけである。
+要するに clone した後、source ブランチに移動し、 `_deploy` ディレクトリを生成する。そこで git リポジトリを再初期化し、github page へのリポジトリを remote に加えるだけだ。 要するに、 [setup_github_pagesタスクの後半](https://github.com/imathis/octopress/blob/5080107cb9e4c7bad8feb719f7e57c1da3b20c65/Rakefile#L352) を真似ただけである。
 
 ```
 $ git clone git@github.com:mumumu/mumumu.github.io.git blog
 $ cd blog
+$ git checkout -b source origin/source
+$ gem install bundler
+$ bundle install
 $ mkdir _deploy
 $ cd _deploy
 $ git init
@@ -61,8 +65,8 @@ github page のソースを clone した後、`_deploy` ディレクトリを再
 +desc "restore github pages directory"
 +task :restore_github_pages_directory do
 +  puts "\n## Re-creating deploy directory"
-+  rm_rf deploy_dir
-+  mkdir_p deploy_dir
++  rm_rf "#{deploy_dir}"
++  mkdir_p "#{deploy_dir}"
 +
 +  cd "#{deploy_dir}" do
 +    repo_url = "git@github.com:mumumu/mumumu.github.io"
@@ -73,3 +77,7 @@ github page のソースを clone した後、`_deploy` ディレクトリを再
  
  desc "Update configurations to support publishing to root or sub directory"
 ```
+
+**[Update September 30th 2018 13:38 JST by m]**
+
+Ruby 2.5.1 に環境をアップデートしたことをきっかけに、少し手順を追加しました。

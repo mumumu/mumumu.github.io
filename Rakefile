@@ -259,14 +259,36 @@ multitask :push do
   Rake::Task[:copydot].invoke(public_dir, deploy_dir)
   puts "\n## Copying #{public_dir} to #{deploy_dir}"
   cp_r "#{public_dir}/.", deploy_dir
+  message = "Site updated at #{Time.now.utc}"
   cd "#{deploy_dir}" do
     system "git add -A"
-    message = "Site updated at #{Time.now.utc}"
     puts "\n## Committing: #{message}"
     system "git commit -m \"#{message}\""
     puts "\n## Pushing generated #{deploy_dir} website"
     Bundler.with_clean_env { system "git push -f origin #{deploy_branch}" }
     puts "\n## Github Pages deploy complete"
+  end
+
+  cd "#{deploy_dir}/../source" do
+    system "git add *"
+    puts "\n## Commiting: Site updated at #{Time.now.utc}"
+    system "git commit -m \"#{message}\""
+    puts "\n## Pushing source branch as backup"
+    system "git push origin source"
+    puts "\n## Github Pages backup complete"
+  end
+end
+
+desc "restore github pages directory"
+task :restore_github_pages_directory do
+  puts "\n## Re-creating deploy directory"
+  rm_rf "#{deploy_dir}"
+  mkdir_p "#{deploy_dir}"
+
+  cd "#{deploy_dir}" do
+    repo_url = "git@github.com:mumumu/mumumu.github.io"
+    system "git init"
+    system "git remote add origin #{repo_url}"
   end
 end
 
