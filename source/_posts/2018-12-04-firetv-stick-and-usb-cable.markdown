@@ -16,7 +16,4 @@ categories: [misc]
 
 いろいろ試した結果、以下の Anker のものに行き着いた。3m でよければ、これで十分だ。Anker は USBケーブル周りでかなり評判が良いようなので買ってみたが、評判通りだったと言えよう(*´～｀)
 
-<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mumumuorg-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=B012WL4QMW&linkId=6a4a609eaed4b502ad5a2dbfce47ee59&bc1=FFFFFF&lt1=_top&fc1=333333&lc1=0066C0&bg1=FFFFFF&f=ifr">
-</iframe>
-
 (\*1) PC から Google Chrome 経由で Amazon Prime Video をキャストさせたり、スマホ画面をキャストさせたりすれば見れるのは承知しているが、リモコンがあった方が家族には優しい
