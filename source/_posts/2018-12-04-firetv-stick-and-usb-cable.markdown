@@ -19,4 +19,4 @@ categories: [misc]
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="https://rcm-fe.amazon-adsystem.com/e/cm?ref=tf_til&t=mumumuorg-22&m=amazon&o=9&p=8&l=as1&IS1=1&detail=1&asins=B012WL4QMW&linkId=6a4a609eaed4b502ad5a2dbfce47ee59&bc1=FFFFFF&lt1=_top&fc1=333333&lc1=0066C0&bg1=FFFFFF&f=ifr">
 </iframe>
 
-(\*1) スマホ画面をキャストさせたり、PC から Google Chrome 経由で Amazon Prime Video をキャストさせたり、スマホ画面をキャストさせたりすれば見れるのは承知しているが、リモコンがあった方が家族には優しい
+(\*1) PC から Google Chrome 経由で Amazon Prime Video をキャストさせたり、スマホ画面をキャストさせたりすれば見れるのは承知しているが、リモコンがあった方が家族には優しい
