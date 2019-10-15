@@ -23,6 +23,31 @@ dpkg コマンドは、パッケージを扱う基本コマンドである。パ
 
 インストール済みのパッケージの一覧を表示する。これを grep することで、特定のパッケージがインストールされているかを知るのによく使う
 
+### dpkg -L
+
+パッケージ名を与えることで、インストールされたパッケージに含まれるファイル一覧を表示する。`rpm -ql` に相当する。
+
+```
+$ dpkg -L /usr/bin/sg
+
+/.
+/bin
+/bin/login
+/bin/su
+/etc
+/etc/login.defs
+/etc/pam.d
+/etc/pam.d/login
+/etc/pam.d/su
+/etc/securetty
+/usr
+/usr/bin
+/usr/bin/faillog
+/usr/bin/lastlog
+
+...
+```
+
 ### dpkg -S
 
 ファイルのフルパスを与えることで、そのファイルがどのパッケージに属しているかを表示してくれる。自分はこれは apt-file コマンドでしかこれまでできないものだと思っていたが、インストール済みのファイルであれば dpkg でできたらしい(´ー｀; )
@@ -99,3 +124,38 @@ build-essential:
         500 http://jp.archive.ubuntu.com/ubuntu/ trusty/main amd64 Packages
         100 /var/lib/dpkg/status
 ```
+
+### apt source
+
+パッケージ名を与えることで、パッケージのソースパッケージをダウンロードできる。
+後述する build-dep と組み合わせると便利。
+
+```
+$ apt source login
+
+ apt source login
+パッケージリストを読み込んでいます... 完了
+'login' の代わりに 'shadow' をソースパッケージとして選出しています
+注意: 'shadow' パッケージは以下の場所の 'Git' バージョン制御システムで保守されています:
+https://anonscm.debian.org/git/pkg-shadow/shadow.git
+パッケージの最新の (まだリリースされていないかもしれない) 更新を取得するには、
+git clone https://anonscm.debian.org/git/pkg-shadow/shadow.git
+を使用してください。
+1,818 kB のソースアーカイブを取得する必要があります。
+取得:1 http://archive.ubuntu.com/ubuntu bionic-updates/main shadow 1:4.5-1ubuntu2 (dsc) [2,426 B]
+取得:2 http://archive.ubuntu.com/ubuntu bionic-updates/main shadow 1:4.5-1ubuntu2 (tar) [1,345 kB]
+取得:3 http://archive.ubuntu.com/ubuntu bionic-updates/main shadow 1:4.5-1ubuntu2 (diff) [471 kB]
+1,818 kB を 8秒 で取得しました (240 kB/s)
+
+dpkg-source: info: extracting shadow in shadow-4.5
+
+...
+```
+
+### apt build-dep
+
+パッケージ名を与えることで、そのソースパッケージをビルドするのに必要なパッケージがダウンロードできる
+
+** [ Update October 16th 4:23 JST by m ]**
+
+`dpkg -L` `apt source` `apt build-dep` を追加しました
