@@ -25,3 +25,7 @@ categories: [hardware]
 ----
 　  
 最終的に、普段使っているLinux環境を再現したい欲が強いのだと思う。多分自分の中では、[GallumOS](https://galliumos.org/) を入れるか、リモートへの接続端末として使うのが最適解なのだろう...
+
+<b>[ Update December 5th 2019 05:18 JST by mumumu ]</b>
+
+Acer R751-T は [Apollo Lake なので、まだ sound が動作しない](https://github.com/GalliumOS/galliumos-distro/issues/364)。GalliumOS を入れるのは一旦保留で。
