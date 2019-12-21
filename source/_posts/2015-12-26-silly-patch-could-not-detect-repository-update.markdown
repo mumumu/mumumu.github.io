@@ -13,7 +13,7 @@ PEP8 のファイル更新を監視するのに、 [Mercurial リポジトリ更
 なので、こういうお馬鹿な patch を書いてしまうんですね。ハイ(´ー｀; )  
 誰の役にも立たないんで、ますますお馬鹿度が増すという...
 
-```diff
+```
 diff --git a/rev_update_checker.py b/rev_update_checker.py
 index b6109fe..af39899 100644
 --- a/rev_update_checker.py

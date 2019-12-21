@@ -30,7 +30,7 @@ $ git remote add origin git@github.com:mumumu/mumumu.github.io
 
 まずは バックアップの操作が `rake gen_deploy`後に自動で行われるようにした。
 
-```diff
+```
 @@ -252,16 +252,38 @@ multitask :push do
    Rake::Task[:copydot].invoke(public_dir, deploy_dir)
    puts "\n## copying #{public_dir} to #{deploy_dir}"
@@ -60,7 +60,7 @@ $ git remote add origin git@github.com:mumumu/mumumu.github.io
 
 github page のソースを clone した後、`_deploy` ディレクトリを再生成し、master として remote を足すタスクも追加した。
 
-```diff
+```
 +
 +desc "restore github pages directory"
 +task :restore_github_pages_directory do
