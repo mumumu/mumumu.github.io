@@ -1,0 +1,22 @@
+---
+layout: post
+title: "ThinkPad X395"
+date: 2020-01-25 20:03:30 +0900
+comments: true
+categories: [hardware]
+---
+<img src="/images/thinkpad_x395.png" width="800"/>
+
+[https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395](https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395)
+
+[ChromeBook をいろいろ試した](/blog/2019/12/05/chromebook/) 結果、やはり自分は Linux をVMや他のOSを介さずに使いたい人なんだ、という結論を得るに至った。Linux が動くノートパソコン、かつ日本語キーボードなものといえば？ といえばやはり ThinkPad に落ち着いた。このディストリビューションが動くよ、という[実績を示してくれている](https://support.lenovo.com/jp/ja/solutions/PD031426) のもポイントが高い。
+
+Lenovo の公式サイトからの直販ではeクーポンがついていて売られていた。Full HD のディスプレイに変更し、延長修理5年を付けても 112,596 JPY で購入できた。安い。
+
+最初は上記の実績にない Ubuntu 19.10 を入れていろいろ試してしまい、Linux Kernel 5.3 と RIZEN の相性の悪さに苦しんだ。AC アダプタを繋がない放電状態だとフリーズが多発してしまい、いろいろ試してみたが駄目だった。Ubuntu 18.04 を入れ、Kernel 5.0 にしたら動作が落ち着いた。Kernel 5.3 にしてしまうと駄目なようなので、留意しておきたい。
+
+Linux Kernel だけは面倒がないようにapt-mark hold しておいたが、Ubuntu 20.04 LTS になったときにうまく移行できるのか、心配ではある。
+
+とはいうものの、とても動作は安定している。クリエイティブな用途にでも使わない限り、メモリ 16GB である必要もないという学びを得たのも収穫だった。会社の環境もクラウド上にあるので、ダム端(死語)として使うもよし、ローカルで小さめの開発に使うもよし、ネイティブでLinuxが動くことの喜びを噛み締めている。軽いし、180度まで開いて平らに使うことができるのもいい。唯一の欠点は、ビルド時に筐体の右側がかなり熱くなるという点だけかな。
+
+(次にこの手の何かを買う時は、Intel を選びたいかな... Kernel との相性という意味で安心感があるよ。やっぱり。
