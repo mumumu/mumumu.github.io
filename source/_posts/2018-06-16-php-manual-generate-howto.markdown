@@ -74,7 +74,7 @@ PhD_PHP は chm をビルドするのに必要だ。
 --enable-xml-details は、XMLに万が一文法エラーがあったときに細かい情報を出力するためのモノだ。また、phd は結構メモリを使うので、memory_limit の値を大きめにしておいた方がよいかもしれない。
 
 	$ php doc-base/configure.php --with-lang=ja --enable-xml-details
-	$ phd -d doc-base/.manual.xml
+	$ phd -f xhtml -L ja -P PHP -d doc-base/.manual.xml
 
 成功すれば、 output ディレクトリ以下にマニュアルが生成される。
 
