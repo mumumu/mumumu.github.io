@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="http://beradrian.wordpress.com/2008/11/14/rotate-exif-images/ スマートフォンで写真を撮り、それをクラウドに保存するということはよくある。だが、意図的にではないにせよ、その写真の天地や縦横が逆になったりすることがある。これは特に「+」 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/page16/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="mumumu の日記" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-674328-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-05-15 00:26:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/15/rotate-image-depending-on-exif-orientation-value/">Rotate Image depending on exif:orientation value</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://beradrian.wordpress.com/2008/11/14/rotate-exif-images/">http://beradrian.wordpress.com/2008/11/14/rotate-exif-images/</a></p>
+
+<p>スマートフォンで写真を撮り、それをクラウドに保存するということはよくある。だが、意図的にではないにせよ、その写真の天地や縦横が逆になったりすることがある。<a href="http://iphone3gsman.blog71.fc2.com/blog-entry-424.html">これは特に「+」のボリュームボタンでシャッターが切れるようになった iPhone5 から顕著だ</a>。</p>
+
+<p>画像自体がどのような方向で保存されているのかは、<a href="http://www.exif.org/">EXIF(Exchangeable Image File Format)</a> に保存されているのが普通だ。最近の画像処理ライブラリは、こういうことも EXIF:Orientation の値を見て手当てするようになっている。</p>
+
+<p>自分もたまたまそういう処理を Java で書いていて、「iPhone で写真を撮ると写真が逆さまにアップロードされる」というトラブルに出会った。<a href="http://www.jmagick.org/">jMagick</a> を使って画像をいったんある一定の大きさに変換してファイルに保存していたのだが、このプログラムは古かったため EXIF を見ることはしていなかったのが原因だった。画像の方向とEXIF の関係は一番はじめに示したリンクに詳しいが、jMagick の場合必要な処理を自前でやらなければならない。</p>
+
+<p><a href="http://beradrian.wordpress.com/2008/11/14/rotate-exif-images/">一番はじめに示したリンク</a>  はまさに同じケースを扱っており大いに参考になった。しかし、あいにくとここに載っているコードには以下の問題があった。</p>
+
+<p>a) 複数回同じ画像で変換が走った場合のことを全く考慮していない。</p>
+
+<p>EXIF の値を見て変換するのはよいのだが、いったん変換した後にまた同じ回転や反転処理が走ってしまうと元に戻ってしまったりする。これを防ぐためには、EXIF の値を更新し、２度同じ処理が起こらないようにする必要がある。</p>
+
+<p>b) jMagick のバックエンドである <a href="http://www.imagemagick.org">ImageMagick</a> は EXIF の更新に対応していない</p>
+
+<p>これも残念ながら自前で書かねばならない。EXIF を更新するためのライブラリは様々なものがあるので好きに使うと良い。自分は apache-sanselan (現在は <a href="http://commons.apache.org/proper/commons-imaging/">commons Imaging</a>) を使った。</p>
+
+<hr />
+
+<p><br />
+これらを踏まえて、<a href="http://beradrian.wordpress.com/2008/11/14/rotate-exif-images/">一番はじめに示したリンク</a> に示されているコードを書き直したの以下である。EXIF の更新コードを Java で書く場合って、Web を調べても割と中途半端にしか載っていないことが多かった。その意味では、完全なコードを書き残しておくことは意味があるだろう。</p>
+
+<script src="https://gist.github.com/mumumu/5576751.js"></script>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-05-14 01:16:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/14/appeal-in-communitation/">Appeal in communitation</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>数年前、とあるソーシャルゲームな会社の人と飲む機会があった。彼が「日本のエンジニアは着飾る（＝自分のことをアピールする。よく見せる）のが極めて下手糞だ」と強調していたのを今でもよく覚えている。</p>
+
+<p>あー今の自分もそうだなー。と思ったり。自分が思ってもいないところが評価されたり、見てほしいところが評価されなかったり。そんな毎日。相手によって響く言葉や実績が違ったりするのが当然だからこそ難しい。</p>
+
+<p>「相手を知り己を知れば百戦危うからず」なんていうけれども、相手を全て知ることは実際には不可能だ。探りながら駆け引きをする。相手が投げかけてくる言葉はその手がかりになる。本当はそんな気を回す必要がなければ一番よいのだけれども。</p>
+
+<p>... そんな毎日がもうしばらく続きそうである。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-05-09 11:26:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/09/imap4rev1-client-command/">IMAP4rev1 client command</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://tools.ietf.org/html/rfc3501">http://tools.ietf.org/html/rfc3501</a></p>
+
+<p>IMAPサーバとの疎通確認のため、以下のように telnet で接続してみても login でエラーばかり返ってきて困った。</p>
+
+<pre><code>$ telnet XXX.XXX.XXX.XXX 143
+Trying XXX.XXX.XXX.XXX...
+Connected to XXX.XXX.XXX.XXX (...).
+Escape character is '^]'.
+* OK Dovecot ready.
+login username password
+login BAD Error in IMAP command received by server.
+</code></pre>
+
+<p>username や password は合っているので、なんでだろうといろいろ見ていると、クライアントから送信するコマンドには必ず先頭にアルファベットか数字からなる "tag" という文字列が付くそうな。。完全に忘れていたのでここにメモしておく。</p>
+
+<pre><code>2.2.1.  Client Protocol Sender and Server Protocol Receiver
+
+   The client command begins an operation.  Each client command is
+   prefixed with an identifier (typically a short alphanumeric string,
+   e.g., A0001, A0002, etc.) called a "tag".  A different tag is
+   generated by the client for each command.
+
+   Clients MUST follow the syntax outlined in this specification
+   strictly.  It is a syntax error to send a command with missing or
+   extraneous spaces or arguments.
+</code></pre>
+
+<p>サーバからの応答内容は、"*" で始まる。telnet とかで確認するには、各コマンドは適当に a とか b とか付けておけば良いようだ。</p>
+
+<pre><code>$ telnet XXX.XXX.XXX.XXX 143
+Trying XXX.XXX.XXX.XXX...
+Connected to XXX.XXX.XXX.XXX (...).
+Escape character is '^]'.
+* OK Dovecot ready.
+a login username password
+a OK Logged in.
+b list "" *
+* LIST (\NoInferiors \UnMarked) "/" "Trash"
+* LIST (\NoInferiors \UnMarked) "/" "INBOX"
+b OK List completed.
+</code></pre>
+
+<p>何も考えないでコマンドだけうろ覚えだとこういうことになるので気をつけましょう(´ー｀；)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-05-09 01:32:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/09/fabric/">Fabric</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://fabfile.org">http://fabfile.org/</a></p>
+
+<p>以前から Python をちゃんと使いたいと思いながらやるやる詐欺をしていた mumumu です。こんばんは。</p>
+
+<p>最近 <a href="http://shop.oreilly.com/product/9781565924642.do">Learning Python</a> をちゃんと読み終え、個人的なプログラムも書き始めた。現在も Python は 2.x と 3.x が過渡期のため、make altinstall をしつつ複数のバージョンを共存させながらいろんなことを試している。</p>
+
+<p>Fabric もそのひとつだ。いろんなコマンドを複数サーバ群で実行するためのデコレータとAPIが備わっている。以前から自宅の仮想マシン群で面倒臭いと思っていた Debian の アップデート作業をなんとかしたいと思っていたところに、<a href="https://twitter.com/Voluntas">@volantus</a> さんが twitter で試している旨をつぶやいていたので自分もやってみることにした。</p>
+
+<p>setuptools の fork である <a href="http://pythonhosted.org/distribute/">distribute</a> から入れてること自体が初心者丸出しですね。</p>
+
+<pre><code>curl -O http://python-distribute.org/distribute_setup.py
+sudo python distribute_setup.py 
+curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+sudo python get-pip.py 
+sudo pip install fabric
+</code></pre>
+
+<p>fabfile.py を以下のように書く。<a href="http://docs.fabfile.org/en/1.6/api/core/operations.html#fabric.operations.local">local()</a> はssh接続せずにコマンドを実行する。<a href="http://docs.fabfile.org/en/1.6/api/core/operations.html#fabric.operations.run">run()</a> は ssh 接続してコマンドを実行する。そして、リモートで sudo 権限が必要なら <a href="http://docs.fabfile.org/en/1.6/api/core/operations.html#fabric.operations.sudo">sudo()</a> を使う。ローカルで sudo したいときは、local() を使うしか現状無いようだ。</p>
+
+<p><a href="http://docs.fabfile.org/en/1.6/api/core/decorators.html#fabric.decorators.hosts">@hosts デコレータ</a> で、リモートのサーバ群を指定できる。とっても簡単。</p>
+
+<pre><code>#!/usr/bin/env python
+
+from fabric.api import *
+
+env.password = 'XXXXXXX'
+
+def localup():
+    local('echo %s | sudo -S apt-get update &amp;&amp; sudo apt-get upgrade' % env.password)
+
+@hosts('host1', 'host2', 'host3')
+def upgrade():
+    sudo('apt-get update')
+    sudo('apt-get upgrade')
+</code></pre>
+
+<p>上記はパスワードベタ打ちなので、自分だけの環境に置くこと。</p>
+
+<p>あとは、fabfile.py があるディレクトリで、以下を実行すればよい。fabfile.py に定義した関数が、fab コマンドに引き渡すコマンド名になる。</p>
+
+<pre><code>fab localup
+fab upgrade
+</code></pre>
+
+<p>簡単で良いのだけど、ローカルの sudo が local() でしかできないのはなんとかならんもんかね(*゜ー゜)
+ちょい調べてみるか。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-05-05 23:21:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/05/debian-gnu-slash-linux-7-dot-0-wheezy/">Debian GNU/Linux 7.0 Wheezy</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.debian.org/News/2013/20130504">http://www.debian.org/News/2013/20130504</a><br/>
+<a href="http://www.debian.org/releases/wheezy/releasenotes]">http://www.debian.org/releases/wheezy/releasenotes</a></p>
+
+<p>今のところ手元で運用している全仮想マシンが Debian なので、早速アップデートした。アップグレードに関する手順や注意点はリリースノートに全て纏まっていることと、Fedora とかと違って Debian のアップグレードは凄く安定しているのでそんなに手間を掛けなくても移行できる。</p>
+
+<p>バックアップや細かいチェックを除けば、/etc/apt/sources.list の squeeze を wheezy に書き換えて以下を実行するのみだ。</p>
+
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get dist-upgrade
+</code></pre>
+
+<p>自分が <a href="http://www.nagios.org/">nagios</a> をソースから入れていたことから、<a href="http://wiki.debian.org/LSBInitScripts/DependencyBasedBoot">insserv</a> まわりで衝突が起きて止まったことと、 <a href="/blog/2013/04/27/ruby-2-dot-0-0-p0/">Ruby を 2.0.0-p0 にしていて</a> sudo -u mumumu ruby .... と rc.local に書いていた部分が動かなくなったことを除けば順調に進行。 楽チンだなー。この移行の安定性が サーバに Debian を使う一番の理由だったりする。</p>
+
+<p><img src="/images/debian_wheezy_upgrade_complete.png" alt="debian upgrade complete!" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page17">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+      
+        <a class="next" href="/page15">Newer &rarr;</a>
+      
+      
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python, translator, devoted husband. Interested in Linux, KDE, Embedded Linux, IRC, Translation, Web Application ... etc.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="http://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://delicious.com/mumumu">mumumu's delicious Bookmark</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/05/chromebook/">Chromebook</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

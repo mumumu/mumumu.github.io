@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>2015 Retrospective - mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="2015年ももう少しで終わろうとしているので、今年がどんな一年だったかを振り返っておこうと思う。 なんといっても、所属が変わったことが一番大きい。それによって、それまで手掛けてきたものに対する要求も大きくなった。環境が全く異なり、期限もあり、頑張る人もいない中で、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/blog/2015/12/29/2015-retrospective/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="mumumu の日記" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-674328-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2015-12-29 22:22:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title">2015 Retrospective</h1>
+    
+  </header>
+
+
+<div class="entry-content"><p>2015年ももう少しで終わろうとしているので、今年がどんな一年だったかを振り返っておこうと思う。</p>
+
+<p>なんといっても、所属が変わったことが一番大きい。それによって、それまで手掛けてきたものに対する要求も大きくなった。環境が全く異なり、期限もあり、頑張る人もいない中で、いろんなバランスをとりながらチームをリードすることが一番大変だった。そんな中でも成果をきちんと出せたのは自分の中で大きな財産になると思うし、技術的にも得たものは大きい。勿論、これはチームメンバの誰一人が欠けても、成し遂げられなかったことである。縁があって一緒にやってきた方々皆に感謝したい。</p>
+
+<p>所属が変わったと書いた。これによって組織のカルチャーも大幅に変わった。ビジネスサイドを理解し、判断の根拠を他人任せにせず、自分なりのベストを（例え間違っていても）アウトプットすることが求められるようになった。これによって「情報を隠さず、誰が相手でも正直ベースでぶつかる」という自分のスタイルを全力で貫いても困らなくなった。それが、チームのリードに苦労した中でもうまくやってこられた大きな要因かもしれない。</p>
+
+<p>技術的には、<a href="http://mumumu.github.io/blog/2015/01/03/look-back-at-2014/">去年やっていたこと</a> に加えて、プロダクトのスケールを妨げるあらゆる要因を潰すことを延々とやっていた。<a href="http://redis.io/topics/cluster-spec">Redis Cluster</a> の導入とか、プロダクトのコアのチューニングとか、バッチの速度を数十倍にしたりとか、それは本当にスケールするの？ とコードを書く人たちに問い続けるとか、そんな感じ。プロダクトに機能を付け加える人達の裏で、それの邪魔をしないようにするための基盤を作ることだけに徹した。</p>
+
+<blockquote><p>忙しさが大きくなると、周囲の動向に関する視野や問題意識が狭くなると思う。問題意識と視野あってこそのアウトプットなのだから、余裕を持って楽しもう。それが2015年の目標である。</p></blockquote>
+
+<p>去年こんなふうに書いたが、忙しさに紛れて、今年も余裕がなかったと言わざるを得ない。それは今年のエントリが少ないことを見ても明らかだろう。ただ、技術を楽しみながら、書いたコードを外部に還元することは忘れなかったつもりだ。 <a href="http://redis.io/">Redis</a> のクライアント周辺については、必要に迫られながらも良い成果を出せたと思うけど、インプットもアウトプットもまだまだ足りないなあと思う。切磋琢磨する相手も増えたので、いろいろな人と協働しながらもっと楽しみたい。</p>
+
+<p>来年はエンジニアとしての立ち位置が問われる一年になるはずだ。純粋に手を動かし、楽しむだけでなく、明確になりつつあるストロングポイントを踏まえて、どうしていくか。なんらかの答えを出さねばならない。</p>
+
+<p>本当の意味での正念場といえよう。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">mumumu(Yoshinari Takaoka)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  2015-12-29 22:22:00 +0900
+
+
+
+
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/monologue/'>monologue</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2015/12/29/2015-retrospective/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2015/12/29/2015-retrospective/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/12/29/update-test-environment-of-redis-py/" title="Previous Post: update test environment of redis-py">&laquo; update test environment of redis-py</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/12/29/patch-fixed-invalid-atom-log-feed-url-in-file-log-page/" title="Next Post: [PATCH] fixed invalid atom-log feed url in file log page">[PATCH] fixed invalid atom-log feed url in file log page &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python, translator, devoted husband. Interested in Linux, KDE, Embedded Linux, IRC, Translation, Web Application ... etc.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="http://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://delicious.com/mumumu">mumumu's delicious Bookmark</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/05/chromebook/">Chromebook</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

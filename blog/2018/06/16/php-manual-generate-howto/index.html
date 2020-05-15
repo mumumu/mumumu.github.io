@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>PHP manual generate HOWTO (version 2018-06-16) - mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="http://mumumu.github.io/blog/2013/06/29/php-manual-generate-howto/ このエントリは、5年前に書かれた上記エントリの更新版である。
+PHP のバージョンを 5.x 系から 7.x 系にあげたのだが、やり方は何も変わっていない。ただ、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/blog/2018/06/16/php-manual-generate-howto/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="mumumu の日記" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-674328-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2018-06-16 20:18:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title">PHP manual generate HOWTO (version 2018-06-16)</h1>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://mumumu.github.io/blog/2013/06/29/php-manual-generate-howto/">http://mumumu.github.io/blog/2013/06/29/php-manual-generate-howto/</a></p>
+
+<p>このエントリは、5年前に書かれた上記エントリの更新版である。<br/>
+PHP のバージョンを 5.x 系から 7.x 系にあげたのだが、やり方は何も変わっていない。ただ、PhD のバグが fix されているので、chm のビルド手順が単純になっている。</p>
+
+<p>特に更新する必要はないかとも考えたが、最新バージョンでの手順を示すのも意義があると考え、脚注を少し足した上で、このエントリを記す。</p>
+
+<hr />
+
+<p><br />
+PHPのマニュアルは、DocBook と呼ばれるフォーマットで記述されており、<a href="https://wiki.php.net/doc/phd">PhD という PHPマニュアル のためのツール</a> によってその DocBook から HTML や CHM、PDF などの複数の形式にビルドできる。</p>
+
+<p>この記事では、2018年6月時点で実際にPHPのマニュアルをリポジトリから取ってきてビルドする方法を紹介する。PhD は PDF や manpage形式、epub 等多様な形式がビルドできるが、ここでは HTML および chm のみについて触れる。</p>
+
+<h3>a) ビルドするときに使うPHPについて</h3>
+
+<p>まず、PHP をインストールしなければはじまらない。<br/>
+2018年6月現在、PHP 7.2.6 が最新版である。このバージョンで問題なく HTML 版も chm もビルドできる。</p>
+
+<p>PHP をインストールするときも、PhD のために DOM, libXML2, XMLReader and SQLite3 は有効にしていなければならない。ただ、これらは デフォルトで有効になっているので、無効にしないよう注意しよう。</p>
+
+<h3>b) 必要なツールをインストール</h3>
+
+<p>subversion と PEAR を予めインストール(*1)しておいて、PhD と PhD_PHP をpearコマンド経由でインストール(*2)する。<br/>
+PhD_PHP は chm をビルドするのに必要だ。</p>
+
+<pre><code>$ pear version
+PEAR Version: 1.10.5
+PHP Version: 7.2.6
+Zend Engine Version: 3.2.0
+Running on: Linux 4.15.0-23-generic #25-Ubuntu SMP Wed May 23 18:02:16 UTC 2018 x86_64
+$ pear install doc.php.net/PhD doc.php.net/PhD_PHP
+WARNING: channel "doc.php.net" has updated its protocols, use "pear channel-update doc.php.net" to update
+Did not download optional dependencies: phpdocs/PhD_PEAR, phpdocs/PhD_IDE, use --alldeps to download automatically
+phpdocs/PhD can optionally use package "phpdocs/PhD_PEAR"
+phpdocs/PhD can optionally use package "phpdocs/PhD_IDE"
+phpdocs/PhD can optionally use PHP extension "haru"
+phpdocs/PhD_PHP can optionally use PHP extension "haru"
+phpdocs/PhD_Generic can optionally use PHP extension "haru"
+downloading PhD-1.1.10.tgz ...
+Starting to download PhD-1.1.10.tgz (47,401 bytes)
+............done: 47,401 bytes
+downloading PhD_PHP-1.1.10.tgz ...
+Starting to download PhD_PHP-1.1.10.tgz (26,240 bytes)
+...done: 26,240 bytes
+downloading PhD_Generic-1.1.10.tgz ...
+Starting to download PhD_Generic-1.1.10.tgz (29,362 bytes)
+...done: 29,362 bytes
+install ok: channel://doc.php.net/PhD-1.1.10
+install ok: channel://doc.php.net/PhD_PHP-1.1.10
+install ok: channel://doc.php.net/PhD_Generic-1.1.10
+</code></pre>
+
+<p>(*1) Unix/Linux/BSD だと、 ./configure で --without-pear とかしない限りデフォルトで入るが、Windows や Mac だと go-pear.phar が必要。詳しくは <a href="http://pear.php.net/manual/en/installation.getting.php">PEAR Manual</a> を参照<br/>
+(*2) PhD は composer にも対応しているが、依存ライブラリとして何かをすることはないので、PEAR 経由でのインストールが良い</p>
+
+<h3>c) リポジトリからの取得</h3>
+
+<p>次にマニュアルのソースをリポジトリから取ってくる。作業用のディレクトリを作って、リポジトリをsvnからチェックアウトする。</p>
+
+<p>下記のURL には、 doc-base, en, ja への外部項目が設定されているので、以下のコマンド一つで3つのリポジトリが一気にチェックアウトできる。</p>
+
+<pre><code>$ mkdir phpdoc-ja
+$ cd phpdoc-ja
+$ svn co http://svn.php.net/repository/phpdoc/modules/doc-ja .
+</code></pre>
+
+<h3>d) HTML版の PHPマニュアルをビルドする</h3>
+
+<p>--enable-xml-details は、XMLに万が一文法エラーがあったときに細かい情報を出力するためのモノだ。また、phd は結構メモリを使うので、memory_limit の値を大きめにしておいた方がよいかもしれない。</p>
+
+<pre><code>$ php doc-base/configure.php --with-lang=ja --enable-xml-details
+$ phd -f xhtml -L ja -P PHP -d doc-base/.manual.xml
+</code></pre>
+
+<p>成功すれば、 output ディレクトリ以下にマニュアルが生成される。</p>
+
+<h3>e) chm 版の PHPマニュアルをビルドする</h3>
+
+<p>PHP 7.2.6 では、以下のコマンドで何も考えなくても chm 版をビルドできる。--enable-chm は、chm特有のコンテンツを生成物に含めるために必要だ。 また、--with-lang や -L オプションで言語の指定も忘れずに。</p>
+
+<p>まあ、--enable-chm がなくても、chm特有のヘルプコンテンツが入らないだけで、皆が見たいメインのコンテンツは欠落しないので、問題はないのだけれども。</p>
+
+<pre><code>$ php doc-base/configure.php --enable-chm --with-lang=ja
+$ phd -f chm -P PHP -L ja -d doc-base/.manual.xml
+</code></pre>
+
+<p>成功すると、output/php-chm 以下に chm のコンテンツが生成される。</p>
+
+<pre><code>$ ls output/php-chm/
+php_manual_ja.hhc  php_manual_ja.hhk  php_manual_ja.hhp  res
+</code></pre>
+
+<p>chm 形式のファイルは LZX 形式で圧縮されており、Linux や Mac では chm 形式は生成できないので、以下、Windows 上で chm ファイルをコンパイルする必要がある。</p>
+
+<p>ここからは Windows での作業だ(*1) 。まず、<a href="http://msdn.microsoft.com/en-us/library/ms669985.aspx">HTML Help Workshop</a> をインストールし、output/php-chm/php_manual_ja.hhp を File -> Open で開く。すると、以下のような画面になるはずだ。</p>
+
+<p><img src="/images/html_help_workshop.png" alt="/images/html_help_workshop.png" /></p>
+
+<p>この状態で、File -> Compile を 選択し、php_manual_ja.hhp を以下のようなダイアログで選び、OK を押すと
+php_manual_ja.hhp がある フォルダに php_manual_ja.chm が生成されるはずだ(*2)。</p>
+
+<p><img src="/images/html_help_workshop_compile.png" alt="/images/html_help_workshop_compile.png" /></p>
+
+<p>(*1) Windows 10 および、Windows Server 2016 で確認している<br/>
+(*2) 実は、この手順で chm を生成すると、chm の検索が機能しない。きちんと機能させるためには、DBCSFix.exe というアジア系言語のためのバッチを適用し、適切なロケールで HTML Help Compiler を起動して生成する必要がある。これらをWindowsのビルド環境で手当するのは少し大変なので、そこまで手当した生成物が欲しい場合は、<a href="http://www.php.net/download-docs.php">php.net から取得</a> したほうが良い。詳細を知りたい場合は、<a href="http://svn.php.net/viewvc/phpdoc/doc-base/trunk/scripts/build-chms.php?revision=333535&amp;view=markup">バッチプログラムのソースコード</a> を読んでみよう</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">mumumu(Yoshinari Takaoka)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  2018-06-16 20:18:00 +0900
+
+
+
+
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/howto/'>howto</a>, <a class='category' href='/blog/categories/php/'>php</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2018/06/16/php-manual-generate-howto/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2018/06/16/php-manual-generate-howto/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2018/03/04/thinkpad-keyboard/" title="Previous Post: ThinkPad Keyboard を買った">&laquo; ThinkPad Keyboard を買った</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2018/09/25/patch-separate-tls-private-key-from-imapd-pop3d-dot-pem/" title="Next Post: [PATCH] Courier の TLS 証明書と秘密鍵ファイルを分離する">[PATCH] Courier の TLS 証明書と秘密鍵ファイルを分離する &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python, translator, devoted husband. Interested in Linux, KDE, Embedded Linux, IRC, Translation, Web Application ... etc.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="http://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://delicious.com/mumumu">mumumu's delicious Bookmark</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2019/12/05/chromebook/">Chromebook</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

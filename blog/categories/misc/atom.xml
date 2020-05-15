@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: misc | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/misc/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2020-05-16T01:25:19+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[問題を解く]]></title>
+    <link href="http://mumumu.github.io/blog/2020/05/16/solve-problem/"/>
+    <updated>2020-05-16T01:22:10+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/05/16/solve-problem</id>
+    <content type="html"><![CDATA[<p><a href="https://pha.hateblo.jp/entry/2020/05/12/232121">https://pha.hateblo.jp/entry/2020/05/12/232121</a></p>
+
+<p>僕が問題を解くのは自分のためだ。自分が何かを考えたいから解くし、自分がなにかに納得したいから解く。解かないといつまでも同じところを堂々巡りしてしまうけれど、解くと思考や人生が前に進むような気がする。</p>
+
+<p>言うほど解いていないけれど、解くことをやめることはないだろうと思う(*´～｀)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chrome のタブやアドレスバーが小さい時]]></title>
+    <link href="http://mumumu.github.io/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/"/>
+    <updated>2019-12-24T21:14:20+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small</id>
+    <content type="html"><![CDATA[<p><a href="https://superuser.com/questions/982560/chrome-tab-font-too-small/982565">https://superuser.com/questions/982560/chrome-tab-font-too-small/982565</a></p>
+
+<p>あれはいつだったからか。Linux で Google Chrome のアドレスバーやタブのフォントが小さすぎる問題にずっと悩んでいた。</p>
+
+<p>最初は 2560 x 1920 のディスプレイで Chrome を表示させた時だったと思う。別の時は、NVDIA なビデオカード上で Linux を動かしたときとか。とにかく、自分に丁度いい塩梅で Google Chrome のアドレスバーやタブのフォント の大きさが表示できたことが最近までなかった。</p>
+
+<p>最近 ThinkPad X395 に Linux を入れて使い始めたのだけど、同じ状態になった。<br/>
+いい加減何とかならんかなと思ってぐぐりまくると、上記の記事に行き着いた。</p>
+
+<p>これは Windows の記事だが、なんと X Window System 上でも通用したのでびっくりした。<br/>
+もしあなたが自分と同じ問題に悩んでいるのなら、コマンドラインから、以下のようにして Google Chrome を起動してみるとよい。</p>
+
+<p>1.5 の数値は、自分の環境に合わせて適度に調整可能である。</p>
+
+<pre><code>$ google-chrome --force-device-scale-factor=1.5
+</code></pre>
+
+<p>今は自分でこれらのサイズを調整できるようになって、とてもしあわせだ(｀ー´)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[自炊はじめました]]></title>
+    <link href="http://mumumu.github.io/blog/2019/11/04/i-started-cooking/"/>
+    <updated>2019-11-04T20:01:11+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/11/04/i-started-cooking</id>
+    <content type="html"><![CDATA[<p>最近、妻が作るものとは別に、自分で好きなものを料理するようになった。</p>
+
+<h3>きっかけ</h3>
+
+<p>そもそものきっかけは、<a href="https://moneyforward.com/">マネーフォワード</a> で家計を見ていて、外食している部分について、もう少し食費を改善できないかなと思ったのと、Twitter で簡単なレシピがリツイートされてきたこと、そして<a href="https://www.amazon.co.jp/dp/B07KJ7NG6F/">「自炊力」</a> を読んだことである。</p>
+
+<p>特に最後の「自炊力」については、料理に対する心理的なハードルを下げるような物言いが随所になされている。「自炊ができないことは悪いことではない」「自炊ってこんなもんでいいんだよ」的な物言いは、自分的には割と救われたと思う。</p>
+
+<h3>参考にしているもの</h3>
+
+<p>「自炊力」には、料理のとっかかりとなる手掛かりがいろいろ書いてあるが、自分的には以下の2点ができれば今は十分だと思っている。</p>
+
+<p>a) 主食主菜副菜を考慮できること<br/>
+　献立を見て、あ、これ足りないね、と思えるだけで良い<br/>
+b) 複数のレシピが作れること<br/>
+　何がきっかけでも良いが、自分が作れるものを増やすこと</p>
+
+<p>「自炊力」では、レシピ本よりもテレビの料理番組を覚えるきっかけとして勧めているが、実際料理熱が高まっているのなら、なんでもいいと思う。自分は Kindle でいくつかレシピ本を漁った結果、以下をメインで見るようになった。</p>
+
+<p>・ <a href="https://www.amazon.co.jp/dp/B07PJ297TC/">これでいいんだ！自炊ごはん</a><br/>
+・ <a href="https://www.amazon.co.jp//dp/B076GYQDSV/">ゆる自炊BOOK</a></p>
+
+<p>どちらも初心者向けにビジュアルが工夫されていることと、レシピそのものも簡単な手順でできるものが多いので、今も割とよく見ている。</p>
+
+<h3>個人的なレパートリーメモ</h3>
+
+<p>以下は、いろんなところから拾ってきたりして、自分流にアレンジした個人的なレパートリーである。<br/>
+いいじゃん CookDo や XX の素そのまんまでも。それでいいと思う。</p>
+
+<p>・ <a href="https://twitter.com/nowar1024/status/1116907789626925057">叙々苑サラダのレシピ</a><br/>
+　  これさえあれば野菜を無限に食べられる。タンパク質的な意味で豆腐を加えても良い<br/>
+　　・ ごま油(大さじ1)<br/>
+　　・ サラダ油(大さじ1)<br/>
+　　・ しょうゆ(大さじ1)<br/>
+　　・ 味の素(小さじ1)<br/>
+　　・ 煎りごま(好きなだけ)<br/>
+・ ペペロンチーノ<br/>
+　　S&amp;B の <a href="https://www.sbfoods.co.jp/products/detail/15069.html">まぜるだけのスパゲッティソースペペロンチーノ</a> を使う<br/>
+　　・ パスタにベーコン炒めとサニーレタスを足すだけで、十二分においしい<br/>
+　　・ 子供もお気に入り<br/>
+・ <a href="https://cookpad.com/recipe/2543737">豚バラじゃが煮</a><br/>
+　　上記リンク先がベース。分量は個人的に以下の通りアレンジしている。<br/>
+　　「これでいいんだ！自炊ごはん」P34<br/>
+　　・ 豚バラ薄切り100g<br/>
+　　・ じゃがいも小2個200g<br/>
+　　・ サラダ油小さじ1<br/>
+　　・ 煮汁<br/>
+　　　　- 水(200ml) <br/>
+　　　　- しょうゆ(大さじ2)<br/>
+　　　　- みりん(大さじ2)<br/>
+　　　　- 砂糖(大さじ2)<br/>
+・ <a href="https://ddnavi.com/serial/548890/a/">豚もやしキムチ炒め</a> <br/>
+　　上記のリンクを完全に再現すればよい<br/>
+　　「これでいいんだ！自炊ごはん」P28.<br/>
+　　  ・ ポイントは、豚肉に塩コショウを強めにかけること<br/>
+・ <a href="https://www.ebarafoods.com/recipe/detail/recipe1179.php">豚肉の生姜焼き</a> <br/>
+　　エバラの「生姜焼きのタレ」を使ってすぐ出来る系<br/>
+・ 豚バラともやしのフライパン蒸し<br/>
+　　「これでいいんだ！自炊ごはん」P28.<br/>
+　　蒸したものにかけるタレがポイント<br/>
+・ レタス卵チャーハン<br/>
+　　<a href="http://www.nagatanien.co.jp/product/detail/93/">「焼豚チャーハンの素」</a> を使う<br/>
+　　　・これをベースに、焼豚を細切りにしたソーセージに置き換え、レタスを加える<br/>
+・ チーズトースト<br/>
+　　食パンにチーズを載せ、ベーコンを刻んだものを載せる。その上にマヨネーズを振って焼く<br/>
+・ チンジャオロース<br/>
+　　<a href="https://www.ajinomoto.co.jp/cookdo/lineup/awase_004.html">CookDo の 青椒肉絲用</a> をそのまま使うやつ<br/>
+・ 卵スープ<br/>
+　　<a href="https://www.ajinomoto.co.jp/products/detail/?ProductName=marudorigara_1">鶏ガラスープの素</a> をおおさじ1入れ、ちぎったレタスと溶き卵とともに煮る<br/>
+　　最後にこしょうをひと振り</p>
+
+<h3>これから作りたいと思っているもの</h3>
+
+<p>ポテトサラダ とか 豚汁とか。いろいろ目に付いたレシピを試していきたい</p>
+
+<h3>モチベーション</h3>
+
+<p>子供においしいと言ってもらえるのもひとつあるが、やはり自分で「うまい」と思えるものを作れた時は最高の達成感を得られる。特に上記の「豚バラじゃが煮」を再現できた時は本当に嬉しかった。</p>
+
+<p>以下がその写真である。</p>
+
+<p><img src="http://mumumu.github.io/images/P_20191104_173804.jpg" width="800" height="806"/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FireTV Stick とUSBケーブル]]></title>
+    <link href="http://mumumu.github.io/blog/2018/12/04/firetv-stick-and-usb-cable/"/>
+    <updated>2018-12-04T07:38:18+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/12/04/firetv-stick-and-usb-cable</id>
+    <content type="html"><![CDATA[<p><a href="https://www.amazon.co.jp/gp/product/B012WL4QMW/">https://www.amazon.co.jp/gp/product/B012WL4QMW/</a></p>
+
+<p>最近 FireTV Stick を買った。動機は Amazon Prime Video を市販のテレビにキャストしたかったのだ(*1)。</p>
+
+<p><img src="http://mumumu.github.io/images/fire_tv_stick.jpg" width="300" height="250"/></p>
+
+<p>これは電源をUSBケーブルから取る仕様なのだが、付属のケーブルは 長さが1.5m と短く、自分の環境では短過ぎた。だが、長いものを買おうにも、市販のケーブルで相性がいいものがなかなかなくて困った。</p>
+
+<p>いろいろ試した結果、以下の Anker のものに行き着いた。3m でよければ、これで十分だ。Anker は USBケーブル周りでかなり評判が良いようなので買ってみたが、評判通りだったと言えよう(*´～｀)</p>
+
+<p>(*1) PC から Google Chrome 経由で Amazon Prime Video をキャストさせたり、スマホ画面をキャストさせたりすれば見れるのは承知しているが、リモコンがあった方が家族には優しい</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Slack mobile notifications not working (on Android)]]></title>
+    <link href="http://mumumu.github.io/blog/2017/10/23/slack-mobile-notifications-not-working/"/>
+    <updated>2017-10-23T00:59:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2017/10/23/slack-mobile-notifications-not-working</id>
+    <content type="html"><![CDATA[<p><a href="https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5">https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5</a></p>
+
+<p>システム運用時に、何かあった時のアラート等の通知を Slack で受け取っている人もいるだろう。</p>
+
+<p>特に、帰宅後や休暇時に一定の処置が必要なお知らせは重要である。Slack ではチャンネル単位でデスクトップとモバイルの通知の設定が細かく設定できるようになっているので、使い勝手では個人的にあまり困っていない。</p>
+
+<p>だが、自分に合った設定を施しても、一部の Notificaton が受け取れなかったり、通知が遅れたりするとちょっと問題だ。
+そういう時は、上記のリンクにあるヘルプの設定を確かめて設定をやり直してもうまくいかないことがある。そうした場合に、自分がやったのは、Android の電源設定を見直すことだった。</p>
+
+<p><img src="http://mumumu.github.io/images/Android_70_battery_setting.jpg" width="540" height="960"/></p>
+
+<p>最近の Android は、電源設定が割と細かくなっており、スリープ時にネットワーク接続が無効になる場合がある。</p>
+
+<p>自分はこれを上記のように常に接続されるように見なおしたところ、Slack のモバイル通知が思ったように受け取れるようになった。
+メモ程度の内容だが、これからも多分同じようなことが起こると思うので、ここにメモしておく。</p>
+
+<p><strong>[ Update Febrary 25th 02:04:50 JST by m ]</strong></p>
+
+<p>自分が持っている Zenfone 4 には、「自動起動マネージャー」と呼ばれる機能があり、そこでアプリを許可しておかないと、電池が足りない等の場合にアプリが終了させられて通知が遅れる場合がある。よって、通知をすぐに受け取りたいアプリは許可リストに入れておく必要がある。以下の例だと、メールクライアントや Slack がそうだ。</p>
+
+<p><img src="http://mumumu.github.io/images/auto-boot-manager.jpg" width="540" height="960"/></p>
+]]></content>
+  </entry>
+  
+</feed>
