@@ -9,7 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="この記事は、doc-ja Advent Calendar 8日目の参加記事です。 ここでは、PHPを使うと必ず一度は目にするであろう PHP マニュアル についてつれづれと書いてみようと思います。「PHP のドキュメント」に関する日本語の文書が少なくなってきている気がすることが、 &hellip;">
+  <meta name="description" content="Tiarra といえば Perl で書かれた日本では著名な IRC Proxy であるが、SSL 経由で接続しようと思ってぐぐる と 「stone 経由で接続する」 Howto がたくさん出てくる。果ては tiarra では SSL 接続できないから znc に移行した。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,208 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-12-24 00:08:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/24/tiarra-over-ssl/">Tiarra over SSL without stone</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.clovery.jp/tiarra/">Tiarra</a> といえば Perl で書かれた日本では著名な IRC Proxy であるが、<a href="https://www.google.co.jp/search?q=tiarra+ssl&amp;amp;oq=tiarra+ssl">SSL 経由で接続しようと思ってぐぐる</a> と 「<a href="http://www.gcd.org/sengoku/stone/Welcome.ja.html">stone</a> 経由で接続する」 Howto がたくさん出てくる。果ては tiarra では SSL 接続できないから znc に移行した。とかいうエントリまで出てくる。</p>
+
+<p>けれども、Tiarra のソースをちょこっと読んでみると綺麗にモジュール化されており、ソケット周りも綺麗にラップされてるので、簡単なソース変更でSSL接続ができるんじゃないか。というか、ここまでやる以上、作者である <a href="http://www.clovery.jp/">Topiaたん</a> がそれを意図して書かないわけがない。と思った。</p>
+
+<p>そこで、<a href="http://search.cpan.org/~sullr/IO-Socket-SSL-1.962/">IO::Socket::SSL</a> で <a href="http://coderepos.org/share/browser/lang/perl/tiarra">tiarra の現時点での最新ソース</a> (rev.39276) を <a href="https://github.com/ggreer/the_silver_searcher">ag(Silver Searcher)</a> すると、 main/Tiarra/Socket/Connect.pm の _check_connect_dependency 関数に以下のようにある。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sub _check_connect_dependency {
+</span><span class='line'>    my $this = shift;
+</span><span class='line'>
+</span><span class='line'>    my $ssl = $this-&gt;current_ssl;
+</span><span class='line'>    if (defined $ssl && $ssl-&gt;{version}) {
+</span><span class='line'>        if (!Tiarra::OptionalModules-&gt;ssl) {
+</span><span class='line'>            $this-&gt;_warn(
+</span><span class='line'>                qq{You wants to connect with SSL, }.
+</span><span class='line'>                    qq{but SSL support is not enabled. }.
+</span><span class='line'>                        qq{Use non-SSL or install IO::Socket::SSL if possible.\n});
+</span><span class='line'>            return 0;
+</span><span class='line'>        }
+</span><span class='line'>    }
+</span><span class='line'>    return 1;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>$ssl と $ssl->{version} が定義されていれば SSL 接続に行くらしい。
+$ssl = $this-&gt;current_ssl なので、それを見ると</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sub current_ssl {
+</span><span class='line'>    my $this = shift;
+</span><span class='line'>
+</span><span class='line'>    utils-&gt;get_first_defined(
+</span><span class='line'>        $this-&gt;{connecting}-&gt;{ssl},
+</span><span class='line'>        $this-&gt;ssl);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>てな感じで、 $this-&gt;{connecting} に ssl が定義されてると、それを返すらしい。
+$this-&gt;connecting の中身は、下のようになっている。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$this-&gt;{connecting} = shift @{$this-&gt;{queue}};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>$this-&gt;{queue} の中身は以下のようになっている。どうやら接続オプションを渡すようだ。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>    foreach my $port (@ports) {
+</span><span class='line'>        push (@{$this-&gt;{queue}},
+</span><span class='line'>              map {
+</span><span class='line'>                  $struct = {
+</span><span class='line'>                      type =&gt; $sock_type,
+</span><span class='line'>                      addr =&gt; $_,
+</span><span class='line'>                      port =&gt; $port,
+</span><span class='line'>                  };
+</span><span class='line'>              } @{$addrs_by_types{$sock_type}});
+</span><span class='line'>    }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>じゃあ多分接続オプションって tiarra.conf に書けるよね、と思ったら、<a href="http://coderepos.org/share/browser/lang/perl/tiarra/trunk/all.conf#L296">all.conf</a> にあった。
+これを参考にして ssl ブロック以下を接続に追記すると、あっさり stone なしで接続できた。
+ただし、IO::Socket::SSL(と Net::SSLeay) が必要です。</p>
+
+<p>verify オプションはデフォルト有効になっているので、証明書の検証に失敗して対処法がわからないようであれば no を指定してみると良いと思います。たとえば SSL が有効な freenode サーバに接続するなら、自分は今以下のように指定しています。(Debian GNU/Linux 7.3 wheezy の環境)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>freenode {
+</span><span class='line'>  #  IP アドレスを指定すると名前解決が行われてエラーになる
+</span><span class='line'>  #  その場合は hosts の類に名前を書いてあげて、それを指定
+</span><span class='line'>  #  するようにする
+</span><span class='line'>  host: irc.freenode.net
+</span><span class='line'>  port: 7000
+</span><span class='line'>
+</span><span class='line'>  ssl {
+</span><span class='line'>      version: sslv23
+</span><span class='line'>      ca-path: /etc/ssl/certs
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但し、host に IP アドレスを指定すると、 main/Tiarra/Resolver.pm で必要ない名前解決をしに行くためエラーになります(多分バグ)。そのため、host に IP アドレスを指定したくなった場合は hosts に類するものに適当な名前を書いてあげて、それを host の設定に指定すると繋がるようになります。</p>
+
+<h3>まとめ</h3>
+
+<p>・ tiarra は 別に stone なしでも SSL 接続できる<br/>
+・ 要 IO::Socket::SSL(と Net::SSLeay)<br/>
+・ 必要な設定は最低限以下。 それ以外の設定は all.conf を参照。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssl {
+</span><span class='line'>    version: sslv23
+</span><span class='line'>
+</span><span class='line'>    # CA 鍵リストファイル。
+</span><span class='line'>    # verify (デフォルト有効)を行う場合は ca-file か ca-path の
+</span><span class='line'>    # どちらかを必ず指定してください。
+</span><span class='line'>    #ca-file: /usr/local/share/certs/ca-root-nss.crt
+</span><span class='line'>
+</span><span class='line'>    # CA 鍵パス
+</span><span class='line'>    # verify (デフォルト有効)を行う場合は ca-file か ca-path の
+</span><span class='line'>    # どちらかを必ず指定してください。
+</span><span class='line'>    #ca-path: /etc/ssl/certs
+</span><span class='line'>
+</span><span class='line'>    #  ca-path や ca-file を指定してもどうしても接続できない場合指定
+</span><span class='line'>    #verify: no
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>・<a href="http://znc.in/">znc</a> 皆いいとか言ってるけど日本語の扱いイマイチだしその他細かいところも気に入らないしなんでC++なのか意味わかんないしで tiarra を維持できた自分はとても幸せです。</p>
+
+<p>・どうでもいいけど <a href="http://coderepos.org/">CodeRepos</a> 落ちすぎな気がします。</p>
+
+<p><strong>[ Update December 24th 23:34 JST by m ]</strong></p>
+
+<p>Tiarra の作者の Topia たんから verify:no の件についていろいろ指摘を貰いました。 ca-path または ca-file で証明書のパスを指定しておかなかなったので verify に失敗していました。Debian GNU/Linux 7.3 wheezy の自分の環境では、ca-certificates パッケージと ssl-certs パッケージを入れて、 ca-path を指定すると freenode に verify した上で繋がるようになりました。</p>
+
+<p>これを踏まえて、「まとめ」と freenode の接続例を更新しておきました。 <a href="http://www.clovery.jp/">Topiaたん</a> ありがとう！</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -336,47 +538,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-10-04 14:35:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/04/passion-for-translation/">passion for translation</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://daipresents.com/2013/translators-blues/">http://daipresents.com/2013/translators-blues/</a></p>
-
-<p>翻訳が情熱で成り立っていることは激しく同意。また、本業があるんだったら、儲けるために翻訳をやろうと思わない方がよいと思います。<br/>
-<a href="http://www.amazon.co.jp/dp/4061556223">プロが教える技術翻訳のスキル</a> とかを読むと分かりますが、プロとしてやろうと思うとそれ相応の覚悟が必要です。</p>
-
-<p>一人でやるのであればともかく、複数人でやるのであれば、どんな意見やフィードバックでも全力で向き合うことが必要です。それがたとえ監訳者とかの偉い人であっても関係ありません。それが情熱ってものではないかと思ったり。</p>
-
-<p>高木さんと自分が手掛けた <a href="http://producingoss.com">Producing Open Source Software</a> についていえば、翻訳してでも世の中に伝えたい、というモチベーションがあったことと、<a href="http://producingoss.com/ja/">翻訳した現物</a> があったこと、その2点が2005年の本であっても出版までできた要因なんじゃないかなと思ったりしています。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page12">&larr; Older</a>
@@ -456,6 +617,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
       </li>
     
@@ -473,10 +638,6 @@
     
       <li class="post">
         <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/05/chromebook/">Chromebook</a>
       </li>
     
   </ul>

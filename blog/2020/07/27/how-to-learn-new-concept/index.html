@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My DIY server spec - mumumu の日記</title>
+  <title>新しい知識の学び方 - mumumu の日記</title>
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="このクラウド全盛の時代に、自分は自作したサーバを自宅で運用し続けている。その理由は複数あるが、以下のような感じだろうか。 ・ たとえコンシューマーレベルといえどハードウェアのトレンドは抑えておきたい
-・ 自分の手元に置くことによるハードレベルに至るまでの自由度は捨てがたい
-・ &hellip;">
+  <meta name="description" content="https://www.amazon.co.jp/dp/B0193M34D0
+https://hiyokko-hard.com/support/ 「バカに教える電子回路」という本がある。電子回路の設計知識についてとてもわかりやすく書かれた本だ。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://mumumu.github.io/blog/2014/03/13/my-diy-server-spec/">
+  <link rel="canonical" href="http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -90,60 +89,90 @@
 
 
 
-  2014-03-13 11:59:00 +0900
+  2020-07-27 02:40:26 +0900
 
 
 
 
     </p>
     
-      <h1 class="entry-title">My DIY server spec</h1>
+      <h1 class="entry-title">新しい知識の学び方</h1>
     
   </header>
 
 
-<div class="entry-content"><p>このクラウド全盛の時代に、自分は自作したサーバを自宅で運用し続けている。その理由は複数あるが、以下のような感じだろうか。</p>
+<div class="entry-content"><p><a href="https://www.amazon.co.jp/dp/B0193M34D0">https://www.amazon.co.jp/dp/B0193M34D0</a><br/>
+<a href="https://hiyokko-hard.com/support/">https://hiyokko-hard.com/support/</a></p>
 
-<p><strong>・</strong> たとえコンシューマーレベルといえどハードウェアのトレンドは抑えておきたい<br/>
-<strong>・</strong> 自分の手元に置くことによるハードレベルに至るまでの自由度は捨てがたい<br/>
-<strong>・</strong> <a href="http://nekoya.github.io/blog/2014/03/07/jisakuserver/">自作サーバを未だに本番運用している変わった会社</a> に転職して、サーバの選定やコストに関する感覚にも生かせると思いはじめた</p>
+<p>「バカに教える電子回路」という本がある。電子回路の設計知識についてとてもわかりやすく書かれた本だ。</p>
 
-<p>運用やハードのコストさえ厭わなければ、はいはい頑張ってねという話に見える。コスト以外の問題点としては「CPU のトレンドが変わるたびに目移りしてしまう」点が挙げられる。自作をする人はお金が出せる範囲で最高のスペックのマシンをその時々で組みたがるのはもう病気... いやもとい本能のようなものだ。</p>
+<p>ふとソフトウェア的な論理回路に関する知識を参照したくなって開いたのだけれども、残念ながら求める知識はこの本には書かれていなかった。</p>
 
-<p>時は移り、コンシューマー向けの Intel CPU は 第4世代になった。現在運用しているマシンの CPU は <a href="http://ark.intel.com/ja/products/52215/Intel-Core-i7-2600S-Processor-8M-Cache-up-to-3_80-GHz">第3世代 Intel Core i7 2600S</a> なので、目移りに悩まされている。目移りするのはよいが、一体自分はどんなマシンを組みたいのか。そのポリシーを明らかにしなければいつまでたっても何も変わらない。そこで、現時点で組みたいサーバマシンのポリシーをここで明らかにしたいと思う。</p>
+<p>だけど、一番はじめに書かれている「技術書の読み方」についてはとても参考になったので以下に引用する。</p>
 
-<p>絶対に譲れないレベルのものを挙げていくと、以下のようなものだろう。<br/>
-遊びレベルなので、たとえばお金になる商売に使いたいとかいう動機はない。基本実験用。ただし、自分や友人に必要な最低限なサーバは運用する。そんな程度だ。
-予算はちなみに最大15万程度である。</p>
+<p>プロコンで様々な知識を繰り返し学び、実践する中で、うんうんそうだよね、と頷く部分が多い。</p>
 
-<h3>必須</h3>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>技術書の読み方
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>技術書を読むときには必ずパソコンでテキストファイルを作り、出てきた用語や内容を
+</span><span class='line'>自分の言葉でまとめておきます．更に，読んでいてわからない単語や概念が出てきたら，
+</span><span class='line'>インターネットで調べて同じテキストファイルにまとめます．多少間違っていても構いません．
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>少し時間が経ってしまうと，内容や用語を忘れてしまい，再開するのが億劫になります．
+</span><span class='line'>そんな時にまとめたファイルを読み返すと再開しやすくなります．
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>再開させるときの心理的ハードルを下げるのはとても重要です．
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>調べたいことは調べ，面倒なら飛ばします．面倒になった時点でどれだけ時間をかけても
+</span><span class='line'>身につきません．いくつか技術書を読んでいると(または実務でも)，同じ問題は何度もぶ
+</span><span class='line'>つかるので，いずれ分かるようになります．今全てを理解する必要はありません．実験で
+</span><span class='line'>試せるものについては，できるだけやったほうがいいです．こちらも面倒になった時点で
+</span><span class='line'>意味が無いので気分がノッてる時はやってみる・程度でいいと思います．
+</span><span class='line'>
+</span><span class='line'>読んでいて何を言っているか全くわからない，もしくは読みながら寝てしまうようであれ
+</span><span class='line'>ば，自分のレベルに合っていない可能性が高いです．その本は一旦諦め，他の技術書を読
+</span><span class='line'>みましょう．目安としては6割は頑張らずに理解できるくらいの本がちょうどいいと思いま
+</span><span class='line'>す．今はわからなくても，暫くしてから読むとわかるケースが多いので，捨てずにとって
+</span><span class='line'>おきましょう．</span></code></pre></td></tr></table></div></figure>
 
-<p>a) CPU の TDP は 65W 以下必須。<br/>
-　 - 電気代厳しい。。<br/>
-b) メモリは自分の予算が許す限り最大のものを。現状(32GB) 以上であること。<br/>
-　 - 現在、Non-ECC な DDR3 1333 なメモリ (8GBx4) を生かせれば最高。<br/>
-c) SSD もできる限り容量が大きいもの必須。</p>
-
-<h3>任意</h3>
-
-<p>d) 業務レベルの遊びが出来るマザーボードであればよりよい。<br/>
-　 IPMI とか bonding</p>
-
-<p>このポリシーに基づいて、転職してから半年以上目移りを続けている。最大の問題は <a href="http://pc.watch.impress.co.jp/docs/news/20130905_614086.html">Atom C2000 シリーズが発表</a> になり、<a href="http://ascii.jp/elem/000/000/842/842056/">TDP20W でありながらメモリが最大64GB載るコンシューマー向けのマザーボード</a> が出てきたことにある。ただし、基本 ECC なメモリが必須(Non-ECCでも動いたという報告はあるが) であり、現状のメモリを生かしたいという要求に合わないのが悩みの種であった。<a href="http://www.supermicro.com/products/motherboard/ATOM/">Supermicro の選択肢</a> も非常に魅力的ではあるものの、やはり ECC が求められる。</p>
-
-<p>そもそも 「32GB 以上のメモリを ECCなしで本番運用するのとかないわー」という失笑気味の反応が <a href="http://atnd.org/events/47968">自作サーバ同窓会</a> でも見られたのは事実なんだけど、そこは個人なんで、、ね(´ー｀; )</p>
-
-<p>今年に入って、もう TDP は諦めてもよいという気になった。そうなると有力な選択肢としてあがってくるのが Xeon である。TDP 90W 以下の低電圧版の Xeon もコア数を諦めれば最近は魅力的なものが揃ってきている。E5 2600番台とかを見ると、<a href="http://ark.intel.com/ja/products/75787/Intel-Xeon-Processor-E5-2609-v2-10M-Cache-2_50-GHz">4コアで TDP 80W でありながら、3万円程度で手に入る魅力的なもの</a> も存在している。これであれば、メモリが 32GB 以上載るマザーボードの選択肢はかなり広がる。Supermicro など、IPMI などが付いたマザーボードも選択肢に入り放題である。</p>
-
-<p>ということで、散々続いた目移りは以下の構成で終焉を迎えつつある。</p>
-
-<p>・ <a href="http://ark.intel.com/ja/products/75787/Intel-Xeon-Processor-E5-2609-v2-10M-Cache-2_50-GHz">Intel Xeon E5-2609 v2 (TDP 80W) 2.5GHz</a><br/>
-・ <a href="http://www.supermicro.com/products/motherboard/Xeon/C600/X9DRD-7LN4F.cfm">Supermicro X9DRD-7LN4F</a><br/>
-　- Support ECC and non-ECC UDIMMs ということで要求を満たす。<br/>
-　- GbE が 4port とか誰得なんでしょうね。<br/>
-　- IPMI はまぁ Supermicro ですしおすし。</p>
-
-<p>誰得としか思えないマシンが出来上がりそうです。2014年の 2Q までには完成させたいところ(*´～｀)</p>
 </div>
 
 
@@ -163,7 +192,7 @@ c) SSD もできる限り容量が大きいもの必須。</p>
 
 
 
-  2014-03-13 11:59:00 +0900
+  2020-07-27 02:40:26 +0900
 
 
 
@@ -172,7 +201,7 @@ c) SSD もできる限り容量が大きいもの必須。</p>
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/server/'>server</a>
+    <a class='category' href='/blog/categories/misc/'>misc</a>, <a class='category' href='/blog/categories/monologue/'>monologue</a>
   
 </span>
 
@@ -181,7 +210,7 @@ c) SSD もできる限り容量が大きいもの必須。</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2014/03/13/my-diy-server-spec/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2014/03/13/my-diy-server-spec/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept/" >Tweet</a>
   
   
   
@@ -192,10 +221,8 @@ c) SSD もできる限り容量が大きいもの必須。</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/01/20/seq-w/" title="Previous Post: seq -w and zero padding">&laquo; seq -w and zero padding</a>
+        <a class="basic-alignment left" href="/blog/2020/05/16/solve-problem/" title="Previous Post: 問題を解く">&laquo; 問題を解く</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/03/26/yet-another-pep8-japanese-version/" title="Next Post: Yet Another PEP8 Japanese version">Yet Another PEP8 Japanese version &raquo;</a>
       
     </p>
   </footer>

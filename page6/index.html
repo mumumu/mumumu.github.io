@@ -9,7 +9,9 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="赤子に Xeonサーバをシャットダウンされました。。上の画像のような感じでサーバを置いていて、なんか触ってるなーと思ったらLEDの光が消えてました。。 名前解決結果のキャッシュサーバをこのサーバが兼ねていたのでネットが不通になったり、 &hellip;">
+  <meta name="description" content="http://www.mouse-jp.co.jp/m-book/luvbookj/series.html 以前ノートPCを買ってから4年、また訳のわからぬノートPCを買ってしまった。後悔はない。 A) 林檎は嫌 (天の邪鬼的思考)
+B) メモリは16GB載せたい (前より上のものを思考)
+C) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +78,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2015-01-13 00:34:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/13/luvbook-j/">Luvbook J</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.mouse-jp.co.jp/m-book/luvbookj/series.html">http://www.mouse-jp.co.jp/m-book/luvbookj/series.html</a></p>
+
+<p>以前ノートPCを買ってから4年、また訳のわからぬノートPCを買ってしまった。後悔はない。</p>
+
+<p>A) 林檎は嫌 (天の邪鬼的思考)<br/>
+B) メモリは16GB載せたい (前より上のものを思考)<br/>
+C) 割とHDDが遅くてイラっとする事案が頻発していたので、SSD 必須<br/>
+D) 前も13型だったので、それより大きなものは嫌だなー</p>
+
+<p>A) にこだわらなければ <a href="https://www.apple.com/jp/macbook-pro/">林檎で満たせる事案</a> である。この点に妙にこだわった結果、かつメモリが16GB載せられるものを探した結果、Thinkpad X230 とか 今回買った BTO パソコンしか道はなかったのである。そして天の邪鬼思考がさらに発揮された結果、マウスコンピューターのものが残ったというわけだ。</p>
+
+<p>2560 x 1440 とかいうかつて経験のない解像度も冒険という意味で後押しした。だが、Linux を入れた結果、林檎には不要な妙な調整が必要なことに気がついた。アプリを通常の状態で使うと、あまりにも小さく見えるのである(´ー｀；)</p>
+
+<p>自分は割とフォントを大きめにして使うので調整するのはいつものことなのだが、ブラウザで妙にツールバーが小さくなったりして非常に使いづらい見た目になってしまったり、サードパーティのアプリのアイコンとかがやたらと小さく見えるといった具合である。特にブラウザで適当な動きをするものがなかなか見つからないのには閉口した。</p>
+
+<p>いろいろと探した結果、Firefox の <a href="https://support.mozilla.org/en-US/questions/963759">デフォルトのCSS を調整する</a> ことでデフォルトのズームレベルを 1.6 倍にして快適なレベルに調整することで事なきを得た。</p>
+
+<p>フォントはやはり自分的には <a href="http://mix-mplus-ipa.sourceforge.jp/migu/">Migu 1M</a> が相性がよい。 <a href="https://github.com/yascentur/Ricty">Ricty</a> 使ってる人多いんでしょうけど、ターミナルと相性良いですかねあれ？(´ー｀；)</p>
+
+<p>とはいえ、非常にマシンのパフォーマンスは良く、キーボードも押す深さが自分にとっては快適で、ちょっと大きな打鍵音がするがちょうど良い。前の <a href="http://www.asus.com/jp/Notebooks_Ultrabooks/U31F/">ASUS U31F</a> と同様、長く使うことになろう。しばらく宜しく！</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -255,84 +310,6 @@ C) 本番運用</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2014-08-17 00:58:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/17/ranger-file-manager-with-vi-keybindings/">ranger - file manager with VI keybindings</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://ranger.nongnu.org/">http://ranger.nongnu.org/</a></p>
-
-<p>比較的大きな規模のプロジェクトになると、ディレクトリツリーの階層もそれなりに深くなる場合が多い。しかも同じディレクトリに常にとどまって作業をしていればいいという話にならなくなってくる。ディレクトリを移動する度に cd /path/to/foo とか cd /another/path/fuga とかもう打ってられないことに気がついた。</p>
-
-<p>vim とかのエディタ内のファイルマネージャーを使えばいいじゃない、と一時期は考えて <a href="http://www.vim.org/scripts/script.php?script_id=1075">netrw</a> とか <a href="https://github.com/scrooloose/nerdtree">nerdtree</a> とかを我慢して使っていた時期もあったが、どうもディレクトリの移動の度に<a href="https://www.google.co.jp/search?q=%E3%83%83%E3%82%BF%E3%83%BC%E3%83%B3%EF%BC%81">リターンキーを「ッターン！」</a> しなければいけないのがつらく、結局使わなくなった。</p>
-
-<p>ある日、コンソール上で画像ファイルをプレビューしたくなった。そんなソフトはないかと捜していたら、<a href="http://ranger.nongnu.org/">ranger</a> にいきついた。いざ使ってみると、ファイルやディレクトリの移動、そしてファイルを開く操作が全て hjkl だけで済むのが異常に心地よいことに気がついた。<a href="http://w3m.sourceforge.net/">w3m</a> を入れて設定に一行足せば、以下のように画像ファイルのプレビューも出来る。cd /path/to/foo/bar するよりはかなり速い。 また、ranger を開きながら Shift+s でシェルに落ちることもできる。これもかなり楽。</p>
-
-<p><img src="/images/ranger.png"/></p>
-
-<p>また、vim の場合だと、ファイルを開きながら、別のファイルを選んで開くときも、 netrw とかを使わずに ranger を使えるモードがあることに気がついた。<a href="https://github.com/hut/ranger/blob/master/doc/examples/vim_file_chooser.vim">こんな設定</a> を ~/.vimrc に書けば、&lt;leader&gt;r を押すことで ranger でファイルを選ぶことができる。</p>
-
-<p>そんな感じで喜んで使っていたのだが、Pythonのファイルを扱っていると若干問題があった。types.py というファイルがディレクトリに存在すると、それを vim から ranger で開こうとした時点でエラーになってしまうのだ。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Traceback (most recent call last):
-</span><span class='line'>  File "C:\Python27\lib\site.py", line 62, in &lt;module&gt;
-</span><span class='line'>    import os
-</span><span class='line'>  File "C:\Python27\lib\os.py", line 398, in &lt;module&gt;
-</span><span class='line'>    import UserDict
-</span><span class='line'>  File "C:\Python27\lib\UserDict.py", line 83, in &lt;module&gt;
-</span><span class='line'>    import _abcoll
-</span><span class='line'>  File "C:\Python27\lib\_abcoll.py", line 70, in &lt;module&gt;
-</span><span class='line'>    Iterable.register(str)
-</span><span class='line'>  File "C:\Python27\lib\abc.py", line 107, in register
-</span><span class='line'>    if not isinstance(subclass, (type, types.ClassType)):
-</span><span class='line'>AttributeError: 'module' object has no attribute 'ClassType'</span></code></pre></td></tr></table></div></figure>
-
-
-<p>これは ranger 自体が Python で書かれていることと、<a href="http://stackoverflow.com/questions/17717090/attributeerror-module-object-has-no-attribute-classtype">Pythonインタプリタ自体の問題</a> が重なったことによって起こることだった。けれども、今の職場で主に使われているのは Python なので、どうにかして解消しなければ ranger は使えないという話になってしまう。</p>
-
-<p>仕方なく、<a href="https://github.com/mumumu/ranger/commit/d4791468897ab4136edceabe640360110dfd810e">細かすぎて伝わらないpatch</a> を書いた... vim ファイルだけではなくて、コアのイベントアクションにまで手を加えているので、全く受け入れられる気がしない... それに vim 連携のためだけに types.py を特別扱いするとかアフォかと。俺がメンテナなら多分 Reject するだろうなと思いつつ、fork したコードだけは置いておくのであった(´ー｀; )</p>
-
-<p><a href="https://github.com/mumumu/ranger">https://github.com/mumumu/ranger</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page7">&larr; Older</a>
@@ -412,6 +389,10 @@ C) 本番運用</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
       </li>
     
@@ -429,10 +410,6 @@ C) 本番運用</p>
     
       <li class="post">
         <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/05/chromebook/">Chromebook</a>
       </li>
     
   </ul>

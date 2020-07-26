@@ -9,7 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="http://www.servethehome.com/narrow-ilm-square-ilm-lga2011-heatsink-differences/ 自作をやった人なら御存知かもしれないが、Intel な CPU をマザーボードのCPUソケットに固定するための部品を ILM ( &hellip;">
+  <meta name="description" content="http://userbase.kde.org/Akonadi#Disabling_the_Akonadi_subsystem Kubuntu 14.04 LTS には KDE 4.13 が入っているが、このバージョンから有効になっているデスクトップ検索がどうにも糞で、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-05-12 11:25:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/12/disable-akonadi/">Disable Akonadi</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://userbase.kde.org/Akonadi#Disabling_the_Akonadi_subsystem">http://userbase.kde.org/Akonadi#Disabling_the_Akonadi_subsystem</a></p>
+
+<p>Kubuntu 14.04 LTS には KDE 4.13 が入っているが、このバージョンから有効になっているデスクトップ検索がどうにも糞で、起動して10分くらいCPUを毎回占有してくれる。</p>
+
+<p>業を煮やして無効にした。以下のコマンドを実行 (rootである必要はない) して、上のリンクにあるとおり、カレンダーのイベント表示を無効にすればよい。実はこのやり方は Akonadi サブシステムを無効にするものだが、Akonadi を使っている機能はどれも俺は使ってないので一気に無効にしたった(´ー｀; )</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ akonadictl stop</span></code></pre></td></tr></table></div></figure>
+
+
+<p>カレンダーのイベント表示は以下のように "Display events" となっているので、そのチェックを外す。</p>
+
+<p><img src="/images/disable_akonadi_on_calendar.png" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -361,55 +407,6 @@ CPC = CPM / (10 * CTR)
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2014-04-24 00:15:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2014/04/24/fitbit-one/">Fitbit One</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://www.fitbit.com/jp/one">https://www.fitbit.com/jp/one</a></p>
-
-<p>最近また<a href="http://mumumu-meshi.blogspot.jp/">飯日記</a> によるレコーディングダイエットをはじめたのだが、どうしても食べる量を記録しながら調整するだけではリバウンドしやすいし、ペースも維持しにくい。やはり運動との併用は不可欠だなと思っていたところなのだが、誰かに何か言われても自分からは絶対に運動なんてやらない。</p>
-
-<p>じゃあ飯日記と同じように可視化ツールを使おうぜ、という発想から <a href="https://www.fitbit.com/jp/one">Fitbit One</a> を購入した。万歩計であれば何でもいいわけでもなく、飯日記と同じ観点から、以下の要件を立てて選んだ。</p>
-
-<p>・ 歩数以外でも可視化する機能が多いこと<br/>
-・ スマホとの連携が簡単なこと</p>
-
-<p>これらを満たしているツールはそれなりにあるとは思うのだが、自分が持っている <a href="http://www.google.co.jp/nexus/5/">Nexus 5</a> との <a href="https://help.fitbit.com/customer/portal/articles/987861-android-device-compatibility">相性が保証されていて</a>、Bluetooth と アプリで簡単にWebとも連携できるという要件が揃っていたのは Fitbit One だけだった。</p>
-
-<p>ということで、早速職場から帰宅する時に10000歩歩いてみた。思ったよりきつい、、結局6駅分歩いた挙げ句、90分もかかった。これを毎日続けるのって至難の業じゃね？</p>
-
-<p>続けている人は余程の暇人か健脚の持ち主に相違ないと思う次第だ(´ー｀; )</p>
-
-<p><img src="/images/fitbitone_10000.png" width="360" height="640" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page9">&larr; Older</a>
@@ -489,6 +486,10 @@ CPC = CPM / (10 * CTR)
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
       </li>
     
@@ -506,10 +507,6 @@ CPC = CPM / (10 * CTR)
     
       <li class="post">
         <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/05/chromebook/">Chromebook</a>
       </li>
     
   </ul>

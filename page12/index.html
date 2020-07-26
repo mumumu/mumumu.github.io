@@ -9,9 +9,8 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="http://docs.python.jp/2/reference/expressions.html#summary Python で Y (辞書またはリスト) に X という要素やキーが「存在しない」ことをどう書くか。
-Python では以下の2通りが書ける。 A) not X in Y
-B) &hellip;">
+  <meta name="description" content="http://daipresents.com/2013/translators-blues/ 翻訳が情熱で成り立っていることは激しく同意。また、本業があるんだったら、儲けるために翻訳をやろうと思わない方がよいと思います。
+プロが教える技術翻訳のスキル とかを読むと分かりますが、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +77,47 @@ B) &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-10-04 14:35:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/04/passion-for-translation/">passion for translation</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://daipresents.com/2013/translators-blues/">http://daipresents.com/2013/translators-blues/</a></p>
+
+<p>翻訳が情熱で成り立っていることは激しく同意。また、本業があるんだったら、儲けるために翻訳をやろうと思わない方がよいと思います。<br/>
+<a href="http://www.amazon.co.jp/dp/4061556223">プロが教える技術翻訳のスキル</a> とかを読むと分かりますが、プロとしてやろうと思うとそれ相応の覚悟が必要です。</p>
+
+<p>一人でやるのであればともかく、複数人でやるのであれば、どんな意見やフィードバックでも全力で向き合うことが必要です。それがたとえ監訳者とかの偉い人であっても関係ありません。それが情熱ってものではないかと思ったり。</p>
+
+<p>高木さんと自分が手掛けた <a href="http://producingoss.com">Producing Open Source Software</a> についていえば、翻訳してでも世の中に伝えたい、というモチベーションがあったことと、<a href="http://producingoss.com/ja/">翻訳した現物</a> があったこと、その2点が2005年の本であっても出版までできた要因なんじゃないかなと思ったりしています。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -394,174 +434,6 @@ Memory Device
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-06-29 16:16:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/29/php-manual-generate-howto/">PHP manual generate HOWTO (version 2013-06-29)</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://d.hatena.ne.jp/anatoo/20120430/1335725004">http://d.hatena.ne.jp/anatoo/20120430/1335725004</a></p>
-
-<p>このエントリは、anatoo氏 による上記エントリの更新版である。<br/>
-大筋は変わっていないが、細かい箇所を補足しているのと、chm に関する記述が少し増えている。</p>
-
-<hr />
-
-<p><br />
-PHPのマニュアルは、DocBook と呼ばれるフォーマットで記述されており、<a href="https://wiki.php.net/doc/phd">PhD という PHPマニュアル のためのツール</a> によってその DocBook から HTML や CHM、PDF などの複数の形式にビルドできる。</p>
-
-<p>この記事では、2013年6月末時点で実際にPHPのマニュアルをリポジトリから取ってきてビルドする方法を紹介する。PhD は PDF や manpage形式、epub 等多様な形式がビルドできるが、ここでは HTML および chm のみについて触れる。</p>
-
-<h3>a) ビルドするときに使うPHPについて</h3>
-
-<p>まず、PHP をインストールしなければはじまらない。<br/>
-PHP は 5.3.x が望ましい。今は 5.4.x や 5.5.0 とかが出ているが、Windows 用ヘルプファイル(chm)をビルドするときに、 5.3 でないと日本語の情報が欠落するバグが PhD には存在するからだ(後述)</p>
-
-<p>chm をビルドするつもりがないなら、PHP 5.4, 5.5 でも差し支えない。
-PHP をインストールするときも、PhD のために DOM, libXML2, XMLReader and SQLite3 は有効にしていなければならない。ただ、これらは 5.3 以降はデフォルトで有効になっているので、無効にしないよう注意しよう。</p>
-
-<h3>b) 必要なツールをインストール</h3>
-
-<p>subversionとpearを予めインストールしておいて、PhD と PhD_PHP をpear経由でインストールする。<br/>
-PhD_PHP は chm をビルドするのに必要だ。</p>
-
-<pre><code>$ pear version
-PEAR Version: 1.9.4
-PHP Version: 5.5.0
-Zend Engine Version: 2.5.0-dev
-$ pear install doc.php.net/PhD doc.php.net/PhD_PHP
-phpdocs/PhD can optionally use package "phpdocs/PhD_PEAR"
-phpdocs/PhD can optionally use package "phpdocs/PhD_IDE"
-phpdocs/PhD can optionally use PHP extension "haru"
-phpdocs/PhD_PHP can optionally use PHP extension "haru"
-phpdocs/PhD_PHP can optionally use PHP extension "bz2"
-phpdocs/PhD_Generic can optionally use PHP extension "haru"
-downloading PhD-1.1.6.tgz ...
-Starting to download PhD-1.1.6.tgz (47,079 bytes)
-.............done: 47,079 bytes
-PHP Deprecated:  Assigning the return value of new by reference is deprecated in /home/mumumu/.phpenv/versions/5.5.0/lib/php/PEAR/PackageFile/v2/Validator.php on line 1740
-
-Deprecated: Assigning the return value of new by reference is deprecated in /home/mumumu/.phpenv/versions/5.5.0/lib/php/PEAR/PackageFile/v2/Validator.php on line 1740
-downloading PhD_PHP-1.1.6.tgz ...
-Starting to download PhD_PHP-1.1.6.tgz (26,028 bytes)
-...done: 26,028 bytes
-downloading PhD_Generic-1.1.6.tgz ...
-Starting to download PhD_Generic-1.1.6.tgz (29,064 bytes)
-...done: 29,064 bytes
-install ok: channel://doc.php.net/PhD-1.1.6
-install ok: channel://doc.php.net/PhD_PHP-1.1.6
-install ok: channel://doc.php.net/PhD_Generic-1.1.6
-</code></pre>
-
-<h3>c) リポジトリからの取得</h3>
-
-<p>次にマニュアルのソースをリポジトリから取ってくる。作業用のディレクトリを作って、リポジトリをsvnからチェックアウトする。</p>
-
-<p>下記のURL には、 doc-base, en, ja への外部項目が設定されているので、以下のコマンド一つで3つのリポジトリが一気にチェックアウトできる。</p>
-
-<pre><code>$ mkdir phpdoc-ja
-$ cd phpdoc-ja
-$ svn co http://svn.php.net/repository/phpdoc/modules/doc-ja .
-</code></pre>
-
-<h3>d) HTML版の PHPマニュアルをビルドする</h3>
-
-<p>--enable-xml-details は、XMLに万が一文法エラーがあったときに細かい情報を出力するためのモノだ。また、phd は結構メモリを使うので、memory_limit の値を大きめにしておいた方がよいかもしれない。</p>
-
-<pre><code>$ php doc-base/configure.php --with-lang=ja --enable-xml-details
-$ phd -d doc-base/.manual.xml
-</code></pre>
-
-<p>成功すれば、 output ディレクトリ以下にマニュアルが生成される。</p>
-
-<h3>e) chm 版の PHPマニュアルをビルドする(PHP 5.3.x)</h3>
-
-<p>PHP 5.3.x ならば、以下のコマンドで何も考えなくても chm 版をビルドできる。--enable-chm は、chm特有のコンテンツを生成物に含めるために必要だ。 また、--with-lang や -L オプションで言語の指定も忘れずに。</p>
-
-<p>まあ、--enable-chm がなくても、chm特有のヘルプコンテンツが入らないだけで、皆が見たいメインのコンテンツは欠落しないので、問題はないのだけれども。</p>
-
-<pre><code>$ php doc-base/configure.php --enable-chm --with-lang=ja
-$ phd -f chm -P PHP -L ja -d doc-base/.manual.xml
-</code></pre>
-
-<p>成功すると、output/php-chm 以下に chm のコンテンツが生成される。</p>
-
-<pre><code>$ ls output/php-chm/
-php_manual_ja.hhc  php_manual_ja.hhk  php_manual_ja.hhp  res
-</code></pre>
-
-<p>chm 形式のファイルは LZX 形式で圧縮されており、Linux や Mac では chm 形式は生成できないので、以下、Windows 上で chm ファイルをコンパイルする必要がある。</p>
-
-<p>ここからは Windows での作業だ。まず、<a href="http://msdn.microsoft.com/en-us/library/ms669985.aspx">HTML Help Workshop</a> をインストールし、output/php-chm/php_manual_ja.hhp を File -> Open で開く。すると、以下のような画面になるはずだ。</p>
-
-<p><img src="/images/html_help_workshop.png" alt="/images/html_help_workshop.png" /></p>
-
-<p>この状態で、File -> Compile を 選択し、php_manual_ja.hhp を以下のようなダイアログで選び、OK を押すと
-php_manual_ja.hhp がある フォルダに php_manual_ja.chm が生成されるはずだ。</p>
-
-<p><img src="/images/html_help_workshop_compile.png" alt="/images/html_help_workshop_compile.png" /></p>
-
-<h3>f) chm 版の PHPマニュアルをビルドする(PHP 5.4.x以降)</h3>
-
-<p>既に述べた通り、PHP 5.4 以降で PhD を使うと、chm のセクションタイトル情報が欠落するバグがある。これについては<a href="https://github.com/php/phd/pull/3">既に修正コードが投稿されている</a> のだがまだ取り込まれていない。よって、PHP 5.4 以降で chm をビルドしたければ、<a href="https://github.com/mumumu/phd">修正されている git のコード</a> を使う。</p>
-
-<p>まずは、既にインストールされている PhD をアンインストールする</p>
-
-<pre><code>$ pear uninstall doc.php.net/PhD doc.php.net/PhD_Generic doc.php.net/PhD_PHP
-uninstall ok: channel://doc.php.net/PhD_PHP-1.1.6
-uninstall ok: channel://doc.php.net/PhD_Generic-1.1.6
-uninstall ok: channel://doc.php.net/PhD-1.1.6
-</code></pre>
-
-<p>修正版の git の PhD をインストールする</p>
-
-<pre><code>$ git clone https://github.com/mumumu/phd.git 
-$ cd phd
-$ pear install package.xml package_generic.xml package_php.xml 
-phpdocs/PhD can optionally use package "phpdocs/PhD_PEAR"
-phpdocs/PhD can optionally use package "phpdocs/PhD_IDE"
-phpdocs/PhD can optionally use PHP extension "haru"
-phpdocs/PhD_Generic can optionally use PHP extension "haru"
-phpdocs/PhD_PHP can optionally use PHP extension "haru"
-phpdocs/PhD_PHP can optionally use PHP extension "bz2"
-install ok: channel://doc.php.net/PhD-1.1.7
-install ok: channel://doc.php.net/PhD_Generic-1.1.7
-install ok: channel://doc.php.net/PhD_PHP-1.1.7
-$ cd ..
-</code></pre>
-
-<p>あとは普通にビルドし、既に述べたとおりのやり方で、Windows 上で chm をコンパイルすると良い。</p>
-
-<pre><code>$ php doc-base/configure.php --enable-chm --with-lang=ja
-$ phd -f chm -P PHP -L ja -d doc-base/.manual.xml
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page13">&larr; Older</a>
@@ -641,6 +513,10 @@ $ phd -f chm -P PHP -L ja -d doc-base/.manual.xml
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
       </li>
     
@@ -658,10 +534,6 @@ $ phd -f chm -P PHP -L ja -d doc-base/.manual.xml
     
       <li class="post">
         <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/05/chromebook/">Chromebook</a>
       </li>
     
   </ul>

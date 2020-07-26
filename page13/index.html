@@ -9,7 +9,8 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="https://github.com/phpenv/phpenv 来週から Python を仕事で使うというのに、未だに PHP ばかりやっている mumumu です。こんばんは。 さて、複数の PHP のバージョンをひとつのマシンに共存させ、使い分けたいと思った場合に、現在は CHH 版の &hellip;">
+  <meta name="description" content="http://d.hatena.ne.jp/anatoo/20120430/1335725004 このエントリは、anatoo氏 による上記エントリの更新版である。
+大筋は変わっていないが、細かい箇所を補足しているのと、chm に関する記述が少し増えている。 PHPのマニュアルは、DocBook &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,174 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-06-29 16:16:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/29/php-manual-generate-howto/">PHP manual generate HOWTO (version 2013-06-29)</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://d.hatena.ne.jp/anatoo/20120430/1335725004">http://d.hatena.ne.jp/anatoo/20120430/1335725004</a></p>
+
+<p>このエントリは、anatoo氏 による上記エントリの更新版である。<br/>
+大筋は変わっていないが、細かい箇所を補足しているのと、chm に関する記述が少し増えている。</p>
+
+<hr />
+
+<p><br />
+PHPのマニュアルは、DocBook と呼ばれるフォーマットで記述されており、<a href="https://wiki.php.net/doc/phd">PhD という PHPマニュアル のためのツール</a> によってその DocBook から HTML や CHM、PDF などの複数の形式にビルドできる。</p>
+
+<p>この記事では、2013年6月末時点で実際にPHPのマニュアルをリポジトリから取ってきてビルドする方法を紹介する。PhD は PDF や manpage形式、epub 等多様な形式がビルドできるが、ここでは HTML および chm のみについて触れる。</p>
+
+<h3>a) ビルドするときに使うPHPについて</h3>
+
+<p>まず、PHP をインストールしなければはじまらない。<br/>
+PHP は 5.3.x が望ましい。今は 5.4.x や 5.5.0 とかが出ているが、Windows 用ヘルプファイル(chm)をビルドするときに、 5.3 でないと日本語の情報が欠落するバグが PhD には存在するからだ(後述)</p>
+
+<p>chm をビルドするつもりがないなら、PHP 5.4, 5.5 でも差し支えない。
+PHP をインストールするときも、PhD のために DOM, libXML2, XMLReader and SQLite3 は有効にしていなければならない。ただ、これらは 5.3 以降はデフォルトで有効になっているので、無効にしないよう注意しよう。</p>
+
+<h3>b) 必要なツールをインストール</h3>
+
+<p>subversionとpearを予めインストールしておいて、PhD と PhD_PHP をpear経由でインストールする。<br/>
+PhD_PHP は chm をビルドするのに必要だ。</p>
+
+<pre><code>$ pear version
+PEAR Version: 1.9.4
+PHP Version: 5.5.0
+Zend Engine Version: 2.5.0-dev
+$ pear install doc.php.net/PhD doc.php.net/PhD_PHP
+phpdocs/PhD can optionally use package "phpdocs/PhD_PEAR"
+phpdocs/PhD can optionally use package "phpdocs/PhD_IDE"
+phpdocs/PhD can optionally use PHP extension "haru"
+phpdocs/PhD_PHP can optionally use PHP extension "haru"
+phpdocs/PhD_PHP can optionally use PHP extension "bz2"
+phpdocs/PhD_Generic can optionally use PHP extension "haru"
+downloading PhD-1.1.6.tgz ...
+Starting to download PhD-1.1.6.tgz (47,079 bytes)
+.............done: 47,079 bytes
+PHP Deprecated:  Assigning the return value of new by reference is deprecated in /home/mumumu/.phpenv/versions/5.5.0/lib/php/PEAR/PackageFile/v2/Validator.php on line 1740
+
+Deprecated: Assigning the return value of new by reference is deprecated in /home/mumumu/.phpenv/versions/5.5.0/lib/php/PEAR/PackageFile/v2/Validator.php on line 1740
+downloading PhD_PHP-1.1.6.tgz ...
+Starting to download PhD_PHP-1.1.6.tgz (26,028 bytes)
+...done: 26,028 bytes
+downloading PhD_Generic-1.1.6.tgz ...
+Starting to download PhD_Generic-1.1.6.tgz (29,064 bytes)
+...done: 29,064 bytes
+install ok: channel://doc.php.net/PhD-1.1.6
+install ok: channel://doc.php.net/PhD_PHP-1.1.6
+install ok: channel://doc.php.net/PhD_Generic-1.1.6
+</code></pre>
+
+<h3>c) リポジトリからの取得</h3>
+
+<p>次にマニュアルのソースをリポジトリから取ってくる。作業用のディレクトリを作って、リポジトリをsvnからチェックアウトする。</p>
+
+<p>下記のURL には、 doc-base, en, ja への外部項目が設定されているので、以下のコマンド一つで3つのリポジトリが一気にチェックアウトできる。</p>
+
+<pre><code>$ mkdir phpdoc-ja
+$ cd phpdoc-ja
+$ svn co http://svn.php.net/repository/phpdoc/modules/doc-ja .
+</code></pre>
+
+<h3>d) HTML版の PHPマニュアルをビルドする</h3>
+
+<p>--enable-xml-details は、XMLに万が一文法エラーがあったときに細かい情報を出力するためのモノだ。また、phd は結構メモリを使うので、memory_limit の値を大きめにしておいた方がよいかもしれない。</p>
+
+<pre><code>$ php doc-base/configure.php --with-lang=ja --enable-xml-details
+$ phd -d doc-base/.manual.xml
+</code></pre>
+
+<p>成功すれば、 output ディレクトリ以下にマニュアルが生成される。</p>
+
+<h3>e) chm 版の PHPマニュアルをビルドする(PHP 5.3.x)</h3>
+
+<p>PHP 5.3.x ならば、以下のコマンドで何も考えなくても chm 版をビルドできる。--enable-chm は、chm特有のコンテンツを生成物に含めるために必要だ。 また、--with-lang や -L オプションで言語の指定も忘れずに。</p>
+
+<p>まあ、--enable-chm がなくても、chm特有のヘルプコンテンツが入らないだけで、皆が見たいメインのコンテンツは欠落しないので、問題はないのだけれども。</p>
+
+<pre><code>$ php doc-base/configure.php --enable-chm --with-lang=ja
+$ phd -f chm -P PHP -L ja -d doc-base/.manual.xml
+</code></pre>
+
+<p>成功すると、output/php-chm 以下に chm のコンテンツが生成される。</p>
+
+<pre><code>$ ls output/php-chm/
+php_manual_ja.hhc  php_manual_ja.hhk  php_manual_ja.hhp  res
+</code></pre>
+
+<p>chm 形式のファイルは LZX 形式で圧縮されており、Linux や Mac では chm 形式は生成できないので、以下、Windows 上で chm ファイルをコンパイルする必要がある。</p>
+
+<p>ここからは Windows での作業だ。まず、<a href="http://msdn.microsoft.com/en-us/library/ms669985.aspx">HTML Help Workshop</a> をインストールし、output/php-chm/php_manual_ja.hhp を File -> Open で開く。すると、以下のような画面になるはずだ。</p>
+
+<p><img src="/images/html_help_workshop.png" alt="/images/html_help_workshop.png" /></p>
+
+<p>この状態で、File -> Compile を 選択し、php_manual_ja.hhp を以下のようなダイアログで選び、OK を押すと
+php_manual_ja.hhp がある フォルダに php_manual_ja.chm が生成されるはずだ。</p>
+
+<p><img src="/images/html_help_workshop_compile.png" alt="/images/html_help_workshop_compile.png" /></p>
+
+<h3>f) chm 版の PHPマニュアルをビルドする(PHP 5.4.x以降)</h3>
+
+<p>既に述べた通り、PHP 5.4 以降で PhD を使うと、chm のセクションタイトル情報が欠落するバグがある。これについては<a href="https://github.com/php/phd/pull/3">既に修正コードが投稿されている</a> のだがまだ取り込まれていない。よって、PHP 5.4 以降で chm をビルドしたければ、<a href="https://github.com/mumumu/phd">修正されている git のコード</a> を使う。</p>
+
+<p>まずは、既にインストールされている PhD をアンインストールする</p>
+
+<pre><code>$ pear uninstall doc.php.net/PhD doc.php.net/PhD_Generic doc.php.net/PhD_PHP
+uninstall ok: channel://doc.php.net/PhD_PHP-1.1.6
+uninstall ok: channel://doc.php.net/PhD_Generic-1.1.6
+uninstall ok: channel://doc.php.net/PhD-1.1.6
+</code></pre>
+
+<p>修正版の git の PhD をインストールする</p>
+
+<pre><code>$ git clone https://github.com/mumumu/phd.git 
+$ cd phd
+$ pear install package.xml package_generic.xml package_php.xml 
+phpdocs/PhD can optionally use package "phpdocs/PhD_PEAR"
+phpdocs/PhD can optionally use package "phpdocs/PhD_IDE"
+phpdocs/PhD can optionally use PHP extension "haru"
+phpdocs/PhD_Generic can optionally use PHP extension "haru"
+phpdocs/PhD_PHP can optionally use PHP extension "haru"
+phpdocs/PhD_PHP can optionally use PHP extension "bz2"
+install ok: channel://doc.php.net/PhD-1.1.7
+install ok: channel://doc.php.net/PhD_Generic-1.1.7
+install ok: channel://doc.php.net/PhD_PHP-1.1.7
+$ cd ..
+</code></pre>
+
+<p>あとは普通にビルドし、既に述べたとおりのやり方で、Windows 上で chm をコンパイルすると良い。</p>
+
+<pre><code>$ php doc-base/configure.php --enable-chm --with-lang=ja
+$ phd -f chm -P PHP -L ja -d doc-base/.manual.xml
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -442,172 +611,6 @@ U    book.xml
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-06-22 21:51:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/22/php-5-dot-5-0-with-zend-opcache/">PHP 5.5.0 with Zend OPcache</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.php.net/manual/en/book.opcache.php">http://www.php.net/manual/en/book.opcache.php</a></p>
-
-<p>PHP 5.5.0 がリリースされた。finally や yield とか ::class によるネームスペースの解決とか楽しい部分はあれど、まー Zend OPcache は大きいよねってことで、とりあえず試しておく。</p>
-
-<p>./configure に --enable-opcache を付けてビルドすればよい。簡単。
-あとは php.ini に 以下を追加すると良い。ただし、 extention= ... ではなく、zend_extention= ... と書かねばならないので注意。</p>
-
-<pre><code>zend_extension=/path/to/php/extensions/no-debug-zts-20121212/opcache.so
-opcache.memory_consumption=128
-opcache.interned_strings_buffer=8
-opcache.max_accelerated_files=4000
-opcache.revalidate_freq=60
-opcache.fast_shutdown=1
-opcache.enable_cli=1
-</code></pre>
-
-<p>この状態で、 Intel Core i7 2600s と RAM 16GB , Apache 2.2.22 の環境下で <a href="http://www.mumumu.org/~cinnamon/">http://www.mumumu.org/~cinnamon/</a> (WordPressカスタムサイト) に対して、以下のベンチマークを実行してみた。</p>
-
-<pre><code>ab -c 10 -n 1000 http://localhost/~cinnamon/
-
-This is ApacheBench, Version 2.3 &lt;$Revision: 655654 $&gt;
-Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-Licensed to The Apache Software Foundation, http://www.apache.org/
-
-Benchmarking localhost (be patient)
-Completed 100 requests
-Completed 200 requests
-Completed 300 requests
-Completed 400 requests
-Completed 500 requests
-Completed 600 requests
-Completed 700 requests
-Completed 800 requests
-Completed 900 requests
-Completed 1000 requests
-Finished 1000 requests
-
-Server Software:        Apache/2.2.22
-Server Hostname:        localhost
-Server Port:            80
-
-Document Path:          /~cinnamon/
-Document Length:        15996 bytes
-
-Concurrency Level:      10
-Time taken for tests:   30.007 seconds
-Complete requests:      1000
-Failed requests:        969
-   (Connect: 0, Receive: 0, Length: 969, Exceptions: 0)
-Write errors:           0
-Total transferred:      16257178 bytes
-HTML transferred:       16001178 bytes
-Requests per second:    33.33 [#/sec] (mean)
-Time per request:       300.066 [ms] (mean)
-Time per request:       30.007 [ms] (mean, across all concurrent requests)
-Transfer rate:          529.09 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    0   0.3      0       4
-Processing:   227  299  35.3    296     663
-Waiting:      208  277  35.3    274     646
-Total:        227  299  35.5    296     667
-
-Percentage of the requests served within a certain time (ms)
-  50%    296
-  66%    305
-  75%    311
-  80%    315
-  90%    329
-  95%    349
-  98%    387
-  99%    423
- 100%    667 (longest request)
-</code></pre>
-
-<p>PHP 5.4.16 + APC 3.1.13 では以下のようになった。ほとんど変わらない感じだ。</p>
-
-<pre><code>This is ApacheBench, Version 2.3 &lt;$Revision: 655654 $&gt;
-Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-Licensed to The Apache Software Foundation, http://www.apache.org/
-
-Benchmarking localhost (be patient)
-Completed 100 requests
-Completed 200 requests
-Completed 300 requests
-Completed 400 requests
-Completed 500 requests
-Completed 600 requests
-Completed 700 requests
-Completed 800 requests
-Completed 900 requests
-Completed 1000 requests
-Finished 1000 requests
-
-Server Software:        Apache/2.2.22
-Server Hostname:        localhost
-Server Port:            80
-
-Document Path:          /~cinnamon/
-Document Length:        15993 bytes
-
-Concurrency Level:      10
-Time taken for tests:   30.171 seconds
-Complete requests:      1000
-Failed requests:        965
-   (Connect: 0, Receive: 0, Length: 965, Exceptions: 0)
-Write errors:           0
-Total transferred:      16283497 bytes
-HTML transferred:       16000497 bytes
-Requests per second:    33.14 [#/sec] (mean)
-Time per request:       301.708 [ms] (mean)
-Time per request:       30.171 [ms] (mean, across all concurrent requests)
-Transfer rate:          527.06 [Kbytes/sec] received
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    0   0.1      0       2
-Processing:   189  301  27.7    297     406
-Waiting:      164  278  27.4    275     381
-Total:        189  301  27.7    297     406
-
-Percentage of the requests served within a certain time (ms)
-  50%    297
-  66%    308
-  75%    315
-  80%    320
-  90%    336
-  95%    353
-  98%    371
-  99%    383
- 100%    406 (longest request)
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page14">&larr; Older</a>
@@ -687,6 +690,10 @@ Percentage of the requests served within a certain time (ms)
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
       </li>
     
@@ -704,10 +711,6 @@ Percentage of the requests served within a certain time (ms)
     
       <li class="post">
         <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/05/chromebook/">Chromebook</a>
       </li>
     
   </ul>

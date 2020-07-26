@@ -4,7 +4,7 @@
   <title><![CDATA[Category: misc | mumumu の日記]]></title>
   <link href="http://mumumu.github.io/blog/categories/misc/atom.xml" rel="self"/>
   <link href="http://mumumu.github.io/"/>
-  <updated>2020-05-16T01:25:19+09:00</updated>
+  <updated>2020-07-27T02:59:03+09:00</updated>
   <id>http://mumumu.github.io/</id>
   <author>
     <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[新しい知識の学び方]]></title>
+    <link href="http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept/"/>
+    <updated>2020-07-27T02:40:26+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept</id>
+    <content type="html"><![CDATA[<p><a href="https://www.amazon.co.jp/dp/B0193M34D0">https://www.amazon.co.jp/dp/B0193M34D0</a><br/>
+<a href="https://hiyokko-hard.com/support/">https://hiyokko-hard.com/support/</a></p>
+
+<p>「バカに教える電子回路」という本がある。電子回路の設計知識についてとてもわかりやすく書かれた本だ。</p>
+
+<p>ふとソフトウェア的な論理回路に関する知識を参照したくなって開いたのだけれども、残念ながら求める知識はこの本には書かれていなかった。</p>
+
+<p>だけど、一番はじめに書かれている「技術書の読み方」についてはとても参考になったので以下に引用する。</p>
+
+<p>プロコンで様々な知識を繰り返し学び、実践する中で、うんうんそうだよね、と頷く部分が多い。</p>
+
+<pre><code>技術書の読み方
+
+(中略)
+
+技術書を読むときには必ずパソコンでテキストファイルを作り、出てきた用語や内容を
+自分の言葉でまとめておきます．更に，読んでいてわからない単語や概念が出てきたら，
+インターネットで調べて同じテキストファイルにまとめます．多少間違っていても構いません．
+
+(中略)
+
+少し時間が経ってしまうと，内容や用語を忘れてしまい，再開するのが億劫になります．
+そんな時にまとめたファイルを読み返すと再開しやすくなります．
+
+(中略)
+
+再開させるときの心理的ハードルを下げるのはとても重要です．
+
+(中略)
+
+調べたいことは調べ，面倒なら飛ばします．面倒になった時点でどれだけ時間をかけても
+身につきません．いくつか技術書を読んでいると(または実務でも)，同じ問題は何度もぶ
+つかるので，いずれ分かるようになります．今全てを理解する必要はありません．実験で
+試せるものについては，できるだけやったほうがいいです．こちらも面倒になった時点で
+意味が無いので気分がノッてる時はやってみる・程度でいいと思います．
+
+読んでいて何を言っているか全くわからない，もしくは読みながら寝てしまうようであれ
+ば，自分のレベルに合っていない可能性が高いです．その本は一旦諦め，他の技術書を読
+みましょう．目安としては6割は頑張らずに理解できるくらいの本がちょうどいいと思いま
+す．今はわからなくても，暫くしてから読むとわかるケースが多いので，捨てずにとって
+おきましょう．
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[問題を解く]]></title>
@@ -158,35 +208,6 @@ b) 複数のレシピが作れること<br/>
 <p>いろいろ試した結果、以下の Anker のものに行き着いた。3m でよければ、これで十分だ。Anker は USBケーブル周りでかなり評判が良いようなので買ってみたが、評判通りだったと言えよう(*´～｀)</p>
 
 <p>(*1) PC から Google Chrome 経由で Amazon Prime Video をキャストさせたり、スマホ画面をキャストさせたりすれば見れるのは承知しているが、リモコンがあった方が家族には優しい</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Slack mobile notifications not working (on Android)]]></title>
-    <link href="http://mumumu.github.io/blog/2017/10/23/slack-mobile-notifications-not-working/"/>
-    <updated>2017-10-23T00:59:00+09:00</updated>
-    <id>http://mumumu.github.io/blog/2017/10/23/slack-mobile-notifications-not-working</id>
-    <content type="html"><![CDATA[<p><a href="https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5">https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5</a></p>
-
-<p>システム運用時に、何かあった時のアラート等の通知を Slack で受け取っている人もいるだろう。</p>
-
-<p>特に、帰宅後や休暇時に一定の処置が必要なお知らせは重要である。Slack ではチャンネル単位でデスクトップとモバイルの通知の設定が細かく設定できるようになっているので、使い勝手では個人的にあまり困っていない。</p>
-
-<p>だが、自分に合った設定を施しても、一部の Notificaton が受け取れなかったり、通知が遅れたりするとちょっと問題だ。
-そういう時は、上記のリンクにあるヘルプの設定を確かめて設定をやり直してもうまくいかないことがある。そうした場合に、自分がやったのは、Android の電源設定を見直すことだった。</p>
-
-<p><img src="http://mumumu.github.io/images/Android_70_battery_setting.jpg" width="540" height="960"/></p>
-
-<p>最近の Android は、電源設定が割と細かくなっており、スリープ時にネットワーク接続が無効になる場合がある。</p>
-
-<p>自分はこれを上記のように常に接続されるように見なおしたところ、Slack のモバイル通知が思ったように受け取れるようになった。
-メモ程度の内容だが、これからも多分同じようなことが起こると思うので、ここにメモしておく。</p>
-
-<p><strong>[ Update Febrary 25th 02:04:50 JST by m ]</strong></p>
-
-<p>自分が持っている Zenfone 4 には、「自動起動マネージャー」と呼ばれる機能があり、そこでアプリを許可しておかないと、電池が足りない等の場合にアプリが終了させられて通知が遅れる場合がある。よって、通知をすぐに受け取りたいアプリは許可リストに入れておく必要がある。以下の例だと、メールクライアントや Slack がそうだ。</p>
-
-<p><img src="http://mumumu.github.io/images/auto-boot-manager.jpg" width="540" height="960"/></p>
 ]]></content>
   </entry>
   

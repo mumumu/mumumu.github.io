@@ -9,7 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="http://blog.delicious.com/2012/01/update-on-the-browser-extensions/ ずっとソーシャルブックマークサービスは delicious.com を使ってるんだけど、ブラウザ向けエクステンションのデキが極めて良くないし、 &hellip;">
+  <meta name="description" content="http://www.php.net/manual/en/book.opcache.php PHP 5.5.0 がリリースされた。finally や yield とか ::class によるネームスペースの解決とか楽しい部分はあれど、まー Zend OPcache は大きいよねってことで、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,172 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-06-22 21:51:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/22/php-5-dot-5-0-with-zend-opcache/">PHP 5.5.0 with Zend OPcache</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.php.net/manual/en/book.opcache.php">http://www.php.net/manual/en/book.opcache.php</a></p>
+
+<p>PHP 5.5.0 がリリースされた。finally や yield とか ::class によるネームスペースの解決とか楽しい部分はあれど、まー Zend OPcache は大きいよねってことで、とりあえず試しておく。</p>
+
+<p>./configure に --enable-opcache を付けてビルドすればよい。簡単。
+あとは php.ini に 以下を追加すると良い。ただし、 extention= ... ではなく、zend_extention= ... と書かねばならないので注意。</p>
+
+<pre><code>zend_extension=/path/to/php/extensions/no-debug-zts-20121212/opcache.so
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=4000
+opcache.revalidate_freq=60
+opcache.fast_shutdown=1
+opcache.enable_cli=1
+</code></pre>
+
+<p>この状態で、 Intel Core i7 2600s と RAM 16GB , Apache 2.2.22 の環境下で <a href="http://www.mumumu.org/~cinnamon/">http://www.mumumu.org/~cinnamon/</a> (WordPressカスタムサイト) に対して、以下のベンチマークを実行してみた。</p>
+
+<pre><code>ab -c 10 -n 1000 http://localhost/~cinnamon/
+
+This is ApacheBench, Version 2.3 &lt;$Revision: 655654 $&gt;
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+Server Software:        Apache/2.2.22
+Server Hostname:        localhost
+Server Port:            80
+
+Document Path:          /~cinnamon/
+Document Length:        15996 bytes
+
+Concurrency Level:      10
+Time taken for tests:   30.007 seconds
+Complete requests:      1000
+Failed requests:        969
+   (Connect: 0, Receive: 0, Length: 969, Exceptions: 0)
+Write errors:           0
+Total transferred:      16257178 bytes
+HTML transferred:       16001178 bytes
+Requests per second:    33.33 [#/sec] (mean)
+Time per request:       300.066 [ms] (mean)
+Time per request:       30.007 [ms] (mean, across all concurrent requests)
+Transfer rate:          529.09 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       4
+Processing:   227  299  35.3    296     663
+Waiting:      208  277  35.3    274     646
+Total:        227  299  35.5    296     667
+
+Percentage of the requests served within a certain time (ms)
+  50%    296
+  66%    305
+  75%    311
+  80%    315
+  90%    329
+  95%    349
+  98%    387
+  99%    423
+ 100%    667 (longest request)
+</code></pre>
+
+<p>PHP 5.4.16 + APC 3.1.13 では以下のようになった。ほとんど変わらない感じだ。</p>
+
+<pre><code>This is ApacheBench, Version 2.3 &lt;$Revision: 655654 $&gt;
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+Server Software:        Apache/2.2.22
+Server Hostname:        localhost
+Server Port:            80
+
+Document Path:          /~cinnamon/
+Document Length:        15993 bytes
+
+Concurrency Level:      10
+Time taken for tests:   30.171 seconds
+Complete requests:      1000
+Failed requests:        965
+   (Connect: 0, Receive: 0, Length: 965, Exceptions: 0)
+Write errors:           0
+Total transferred:      16283497 bytes
+HTML transferred:       16000497 bytes
+Requests per second:    33.14 [#/sec] (mean)
+Time per request:       301.708 [ms] (mean)
+Time per request:       30.171 [ms] (mean, across all concurrent requests)
+Transfer rate:          527.06 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.1      0       2
+Processing:   189  301  27.7    297     406
+Waiting:      164  278  27.4    275     381
+Total:        189  301  27.7    297     406
+
+Percentage of the requests served within a certain time (ms)
+  50%    297
+  66%    308
+  75%    315
+  80%    320
+  90%    336
+  95%    353
+  98%    371
+  99%    383
+ 100%    406 (longest request)
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -384,55 +550,6 @@ OK
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-06-05 10:19:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/05/jubatus-casual-talks-number-1/">Jubatus Casual Talks #1</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://blog.jubat.us/2013/06/jubatus-casual-talks-1.html">http://blog.jubat.us/2013/06/jubatus-casual-talks-1.html</a></p>
-
-<p>Jubatus Casual Talk #1 に行ってきた。<a href="http://jubat.us/ja/">Jubatus</a> は <a href="http://www.ntt.co.jp/RD/OFIS/index.html">NTT研究所</a> と <a href="http://preferred.jp/">PFI</a> が共同開発し、オープンソースとして公開している機械学習のツールだ。分類や回帰、レコメンド、異常検知など、様々な機械学習の問題を扱うことができるようになっている。</p>
-
-<p>機械学習は背景に数学的な考え方をベースとして成り立っているので、少し敬遠しがちな部分があったけれども、いずれ触れなければならない技術なので最近重い腰をあげてみている。Jubatus を「カジュアルに」(=ざっくばらんに) 使っている人たちのトークだから、きっと数学バリバリなトークは少ないだろう、と思って行った次第である。</p>
-
-<p>期待したとおり、9つあった発表のうち、まともな数式が出てきたのは<a href="http://www.slideshare.net/YukihiroTagami/20130602-jubatus-techtalk1">「Jubatus でオンラインランク学習」</a>だけであった。「遊んでみた」レベルから「研究に適用してみた」レベルまで様々あったのだけれども、真面目な研究者の方も非常にカジュアルに発表を構成されていて、自分のような初心者にはとても素晴らしい会だった。開発者の方々が主催されていたのだが、Jubatus に対する要望も発表の随所から吸収できたようで、有意義な会になったようだ。</p>
-
-<p>前提知識がないままに行っても、冒頭の海野さんによる「機械学習チュートリアル」のお陰で全く違和感なく以後のトークを聞くことが出来た。自分は機械学習初心者だと自認する人はこの資料を是非読んでみると良いと思う。</p>
-
-<iframe src="http://www.slideshare.net/slideshow/embed_code/22313984" width="427" height="356" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe>
-
-
-<p></p>
-
-<p>次回も計画されているようなので、アンケートに答えておいた。また是非行ってみようと思う。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page15">&larr; Older</a>
@@ -512,6 +629,10 @@ OK
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
       </li>
     
@@ -529,10 +650,6 @@ OK
     
       <li class="post">
         <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/05/chromebook/">Chromebook</a>
       </li>
     
   </ul>

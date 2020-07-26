@@ -4,7 +4,7 @@
   <title><![CDATA[mumumu の日記]]></title>
   <link href="http://mumumu.github.io/atom.xml" rel="self"/>
   <link href="http://mumumu.github.io/"/>
-  <updated>2020-05-16T01:25:19+09:00</updated>
+  <updated>2020-07-27T02:59:03+09:00</updated>
   <id>http://mumumu.github.io/</id>
   <author>
     <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[新しい知識の学び方]]></title>
+    <link href="http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept/"/>
+    <updated>2020-07-27T02:40:26+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept</id>
+    <content type="html"><![CDATA[<p><a href="https://www.amazon.co.jp/dp/B0193M34D0">https://www.amazon.co.jp/dp/B0193M34D0</a><br/>
+<a href="https://hiyokko-hard.com/support/">https://hiyokko-hard.com/support/</a></p>
+
+<p>「バカに教える電子回路」という本がある。電子回路の設計知識についてとてもわかりやすく書かれた本だ。</p>
+
+<p>ふとソフトウェア的な論理回路に関する知識を参照したくなって開いたのだけれども、残念ながら求める知識はこの本には書かれていなかった。</p>
+
+<p>だけど、一番はじめに書かれている「技術書の読み方」についてはとても参考になったので以下に引用する。</p>
+
+<p>プロコンで様々な知識を繰り返し学び、実践する中で、うんうんそうだよね、と頷く部分が多い。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>技術書の読み方
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>技術書を読むときには必ずパソコンでテキストファイルを作り、出てきた用語や内容を
+</span><span class='line'>自分の言葉でまとめておきます．更に，読んでいてわからない単語や概念が出てきたら，
+</span><span class='line'>インターネットで調べて同じテキストファイルにまとめます．多少間違っていても構いません．
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>少し時間が経ってしまうと，内容や用語を忘れてしまい，再開するのが億劫になります．
+</span><span class='line'>そんな時にまとめたファイルを読み返すと再開しやすくなります．
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>再開させるときの心理的ハードルを下げるのはとても重要です．
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>調べたいことは調べ，面倒なら飛ばします．面倒になった時点でどれだけ時間をかけても
+</span><span class='line'>身につきません．いくつか技術書を読んでいると(または実務でも)，同じ問題は何度もぶ
+</span><span class='line'>つかるので，いずれ分かるようになります．今全てを理解する必要はありません．実験で
+</span><span class='line'>試せるものについては，できるだけやったほうがいいです．こちらも面倒になった時点で
+</span><span class='line'>意味が無いので気分がノッてる時はやってみる・程度でいいと思います．
+</span><span class='line'>
+</span><span class='line'>読んでいて何を言っているか全くわからない，もしくは読みながら寝てしまうようであれ
+</span><span class='line'>ば，自分のレベルに合っていない可能性が高いです．その本は一旦諦め，他の技術書を読
+</span><span class='line'>みましょう．目安としては6割は頑張らずに理解できるくらいの本がちょうどいいと思いま
+</span><span class='line'>す．今はわからなくても，暫くしてから読むとわかるケースが多いので，捨てずにとって
+</span><span class='line'>おきましょう．</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[問題を解く]]></title>
@@ -722,29 +802,6 @@ B) 上記を呼び出すようにショートカットキーを割り当てる</
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[2015 Retrospective]]></title>
-    <link href="http://mumumu.github.io/blog/2015/12/29/2015-retrospective/"/>
-    <updated>2015-12-29T22:22:00+09:00</updated>
-    <id>http://mumumu.github.io/blog/2015/12/29/2015-retrospective</id>
-    <content type="html"><![CDATA[<p>2015年ももう少しで終わろうとしているので、今年がどんな一年だったかを振り返っておこうと思う。</p>
-
-<p>なんといっても、所属が変わったことが一番大きい。それによって、それまで手掛けてきたものに対する要求も大きくなった。環境が全く異なり、期限もあり、頑張る人もいない中で、いろんなバランスをとりながらチームをリードすることが一番大変だった。そんな中でも成果をきちんと出せたのは自分の中で大きな財産になると思うし、技術的にも得たものは大きい。勿論、これはチームメンバの誰一人が欠けても、成し遂げられなかったことである。縁があって一緒にやってきた方々皆に感謝したい。</p>
-
-<p>所属が変わったと書いた。これによって組織のカルチャーも大幅に変わった。ビジネスサイドを理解し、判断の根拠を他人任せにせず、自分なりのベストを（例え間違っていても）アウトプットすることが求められるようになった。これによって「情報を隠さず、誰が相手でも正直ベースでぶつかる」という自分のスタイルを全力で貫いても困らなくなった。それが、チームのリードに苦労した中でもうまくやってこられた大きな要因かもしれない。</p>
-
-<p>技術的には、<a href="http://mumumu.github.io/blog/2015/01/03/look-back-at-2014/">去年やっていたこと</a> に加えて、プロダクトのスケールを妨げるあらゆる要因を潰すことを延々とやっていた。<a href="http://redis.io/topics/cluster-spec">Redis Cluster</a> の導入とか、プロダクトのコアのチューニングとか、バッチの速度を数十倍にしたりとか、それは本当にスケールするの？ とコードを書く人たちに問い続けるとか、そんな感じ。プロダクトに機能を付け加える人達の裏で、それの邪魔をしないようにするための基盤を作ることだけに徹した。</p>
-
-<blockquote><p>忙しさが大きくなると、周囲の動向に関する視野や問題意識が狭くなると思う。問題意識と視野あってこそのアウトプットなのだから、余裕を持って楽しもう。それが2015年の目標である。</p></blockquote>
-
-<p>去年こんなふうに書いたが、忙しさに紛れて、今年も余裕がなかったと言わざるを得ない。それは今年のエントリが少ないことを見ても明らかだろう。ただ、技術を楽しみながら、書いたコードを外部に還元することは忘れなかったつもりだ。 <a href="http://redis.io/">Redis</a> のクライアント周辺については、必要に迫られながらも良い成果を出せたと思うけど、インプットもアウトプットもまだまだ足りないなあと思う。切磋琢磨する相手も増えたので、いろいろな人と協働しながらもっと楽しみたい。</p>
-
-<p>来年はエンジニアとしての立ち位置が問われる一年になるはずだ。純粋に手を動かし、楽しむだけでなく、明確になりつつあるストロングポイントを踏まえて、どうしていくか。なんらかの答えを出さねばならない。</p>
-
-<p>本当の意味での正念場といえよう。</p>
 ]]></content>
   </entry>
   

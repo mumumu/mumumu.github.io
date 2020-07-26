@@ -9,7 +9,8 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="今年のゴールデンウィークは、JavaScript と CSS の重点補強期間と勝手に位置付けている。そこに上の「セレクタ、詳細度、カスケード」が目にとまったので ebook を買って読んでみた。 内容を有り体に言えば、「CSS完全ガイド 第2版」 の 第2章と第3章 を CSS3 &hellip;">
+  <meta name="description" content="http://www.debian.org/News/2013/20130504
+http://www.debian.org/releases/wheezy/releasenotes 今のところ手元で運用している全仮想マシンが Debian なので、早速アップデートした。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-05-05 23:21:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/05/debian-gnu-slash-linux-7-dot-0-wheezy/">Debian GNU/Linux 7.0 Wheezy</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.debian.org/News/2013/20130504">http://www.debian.org/News/2013/20130504</a><br/>
+<a href="http://www.debian.org/releases/wheezy/releasenotes]">http://www.debian.org/releases/wheezy/releasenotes</a></p>
+
+<p>今のところ手元で運用している全仮想マシンが Debian なので、早速アップデートした。アップグレードに関する手順や注意点はリリースノートに全て纏まっていることと、Fedora とかと違って Debian のアップグレードは凄く安定しているのでそんなに手間を掛けなくても移行できる。</p>
+
+<p>バックアップや細かいチェックを除けば、/etc/apt/sources.list の squeeze を wheezy に書き換えて以下を実行するのみだ。</p>
+
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get dist-upgrade
+</code></pre>
+
+<p>自分が <a href="http://www.nagios.org/">nagios</a> をソースから入れていたことから、<a href="http://wiki.debian.org/LSBInitScripts/DependencyBasedBoot">insserv</a> まわりで衝突が起きて止まったことと、 <a href="/blog/2013/04/27/ruby-2-dot-0-0-p0/">Ruby を 2.0.0-p0 にしていて</a> sudo -u mumumu ruby .... と rc.local に書いていた部分が動かなくなったことを除けば順調に進行。 楽チンだなー。この移行の安定性が サーバに Debian を使う一番の理由だったりする。</p>
+
+<p><img src="/images/debian_wheezy_upgrade_complete.png" alt="debian upgrade complete!" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -398,6 +447,10 @@ $ bundle install
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
       </li>
     
@@ -415,10 +468,6 @@ $ bundle install
     
       <li class="post">
         <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/05/chromebook/">Chromebook</a>
       </li>
     
   </ul>
