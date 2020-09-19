@@ -4,7 +4,7 @@
   <title><![CDATA[Category: documentation | mumumu の日記]]></title>
   <link href="http://mumumu.github.io/blog/categories/documentation/atom.xml" rel="self"/>
   <link href="http://mumumu.github.io/"/>
-  <updated>2020-07-27T02:59:03+09:00</updated>
+  <updated>2020-09-19T23:41:14+09:00</updated>
   <id>http://mumumu.github.io/</id>
   <author>
     <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
@@ -45,7 +45,14 @@
     <link href="http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation/"/>
     <updated>2013-12-08T00:00:00+09:00</updated>
     <id>http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation</id>
-    <content type="html"><![CDATA[<p>この記事は、<a href="http://qiita.com/advent-calendar/2013/docja">doc-ja Advent Calendar</a> 8日目の参加記事です。</p>
+    <content type="html"><![CDATA[<p><b>[Update September 19th 23:29 JST by m ]</b></p>
+
+<p>ここに書いた内容は、更新も含めて <a href="https://gist.github.com/8464d879ccb939365d729cda242dbf14">PHP マニュアル 日本語版について</a> に移動しています。最新の内容はそちらを参照して下さい。</p>
+
+<hr />
+
+<p>　<br/>
+この記事は、<a href="http://qiita.com/advent-calendar/2013/docja">doc-ja Advent Calendar</a> 8日目の参加記事です。</p>
 
 <p>ここでは、PHPを使うと必ず一度は目にするであろう <a href="http://www.php.net/manual/ja/">PHP マニュアル</a> についてつれづれと書いてみようと思います。「PHP のドキュメント」に関する日本語の文書が少なくなってきている気がすることが、このエントリを書く動機になっています。</p>
 
