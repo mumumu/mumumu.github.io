@@ -6,6 +6,12 @@ comments: true
 categories: [documentation, php]
 ---
 
+<b>[Update September 19th 23:29 JST by m ]</b>
+
+ここに書いた内容は、更新も含めて [PHP マニュアル 日本語版について](https://gist.github.com/8464d879ccb939365d729cda242dbf14) に移動しています。最新の内容はそちらを参照して下さい。
+
+----  
+　  
 この記事は、[doc-ja Advent Calendar](http://qiita.com/advent-calendar/2013/docja) 8日目の参加記事です。
 
 ここでは、PHPを使うと必ず一度は目にするであろう [PHP マニュアル](http://www.php.net/manual/ja/) についてつれづれと書いてみようと思います。「PHP のドキュメント」に関する日本語の文書が少なくなってきている気がすることが、このエントリを書く動機になっています。
