@@ -4,7 +4,7 @@
   <title><![CDATA[Category: php | mumumu の日記]]></title>
   <link href="http://mumumu.github.io/blog/categories/php/atom.xml" rel="self"/>
   <link href="http://mumumu.github.io/"/>
-  <updated>2020-09-19T23:51:41+09:00</updated>
+  <updated>2020-09-19T23:56:25+09:00</updated>
   <id>http://mumumu.github.io/</id>
   <author>
     <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
@@ -30,7 +30,7 @@
 
 <p>メンテナ向けの文書も含まれているので、自分がメンテナンスをやめても、引き継ぐ人がいれば作業は続くだろう。</p>
 
-<p>メンテナと直接話したいや、PHPマニュアルの日本語版についてバグを報告したい方は、<a href="https://phpusers-ja.slack.com/">PHPユーザーズ Slack</a> が現状は一番話しやすいと思うので、是非おいでませ(｀ー´)</p>
+<p>メンテナと直接話したい方や、PHPマニュアルの日本語版についてバグを報告したい方は、<a href="https://phpusers-ja.slack.com/">PHPユーザーズ Slack</a> が現状は一番話しやすいと思うので、是非おいでませ(｀ー´)</p>
 ]]></content>
   </entry>
   
