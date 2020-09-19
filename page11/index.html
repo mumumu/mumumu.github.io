@@ -9,7 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="Tiarra といえば Perl で書かれた日本では著名な IRC Proxy であるが、SSL 経由で接続しようと思ってぐぐる と 「stone 経由で接続する」 Howto がたくさん出てくる。果ては tiarra では SSL 接続できないから znc に移行した。 &hellip;">
+  <meta name="description" content="皆様は CDN 経由で配布されるソフトウェアを信用しているだろうか。 最近は scriptタグ で埋め込む JavaScript のライブラリも増えてきて、CDN でそれを配布するプロジェクトも増えてきた。代表例が jQuery である。jQuery は通常のjs や minify &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-12-28 23:19:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/28/can-you-trust-cdn/">Can you trust software distributed via CDN?</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>皆様は CDN 経由で配布されるソフトウェアを信用しているだろうか。</p>
+
+<p>最近は scriptタグ で埋め込む JavaScript のライブラリも増えてきて、CDN でそれを配布するプロジェクトも増えてきた。代表例が <a href="http://jquery.com/">jQuery</a> である。jQuery は通常のjs や minify されたものの他に、以下のような CDN 経由での配布も可能にしている。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://code.jquery.com/jquery-1.10.1.min.js"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ダウンロードせず CDN に任せるということは、js のホストを外部に任せるということである。このことは以下の懸念に繋がる</p>
+
+<ol type="a">
+<li>インターネットに繋がっていないと開発できない</li>
+<li>CDN 上のファイルが動かない形に変更されたら困る</li>
+<li>CDN がサービスを停止したらどうするか</li>
+<li>プロジェクト自体が活動を停止し、配布をやめたときにソースが手に入らなくなる</li>
+</ol>
+
+
+<p>上記の理由から、自分は CDN を信用していない。jQuery の場合は、絶対に手元にダウンロードして利用する。自分の制御下にないところにホストを任せることほど危険なことはないと思う。</p>
+
+<p>だが、自分の制御下にないソフトウェアを利用せざるを得ない場合がある。</p>
+
+<p>JavaScript のグラフライブラリである <a href="https://developers.google.com/chart/">Google Chart</a> はその代表例だ。これは <a href="https://developers.google.com/chart/terms">利用規約</a> でライブラリをダウンロードすることを認めていない。バージョンアップと配布は Google にお任せである。こういうものに全面的に依存したサービスを作るのは、サービスの生死を Google に握られているようなものだ。現にこれを使っていて、ホスト先のファイルが勝手に互換性がない形で変更されて動かなくなり困ったことがある。</p>
+
+<p>Google Chart を使ってから、自分の制御下にないソフトウェアはますます信用できなくなった。 <br/>
+同僚は「開発段階では CDN を使ってもいいけど、Production にする段階で手元に引き上げてきてそれを使うかなー」と言っていたけど、自分的にはそれすら生ぬるいと思う。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -502,49 +563,6 @@ $this-&gt;connecting の中身は、下のようになっている。</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-10-13 02:20:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/13/debugging-server-with-strace/">debugging server with strace</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><iframe src="http://www.slideshare.net/slideshow/embed_code/27094034" width="427" height="356" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-
-
-<p><br />
-<br /><br/>
-社内LT で strace について喋ったので記録しておく。</p>
-
-<p>結構噛み砕いて喋ったつもりだし、自分はこれくらいまで噛み砕かないと多分人前では喋らないんだろうな、という実感が得られたトークでもあった。幸い好評だったようなので、ここに貼る次第だ。</p>
-
-<p>今度は統計の話でもトークしてみたいと思う。これくらいの噛み砕き具合で(*´～｀)</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page12">&larr; Older</a>
@@ -624,6 +642,10 @@ $this-&gt;connecting の中身は、下のようになっている。</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
       </li>
     
@@ -641,10 +663,6 @@ $this-&gt;connecting の中身は、下のようになっている。</p>
     
       <li class="post">
         <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
       </li>
     
   </ul>

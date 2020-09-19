@@ -9,7 +9,8 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="電子書籍の自炊について社内で LT をしたので記録しておく。 このスライドには、「自炊代行業者は自分的にグレーゾーン」などと書いているが、はじめに調べた BookScan を見る限り、理屈の通った商売はしていると思う。だが、ユーザーに対して スキャンを頼む全ての著作物の著作権者への許可を求め &hellip;">
+  <meta name="description" content="http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html
+http://at-aka.blogspot.jp/2006/11/seq-0-padding.html seq(1) ってコマンドラインから連番を作るときにとても便利だ。ただ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,141 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-01-20 12:03:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/20/seq-w/">seq -w and zero padding</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html">http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html</a><br/>
+<a href="http://at-aka.blogspot.jp/2006/11/seq-0-padding.html">http://at-aka.blogspot.jp/2006/11/seq-0-padding.html</a></p>
+
+<p>seq(1) ってコマンドラインから連番を作るときにとても便利だ。ただ、この値を0埋めしたいときがある。<br/>
+その場合は -w オプションを付けろといろんなブログに書いてある。以下のような具合だ。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -w 1 10
+</span><span class='line'>01
+</span><span class='line'>02
+</span><span class='line'>03
+</span><span class='line'>04
+</span><span class='line'>05
+</span><span class='line'>06
+</span><span class='line'>07
+</span><span class='line'>08
+</span><span class='line'>09
+</span><span class='line'>10</span></code></pre></td></tr></table></div></figure>
+
+
+<p>けど、これは指定する最大値が二桁以上の場合だ。上記の 10 を一桁の値、たとえば 5 に変えるとうまくいかなくなる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -w 1 5
+</span><span class='line'>1
+</span><span class='line'>2
+</span><span class='line'>3
+</span><span class='line'>4
+</span><span class='line'>5</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これは -w オプションが最大の桁数に合わせて0埋めするためだ。だから、以下のようにすると同じように通用する。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -w 01 5
+</span><span class='line'>01
+</span><span class='line'>02
+</span><span class='line'>03
+</span><span class='line'>04
+</span><span class='line'>05</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最初 -f オプションでフォーマットしようかと思ったのだけど、printf の %d を指定すると以下のように怒られる。<br/>
+これは、数値を内部的に浮動小数点で扱っているためだった。 <a href="http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html">マニュアル</a> にもしっかり書いてある。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -f "%02d" 01 5
+</span><span class='line'>seq: FORMAT `%02d' に不明な %d 指定があります</span></code></pre></td></tr></table></div></figure>
+
+
+<p>なので、g を指定してあげるとちゃんとうまくいく。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -f "%02g" 1 5
+</span><span class='line'>01
+</span><span class='line'>02
+</span><span class='line'>03
+</span><span class='line'>04
+</span><span class='line'>05</span></code></pre></td></tr></table></div></figure>
+
+
+<p>まあ、以下が一番スマートかなー、と思う次第(*´〜｀)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -w 01 5
+</span><span class='line'>01
+</span><span class='line'>02
+</span><span class='line'>03
+</span><span class='line'>04
+</span><span class='line'>05</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -378,67 +514,6 @@ Session の寿命は、データベースのデータにアクセスしたり管
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-12-28 23:19:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/28/can-you-trust-cdn/">Can you trust software distributed via CDN?</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p>皆様は CDN 経由で配布されるソフトウェアを信用しているだろうか。</p>
-
-<p>最近は scriptタグ で埋め込む JavaScript のライブラリも増えてきて、CDN でそれを配布するプロジェクトも増えてきた。代表例が <a href="http://jquery.com/">jQuery</a> である。jQuery は通常のjs や minify されたものの他に、以下のような CDN 経由での配布も可能にしている。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script src="http://code.jquery.com/jquery-1.10.1.min.js"&gt;&lt;/script&gt;
-</span><span class='line'>&lt;script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"&gt;&lt;/script&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ダウンロードせず CDN に任せるということは、js のホストを外部に任せるということである。このことは以下の懸念に繋がる</p>
-
-<ol type="a">
-<li>インターネットに繋がっていないと開発できない</li>
-<li>CDN 上のファイルが動かない形に変更されたら困る</li>
-<li>CDN がサービスを停止したらどうするか</li>
-<li>プロジェクト自体が活動を停止し、配布をやめたときにソースが手に入らなくなる</li>
-</ol>
-
-
-<p>上記の理由から、自分は CDN を信用していない。jQuery の場合は、絶対に手元にダウンロードして利用する。自分の制御下にないところにホストを任せることほど危険なことはないと思う。</p>
-
-<p>だが、自分の制御下にないソフトウェアを利用せざるを得ない場合がある。</p>
-
-<p>JavaScript のグラフライブラリである <a href="https://developers.google.com/chart/">Google Chart</a> はその代表例だ。これは <a href="https://developers.google.com/chart/terms">利用規約</a> でライブラリをダウンロードすることを認めていない。バージョンアップと配布は Google にお任せである。こういうものに全面的に依存したサービスを作るのは、サービスの生死を Google に握られているようなものだ。現にこれを使っていて、ホスト先のファイルが勝手に互換性がない形で変更されて動かなくなり困ったことがある。</p>
-
-<p>Google Chart を使ってから、自分の制御下にないソフトウェアはますます信用できなくなった。 <br/>
-同僚は「開発段階では CDN を使ってもいいけど、Production にする段階で手元に引き上げてきてそれを使うかなー」と言っていたけど、自分的にはそれすら生ぬるいと思う。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page11">&larr; Older</a>
@@ -518,6 +593,10 @@ Session の寿命は、データベースのデータにアクセスしたり管
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
       </li>
     
@@ -535,10 +614,6 @@ Session の寿命は、データベースのデータにアクセスしたり管
     
       <li class="post">
         <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
       </li>
     
   </ul>

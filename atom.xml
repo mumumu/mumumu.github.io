@@ -4,7 +4,7 @@
   <title><![CDATA[mumumu の日記]]></title>
   <link href="http://mumumu.github.io/atom.xml" rel="self"/>
   <link href="http://mumumu.github.io/"/>
-  <updated>2020-09-19T23:41:14+09:00</updated>
+  <updated>2020-09-19T23:51:41+09:00</updated>
   <id>http://mumumu.github.io/</id>
   <author>
     <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PHPマニュアル メンテナンス用ドキュメント最新版]]></title>
+    <link href="http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto/"/>
+    <updated>2020-09-19T23:42:05+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto</id>
+    <content type="html"><![CDATA[<p>PHP マニュアルのメンテナの一人として、過去にいくつか文書を書いてきたが、それの最新版を全て gist に集約した。</p>
+
+<ul>
+<li><a href="https://gist.github.com/8464d879ccb939365d729cda242dbf14">PHP マニュアル 日本語版について</a></li>
+<li><a href="https://gist.github.com/7b93e8703f357d9129c0e5770a788963">PHPマニュアル のビルド方法</a></li>
+<li><a href="https://gist.github.com/78cd12f72c3497cafbcd6450700afdf3">メンテナ向け: PHPマニュアル のメンテナンス方法</a></li>
+<li><a href="https://gist.github.com/a84365a1c55934b8ececbb839a2f9ca1">メンテナ向け: PHPマニュアル の chm ビルド環境</a></li>
+</ul>
+
+
+<p>メンテナ向けの文書も含まれているので、自分がメンテナンスをやめても、引き継ぐ人がいれば作業は続くだろう。</p>
+
+<p>メンテナと直接話したいや、PHPマニュアルの日本語版についてバグを報告したい方は、<a href="https://phpusers-ja.slack.com/">PHPユーザーズ Slack</a> が現状は一番話しやすいと思うので、是非おいでませ(｀ー´)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[新しい知識の学び方]]></title>
@@ -680,25 +701,6 @@ B) 上記を呼び出すようにショートカットキーを割り当てる</
 <p>「腕が疲れそう」とか、「おんなじじゃね」とかいろんなことを言われたが、1kg を切る重さに加え、調整すべき場所も天板と脚の部分と意外に少ないので、個人的には扱いやすくて気に入っている。ただ、新しいものだからプラシーボにかかっている疑いも否定できないので、暫く使ってみるつもりだ。</p>
 
 <p>とりあえずは、10ヶ月ぶりにエントリを書く気になった、というのがこれを買った一番の成果と言えるのではないだろうか(´ー｀; )</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[PATCH] fixed invalid atom-log feed url in file log page]]></title>
-    <link href="http://mumumu.github.io/blog/2015/12/29/patch-fixed-invalid-atom-log-feed-url-in-file-log-page/"/>
-    <updated>2015-12-29T23:34:00+09:00</updated>
-    <id>http://mumumu.github.io/blog/2015/12/29/patch-fixed-invalid-atom-log-feed-url-in-file-log-page</id>
-    <content type="html"><![CDATA[<p><a href="https://patchwork.mercurial-scm.org/patch/12367/">https://patchwork.mercurial-scm.org/patch/12367/</a></p>
-
-<p><a href="https://www.mercurial-scm.org/">Mercurial</a> に patch を送ったんだけど、<a href="https://www.mercurial-scm.org/wiki/ContributingChanges#Submission_checklist">patchを投稿するにあたっての規約</a> がいろいろと面倒だった。なんとか順応できたけど、普段から GitHub に慣れきっているとこういうのはつらい。逆に言えば、Pull Request という共通のプロトコルを提供している GitHub の偉大さを体で思い知ったというところか。</p>
-
-<p>やまねさんの物言いは、そういう意味でもっともだと思いました。まる。</p>
-
-<blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">OSSはライセンシングという共通プロトコルによってリーガルコストを下げた。GitHubはプロジェクト・プロダクトごとの決まりを共通化したプロトコルを導入することでコミュニケーションコストを下げた。OSSという観点ではコストを下げてアウトプットを最大化しているのだから正しい</p>&mdash; henrich (@henrich) <a href="https://twitter.com/henrich/status/681371626437382144">December 28, 2015</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 ]]></content>
   </entry>
   

@@ -9,9 +9,8 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="ルビコン川(Wikipedia) 不退転の決意で臨む。 以前そんな決意をしたのは 2010年の9月 だった。その動機になった軸、そして目的は今も変わっていない。これで3度目になる。 その軸があるからこそ、周囲の人にも応援して貰える。そんな気がしている。
-いつもそんなことを思い、前に進む毎日だ。
-">
+  <meta name="description" content="http://keepass.info/
+ヤフー、最大2200万件のIDが流出の可能性--確認ツールも公開 Yahoo Japan ID が2200万件も流出したとの報を受けた。直ちに認証情報流出に繋がるとは限らないが、これを機にパスワード管理もきちんとせなあかんな、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +77,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-05-19 23:19:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/19/password-change-festival/">Password Change Festival</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://keepass.info/">http://keepass.info/</a><br/>
+<a href="http://japan.cnet.com/news/business/35032224/">ヤフー、最大2200万件のIDが流出の可能性--確認ツールも公開</a></p>
+
+<p>Yahoo Japan ID が2200万件も流出したとの報を受けた。直ちに認証情報流出に繋がるとは限らないが、これを機にパスワード管理もきちんとせなあかんな、ということでいろいろなサイトのパスワードを変更してまわった。</p>
+
+<p>パスワード管理には KeePass Password Safe を使う。これは Windows Only だと最初思っていたのだが、よく調べてみると <a href="http://www.mono-project.com/">mono</a> が動く環境であれば動くとのこと。よく見てみると、Debian 系でも 以下のコマンドで一発インストールが可能だった。自分の環境は <a href="http://www.kubuntu.org/">Kubuntu</a> なので、楽ちん楽ちん。</p>
+
+<pre><code>sudo apt-get install keepass2
+</code></pre>
+
+<p>いくつかのサイトはパスワードが同じものがあった。強度が高いパスワードを生成するようにしてそれらを全て置き換えた。あと、Yahoo Japan の ID は実質未使用だったので全て削除した。数はできるだけ減らすに限る。</p>
+
+<p>管理対象のサービスやサーバを数えてみたら、合計24あった。まあ、そんなものか。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -294,85 +339,6 @@ b OK List completed.
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-05-09 01:32:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/09/fabric/">Fabric</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://fabfile.org">http://fabfile.org/</a></p>
-
-<p>以前から Python をちゃんと使いたいと思いながらやるやる詐欺をしていた mumumu です。こんばんは。</p>
-
-<p>最近 <a href="http://shop.oreilly.com/product/9781565924642.do">Learning Python</a> をちゃんと読み終え、個人的なプログラムも書き始めた。現在も Python は 2.x と 3.x が過渡期のため、make altinstall をしつつ複数のバージョンを共存させながらいろんなことを試している。</p>
-
-<p>Fabric もそのひとつだ。いろんなコマンドを複数サーバ群で実行するためのデコレータとAPIが備わっている。以前から自宅の仮想マシン群で面倒臭いと思っていた Debian の アップデート作業をなんとかしたいと思っていたところに、<a href="https://twitter.com/Voluntas">@volantus</a> さんが twitter で試している旨をつぶやいていたので自分もやってみることにした。</p>
-
-<p>setuptools の fork である <a href="http://pythonhosted.org/distribute/">distribute</a> から入れてること自体が初心者丸出しですね。</p>
-
-<pre><code>curl -O http://python-distribute.org/distribute_setup.py
-sudo python distribute_setup.py 
-curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
-sudo python get-pip.py 
-sudo pip install fabric
-</code></pre>
-
-<p>fabfile.py を以下のように書く。<a href="http://docs.fabfile.org/en/1.6/api/core/operations.html#fabric.operations.local">local()</a> はssh接続せずにコマンドを実行する。<a href="http://docs.fabfile.org/en/1.6/api/core/operations.html#fabric.operations.run">run()</a> は ssh 接続してコマンドを実行する。そして、リモートで sudo 権限が必要なら <a href="http://docs.fabfile.org/en/1.6/api/core/operations.html#fabric.operations.sudo">sudo()</a> を使う。ローカルで sudo したいときは、local() を使うしか現状無いようだ。</p>
-
-<p><a href="http://docs.fabfile.org/en/1.6/api/core/decorators.html#fabric.decorators.hosts">@hosts デコレータ</a> で、リモートのサーバ群を指定できる。とっても簡単。</p>
-
-<pre><code>#!/usr/bin/env python
-
-from fabric.api import *
-
-env.password = 'XXXXXXX'
-
-def localup():
-    local('echo %s | sudo -S apt-get update &amp;&amp; sudo apt-get upgrade' % env.password)
-
-@hosts('host1', 'host2', 'host3')
-def upgrade():
-    sudo('apt-get update')
-    sudo('apt-get upgrade')
-</code></pre>
-
-<p>上記はパスワードベタ打ちなので、自分だけの環境に置くこと。</p>
-
-<p>あとは、fabfile.py があるディレクトリで、以下を実行すればよい。fabfile.py に定義した関数が、fab コマンドに引き渡すコマンド名になる。</p>
-
-<pre><code>fab localup
-fab upgrade
-</code></pre>
-
-<p>簡単で良いのだけど、ローカルの sudo が local() でしかできないのはなんとかならんもんかね(*゜ー゜)
-ちょい調べてみるか。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page17">&larr; Older</a>
@@ -452,6 +418,10 @@ fab upgrade
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
       </li>
     
@@ -469,10 +439,6 @@ fab upgrade
     
       <li class="post">
         <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
       </li>
     
   </ul>

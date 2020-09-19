@@ -9,7 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="http://www.php.net/manual/en/book.opcache.php PHP 5.5.0 がリリースされた。finally や yield とか ::class によるネームスペースの解決とか楽しい部分はあれど、まー Zend OPcache は大きいよねってことで、 &hellip;">
+  <meta name="description" content="PHP のドキュメントは毎日凄い勢いで更新されている。これについていくのは 高木神 も面倒だと思っているはずである。だが、revcheck.php をいちいち目視で確認するなんて俺の中では最悪だ。これがどこまで機能してるかだってわからない。 けど、最近 php-doc-ja ML &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,47 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-06-27 04:31:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/27/phpdoc-rev-compare-dot-py/">phpdoc_rev_compare.py</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>PHP のドキュメントは毎日凄い勢いで更新されている。これについていくのは <a href="http://d.hatena.ne.jp/takagimasahiro/">高木神</a> も面倒だと思っているはずである。だが、<a href="http://doc.php.net/php/ja/revcheck.php?p=missfiles">revcheck.php</a> をいちいち目視で確認するなんて俺の中では最悪だ。これがどこまで機能してるかだってわからない。</p>
+
+<p>けど、最近 <a href="http://ml.php.gr.jp/mailman/listinfo/php-doc">php-doc-ja ML</a> に来たちょろちょろとした報告を修正だけしているやる気のなさっぷりにも嫌気がさしてきた。やっぱり日々追加されるドキュメントだけでも(たとえそれが未翻訳であっても)追いついておくべきだ。と思った。</p>
+
+<p>それを自分の満足行く形で抽出し、反映するために以下のスクリプトを書いた。最終更新リビジョンだけ見ることが出来れば、少なくともおおまかな差分情報だけは判別できる。これを足がかりにすれば、「片方に全く反映されていないモノ」については自動同期が可能なはずではある。いきなりやると怖いのでやってないけれども。</p>
+
+<script src="https://gist.github.com/mumumu/5870407.js"></script>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -397,159 +438,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-06-07 12:47:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/07/migrating-mysql-5-dot-5-to-5-dot-6/">Migrating MySQL 5.5 to 5.6</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.mysql.com/">MySQL</a>5.5 からビルドは <a href="http://www.cmake.org">cmake</a> でするようになったが、ビルドオプションが手元に残らない（誰か <a href="http://www.gnu.org/software/automake/">Autotool</a> でいうところの config.status みたいなものがあれば教えて!)。そして、MySQL の新しいメジャーバージョンが出る度に公式ドキュメントの一般的な手順を追うのも面倒臭い。</p>
-
-<p>ということで、以下に私的な Debian GNU/Linux Wheezy 上でのアップグレード手順をメモしておく。家サーバの私的な手順なので参考にしてはいけない。ソースから入れているので apt-get install build-essential も当然しておくこと。</p>
-
-<p>また、mysql ユーザーとグループは作成済みとし、起動スクリプト /etc/init.d/mysqld も作成済みとする。</p>
-
-<hr />
-
-<p><br />
-マニュアルを読み、アップグレードに関する注意や非互換変更、リリースノートを読んでおく。</p>
-
-<p><a href="http://dev.mysql.com/doc/refman/5.6/en/upgrading.html">http://dev.mysql.com/doc/refman/5.6/en/upgrading.html</a>
-<a href="http://dev.mysql.com/doc/refman/5.6/en/upgrading.html">http://dev.mysql.com/doc/refman/5.6/en/upgrading-from-previous-series.html</a>
-<a href="http://dev.mysql.com/doc/refman/5.6/en/upgrading.html">http://dev.mysql.com/doc/refman/5.6/en/mysql-upgrade.html</a>
-<a href="http://dev.mysql.com/doc/refman/5.6/en/upgrading.html">http://dev.mysql.com/doc/relnotes/mysql/5.6/en/</a></p>
-
-<p>次に、ソースアーカイブを展開して普通にビルドする。</p>
-
-<pre><code>$ tar zxvf mysql-5.6.12.tar.gz
-$ cd mysql-5.6.12
-$ cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql5.6 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=ON -DWITH_READLINE=ON  .
-$ make -j8
-$ sudo make install
-$ sudo -s
-</code></pre>
-
-<p>ここで root になり、/usr/local/mysql5.6 以下の権限を設定する。<br/>
-最後の data ディレクトリへの設定は意味ないが、様式美のようなものだ。</p>
-
-<pre><code># cd /usr/local/mysql5.6
-# chown -R root.mysql .
-# chown -R mysql data
-</code></pre>
-
-<p>mysqld を一度停止する。</p>
-
-<pre><code># /etc/init.d/mysqld stop
-</code></pre>
-
-<p>自分はデータを /home/mysql/data-VERSION 以下に置いているので、それを新たな場所にコピーし、権限を設定する。元データを残しておくのが mysqldump 等によるバックアップの代替だ。</p>
-
-<pre><code># cd /home/mysql
-# cp -pR data-5.5 data-5.6
-# chown -R mysql.mysql data-5.6
-</code></pre>
-
-<p>/etc/init.d/mysqld を編集する。自分は support-files/mysql.server をそのまま使っているので、basedir と datadir を以下のように書き換える。</p>
-
-<pre><code>--- mysqld-5.5  2013-06-07 12:58:13.075107498 +0900
-+++ mysqld      2013-06-07 12:37:57.775074031 +0900
-@@ -43,8 +43,8 @@
-# If you change base dir, you must also change datadir. These may get
-# overwritten by settings in the MySQL configuration files.
-
--basedir=/usr/local/mysql5.5
--datadir=/home/mysql/data-5.5
-+basedir=/usr/local/mysql5.6
-+datadir=/home/mysql/data-5.6
-</code></pre>
-
-<p>MySQL を起動する。(この時点で既に5.6)</p>
-
-<pre><code># /etc/init.d/mysqld start
-</code></pre>
-
-<p>一度接続できることを確認する。</p>
-
-<pre><code># /usr/local/mysql5.6/bin/mysql -u root -p mysql
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 85
-Server version: 5.6.12-log Source distribution
-
-....
-</code></pre>
-
-<p>mysql_upgrade を実行する。 --basedir と --datadir は無視されるんだそうな。<br/>
-<a href="http://dev.mysql.com/doc/refman/5.6/en/mysql-upgrade.html">マニュアル通りですな。</a></p>
-
-<pre><code># /usr/local/mysql5.6/bin/mysql_upgrade --basedir=/usr/local/mysql5.6/ --datadir=/home/mysql/data-5.6/ -u root -p
-/usr/local/mysql5.6/bin/mysql_upgrade: the '--basedir' option is always ignored
-/usr/local/mysql5.6/bin/mysql_upgrade: the '--datadir' option is always ignored
-Enter password: 
-Looking for 'mysql' as: /usr/local/mysql5.6/bin/mysql
-Looking for 'mysqlcheck' as: /usr/local/mysql5.6/bin/mysqlcheck
-Running 'mysqlcheck' with connection arguments: '--port=3306' '--socket=/tmp/mysql.sock' 
-Warning: Using a password on the command line interface can be insecure.
-Running 'mysqlcheck' with connection arguments: '--port=3306' '--socket=/tmp/mysql.sock' 
-Warning: Using a password on the command line interface can be insecure.
-mysql.columns_priv                                 OK
-mysql.db                                           OK
-mysql.event                                        OK
-mysql.func                                         OK
-mysql.general_log                                  OK
-mysql.help_category                                OK
-mysql.help_keyword                                 OK
-mysql.help_relation                                OK
-mysql.help_topic                                   OK
-mysql.host                                         OK
-mysql.ndb_binlog_index                             OK
-mysql.plugin                                       OK
-mysql.proc                                         OK
-mysql.procs_priv                                   OK
-mysql.proxies_priv                                 OK
-mysql.servers                                      OK
-mysql.slow_log                                     OK
-mysql.tables_priv                                  OK
-mysql.test                                         OK
-mysql.time_zone                                    OK
-mysql.time_zone_leap_second                        OK
-mysql.time_zone_name                               OK
-mysql.time_zone_transition                         OK
-mysql.time_zone_transition_type                    OK
-mysql.user                                         OK
-Running 'mysql_fix_privilege_tables'...
-....
-OK
-</code></pre>
-
-<p>これで完了。何か起きたときは /etc/init.d/mysqld を古いモノに差し替えて mysqld を再起動すること。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page15">&larr; Older</a>
@@ -629,6 +517,10 @@ OK
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
       </li>
     
@@ -646,10 +538,6 @@ OK
     
       <li class="post">
         <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
       </li>
     
   </ul>

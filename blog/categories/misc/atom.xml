@@ -4,7 +4,7 @@
   <title><![CDATA[Category: misc | mumumu の日記]]></title>
   <link href="http://mumumu.github.io/blog/categories/misc/atom.xml" rel="self"/>
   <link href="http://mumumu.github.io/"/>
-  <updated>2020-09-19T23:41:14+09:00</updated>
+  <updated>2020-09-19T23:51:41+09:00</updated>
   <id>http://mumumu.github.io/</id>
   <author>
     <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PHPマニュアル メンテナンス用ドキュメント最新版]]></title>
+    <link href="http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto/"/>
+    <updated>2020-09-19T23:42:05+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto</id>
+    <content type="html"><![CDATA[<p>PHP マニュアルのメンテナの一人として、過去にいくつか文書を書いてきたが、それの最新版を全て gist に集約した。</p>
+
+<ul>
+<li><a href="https://gist.github.com/8464d879ccb939365d729cda242dbf14">PHP マニュアル 日本語版について</a></li>
+<li><a href="https://gist.github.com/7b93e8703f357d9129c0e5770a788963">PHPマニュアル のビルド方法</a></li>
+<li><a href="https://gist.github.com/78cd12f72c3497cafbcd6450700afdf3">メンテナ向け: PHPマニュアル のメンテナンス方法</a></li>
+<li><a href="https://gist.github.com/a84365a1c55934b8ececbb839a2f9ca1">メンテナ向け: PHPマニュアル の chm ビルド環境</a></li>
+</ul>
+
+
+<p>メンテナ向けの文書も含まれているので、自分がメンテナンスをやめても、引き継ぐ人がいれば作業は続くだろう。</p>
+
+<p>メンテナと直接話したいや、PHPマニュアルの日本語版についてバグを報告したい方は、<a href="https://phpusers-ja.slack.com/">PHPユーザーズ Slack</a> が現状は一番話しやすいと思うので、是非おいでませ(｀ー´)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[新しい知識の学び方]]></title>
@@ -189,25 +210,6 @@ b) 複数のレシピが作れること<br/>
 <p>以下がその写真である。</p>
 
 <p><img src="http://mumumu.github.io/images/P_20191104_173804.jpg" width="800" height="806"/></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[FireTV Stick とUSBケーブル]]></title>
-    <link href="http://mumumu.github.io/blog/2018/12/04/firetv-stick-and-usb-cable/"/>
-    <updated>2018-12-04T07:38:18+09:00</updated>
-    <id>http://mumumu.github.io/blog/2018/12/04/firetv-stick-and-usb-cable</id>
-    <content type="html"><![CDATA[<p><a href="https://www.amazon.co.jp/gp/product/B012WL4QMW/">https://www.amazon.co.jp/gp/product/B012WL4QMW/</a></p>
-
-<p>最近 FireTV Stick を買った。動機は Amazon Prime Video を市販のテレビにキャストしたかったのだ(*1)。</p>
-
-<p><img src="http://mumumu.github.io/images/fire_tv_stick.jpg" width="300" height="250"/></p>
-
-<p>これは電源をUSBケーブルから取る仕様なのだが、付属のケーブルは 長さが1.5m と短く、自分の環境では短過ぎた。だが、長いものを買おうにも、市販のケーブルで相性がいいものがなかなかなくて困った。</p>
-
-<p>いろいろ試した結果、以下の Anker のものに行き着いた。3m でよければ、これで十分だ。Anker は USBケーブル周りでかなり評判が良いようなので買ってみたが、評判通りだったと言えよう(*´～｀)</p>
-
-<p>(*1) PC から Google Chrome 経由で Amazon Prime Video をキャストさせたり、スマホ画面をキャストさせたりすれば見れるのは承知しているが、リモコンがあった方が家族には優しい</p>
 ]]></content>
   </entry>
   

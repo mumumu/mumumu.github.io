@@ -9,8 +9,8 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="[Update September 19th 23:29 JST by m ] ここに書いた内容は、更新も含めて PHPマニュアル のビルド方法 に移動しました。
-">
+  <meta name="description" content="このエントリは、以下の Pull Request がマージされるまでの記録である。
+https://github.com/svarshavchik/courier-libs/pull/13 3行まとめ 1) Courier Mail Server (以下 Courier) という古いメールサーバに &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,88 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2018-09-25 20:36:39 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2018/09/25/patch-separate-tls-private-key-from-imapd-pop3d-dot-pem/">[PATCH] Courier の TLS 証明書と秘密鍵ファイルを分離する</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>このエントリは、以下の Pull Request がマージされるまでの記録である。<br/>
+<a href="https://github.com/svarshavchik/courier-libs/pull/13">https://github.com/svarshavchik/courier-libs/pull/13</a></p>
+
+<h3>3行まとめ</h3>
+
+<p>1) <a href="http://www.courier-mta.org/">Courier Mail Server</a> (以下 Courier) という古いメールサーバに patch を書いてマージしてもらった<br/>
+2) いろいろ苦労しながら、やり遂げた記録<br/>
+3) 青臭いソフトウェアエンジニアも、成長するものだと思う</p>
+
+<h3>なぜこの patch を書いたか</h3>
+
+<p>始まりは、<a href="https://letsencrypt.org/">Let's Encrypt</a> を手元のサーバに導入しようとして、 <a href="http://www.courier-mta.org/imap/">Courier IMAP</a> にも適用しようとしたことだった。だが、一筋縄では行かなかった。どうしても TLS の通信に失敗するのだ。いろいろググった結果、Courier では、<a href="https://yeri.be/postfix-courier-letsencrypt">「TLS の秘密鍵と証明書は同一のファイルに入っていなければいけない」ことがわかった</a>。</p>
+
+<p>多くのサーバソフトウェアでは、TLS の秘密鍵と証明書のファイルパスは別々に設定できる。メールサーバで言えば <a href="http://www.postfix.org/postconf.5.html#smtp_tls_key_file">Postfix でもそうだ</a>。このことから、自分にとっては Courier のこの動きは直感に反する仕様であった。しかもこれに関するドキュメントが <strong>一切書かれていない</strong> ことにカッとなった。</p>
+
+<p>だから、<a href="https://github.com/svarshavchik/courier/issues/10">issueを立てて、秘密鍵と証明書を分離することを提案した</a> ところ、メンテナ的にはデフォルトの動きに fallback 出来るなら問題ないよ、とのことだったので、<a href="https://github.com/svarshavchik/courier-libs/pull/13">patch</a> を書いた。このエントリは、それがマージされたことの記録である。</p>
+
+<h3>当初はヤクの毛刈りに奔走</h3>
+
+<p>patch を書くのは一筋縄では行かなかった。当初はヤクの毛刈りに奔走させられた。当初は git のソースをまともにビルドすらできなかったので、ビルドをキックするスクリプトを修正することから始まり、メンテナと自分の開発するディストリビューションが異なる (*1) ことが原因の libtool まわりの修正から、ドキュメントの修正まで、送った patch は 6つに及んだ。</p>
+
+<p>メンテナにしてみれば、自分以外の環境で patch を書く人がいるとは思ってもいなかったのだろう。</p>
+
+<p>a) <a href="https://github.com/svarshavchik/courier/pulls?q=is%3Apr+is%3Aclosed+author%3Amumumu">Courier 本体側で 送った patchたち</a><br/>
+b) <a href="https://github.com/svarshavchik/courier-libs/pulls?q=is%3Apr+is%3Aclosed+author%3Amumumu">Courier Library 側で送った patch たち</a></p>
+
+<p>(*1) メンテナは Fedora で、自分は Ubuntu だった。</p>
+
+<h3>OpenSSL + GnuTLS の両方に対応</h3>
+
+<p>一通りコードを書く環境が整い、途中まで patch を書いてみると、Courier は TLS 通信に OpenSSL だけでなく、 <a href="https://www.gnutls.org/">GnuTLS</a> も並行してサポートしていることに気がついた。また、<a href="https://tools.ietf.org/rfc/rfc6066.txt">SNI(Server Name Indication)</a> や IPアドレスベースのバーチャルホストもサポートしていたので、それらもこれら両方のライブラリでサポートするように書かなければならなかった。</p>
+
+<p>さらに、これら2つのライブラリのコードは、実装されている機能がそれぞれに微妙に異なっていたので、どこまで実装するかを判断するために全コードを見る必要があり、対応は難航した。方針は以下に纏めた通りだが、正直 GnuTLS 側のコードは、よく [読めた|書けた] ものだと今振り返ってみて思う。</p>
+
+<p>c) <a href="https://gist.github.com/mumumu/650461670436c52a74b06e04725f78ab">couriertls の TLS_PRIVATE_KEY 対応方針</a></p>
+
+<h3>モチベーション</h3>
+
+<p>何故ここまで続いたのかは、正直わからない。本職で C++ を書くようになり、この手のソフトウェアの深追いには慣れていたことが割と大きかったように思う。あとは、少しずつでも、ゴールに近づいている感覚が確実にあったからだろうか。また、義務感なしに、気が向いた時に作業できたのも大きい。</p>
+
+<h3>メンテナについて</h3>
+
+<p>Courier のメンテナは、 <a href="https://www.linkedin.com/in/cplusplusguru">Sam Varshavchik</a> というロシア人だ。コードが良ければ黙ってマージしてくれるし、提案にもちゃんと真摯に返事を返してくれる人だった。コード自体は正直綺麗だとは思わないが、OSS ではコードを全面的に書き直すのでもない限り、相手の流儀に徹底的に合わせるのが基本なので、メンテナの流儀を踏襲する方向で動いた。</p>
+
+<h3>その他</h3>
+
+<p>Courier 自体は 1990年代末からある古いソフトウェアである。自分は 自宅サーバを立て始めたのが2004年で、その時は他の人が書いた手順を見よう見まねで自分の環境にいろいろ適用しては試行錯誤を繰り返していた。 <a href="https://srad.jp/~mumumu/journal/184844/">スラッシュドットの日記</a> にも、当時の青臭い記録が残っている。そんな糞エンジニアな自分が、こうして、patch を書くことなど思いもよらなかった。</p>
+
+<p>当時から、少しは成長したんだなあ、と思う。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -277,60 +359,6 @@ B) 上記を呼び出すようにショートカットキーを割り当てる</
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2017-10-23 00:59:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2017/10/23/slack-mobile-notifications-not-working/">Slack mobile notifications not working (on Android)</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5">https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5</a></p>
-
-<p>システム運用時に、何かあった時のアラート等の通知を Slack で受け取っている人もいるだろう。</p>
-
-<p>特に、帰宅後や休暇時に一定の処置が必要なお知らせは重要である。Slack ではチャンネル単位でデスクトップとモバイルの通知の設定が細かく設定できるようになっているので、使い勝手では個人的にあまり困っていない。</p>
-
-<p>だが、自分に合った設定を施しても、一部の Notificaton が受け取れなかったり、通知が遅れたりするとちょっと問題だ。
-そういう時は、上記のリンクにあるヘルプの設定を確かめて設定をやり直してもうまくいかないことがある。そうした場合に、自分がやったのは、Android の電源設定を見直すことだった。</p>
-
-<p><img src="/images/Android_70_battery_setting.jpg" width="540" height="960"/></p>
-
-<p>最近の Android は、電源設定が割と細かくなっており、スリープ時にネットワーク接続が無効になる場合がある。</p>
-
-<p>自分はこれを上記のように常に接続されるように見なおしたところ、Slack のモバイル通知が思ったように受け取れるようになった。
-メモ程度の内容だが、これからも多分同じようなことが起こると思うので、ここにメモしておく。</p>
-
-<p><strong>[ Update Febrary 25th 02:04:50 JST by m ]</strong></p>
-
-<p>自分が持っている Zenfone 4 には、「自動起動マネージャー」と呼ばれる機能があり、そこでアプリを許可しておかないと、電池が足りない等の場合にアプリが終了させられて通知が遅れる場合がある。よって、通知をすぐに受け取りたいアプリは許可リストに入れておく必要がある。以下の例だと、メールクライアントや Slack がそうだ。</p>
-
-<p><img src="/images/auto-boot-manager.jpg" width="540" height="960"/></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page4">&larr; Older</a>
@@ -410,6 +438,10 @@ B) 上記を呼び出すようにショートカットキーを割り当てる</
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
       </li>
     
@@ -427,10 +459,6 @@ B) 上記を呼び出すようにショートカットキーを割り当てる</
     
       <li class="post">
         <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a>
       </li>
     
   </ul>
