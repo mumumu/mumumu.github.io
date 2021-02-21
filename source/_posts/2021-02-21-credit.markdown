@@ -15,7 +15,7 @@ PHP 8 にまつわる Manual の更新量が莫大だと書いたが、機械的
 
 そういう事情もあって、細かい部分の更新の整合性が雑になることも否めない。英語版のそういう雑な部分について、ある時から黙って修正をするようになった。それだけ、誰が見てもおかしい部分が割とあったのだ。
 
-[そういった部分の更新](https://github.com/php/doc-en/search?q=author%3Amumumu&type=commits) や、[PHP 8 で使える関数のバージョン情報の英語版の更新](https://github.com/php/doc-en/pulls?q=is%3Apr+author%3Amumumu+versions.xml+) を黙ってやっていたところ、メイン開発者のひとりである [cmb](https://people.php.net/cmb) (\*1) から[クレジット](https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540) を貰った。言い換えると、[自分の名前が PHP Manual の隅に載った](https://www.php.net/manual/en/preface.php#contributors) だけの話ではあるけれども、日々の活動を見てくれている人がいる、というのはやはり嬉しいものだ。
+そういった部分の更新 や、[PHP 8 で使える関数のバージョン情報の英語版の更新](https://github.com/php/doc-en/pulls?q=is%3Apr+author%3Amumumu+versions.xml+) を黙ってやっていたところ、メイン開発者のひとりである [cmb](https://people.php.net/cmb) (\*1) から[クレジット](https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540) を貰った。言い換えると、[自分の名前が PHP Manual の隅に載った](https://www.php.net/manual/en/preface.php#contributors) だけの話ではあるけれども、日々の活動を見てくれている人がいる、というのはやはり嬉しいものだ。
 
 PHP を使う以上、PHP Manual は避けて通れない。とても多くの人が見るものなのだ。既に PHP をメインで書かなくなって久しいが、引き続き微力ながら、裏からそれを支えていこうと思う(*´～｀)
 
