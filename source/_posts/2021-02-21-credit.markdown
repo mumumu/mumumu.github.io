@@ -1,0 +1,22 @@
+---
+layout: post
+title: "クレジット"
+date: 2021-02-21 23:45:47 +0900
+comments: true
+categories: ["misc", "monologue", "php"]
+---
+[https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540](https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540)
+
+[PHP Manual](https://www.php.net/manual/ja/) 日本語版のメンテナを本格的に手がけるようになってから一年以上が経過した。
+
+去年の11月末に [PHP 8 がリリースされた](https://www.php.net/archive/2020.php#2020-11-26-3)。それに伴う [移行ドキュメント](https://www.php.net/manual/ja/migration80.php) や新機能の追加、名前付き引数の影響でもろもろの関数やメソッドのシグネチャが劇的に変化したことに伴う更新など、Manual に対する更新量は莫大だった。それでも PHP 7 の時と異なり、[github であらかじめ英語版のドキュメントの更新がドラフト時点から見られる](https://github.com/php/doc-en/pulls) ことが助けとなり、日本語版については、更新にほぼリアルタイムで追随できている。
+
+PHP 8 にまつわる Manual の更新量が莫大だと書いたが、機械的に更新できる部分も、そうでない部分もある。
+
+そういう事情もあって、細かい部分の更新の整合性が雑になることも否めない。英語版のそういう雑な部分について、ある時から黙って修正をするようになった。それだけ、誰が見てもおかしい部分が割とあったのだ。
+
+[そういった部分の更新](https://github.com/php/doc-en/search?q=author%3Amumumu&type=commits) や、[PHP 8 で使える関数のバージョン情報の英語版の更新](https://github.com/php/doc-en/pulls?q=is%3Apr+author%3Amumumu+versions.xml+) を黙ってやっていたところ、メイン開発者のひとりである [cmb](https://people.php.net/cmb) (\*1) から[クレジット](https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540) を貰った。言い換えると、[自分の名前が PHP Manual の隅に載った](https://www.php.net/manual/en/preface.php#contributors) だけの話ではあるけれども、日々の活動を見てくれている人がいる、というのはやはり嬉しいものだ。
+
+PHP を使う以上、PHP Manual は避けて通れない。とても多くの人が見るものなのだ。既に PHP をメインで書かなくなって久しいが、引き続き微力ながら、裏からそれを支えていこうと思う(*´～｀)
+
+(\*1)  Windows 版 PHPのメンテナンスや、PECL の複数のモジュールの Lead. PHP 7.3 のリリースマネージャーなど。
