@@ -4,7 +4,7 @@
   <title><![CDATA[Category: monologue | mumumu の日記]]></title>
   <link href="http://mumumu.github.io/blog/categories/monologue/atom.xml" rel="self"/>
   <link href="http://mumumu.github.io/"/>
-  <updated>2021-02-22T01:30:44+09:00</updated>
+  <updated>2021-02-22T01:49:34+09:00</updated>
   <id>http://mumumu.github.io/</id>
   <author>
     <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
@@ -28,7 +28,7 @@
 
 <p>そういう事情もあって、細かい部分の更新の整合性が雑になることも否めない。英語版のそういう雑な部分について、ある時から黙って修正をするようになった。それだけ、誰が見てもおかしい部分が割とあったのだ。</p>
 
-<p><a href="https://github.com/php/doc-en/search?q=author%3Amumumu&amp;type=commits">そういった部分の更新</a> や、<a href="https://github.com/php/doc-en/pulls?q=is%3Apr+author%3Amumumu+versions.xml+">PHP 8 で使える関数のバージョン情報の英語版の更新</a> を黙ってやっていたところ、メイン開発者のひとりである <a href="https://people.php.net/cmb">cmb</a> (*1) から<a href="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540">クレジット</a> を貰った。言い換えると、<a href="https://www.php.net/manual/en/preface.php#contributors">自分の名前が PHP Manual の隅に載った</a> だけの話ではあるけれども、日々の活動を見てくれている人がいる、というのはやはり嬉しいものだ。</p>
+<p>そういった部分の更新 や、<a href="https://github.com/php/doc-en/pulls?q=is%3Apr+author%3Amumumu+versions.xml+">PHP 8 で使える関数のバージョン情報の英語版の更新</a> を黙ってやっていたところ、メイン開発者のひとりである <a href="https://people.php.net/cmb">cmb</a> (*1) から<a href="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540">クレジット</a> を貰った。言い換えると、<a href="https://www.php.net/manual/en/preface.php#contributors">自分の名前が PHP Manual の隅に載った</a> だけの話ではあるけれども、日々の活動を見てくれている人がいる、というのはやはり嬉しいものだ。</p>
 
 <p>PHP を使う以上、PHP Manual は避けて通れない。とても多くの人が見るものなのだ。既に PHP をメインで書かなくなって久しいが、引き続き微力ながら、裏からそれを支えていこうと思う(*´～｀)</p>
 
