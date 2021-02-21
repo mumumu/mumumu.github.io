@@ -9,7 +9,8 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="http://stackoverflow.com/questions/2405714/selenium-and-https-ssl Selenium を最近テストに愛用している。ただ、https な通信のときにオレオレ証明書を使っている場合、 &hellip;">
+  <meta name="description" content="http://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html 以下のように日付を足したり引いたりして、その参照を使い回すと極めて危険である。
+... っていうネタはあるあるだと思うんですけど、今日そのワナを踏んでしまって泣きそう &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-05-31 10:44:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/31/date-calculation/">Date Calculation</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html">http://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html</a></p>
+
+<p>以下のように日付を足したり引いたりして、その参照を使い回すと極めて危険である。<br/>
+... っていうネタはあるあるだと思うんですけど、今日そのワナを踏んでしまって泣きそう( ;´Д⊂ヽ <br/>
+これは Java の例だけれども、当然 Java に限った話ではない。</p>
+
+<pre><code>Calendar now = Calendar.getInstance();  // instance of 5/31
+now.add(Calendar.MONTH, -3);           // 3 month before -&gt; 2/28
+
+//  some processing...
+
+now.add(Calendar.MONTH, +3);           // not 5/31, but 5/28 !!!
+</code></pre>
+
+<p>要するに、たまたま3ヶ月前が2月末だったので、ずれるという話です。<br/>
+こんな馬鹿なことするのは俺だけだって？ デスヨネー(´ー｀; )</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -307,46 +357,6 @@ seleniumServer = new SeleniumServer(rcc);
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-05-14 01:16:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/14/appeal-in-communitation/">Appeal in communitation</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p>数年前、とあるソーシャルゲームな会社の人と飲む機会があった。彼が「日本のエンジニアは着飾る（＝自分のことをアピールする。よく見せる）のが極めて下手糞だ」と強調していたのを今でもよく覚えている。</p>
-
-<p>あー今の自分もそうだなー。と思ったり。自分が思ってもいないところが評価されたり、見てほしいところが評価されなかったり。そんな毎日。相手によって響く言葉や実績が違ったりするのが当然だからこそ難しい。</p>
-
-<p>「相手を知り己を知れば百戦危うからず」なんていうけれども、相手を全て知ることは実際には不可能だ。探りながら駆け引きをする。相手が投げかけてくる言葉はその手がかりになる。本当はそんな気を回す必要がなければ一番よいのだけれども。</p>
-
-<p>... そんな毎日がもうしばらく続きそうである。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page17">&larr; Older</a>
@@ -430,6 +440,10 @@ seleniumServer = new SeleniumServer(rcc);
       </li>
     
       <li class="post">
+        <a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -443,10 +457,6 @@ seleniumServer = new SeleniumServer(rcc);
     
       <li class="post">
         <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
   </ul>

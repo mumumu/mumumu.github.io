@@ -9,7 +9,8 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="http://www.thanko.jp/shopdetail/000000002595/ 自分の寝室にはベッドしかなく、ノートPCを膝に乗せて長時間弄るのは非常に苦痛だ。寝たままPCを弄りたい！という動機は誰でも考えるようで、以前はゴロ寝deスクアルミというやつを買っていた。 &hellip;">
+  <meta name="description" content="https://github.com/mumumu/repos_file_update_checker 以前 PEP 8 のファイル更新だけをチェックしたくて、 Mercurial 向けのファイルチェッカを書いた 。
+今年になって Python のリポジトリが Github に移行した ため、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2016-10-19 06:26:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2016/10/19/specific-file-update-checker-on-git-repository/">Specific file update checker on Git Repository</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://github.com/mumumu/repos_file_update_checker">https://github.com/mumumu/repos_file_update_checker</a></p>
+
+<p>以前 PEP 8 のファイル更新だけをチェックしたくて、 <a href="http://mumumu.github.io/blog/2015/12/26/silly-patch-could-not-detect-repository-update/">Mercurial 向けのファイルチェッカを書いた</a> 。<br/>
+今年になって <a href="https://github.com/python/">Python のリポジトリが Github に移行した</a> ため、それが役に立たなくなった。よって、以前書いたものを Git にも対応させ、プラグイン化してかっこ良くしたものが上記である。</p>
+
+<p>みんな大好き Github ... といえども特定ファイルの git log 出力を RSS で吐いてくれたりはしないんですよね。。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -279,76 +319,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2015-12-26 03:06:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2015/12/26/silly-patch-could-not-detect-repository-update/">Silly patch - could not detect repository update</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p>PEP8 のファイル更新を監視するのに、 <a href="https://github.com/mumumu/mercurial_file_update_checker">Mercurial リポジトリ更新チェックツール</a> というのを書いている。コミットメールや <a href="https://hg.python.org/">hg.python.org</a> の RSS を見れたりすれば一番良いのだが、前者はPEPの編集者や開発者にしか開放されておらず、後者はファイル単位の更新を見せるようにはできていない(*1) 。このツールはファイル単位での更新があったらメールしてくれるというもので、自分のニーズを満たすための単純なものだ。</p>
-
-<p>ところがこのツール、ちゃんと動いていなかった。更新がリモートリポジトリにあってもちゃんと検知できていなかったのだ。ダメぢゃん！<br/>
-原因は <a href="https://www.mercurial-scm.org/wiki/GitConcepts#Command_equivalence_table">git pull にあたるコマンド</a> を hg update だと思い込んでいたというもので、単純に Mercurial の理解不足である。</p>
-
-<p>なので、こういうお馬鹿な patch を書いてしまうんですね。ハイ(´ー｀; )<br/>
-誰の役にも立たないんで、ますますお馬鹿度が増すという...</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>diff --git a/rev_update_checker.py b/rev_update_checker.py
-</span><span class='line'>index b6109fe..af39899 100644
-</span><span class='line'>--- a/rev_update_checker.py
-</span><span class='line'>+++ b/rev_update_checker.py
-</span><span class='line'>@@ -22,7 +22,7 @@ class TargetRepository(object):
-</span><span class='line'> 
-</span><span class='line'>     def update(self):
-</span><span class='line'>         os.chdir(self.repository_path)
-</span><span class='line'>-        subprocess.check_output(['hg', 'update'])
-</span><span class='line'>+        subprocess.check_output(['hg', 'pull', '-u'])
-</span><span class='line'> 
-</span><span class='line'> 
-</span><span class='line'> class TargetFileRevision(object):</span></code></pre></td></tr></table></div></figure>
-
-
-<p>(*1) だったら hgweb に patch 投げればいいやん、と思って、<a href="/blog/2015/12/29/patch-fixed-invalid-atom-log-feed-url-in-file-log-page/">投げておきました</a> ...</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page6">&larr; Older</a>
@@ -432,6 +402,10 @@
       </li>
     
       <li class="post">
+        <a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -445,10 +419,6 @@
     
       <li class="post">
         <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
   </ul>

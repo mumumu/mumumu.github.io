@@ -139,6 +139,90 @@
 
 
 
+  2021-01-05 00:53:23 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://network.yamaha.com/products/routers/rtx830/index">https://network.yamaha.com/products/routers/rtx830/index</a></p>
+
+<p>最近自宅のインターネット接続が少しずつ不安定になり、不定期に切断されるようになった。</p>
+
+<p>無線ブロードバンドルータも3年近く使っているので、これを機会にいろいろ家のネットワークを見直してみることにした。</p>
+
+<h3>0. 見直す前</h3>
+
+<p>自宅のネットワーク構成は、 <a href="https://www.tp-link.com/jp/home-networking/wifi-router/archer-c5400/">TP-Linkの無線ブロードバンドルータ</a> と中継機経由でインターネットに接続していた。とてもシンプル。</p>
+
+<p>ONU より先は VDSL で外の光回線に繋がっている。</p>
+
+<p><img src="/images/mynetwork.png" /></p>
+
+<h3>1. 無線ブロードバンドルータを変えてみた</h3>
+
+<p>コロナ禍のさなか、IPv4 の PPPoE は混んできてるという話も飛び交うようになっていたので、これを機会にIPv6 に挑戦してみるか、という気持ちになった。</p>
+
+<p>なので、TP-Linkの無線ブロードバンドルータを <a href="https://www.aterm.jp/product/atermstation/product/warpstar/wx3000hp/">NEC の WX-3000HP</a> に変えてみた。これを採用した理由は、IPoE に対応していたことと、Wifi6 に対応していたから、の2つが理由である。</p>
+
+<p>だが、不安定なのは変わらなかった。既存の PPPoE 経由の IPv4 接続はもちろん、IPoE 接続 (DTI のトライアル光 や interlink の Zoot Native) を試してみたが、むしろさらに不安定になっていた感がある。</p>
+
+<p>よく調べて見ると、無線と PPPoE(or IPoE) を受け持つ WX-3000HP の IP に ping を打っても返ってこない状態が頻発していたので、ここが重いんだろうな、と推察された。そこで、ONU と直接繋がるルータについては、無線とは独立させて、実績のあるものを採用しようという気持ちになった。</p>
+
+<h3>2. RTX 830 を挟んでみた</h3>
+
+<p>インターネットと直接(PPPoE や IPoE で) 繋がるルータを無線と独立させるべく、<a href="https://network.yamaha.com/products/routers/rtx830/">RTX 830</a> を購入した。
+YAMAHA のルータは拠点間のルータとして安定性について評判が高く、インターネット上にも十分なノウハウが転がっていることから採用した。</p>
+
+<p>ONU と WX-3000HP の間にこれを挟み、PPPoE や IPoE 接続とパケットフィルタのみを受け持たせることにした。
+さらに、WX-3000HP はルータ機能を殺し、無線LAN のブリッジとしてのみ機能させるようにした。</p>
+
+<p>だが、やっぱり不安定なのは変わらなかったので、さらに原因を切り分けてみることにした。</p>
+
+<h3>3. 中継機を変えてみた</h3>
+
+<p>中継機については TP-Link のものを使っていたが、それを NEC のものに変えてみたりしたがやはり変わらなかった。</p>
+
+<h3>4. ONU を交換して貰った</h3>
+
+<p>中継機、ブロードバンドルータ、RTX を挟んでも変わらないとなると、最終的にこちらが手を出せるのはONUしかない。NTT に電話して事情を話し、ONU を交換してもらった。</p>
+
+<p>これは10年以上前から使っていたONUで、既に替えがないとのことだったので、最新のONU機器を持ってきてもらった。それをRTXと繋いだところ、劇的に安定した。これだったか...</p>
+
+<h3>まとめ</h3>
+
+<p>原因は IPv4 でもなんでもなく、単なる ONU の不良であった。それ以後、IPv4 の接続が不安定になったことはないので、引き続きこのままにしている。RTX は不要だったんじゃないかという説もあるが、まあ、いろいろ遊べたので良しとする。</p>
+
+<p><a href="https://www.editnet.ad.jp/">採用している草の根プロバイダ</a> も回線を増強し、<a href="https://www.editnet.ad.jp/news/210103.htm">さらに空いた回線を提供してくれるようになった</a> ので、引き続きそれを使って行こうと思う。このコロナ禍で大事なのは、回線の速度ではなく安定性なのだ。</p>
+
+<p><img src="/images/mynetwork_current.png" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
   2020-09-19 23:42:05 +0900
 
 
@@ -314,54 +398,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2020-01-25 20:03:30 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/images/thinkpad_x395.png" width="800"/></p>
-
-<p><a href="https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395">https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395</a></p>
-
-<p><a href="/blog/2019/12/05/chromebook/">ChromeBook をいろいろ試した</a> 結果、やはり自分は Linux をVMや他のOSを介さずに使いたい人なんだ、という結論を得るに至った。Linux が動くノートパソコン、かつ日本語キーボードなものといえば？ といえばやはり ThinkPad に落ち着いた。このディストリビューションが動くよ、という<a href="https://support.lenovo.com/jp/ja/solutions/PD031426">実績を示してくれている</a> のもポイントが高い。</p>
-
-<p>Lenovo の公式サイトからの直販ではeクーポンがついていて売られていた。Full HD のディスプレイに変更し、延長修理5年を付けても 112,596 JPY で購入できた。安い。</p>
-
-<p>最初は上記の実績にない Ubuntu 19.10 を入れていろいろ試してしまい、Linux Kernel 5.3 と RIZEN の相性の悪さに苦しんだ。AC アダプタを繋がない放電状態だとフリーズが多発してしまい、いろいろ試してみたが駄目だった。Ubuntu 18.04 を入れ、Kernel 5.0 にしたら動作が落ち着いた。Kernel 5.3 にしてしまうと駄目なようなので、留意しておきたい。</p>
-
-<p>Linux Kernel だけは面倒がないようにapt-mark hold しておいたが、Ubuntu 20.04 LTS になったときにうまく移行できるのか、心配ではある。</p>
-
-<p>とはいうものの、とても動作は安定している。クリエイティブな用途にでも使わない限り、メモリ 16GB である必要もないという学びを得たのも収穫だった。会社の環境もクラウド上にあるので、ダム端(死語)として使うもよし、ローカルで小さめの開発に使うもよし、ネイティブでLinuxが動くことの喜びを噛み締めている。軽いし、180度まで開いて平らに使うことができるのもいい。唯一の欠点は、ビルド時に筐体の右側がかなり熱くなるという点だけかな。</p>
-
-<p>(次にこの手の何かを買う時は、Intel を選びたいかな... Kernel との相性という意味で安心感があるよ。やっぱり。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page2">&larr; Older</a>
@@ -440,6 +476,10 @@
       </li>
     
       <li class="post">
+        <a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -453,10 +493,6 @@
     
       <li class="post">
         <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
   </ul>

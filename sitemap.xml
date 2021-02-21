@@ -5,6 +5,10 @@
 <lastmod>2021-02-21T23:45:47+09:00</lastmod>
 </url>
 <url>
+<loc>http://mumumu.github.io/blog/2021/01/05/rtx830-and-more/</loc>
+<lastmod>2021-01-05T00:53:23+09:00</lastmod>
+</url>
+<url>
 <loc>http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto/</loc>
 <lastmod>2020-09-19T23:42:05+09:00</lastmod>
 </url>
@@ -482,5 +486,8 @@
 </url>
 <url>
 <loc>http://mumumu.github.io/blog/categories/patch/</loc>
+</url>
+<url>
+<loc>http://mumumu.github.io/blog/categories/network/</loc>
 </url>
 </urlset>

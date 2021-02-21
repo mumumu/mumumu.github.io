@@ -9,8 +9,8 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="今日から新しい職場だ。とはいえ、よくある「XXXに入社しました！」とかいうエントリにはしない。
-自分の軸をブレさせることなく頑張る。それだけだ。 新しい仕事は新しい車に似ている。その車を買った翌朝は、ただ嬉しい。ガレージに停まっているのを見るだけで「ああ、新車だ。素晴らしい。何もかも新しい」 &hellip;">
+  <meta name="description" content="http://www.nongnu.org/dmidecode/
+http://man.cx/dmidecode%288%29 自作とかしてないと dmidecode とか使わないよなぁ、と心の隅に置いていただけのコマンドであるが、自分サーバ自作してたんだった(´ー｀；) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,173 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-07-04 18:01:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/04/dmidecode/">dmidecode</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.nongnu.org/dmidecode/">http://www.nongnu.org/dmidecode/</a><br/>
+<a href="http://man.cx/dmidecode%288%29">http://man.cx/dmidecode%288%29</a></p>
+
+<p>自作とかしてないと dmidecode とか使わないよなぁ、と心の隅に置いていただけのコマンドであるが、自分サーバ自作してたんだった(´ー｀；)<br/>
+オプションなしで実行すると山盛りの情報が出てくるので、--type だけはちゃんと覚えておこう。</p>
+
+<pre><code>-t, --type TYPE
+    Only  display  the  entries  of type TYPE. TYPE can be either a DMI type number, or a comma-separated list of type numbers, or a
+    keyword from the following list: bios, system, baseboard, chassis, processor, memory, cache, connector, slot. Refer to  the  DMI
+    TYPES  section  below for details.  If this option is used more than once, the set of displayed entries will be the union of all
+    the given types.  If TYPE is not provided or not valid, a list of all valid keywords is printed  and  dmidecode  exits  with  an
+    error.
+</code></pre>
+
+<p>Thinkpad X230 でプロセッサ情報を見ると以下のようになる。</p>
+
+<pre><code>$ sudo dmidecode  --type processor
+# dmidecode 2.11
+SMBIOS 2.7 present.
+
+Handle 0x0001, DMI type 4, 42 bytes
+Processor Information
+        Socket Designation: CPU Socket - U3E1
+        Type: Central Processor
+        Family: Core i5
+        Manufacturer: Intel(R) Corporation
+        ID: A9 06 03 00 FF FB EB BF
+        Signature: Type 0, Family 6, Model 58, Stepping 9
+        Flags:
+                FPU (Floating-point unit on-chip)
+                VME (Virtual mode extension)
+                DE (Debugging extension)
+                PSE (Page size extension)
+                TSC (Time stamp counter)
+                MSR (Model specific registers)
+                PAE (Physical address extension)
+                MCE (Machine check exception)
+                CX8 (CMPXCHG8 instruction supported)
+                APIC (On-chip APIC hardware supported)
+                SEP (Fast system call)
+                MTRR (Memory type range registers)
+                PGE (Page global enable)
+                MCA (Machine check architecture)
+                CMOV (Conditional move instruction supported)
+                PAT (Page attribute table)
+                PSE-36 (36-bit page size extension)
+                CLFSH (CLFLUSH instruction supported)
+                DS (Debug store)
+                ACPI (ACPI supported)
+                MMX (MMX technology supported)
+                FXSR (FXSAVE and FXSTOR instructions supported)
+                SSE (Streaming SIMD extensions)
+                SSE2 (Streaming SIMD extensions 2)
+                SS (Self-snoop)
+                HTT (Multi-threading)
+                TM (Thermal monitor supported)
+                PBE (Pending break enabled)
+        Version: Intel(R) Core(TM) i5-3320M CPU @ 2.60GHz
+        Voltage: 0.9 V
+        External Clock: 100 MHz
+        Max Speed: 2600 MHz
+        Current Speed: 2600 MHz
+        Status: Populated, Enabled
+        Upgrade: Socket rPGA988B
+        L1 Cache Handle: 0x0003
+        L2 Cache Handle: 0x0004
+        L3 Cache Handle: 0x0005
+        Serial Number: None
+        Asset Tag: None
+        Part Number: None
+        Core Count: 2
+        Core Enabled: 2
+        Thread Count: 4
+        Characteristics:
+                64-bit capable
+</code></pre>
+
+<p>メモリの情報は以下のような感じだ。現状 4G しか載ってないが最大16GBらしい。今度頼んでおこう(*´〜｀)</p>
+
+<pre><code>$ sudo dmidecode  --type memory
+# dmidecode 2.11
+SMBIOS 2.7 present.
+
+Handle 0x0007, DMI type 16, 23 bytes
+Physical Memory Array
+        Location: System Board Or Motherboard
+        Use: System Memory
+        Error Correction Type: None
+        Maximum Capacity: 16 GB
+        Error Information Handle: Not Provided
+        Number Of Devices: 2
+
+Handle 0x0008, DMI type 17, 34 bytes
+Memory Device
+        Array Handle: 0x0007
+        Error Information Handle: Not Provided
+        Total Width: 64 bits
+        Data Width: 64 bits
+        Size: 4096 MB
+        Form Factor: SODIMM
+        Set: None
+        Locator: ChannelA-DIMM0
+        Bank Locator: BANK 0
+        Type: DDR3
+        Type Detail: Synchronous
+        Speed: 1600 MHz
+        Manufacturer: Hynix/Hyundai
+        Serial Number: 1082DC09
+        Asset Tag: None
+        Part Number: HMT351S6CFR8C-PB  
+        Rank: Unknown
+        Configured Clock Speed: 1600 MHz
+
+Handle 0x0009, DMI type 17, 34 bytes
+Memory Device
+        Array Handle: 0x0007
+        Error Information Handle: Not Provided
+        Total Width: Unknown
+        Data Width: Unknown
+        Size: No Module Installed
+        Form Factor: DIMM
+        Set: None
+        Locator: ChannelB-DIMM0
+        Bank Locator: BANK 2
+        Type: Unknown
+        Type Detail: None
+        Speed: Unknown
+        Manufacturer: Not Specified
+        Serial Number: Not Specified
+        Asset Tag: None
+        Part Number: Not Specified
+        Rank: Unknown
+        Configured Clock Speed: Unknown
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -445,44 +612,6 @@ Configure Command =&gt;  './configure'  '--with-apxs2=/usr/bin/apxs2' '--enable-
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-06-27 23:20:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/27/chm-file-from-internet/">Chm file from internet</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p>インターネットからダウンロードしてきた chm ファイルを開いても中身がまともに見えないことがあった。最近は以下みたいにブロックされるのねー、と。</p>
-
-<p>「ブロックの解除」をクリックしたらまともに見えるようになった。</p>
-
-<p><img src="/images/chm_blocked.png" alt="/images/chm_blocked.png" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page14">&larr; Older</a>
@@ -566,6 +695,10 @@ Configure Command =&gt;  './configure'  '--with-apxs2=/usr/bin/apxs2' '--enable-
       </li>
     
       <li class="post">
+        <a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -579,10 +712,6 @@ Configure Command =&gt;  './configure'  '--with-apxs2=/usr/bin/apxs2' '--enable-
     
       <li class="post">
         <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
   </ul>
