@@ -4,7 +4,7 @@
   <title><![CDATA[Category: misc | mumumu の日記]]></title>
   <link href="http://mumumu.github.io/blog/categories/misc/atom.xml" rel="self"/>
   <link href="http://mumumu.github.io/"/>
-  <updated>2020-09-19T23:56:25+09:00</updated>
+  <updated>2021-02-22T00:51:48+09:00</updated>
   <id>http://mumumu.github.io/</id>
   <author>
     <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[クレジット]]></title>
+    <link href="http://mumumu.github.io/blog/2021/02/21/credit/"/>
+    <updated>2021-02-21T23:45:47+09:00</updated>
+    <id>http://mumumu.github.io/blog/2021/02/21/credit</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540">https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540</a></p>
+
+<p><a href="https://www.php.net/manual/ja/">PHP Manual</a> 日本語版のメンテナを本格的に手がけるようになってから一年以上が経過した。</p>
+
+<p>去年の11月末に <a href="https://www.php.net/archive/2020.php#2020-11-26-3">PHP 8 がリリースされた</a>。それに伴う <a href="https://www.php.net/manual/ja/migration80.php">移行ドキュメント</a> や新機能の追加、名前付き引数の影響でもろもろの関数やメソッドのシグネチャが劇的に変化したことに伴う更新など、Manual に対する更新量は莫大だった。それでも PHP 7 の時と異なり、<a href="https://github.com/php/doc-en/pulls">github であらかじめ英語版のドキュメントの更新がドラフト時点から見られる</a> ことが助けとなり、日本語版については、更新にほぼリアルタイムで追随できている。</p>
+
+<p>PHP 8 にまつわる Manual の更新量が莫大だと書いたが、機械的に更新できる部分も、そうでない部分もある。</p>
+
+<p>そういう事情もあって、細かい部分の更新の整合性が雑になることも否めない。英語版のそういう雑な部分について、ある時から黙って修正をするようになった。それだけ、誰が見てもおかしい部分が割とあったのだ。</p>
+
+<p><a href="https://github.com/php/doc-en/search?q=author%3Amumumu&amp;type=commits">そういった部分の更新</a> や、<a href="https://github.com/php/doc-en/pulls?q=is%3Apr+author%3Amumumu+versions.xml+">PHP 8 で使える関数のバージョン情報の英語版の更新</a> を黙ってやっていたところ、メイン開発者のひとりである <a href="https://people.php.net/cmb">cmb</a> (*1) から<a href="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540">クレジット</a> を貰った。言い換えると、<a href="https://www.php.net/manual/en/preface.php#contributors">自分の名前が PHP Manual の隅に載った</a> だけの話ではあるけれども、日々の活動を見てくれている人がいる、というのはやはり嬉しいものだ。</p>
+
+<p>PHP を使う以上、PHP Manual は避けて通れない。とても多くの人が見るものなのだ。既に PHP をメインで書かなくなって久しいが、引き続き微力ながら、裏からそれを支えていこうと思う(*´～｀)</p>
+
+<p>(*1)  Windows 版 PHPのメンテナンスや、PECL の複数のモジュールの Lead. PHP 7.3 のリリースマネージャーなど。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[PHPマニュアル メンテナンス用ドキュメント最新版]]></title>
@@ -120,96 +143,6 @@
 </code></pre>
 
 <p>今は自分でこれらのサイズを調整できるようになって、とてもしあわせだ(｀ー´)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[自炊はじめました]]></title>
-    <link href="http://mumumu.github.io/blog/2019/11/04/i-started-cooking/"/>
-    <updated>2019-11-04T20:01:11+09:00</updated>
-    <id>http://mumumu.github.io/blog/2019/11/04/i-started-cooking</id>
-    <content type="html"><![CDATA[<p>最近、妻が作るものとは別に、自分で好きなものを料理するようになった。</p>
-
-<h3>きっかけ</h3>
-
-<p>そもそものきっかけは、<a href="https://moneyforward.com/">マネーフォワード</a> で家計を見ていて、外食している部分について、もう少し食費を改善できないかなと思ったのと、Twitter で簡単なレシピがリツイートされてきたこと、そして<a href="https://www.amazon.co.jp/dp/B07KJ7NG6F/">「自炊力」</a> を読んだことである。</p>
-
-<p>特に最後の「自炊力」については、料理に対する心理的なハードルを下げるような物言いが随所になされている。「自炊ができないことは悪いことではない」「自炊ってこんなもんでいいんだよ」的な物言いは、自分的には割と救われたと思う。</p>
-
-<h3>参考にしているもの</h3>
-
-<p>「自炊力」には、料理のとっかかりとなる手掛かりがいろいろ書いてあるが、自分的には以下の2点ができれば今は十分だと思っている。</p>
-
-<p>a) 主食主菜副菜を考慮できること<br/>
-　献立を見て、あ、これ足りないね、と思えるだけで良い<br/>
-b) 複数のレシピが作れること<br/>
-　何がきっかけでも良いが、自分が作れるものを増やすこと</p>
-
-<p>「自炊力」では、レシピ本よりもテレビの料理番組を覚えるきっかけとして勧めているが、実際料理熱が高まっているのなら、なんでもいいと思う。自分は Kindle でいくつかレシピ本を漁った結果、以下をメインで見るようになった。</p>
-
-<p>・ <a href="https://www.amazon.co.jp/dp/B07PJ297TC/">これでいいんだ！自炊ごはん</a><br/>
-・ <a href="https://www.amazon.co.jp//dp/B076GYQDSV/">ゆる自炊BOOK</a></p>
-
-<p>どちらも初心者向けにビジュアルが工夫されていることと、レシピそのものも簡単な手順でできるものが多いので、今も割とよく見ている。</p>
-
-<h3>個人的なレパートリーメモ</h3>
-
-<p>以下は、いろんなところから拾ってきたりして、自分流にアレンジした個人的なレパートリーである。<br/>
-いいじゃん CookDo や XX の素そのまんまでも。それでいいと思う。</p>
-
-<p>・ <a href="https://twitter.com/nowar1024/status/1116907789626925057">叙々苑サラダのレシピ</a><br/>
-　  これさえあれば野菜を無限に食べられる。タンパク質的な意味で豆腐を加えても良い<br/>
-　　・ ごま油(大さじ1)<br/>
-　　・ サラダ油(大さじ1)<br/>
-　　・ しょうゆ(大さじ1)<br/>
-　　・ 味の素(小さじ1)<br/>
-　　・ 煎りごま(好きなだけ)<br/>
-・ ペペロンチーノ<br/>
-　　S&amp;B の <a href="https://www.sbfoods.co.jp/products/detail/15069.html">まぜるだけのスパゲッティソースペペロンチーノ</a> を使う<br/>
-　　・ パスタにベーコン炒めとサニーレタスを足すだけで、十二分においしい<br/>
-　　・ 子供もお気に入り<br/>
-・ <a href="https://cookpad.com/recipe/2543737">豚バラじゃが煮</a><br/>
-　　上記リンク先がベース。分量は個人的に以下の通りアレンジしている。<br/>
-　　「これでいいんだ！自炊ごはん」P34<br/>
-　　・ 豚バラ薄切り100g<br/>
-　　・ じゃがいも小2個200g<br/>
-　　・ サラダ油小さじ1<br/>
-　　・ 煮汁<br/>
-　　　　- 水(200ml) <br/>
-　　　　- しょうゆ(大さじ2)<br/>
-　　　　- みりん(大さじ2)<br/>
-　　　　- 砂糖(大さじ2)<br/>
-・ <a href="https://ddnavi.com/serial/548890/a/">豚もやしキムチ炒め</a> <br/>
-　　上記のリンクを完全に再現すればよい<br/>
-　　「これでいいんだ！自炊ごはん」P28.<br/>
-　　  ・ ポイントは、豚肉に塩コショウを強めにかけること<br/>
-・ <a href="https://www.ebarafoods.com/recipe/detail/recipe1179.php">豚肉の生姜焼き</a> <br/>
-　　エバラの「生姜焼きのタレ」を使ってすぐ出来る系<br/>
-・ 豚バラともやしのフライパン蒸し<br/>
-　　「これでいいんだ！自炊ごはん」P28.<br/>
-　　蒸したものにかけるタレがポイント<br/>
-・ レタス卵チャーハン<br/>
-　　<a href="http://www.nagatanien.co.jp/product/detail/93/">「焼豚チャーハンの素」</a> を使う<br/>
-　　　・これをベースに、焼豚を細切りにしたソーセージに置き換え、レタスを加える<br/>
-・ チーズトースト<br/>
-　　食パンにチーズを載せ、ベーコンを刻んだものを載せる。その上にマヨネーズを振って焼く<br/>
-・ チンジャオロース<br/>
-　　<a href="https://www.ajinomoto.co.jp/cookdo/lineup/awase_004.html">CookDo の 青椒肉絲用</a> をそのまま使うやつ<br/>
-・ 卵スープ<br/>
-　　<a href="https://www.ajinomoto.co.jp/products/detail/?ProductName=marudorigara_1">鶏ガラスープの素</a> をおおさじ1入れ、ちぎったレタスと溶き卵とともに煮る<br/>
-　　最後にこしょうをひと振り</p>
-
-<h3>これから作りたいと思っているもの</h3>
-
-<p>ポテトサラダ とか 豚汁とか。いろいろ目に付いたレシピを試していきたい</p>
-
-<h3>モチベーション</h3>
-
-<p>子供においしいと言ってもらえるのもひとつあるが、やはり自分で「うまい」と思えるものを作れた時は最高の達成感を得られる。特に上記の「豚バラじゃが煮」を再現できた時は本当に嬉しかった。</p>
-
-<p>以下がその写真である。</p>
-
-<p><img src="http://mumumu.github.io/images/P_20191104_173804.jpg" width="800" height="806"/></p>
 ]]></content>
   </entry>
   

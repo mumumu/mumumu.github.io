@@ -9,7 +9,8 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="PHP のドキュメントは毎日凄い勢いで更新されている。これについていくのは 高木神 も面倒だと思っているはずである。だが、revcheck.php をいちいち目視で確認するなんて俺の中では最悪だ。これがどこまで機能してるかだってわからない。 けど、最近 php-doc-ja ML &hellip;">
+  <meta name="description" content="自分がやっているタスクでは、たまーーーに別の言語のツリーにコミットされるというアフォな現象が起きる(注1)。その場合、過去のリビジョンに遡って元に戻したい場合がある。Subversion でその手順を良く忘れるのでメモ。 $ svn merge -r 330684:330682 .
+--- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-06-27 06:58:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/27/revert-to-past-revision-on-svn/">revert to past revision on svn</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>自分がやっているタスクでは、たまーーーに別の言語のツリーにコミットされるというアフォな現象が起きる(注1)。その場合、過去のリビジョンに遡って元に戻したい場合がある。Subversion でその手順を良く忘れるのでメモ。</p>
+
+<pre><code>$ svn merge -r 330684:330682  .
+--- r330684 から r330683 までを '.' に逆マージしています:
+U    configure.xml
+U    functions/opcache-invalidate.xml
+U    functions/opcache-reset.xml
+D    entities.functions.xml
+U    book.xml
+</code></pre>
+
+<p>要するに過去の誤った変更をリバースパッチとしてマージしている。その中身を確かめた後、コミットすると良い。</p>
+
+<pre><code>$ svn ci -m 'reverted r330683, r330684 changes because of ja tree broken sorry.'
+送信しています              opcache/book.xml
+送信しています              opcache/configure.xml
+削除しています              opcache/entities.functions.xml
+送信しています              opcache/functions/opcache-invalidate.xml
+送信しています              opcache/functions/opcache-reset.xml
+ファイルのデータを送信しています ....
+リビジョン 330685 をコミットしました。
+</code></pre>
+
+<p>(注1) これは、他の言語のツリーからディレクトリを丸ごとコピーした後、.svn ディレクトリを削除していなかったことが原因だった。。.svn ディレクトリの中身は他の言語の内容を見ているので、コミットもそっちに行ったというわけだ。。<a href="http://d.hatena.ne.jp/takagimasahiro/">高木神</a>さんくすです ... orz</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -371,73 +429,6 @@ Percentage of the requests served within a certain time (ms)
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-06-13 22:49:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/13/x-forwarded-for/">X-Forwarded-For</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://ja.wikipedia.org/wiki/X-Forwarded-For">http://ja.wikipedia.org/wiki/X-Forwarded-For</a></p>
-
-<p>少々大きなサイトになると、Webサーバ がロードバランサの後ろにあるなんて世界はもう当たり前になった。ロードバランサの後ろからは直接クライアントのIPアドレスを知ることが標準のやり方では取得しづらい。CGI でいうところの REMOTE_HOST は、ロードバランサのIPアドレスを意味するからだ。</p>
-
-<p>それを取得するための方法が、X-Forwarded-For ヘッダの値なのは多くの人が知っている。けれども、これはデファクトではあっても標準ではない。今日たまたま商用のロードバランサを触っていて、このヘッダの値を設定してこないのに驚いた。</p>
-
-<p>何らかの値は設定するモノだよなーと思ってCGIに渡される環境変数やHTTPヘッダの値をぱっと取得する方法をちょびっと考えたら、PHP が一番楽だなーと個人的には思いました。みんな馬鹿にするけどね。</p>
-
-<pre><code>&lt;?php
-var_dump($_SERVER);
-</code></pre>
-
-<p>だけでいいんだもの。</p>
-
-<p>Python を CGI として実行させるんだったら以下のようになる。<br/>
-CGI として実行するんで、拡張子や実行権限とかを気にしないといけないのはちょっとアレ。</p>
-
-<pre><code>#!/usr/bin/env python 
-import cgi
-cgi.print_environ();
-</code></pre>
-
-<p>Ruby だったら...？</p>
-
-<pre><code>#!/usr/bin/env ruby
-print "Content-type: text/html\n\n"
-ENV.collect() do |key, value|
-        print key + " --&gt; " + value + "&lt;br /&gt;"
-end
-</code></pre>
-
-<p>Perl だったら...？ というのは省略。</p>
-
-<p>たぶん、Python や Ruby も Perl も(フレームワークとかでキックされる状況等という意味で)実行環境によってはもっと短い書き方があるはずだ。結局、自分が一番使い慣れた LL が PHP ってだけなんだと思う。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page15">&larr; Older</a>
@@ -517,6 +508,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -536,10 +531,6 @@ end
         <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -553,7 +544,7 @@ end
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  Copyright &copy; 2021 - mumumu(Yoshinari Takaoka) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
   - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
   <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>

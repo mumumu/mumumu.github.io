@@ -9,7 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="http://blog.livedoor.jp/connect_staff/archives/1804038.html 自分が使っているプロバイダが突如サービス終了するというアナウンスがあった。代替のプロバイダはもうほぼ決めた のだけど、 &hellip;">
+  <meta name="description" content="github page を Octopress で公開している人は、きっと master が HTML と CSS だけで出来たリポジトリを github に持っており、かつ source ブランチでそれを生成するための Rakefile や _config.yml、ブログエントリの &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,160 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2015-04-26 07:17:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2015/04/26/restore-github-page-from-source-branch/">restore github page from source branch</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>github page を <a href="http://octopress.org/">Octopress</a> で公開している人は、きっと master が HTML と CSS だけで出来たリポジトリを github に持っており、かつ source ブランチでそれを生成するための Rakefile や <code>_config.yml</code>、ブログエントリの markdown、テーマなどをバックアップしているはずだ。</p>
+
+<p>では、何かの拍子にブログを書く環境を壊してしまい、source ブランチから復活させなければならなくなった場合はどうだろうか。今朝ちょうどそういう状況に陥ってしまい、復旧に少し手間取ったのでメモしておく。</p>
+
+<p>要するに clone した後、source ブランチに移動し、 <code>_deploy</code> ディレクトリを生成する。そこで git リポジトリを再初期化し、github page へのリポジトリを remote に加えるだけだ。 要するに、 <a href="https://github.com/imathis/octopress/blob/5080107cb9e4c7bad8feb719f7e57c1da3b20c65/Rakefile#L352">setup_github_pagesタスクの後半</a> を真似ただけである。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git@github.com:mumumu/mumumu.github.io.git blog
+</span><span class='line'>$ cd blog
+</span><span class='line'>$ git checkout -b source origin/source
+</span><span class='line'>$ gem install bundler
+</span><span class='line'>$ bundle install
+</span><span class='line'>$ mkdir _deploy
+</span><span class='line'>$ cd _deploy
+</span><span class='line'>$ git init
+</span><span class='line'>$ git remote add origin git@github.com:mumumu/mumumu.github.io</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとは <code>rake new_post["some title"]</code> で記事を書き、<code>rake generate</code> や <code>rake gen_deploy</code> の操作でいつも通り記事が公開できるようになる。</p>
+
+<p>こうしたリストアの操作と、 <code>git push origin source</code> というバックアップ操作が面倒くさかったので、以下のような patch を Rakefile に足しておいた。</p>
+
+<p>まずは バックアップの操作が <code>rake gen_deploy</code>後に自動で行われるようにした。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>@@ -252,16 +252,38 @@ multitask :push do
+</span><span class='line'>   Rake::Task[:copydot].invoke(public_dir, deploy_dir)
+</span><span class='line'>   puts "\n## copying #{public_dir} to #{deploy_dir}"
+</span><span class='line'>   cp_r "#{public_dir}/.", deploy_dir
+</span><span class='line'>+  message = "Site updated at #{Time.now.utc}"
+</span><span class='line'>   cd "#{deploy_dir}" do
+</span><span class='line'>     system "git add ."
+</span><span class='line'>     system "git add -u"
+</span><span class='line'>     puts "\n## Commiting: Site updated at #{Time.now.utc}"
+</span><span class='line'>-    message = "Site updated at #{Time.now.utc}"
+</span><span class='line'>     system "git commit -m \"#{message}\""
+</span><span class='line'>     puts "\n## Pushing generated #{deploy_dir} website"
+</span><span class='line'>     system "git push origin #{deploy_branch} --force"
+</span><span class='line'>+  end
+</span><span class='line'>+
+</span><span class='line'>+  cd "#{deploy_dir}/../source" do
+</span><span class='line'>+    system "git add *"
+</span><span class='line'>+    puts "\n## Commiting: Site updated at #{Time.now.utc}"
+</span><span class='line'>+    system "git commit -m \"#{message}\""
+</span><span class='line'>+    puts "\n## Pushing source branch as backup"
+</span><span class='line'>+    system "git push origin source"
+</span><span class='line'>     puts "\n## Github Pages deploy complete"
+</span><span class='line'>   end
+</span><span class='line'>+
+</span><span class='line'>+end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>github page のソースを clone した後、<code>_deploy</code> ディレクトリを再生成し、master として remote を足すタスクも追加した。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+
+</span><span class='line'>+desc "restore github pages directory"
+</span><span class='line'>+task :restore_github_pages_directory do
+</span><span class='line'>+  puts "\n## Re-creating deploy directory"
+</span><span class='line'>+  rm_rf "#{deploy_dir}"
+</span><span class='line'>+  mkdir_p "#{deploy_dir}"
+</span><span class='line'>+
+</span><span class='line'>+  cd "#{deploy_dir}" do
+</span><span class='line'>+    repo_url = "git@github.com:mumumu/mumumu.github.io"
+</span><span class='line'>+    system "git init"
+</span><span class='line'>+    system "git remote add origin #{repo_url}"
+</span><span class='line'>+  end
+</span><span class='line'>+ end
+</span><span class='line'> 
+</span><span class='line'> desc "Update configurations to support publishing to root or sub directory"</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>[Update September 30th 2018 13:38 JST by m]</strong></p>
+
+<p>Ruby 2.5.1 に環境をアップデートしたことをきっかけに、少し手順を追加しました。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -307,52 +461,6 @@ C) 本番運用</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2014-08-30 20:50:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/30/silly-patch/">Silly patch - Octopress does not open new entry file immediately</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p>github Page を github で管理するためのソフトウェア <a href="http://octopress.org/">Octopress</a> では、新しいエントリを書くときにいちいちエディタを開くコマンドを打たねばならない。最初は気にならなかったのだが、<a href="http://mumumu.github.io/blog/2014/08/17/ranger-file-manager-with-vi-keybindings/">ranger を導入したあたり</a> からそれがどうにも煩雑だと感じるようになった。</p>
-
-<p>こんなの誰でも思いつくだろと思って Octopress の github を調べると、<a href="https://github.com/imathis/octopress/pull/749">こんな Pull Request</a> が見つかり...</p>
-
-<p>これをよく読んでいくと以下のように、「俺たちの流儀ぢゃねえからこれに類する提案は皆 Reject だよハゲ」という話になっていて...そもそもこういう路線の patch は本体に取り込まれる見込みがないことが明確になっていた(´ー｀; )</p>
-
-<p><a href="https://github.com/imathis/octopress/pull/749#issuecomment-11451776">https://github.com/imathis/octopress/pull/749#issuecomment-11451776</a></p>
-
-<p>なので、仕方なく自分は必要な部分のみ糞 patch を当てるわけです。。</p>
-
-<p><a href="https://github.com/mumumu/mumumu.github.io/commit/a139bf79c3af9346c1f607ef04acce6e442a32df">https://github.com/mumumu/mumumu.github.io/commit/a139bf79c3af9346c1f607ef04acce6e442a32df</a></p>
-
-<p>またもや下らぬ patch を書いてしまった。。これもうシリーズ化しようかなって思うんですけど、どないですかね(´ー｀; )</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page7">&larr; Older</a>
@@ -432,6 +540,10 @@ C) 本番運用</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -451,10 +563,6 @@ C) 本番運用</p>
         <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -468,7 +576,7 @@ C) 本番運用</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  Copyright &copy; 2021 - mumumu(Yoshinari Takaoka) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
   - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
   <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>

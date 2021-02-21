@@ -9,8 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="このエントリは、以下の Pull Request がマージされるまでの記録である。
-https://github.com/svarshavchik/courier-libs/pull/13 3行まとめ 1) Courier Mail Server (以下 Courier) という古いメールサーバに &hellip;">
+  <meta name="description" content="https://www.amazon.co.jp/gp/product/B012WL4QMW/ 最近 FireTV Stick を買った。動機は Amazon Prime Video を市販のテレビにキャストしたかったのだ(*1)。 これは電源をUSBケーブルから取る仕様なのだが、付属のケーブルは &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,50 @@ https://github.com/svarshavchik/courier-libs/pull/13 3行まとめ 1) Courier Ma
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2018-12-04 07:38:18 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2018/12/04/firetv-stick-and-usb-cable/">FireTV Stick とUSBケーブル</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://www.amazon.co.jp/gp/product/B012WL4QMW/">https://www.amazon.co.jp/gp/product/B012WL4QMW/</a></p>
+
+<p>最近 FireTV Stick を買った。動機は Amazon Prime Video を市販のテレビにキャストしたかったのだ(*1)。</p>
+
+<p><img src="/images/fire_tv_stick.jpg" width="300" height="250"/></p>
+
+<p>これは電源をUSBケーブルから取る仕様なのだが、付属のケーブルは 長さが1.5m と短く、自分の環境では短過ぎた。だが、長いものを買おうにも、市販のケーブルで相性がいいものがなかなかなくて困った。</p>
+
+<p>いろいろ試した結果、以下の Anker のものに行き着いた。3m でよければ、これで十分だ。Anker は USBケーブル周りでかなり評判が良いようなので買ってみたが、評判通りだったと言えよう(*´～｀)</p>
+
+<p>(*1) PC から Google Chrome 経由で Amazon Prime Video をキャストさせたり、スマホ画面をキャストさせたりすれば見れるのは承知しているが、リモコンがあった方が家族には優しい</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -294,71 +337,6 @@ b) <a href="https://github.com/svarshavchik/courier-libs/pulls?q=is%3Apr+is%3Acl
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2018-02-24 23:29:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2018/02/24/mac-screenshot-on-linux/">Linux で Mac のようにスクリーンショットを撮る</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://github.com/naelstrof/maim">https://github.com/naelstrof/maim</a></p>
-
-<p>職場で Mac をデフォルトであてがわれることが多くなり、スクリーンショットを撮るのに Cmd+Shift+4 するのに慣れてしまった。そんな自分が、Linux で同じことをしたくなったときどうするか？</p>
-
-<p>基本的には、以下のようになる。</p>
-
-<p>A) 範囲指定でスクリーンショットを撮ることが出来るプログラムを探し、インストールする<br/>
-　 但し、GUI が呼ばれるプログラムは不可。CLI である必要がある<br/>
-B) 上記を呼び出すようにショートカットキーを割り当てる</p>
-
-<p>だが、A) を満たすプログラムがなかなか見つからない。どれも GUI を呼ぶか、範囲指定ができてもborderがわからなかったりするなど使いにくいものばかりだった。 <a href="https://wiki.archlinux.org/index.php/taking_a_screenshot">Arch Linux のページ</a> にあるソフトウェアをもろもろ調べ、結局選んだのが maim だった。</p>
-
-<p>だが、こいつが Ubuntu だけ何故かパッケージが用意されていなかった(*注1)ので、git リポジトリから最新版をインストールする羽目に。いろいろ依存していてビルドが大変だったが、Ubuntu 16.04 LTS では以下をインストールすれば(*注2)、あとは <a href="https://github.com/naelstrof/maim#install-using-cmake-requires-cmake-git-libxrander-libxfixes-libglm">指示通りにすれば</a> インストールできる。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install  cmake libxrender-dev libxfixes-dev libglm-dev libglew-dev libglfw3-dev libgles2-mesa-dev libx11-dev libxcomposite-dev</span></code></pre></td></tr></table></div></figure>
-
-
-<p>あとは、以下のコマンドを Ctrl+Shift+F4 にマッピングした。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ maim -s ~/screenshot-$(date +%s).png</span></code></pre></td></tr></table></div></figure>
-
-
-<p>自分は KDE を使っているので <a href="https://docs.kde.org/trunk5/en/kde-workspace/kcontrol/khotkeys/manage.html#manage-add-shortcut">Command/URL を選んで Custom Shortcutを割り当てる</a> 方法を使ったが、他のデスクトップ環境でも似たような機能はきっとあるだろう。</p>
-
-<p>(*注1) 他の主要ディストリビューションにはある (Debian 含) のに、Ubuntu だけ何故... (´ー｀; )<br/>
-(*注2) 他に必要なものもあるかもしれない。build-essential とかは当然の前提よ(*゜ー゜)</p>
-
-<p><strong>[Update 19th May 2018 05:39 JST by m]</strong></p>
-
-<p>Kubuntu 18.04 LTS では、ソースからビルドしなくても maim パッケージ一発で maim が入るようになっていました。しあわせ(｀ー´)</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page4">&larr; Older</a>
@@ -438,6 +416,10 @@ B) 上記を呼び出すようにショートカットキーを割り当てる</
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -457,10 +439,6 @@ B) 上記を呼び出すようにショートカットキーを割り当てる</
         <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -474,7 +452,7 @@ B) 上記を呼び出すようにショートカットキーを割り当てる</
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  Copyright &copy; 2021 - mumumu(Yoshinari Takaoka) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
   - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
   <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>

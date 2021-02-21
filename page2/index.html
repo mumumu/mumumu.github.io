@@ -9,7 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="https://superuser.com/questions/982560/chrome-tab-font-too-small/982565 あれはいつだったからか。Linux で Google Chrome のアドレスバーやタブのフォントが小さすぎる問題にずっと悩んでいた。 最初は 2560 &hellip;">
+  <meta name="description" content="自分は PHP マニュアルのコミット権限を持っているが、2013年に chm のビルドインフラを引き継いだ時 以来、その権限をまともに行使したことはあまりなかった。実際 自分が対応した chm のビルドインフラのバグ報告は4回 しかないし、phpdoc 本体のコミット数も 2013年 - &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2019-12-24 21:30:11 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>自分は PHP マニュアルのコミット権限を持っているが、<a href="http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation/">2013年に chm のビルドインフラを引き継いだ時</a> 以来、その権限をまともに行使したことはあまりなかった。実際 <a href="https://bugs.php.net/search.php?search_for=chm&amp;boolean=0&amp;limit=30&amp;order_by=&amp;direction=DESC&amp;cmd=display&amp;status=Closed&amp;bug_type=All&amp;project=All&amp;php_os=&amp;phpver=&amp;cve_id=&amp;assign=mumumu&amp;author_email=&amp;bug_age=0&amp;bug_updated=0&amp;commented_by=">自分が対応した chm のビルドインフラのバグ報告は4回</a> しかないし、phpdoc 本体のコミット数も 2013年 - 2018年までの間を数えてみると 10 回あるかないかだ。</p>
+
+<p>今年になり、PHPマニュアル自体があまりメンテナンスされてないっぽいな、という感覚になった。なぜかというと、高木さんや吉田さんなど、これまでよくコミットログで見かけた人たちの作業ログを見かけなくなったからである。</p>
+
+<p>それでも見渡すと、日本語ロケールで最新の更新を維持しているのは全体の6割であり、少し手を加えれば最新に更新できるものを含めると7割にも達する。現状でも全ロケールを並べるとトップレベルにある。</p>
+
+<p><img src="/images/phpdoc-all-locale-stats.png"/>
+<img src="/images/phpdoc-translation-stats-detail-ja.png"/></p>
+
+<p>「PHPマニュアル自体があまりメンテナンスされてないっぽいな、という感覚」を踏まえてもこの状況なのはかなり驚異的であり、先人の蓄積に正直驚いた。頭を垂れるしかない。</p>
+
+<p>PHP の拡張機能は増加の一途を辿っているし、ChangeLog を正しい状態に維持するだけでも大変な状態(※ 注1) なので、皆が読む部分だけでも維持するのを手伝えればな、と思う。 少なくとも「少し手を加えれば最新になる」部分については。</p>
+
+<p>ということで、ここ2週間の作業で、reference/ 以外の翻訳はとりあえず最新にした。<br/>
+力を入れず、「皆が読む部分の最新を維持できれば良い」程度の力の入れ具合で行きたい。</p>
+
+<p>あと、もっと多くの人を巻き込むべく、<a href="https://phpusers-ja.slack.com/">PHPユーザーズの Slack</a> でも #phpmanual というチャンネルを作ってもらった。<a href="https://news-web.php.net/php.doc/969387428">phpdoc の git への移行もゆっくりながら進んでいる</a> ので、さらに多くの人を巻き込めるようにしておきたい。</p>
+
+<p>(※ 注1) 業を煮やした cmb が、<a href="https://news-web.php.net/php.doc/969387407">PHP 5.4.0 より前のマニュアル消そうぜ、という提案を最近する</a> 程度には大変である。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -346,50 +398,6 @@ b) 複数のレシピが作れること<br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2018-12-04 07:38:18 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2018/12/04/firetv-stick-and-usb-cable/">FireTV Stick とUSBケーブル</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://www.amazon.co.jp/gp/product/B012WL4QMW/">https://www.amazon.co.jp/gp/product/B012WL4QMW/</a></p>
-
-<p>最近 FireTV Stick を買った。動機は Amazon Prime Video を市販のテレビにキャストしたかったのだ(*1)。</p>
-
-<p><img src="/images/fire_tv_stick.jpg" width="300" height="250"/></p>
-
-<p>これは電源をUSBケーブルから取る仕様なのだが、付属のケーブルは 長さが1.5m と短く、自分の環境では短過ぎた。だが、長いものを買おうにも、市販のケーブルで相性がいいものがなかなかなくて困った。</p>
-
-<p>いろいろ試した結果、以下の Anker のものに行き着いた。3m でよければ、これで十分だ。Anker は USBケーブル周りでかなり評判が良いようなので買ってみたが、評判通りだったと言えよう(*´～｀)</p>
-
-<p>(*1) PC から Google Chrome 経由で Amazon Prime Video をキャストさせたり、スマホ画面をキャストさせたりすれば見れるのは承知しているが、リモコンがあった方が家族には優しい</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page3">&larr; Older</a>
@@ -469,6 +477,10 @@ b) 複数のレシピが作れること<br/>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -488,10 +500,6 @@ b) 複数のレシピが作れること<br/>
         <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -505,7 +513,7 @@ b) 複数のレシピが作れること<br/>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  Copyright &copy; 2021 - mumumu(Yoshinari Takaoka) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
   - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
   <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>

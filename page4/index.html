@@ -9,7 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5 システム運用時に、何かあった時のアラート等の通知を Slack &hellip;">
+  <meta name="description" content="https://github.com/naelstrof/maim 職場で Mac をデフォルトであてがわれることが多くなり、スクリーンショットを撮るのに Cmd+Shift+4 するのに慣れてしまった。そんな自分が、Linux で同じことをしたくなったときどうするか？ 基本的には、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2018-02-24 23:29:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2018/02/24/mac-screenshot-on-linux/">Linux で Mac のようにスクリーンショットを撮る</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://github.com/naelstrof/maim">https://github.com/naelstrof/maim</a></p>
+
+<p>職場で Mac をデフォルトであてがわれることが多くなり、スクリーンショットを撮るのに Cmd+Shift+4 するのに慣れてしまった。そんな自分が、Linux で同じことをしたくなったときどうするか？</p>
+
+<p>基本的には、以下のようになる。</p>
+
+<p>A) 範囲指定でスクリーンショットを撮ることが出来るプログラムを探し、インストールする<br/>
+　 但し、GUI が呼ばれるプログラムは不可。CLI である必要がある<br/>
+B) 上記を呼び出すようにショートカットキーを割り当てる</p>
+
+<p>だが、A) を満たすプログラムがなかなか見つからない。どれも GUI を呼ぶか、範囲指定ができてもborderがわからなかったりするなど使いにくいものばかりだった。 <a href="https://wiki.archlinux.org/index.php/taking_a_screenshot">Arch Linux のページ</a> にあるソフトウェアをもろもろ調べ、結局選んだのが maim だった。</p>
+
+<p>だが、こいつが Ubuntu だけ何故かパッケージが用意されていなかった(*注1)ので、git リポジトリから最新版をインストールする羽目に。いろいろ依存していてビルドが大変だったが、Ubuntu 16.04 LTS では以下をインストールすれば(*注2)、あとは <a href="https://github.com/naelstrof/maim#install-using-cmake-requires-cmake-git-libxrander-libxfixes-libglm">指示通りにすれば</a> インストールできる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install  cmake libxrender-dev libxfixes-dev libglm-dev libglew-dev libglfw3-dev libgles2-mesa-dev libx11-dev libxcomposite-dev</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとは、以下のコマンドを Ctrl+Shift+F4 にマッピングした。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ maim -s ~/screenshot-$(date +%s).png</span></code></pre></td></tr></table></div></figure>
+
+
+<p>自分は KDE を使っているので <a href="https://docs.kde.org/trunk5/en/kde-workspace/kcontrol/khotkeys/manage.html#manage-add-shortcut">Command/URL を選んで Custom Shortcutを割り当てる</a> 方法を使ったが、他のデスクトップ環境でも似たような機能はきっとあるだろう。</p>
+
+<p>(*注1) 他の主要ディストリビューションにはある (Debian 含) のに、Ubuntu だけ何故... (´ー｀; )<br/>
+(*注2) 他に必要なものもあるかもしれない。build-essential とかは当然の前提よ(*゜ー゜)</p>
+
+<p><strong>[Update 19th May 2018 05:39 JST by m]</strong></p>
+
+<p>Kubuntu 18.04 LTS では、ソースからビルドしなくても maim パッケージ一発で maim が入るようになっていました。しあわせ(｀ー´)</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -331,60 +396,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2016-10-12 05:58:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2016/10/12/yang-xiang-kegoroqin-desuku/">Aomuke Gorone Desk</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.thanko.jp/shopdetail/000000002595/">http://www.thanko.jp/shopdetail/000000002595/</a></p>
-
-<p>自分の寝室にはベッドしかなく、ノートPCを膝に乗せて長時間弄るのは非常に苦痛だ。寝たままPCを弄りたい！という動機は誰でも考えるようで、以前は<a href="http://www.thanko.jp/product/872.html">ゴロ寝deスクアルミ</a>というやつを買っていた。</p>
-
-<p>寝たままPCを弄れるという夢が叶うことに加え、デスクスタイル、ソファースタイル、ベッドスタイル等、利用シーンに合わせて形が変えられるというウリに飛びついたわけだが、以下の欠点があった。</p>
-
-<ul>
-<li>重い。2.4kg もある</li>
-<li>いろいろ形を変えられるのは事実だが、関節が硬く意外に扱いにくい</li>
-</ul>
-
-
-<p>使ってみてわかったのだが、寝たままでPCを打つ姿勢って意外に長く保てない。よって、場合によってはカジュアルに姿勢を動かしたいとか、移動したいとかいうニーズに上記の欠点が仇となり、あまり使わなくなっていた。やっぱ軽くて取り回しの効く奴が欲しいよねー、という思いがあったのは間違いない。</p>
-
-<p><img src="/images/goronedesk.jpg"/></p>
-
-<p>粗大ごみを始末していた時、この使わなくなったゴロ寝deスクに気づいた。ふっと軽くて取り回しの効く奴、という欲望を思い出し、調べてみると後継のシリーズが出ているではないか。我ながら懲りないなあと思いつつ、早速ポチってしまった。上の画像がそれである。</p>
-
-<p>「腕が疲れそう」とか、「おんなじじゃね」とかいろんなことを言われたが、1kg を切る重さに加え、調整すべき場所も天板と脚の部分と意外に少ないので、個人的には扱いやすくて気に入っている。ただ、新しいものだからプラシーボにかかっている疑いも否定できないので、暫く使ってみるつもりだ。</p>
-
-<p>とりあえずは、10ヶ月ぶりにエントリを書く気になった、というのがこれを買った一番の成果と言えるのではないだろうか(´ー｀; )</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page5">&larr; Older</a>
@@ -464,6 +475,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -483,10 +498,6 @@
         <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -500,7 +511,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  Copyright &copy; 2021 - mumumu(Yoshinari Takaoka) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
   - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
   <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>

@@ -9,7 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="MySQL5.5 からビルドは cmake でするようになったが、ビルドオプションが手元に残らない（誰か Autotool でいうところの config.status みたいなものがあれば教えて!)。そして、MySQL &hellip;">
+  <meta name="description" content="http://ja.wikipedia.org/wiki/X-Forwarded-For 少々大きなサイトになると、Webサーバ がロードバランサの後ろにあるなんて世界はもう当たり前になった。ロードバランサの後ろからは直接クライアントのIPアドレスを知ることが標準のやり方では取得しづらい。CGI &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-06-13 22:49:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/13/x-forwarded-for/">X-Forwarded-For</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://ja.wikipedia.org/wiki/X-Forwarded-For">http://ja.wikipedia.org/wiki/X-Forwarded-For</a></p>
+
+<p>少々大きなサイトになると、Webサーバ がロードバランサの後ろにあるなんて世界はもう当たり前になった。ロードバランサの後ろからは直接クライアントのIPアドレスを知ることが標準のやり方では取得しづらい。CGI でいうところの REMOTE_HOST は、ロードバランサのIPアドレスを意味するからだ。</p>
+
+<p>それを取得するための方法が、X-Forwarded-For ヘッダの値なのは多くの人が知っている。けれども、これはデファクトではあっても標準ではない。今日たまたま商用のロードバランサを触っていて、このヘッダの値を設定してこないのに驚いた。</p>
+
+<p>何らかの値は設定するモノだよなーと思ってCGIに渡される環境変数やHTTPヘッダの値をぱっと取得する方法をちょびっと考えたら、PHP が一番楽だなーと個人的には思いました。みんな馬鹿にするけどね。</p>
+
+<pre><code>&lt;?php
+var_dump($_SERVER);
+</code></pre>
+
+<p>だけでいいんだもの。</p>
+
+<p>Python を CGI として実行させるんだったら以下のようになる。<br/>
+CGI として実行するんで、拡張子や実行権限とかを気にしないといけないのはちょっとアレ。</p>
+
+<pre><code>#!/usr/bin/env python 
+import cgi
+cgi.print_environ();
+</code></pre>
+
+<p>Ruby だったら...？</p>
+
+<pre><code>#!/usr/bin/env ruby
+print "Content-type: text/html\n\n"
+ENV.collect() do |key, value|
+        print key + " --&gt; " + value + "&lt;br /&gt;"
+end
+</code></pre>
+
+<p>Perl だったら...？ というのは省略。</p>
+
+<p>たぶん、Python や Ruby も Perl も(フレームワークとかでキックされる状況等という意味で)実行環境によってはもっと短い書き方があるはずだ。結局、自分が一番使い慣れた LL が PHP ってだけなんだと思う。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -372,91 +439,6 @@ now.add(Calendar.MONTH, +3);           // not 5/31, but 5/28 !!!
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2013-05-30 21:02:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/30/firefox-profile-setting-on-selenium/">Firefox profile setting on Selenium</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://stackoverflow.com/questions/2405714/selenium-and-https-ssl">http://stackoverflow.com/questions/2405714/selenium-and-https-ssl</a></p>
-
-<p><a href="http://docs.seleniumhq.org/">Selenium</a> を最近テストに愛用している。ただ、https な通信のときにオレオレ証明書を使っている場合、毎回ブラウザが立ち上がるたびに以下のような警告が出て非常にうざいのが問題だった。「危険性を理解した上で接続する」をクリックして例外サイトに加えても結果は同じだったので、これはプロファイルが適用されていないんだな、と気付いた。</p>
-
-<p><img src="images/firefox_ssl_warning.png" alt="firefox ssl warning" /></p>
-
-<p>自分は Selenium Server を以下のような Java のコードで起動し、Firefox をコントロールしていた。これにプロファイルを適用すれば良いことになる。</p>
-
-<pre><code>protected SeleniumServer seleniumServer;
-protected Selenium selenium;
-
-protected void setUp() throws Exception { 
-
-    String testUrl = "http://example.com/foo/bar";
-    String testBrowser = "*firefox";
-
-    seleniumServer = new SeleniumServer();
-    seleniumServer.start();
-
-    selenium = new DefaultSelenium(
-            "localhost", seleniumServer.getPort(),
-            testBrowser, testUrl
-           );
-    selenium.start();
-
-}
-</code></pre>
-
-<p>上記はコマンドラインで Selenium Server を起動せずに Java から起動しているので、Java からプロファイル設定を渡す方法ってなんだろうと思っていろいろ調べた。だが、コマンドラインから Selenium Server を起動した場合とごっちゃになっていて結論がよくわからなかった。結局以下のように SeleniumServer のコンストラクタに RemoteControlConfiguration オブジェクトを渡せばうまくいった。</p>
-
-<pre><code>RemoteControlConfiguration rcc = new RemoteControlConfiguration();
-rcc.setFirefoxProfileTemplate(new File("/path/to/firefox_profile_dir"));
-seleniumServer = new SeleniumServer(rcc);
-</code></pre>
-
-<p>Firefox のプロファイルのディレクトリはプラットフォームによって異なる。Windows であれば、%AppData%/Roaming/Mozilla/Firefox/Profiles/xxxxxxxxxx となる。</p>
-
-<p>これでプロファイルを Selenium Server に渡せるようになったのはいいのだが、Firefox の起動が極めて重かったので参った。プロファイルを渡さなかったときは重くなかったので、別に空のプロファイルを作り、そのプロファイルにオレオレ証明書を受け入れさせたら軽くなった。 Firefox で新しいプロファイルを作るには、以下のコマンドを使う。</p>
-
-<pre><code>firefox -P
-</code></pre>
-
-<p>そうすれば以下のようなウィンドウが起動するので、プロファイルを設定し、Java 側で新たに指定すればよい。</p>
-
-<p><img src="images/firefox_profile_window.png" alt="firefox profile window" /></p>
-
-<p>Selenium Server をコマンドラインから起動する場合は、以下のやり方でプロファイルを渡すことが出来る。このやり方なら、 Java 側で SeleniumServerクラスをインスタンス化して start する必要はない。</p>
-
-<pre><code>java -jar selenium-server-standalone-2.31.0.jar -firefoxProfileTemplate /path/to/firefox_profile_dir
-</code></pre>
-
-<p>ヤレヤレ。少し面倒だが、だいぶ楽になった(´ー｀; )</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page16">&larr; Older</a>
@@ -536,6 +518,10 @@ seleniumServer = new SeleniumServer(rcc);
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -555,10 +541,6 @@ seleniumServer = new SeleniumServer(rcc);
         <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -572,7 +554,7 @@ seleniumServer = new SeleniumServer(rcc);
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  Copyright &copy; 2021 - mumumu(Yoshinari Takaoka) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
   - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
   <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>

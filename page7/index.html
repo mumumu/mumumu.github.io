@@ -9,11 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="http://dictionary.goo.ne.jp/leaf/jn2/200443/m0u/ 1
-2
-3
-へん-せつ【変節】 ［名］(スル)節義を変えること。信念・主義・主張などを変えること。 昨日の出来事で何かが変わったのは確かだ(一行独白
-">
+  <meta name="description" content="github Page を github で管理するためのソフトウェア Octopress では、新しいエントリを書くときにいちいちエディタを開くコマンドを打たねばならない。最初は気にならなかったのだが、ranger を導入したあたり からそれがどうにも煩雑だと感じるようになった。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +76,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-08-30 20:50:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/30/silly-patch/">Silly patch - Octopress does not open new entry file immediately</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>github Page を github で管理するためのソフトウェア <a href="http://octopress.org/">Octopress</a> では、新しいエントリを書くときにいちいちエディタを開くコマンドを打たねばならない。最初は気にならなかったのだが、<a href="http://mumumu.github.io/blog/2014/08/17/ranger-file-manager-with-vi-keybindings/">ranger を導入したあたり</a> からそれがどうにも煩雑だと感じるようになった。</p>
+
+<p>こんなの誰でも思いつくだろと思って Octopress の github を調べると、<a href="https://github.com/imathis/octopress/pull/749">こんな Pull Request</a> が見つかり...</p>
+
+<p>これをよく読んでいくと以下のように、「俺たちの流儀ぢゃねえからこれに類する提案は皆 Reject だよハゲ」という話になっていて...そもそもこういう路線の patch は本体に取り込まれる見込みがないことが明確になっていた(´ー｀; )</p>
+
+<p><a href="https://github.com/imathis/octopress/pull/749#issuecomment-11451776">https://github.com/imathis/octopress/pull/749#issuecomment-11451776</a></p>
+
+<p>なので、仕方なく自分は必要な部分のみ糞 patch を当てるわけです。。</p>
+
+<p><a href="https://github.com/mumumu/mumumu.github.io/commit/a139bf79c3af9346c1f607ef04acce6e442a32df">https://github.com/mumumu/mumumu.github.io/commit/a139bf79c3af9346c1f607ef04acce6e442a32df</a></p>
+
+<p>またもや下らぬ patch を書いてしまった。。これもうシリーズ化しようかなって思うんですけど、どないですかね(´ー｀; )</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -515,117 +557,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2014-07-05 22:22:00 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/05/disk-partition-over-2tb/">disk partition over 2TB</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ストレージって普段意識せずに使うモノだから、ハードウェア障害とかでいざ交換とか再初期化とかいう話になると、オペレーションを思い出すのに一瞬うっとなることが多い。今日もそんな日だった。</p>
-
-<p>ちょっと重要なサーバのストレージが死にかけたので、代替機を作ろうという話になった。ストレージは 480GB のSSD と Western Digital の 3TB。/dev/sda, /dev/sdb に割り当てられているのはわかっている。どちらがSSDで、どちらがHDDか？</p>
-
-<p>今までは dmesg とかを目grepしてどちらが何であるかを見ていた。なんとも原始的で情けない話だ。<br/>
-けれども、hdparm 使えば簡単だということを教わった。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>nn@op3:~$ sudo hdparm -i /dev/sda
-</span><span class='line'>
-</span><span class='line'>/dev/sda:
-</span><span class='line'>
-</span><span class='line'> Model=WDC WD30EZRX-00AZ6B0, FwRev=80.00A80, SerialNo=WD-WCC070146118
-</span><span class='line'> Config={ HardSect NotMFM HdSw&gt;15uSec SpinMotCtl Fixed DTR&gt;5Mbs FmtGapReq }
-</span><span class='line'> RawCHS=16383/16/63, TrkSize=0, SectSize=0, ECCbytes=50
-</span><span class='line'> BuffType=unknown, BuffSize=unknown, MaxMultSect=16, MultSect=16
-</span><span class='line'> CurCHS=16383/16/63, CurSects=16514064, LBA=yes, LBAsects=5860533168
-</span><span class='line'> IORDY=on/off, tPIO={min:120,w/IORDY:120}, tDMA={min:120,rec:120}
-</span><span class='line'> PIO modes:  pio0 pio3 pio4 
-</span><span class='line'> DMA modes:  mdma0 mdma1 mdma2 
-</span><span class='line'> UDMA modes: udma0 udma1 udma2 udma3 udma4 udma5 *udma6 
-</span><span class='line'> AdvancedPM=no WriteCache=enabled
-</span><span class='line'> Drive conforms to: Unspecified:  ATA/ATAPI-1,2,3,4,5,6,7
-</span><span class='line'>
-</span><span class='line'> * signifies the current active mode</span></code></pre></td></tr></table></div></figure>
-
-
-<p>今回は /dev/sda に何故か HDD が割り当てられていることがわかった。パーティーションを一つだけ切って、それに全ての容量を割り当て、ext4 でフォーマットしようぜ、という話になった。自分は fdisk でこれまでパーティーションを切ることに慣れていたので、fdiskでパーティーションを切ったところ、以下のように2TB分しか切られない。なんでだ。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>/dev/sda1                2.0T  199M  1.9T   1% /hoge</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>と思ったら、Linux の fdisk は <a href="http://ja.wikipedia.org/wiki/GUID%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB">GUIDパーティーションテーブル(GPT)</a> に対応していないので、 2TiB 以上のパーティーションは作れないようだ。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo parted /dev/sda
-</span><span class='line'>(parted) mklabel gpt
-</span><span class='line'>(parted) mkpart primary 0% 100%
-</span><span class='line'>(parted) print
-</span><span class='line'>Model: ATA WDC WD30EZRX-00A (scsi)
-</span><span class='line'>Disk /dev/sda: 3001GB
-</span><span class='line'>Sector size (logical/physical): 512B/4096B
-</span><span class='line'>Partition Table: gpt
-</span><span class='line'>
-</span><span class='line'>Number  Start   End     Size    File system  Name     Flags
-</span><span class='line'>1      1049kB  3001GB  3001GB               primary</span></code></pre></td></tr></table></div></figure>
-
-
-<p>これで 2TB 以上のディスクを普通に扱えるようになった。これまでも2TB以上のディスクに普通に fdisk を使ってきた自分が恥ずかしいわ(´ー｀；)</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page8">&larr; Older</a>
@@ -705,6 +636,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -724,10 +659,6 @@
         <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -741,7 +672,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  Copyright &copy; 2021 - mumumu(Yoshinari Takaoka) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
   - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
   <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>

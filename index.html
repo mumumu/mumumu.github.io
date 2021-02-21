@@ -9,10 +9,7 @@
   <meta name="author" content="mumumu(Yoshinari Takaoka)">
 
   
-  <meta name="description" content="PHP マニュアルのメンテナの一人として、過去にいくつか文書を書いてきたが、それの最新版を全て gist に集約した。 PHP マニュアル 日本語版について
-PHPマニュアル のビルド方法
-メンテナ向け: PHPマニュアル のメンテナンス方法
-メンテナ向け: PHPマニュアル の chm &hellip;">
+  <meta name="description" content="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540 PHP Manual 日本語版のメンテナを本格的に手がけるようになってから一年以上が経過した。 去年の11月末に PHP 8 がリリースされた &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +76,54 @@ PHPマニュアル のビルド方法
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2021-02-21 23:45:47 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2021/02/21/credit/">クレジット</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540">https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540</a></p>
+
+<p><a href="https://www.php.net/manual/ja/">PHP Manual</a> 日本語版のメンテナを本格的に手がけるようになってから一年以上が経過した。</p>
+
+<p>去年の11月末に <a href="https://www.php.net/archive/2020.php#2020-11-26-3">PHP 8 がリリースされた</a>。それに伴う <a href="https://www.php.net/manual/ja/migration80.php">移行ドキュメント</a> や新機能の追加、名前付き引数の影響でもろもろの関数やメソッドのシグネチャが劇的に変化したことに伴う更新など、Manual に対する更新量は莫大だった。それでも PHP 7 の時と異なり、<a href="https://github.com/php/doc-en/pulls">github であらかじめ英語版のドキュメントの更新がドラフト時点から見られる</a> ことが助けとなり、日本語版については、更新にほぼリアルタイムで追随できている。</p>
+
+<p>PHP 8 にまつわる Manual の更新量が莫大だと書いたが、機械的に更新できる部分も、そうでない部分もある。</p>
+
+<p>そういう事情もあって、細かい部分の更新の整合性が雑になることも否めない。英語版のそういう雑な部分について、ある時から黙って修正をするようになった。それだけ、誰が見てもおかしい部分が割とあったのだ。</p>
+
+<p><a href="https://github.com/php/doc-en/search?q=author%3Amumumu&amp;type=commits">そういった部分の更新</a> や、<a href="https://github.com/php/doc-en/pulls?q=is%3Apr+author%3Amumumu+versions.xml+">PHP 8 で使える関数のバージョン情報の英語版の更新</a> を黙ってやっていたところ、メイン開発者のひとりである <a href="https://people.php.net/cmb">cmb</a> (*1) から<a href="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540">クレジット</a> を貰った。言い換えると、<a href="https://www.php.net/manual/en/preface.php#contributors">自分の名前が PHP Manual の隅に載った</a> だけの話ではあるけれども、日々の活動を見てくれている人がいる、というのはやはり嬉しいものだ。</p>
+
+<p>PHP を使う以上、PHP Manual は避けて通れない。とても多くの人が見るものなのだ。既に PHP をメインで書かなくなって久しいが、引き続き微力ながら、裏からそれを支えていこうと思う(*´～｀)</p>
+
+<p>(*1)  Windows 版 PHPのメンテナンスや、PECL の複数のモジュールの Lead. PHP 7.3 のリリースマネージャーなど。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -317,58 +362,6 @@ PHPマニュアル のビルド方法
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    <p style="color:#aaa">
-      
-
-
-
-
-
-
-
-
-  2019-12-24 21:30:11 +0900
-
-
-
-
-    </p>
-    
-      <h1 class="entry-title"><a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content"><p>自分は PHP マニュアルのコミット権限を持っているが、<a href="http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation/">2013年に chm のビルドインフラを引き継いだ時</a> 以来、その権限をまともに行使したことはあまりなかった。実際 <a href="https://bugs.php.net/search.php?search_for=chm&amp;boolean=0&amp;limit=30&amp;order_by=&amp;direction=DESC&amp;cmd=display&amp;status=Closed&amp;bug_type=All&amp;project=All&amp;php_os=&amp;phpver=&amp;cve_id=&amp;assign=mumumu&amp;author_email=&amp;bug_age=0&amp;bug_updated=0&amp;commented_by=">自分が対応した chm のビルドインフラのバグ報告は4回</a> しかないし、phpdoc 本体のコミット数も 2013年 - 2018年までの間を数えてみると 10 回あるかないかだ。</p>
-
-<p>今年になり、PHPマニュアル自体があまりメンテナンスされてないっぽいな、という感覚になった。なぜかというと、高木さんや吉田さんなど、これまでよくコミットログで見かけた人たちの作業ログを見かけなくなったからである。</p>
-
-<p>それでも見渡すと、日本語ロケールで最新の更新を維持しているのは全体の6割であり、少し手を加えれば最新に更新できるものを含めると7割にも達する。現状でも全ロケールを並べるとトップレベルにある。</p>
-
-<p><img src="/images/phpdoc-all-locale-stats.png"/>
-<img src="/images/phpdoc-translation-stats-detail-ja.png"/></p>
-
-<p>「PHPマニュアル自体があまりメンテナンスされてないっぽいな、という感覚」を踏まえてもこの状況なのはかなり驚異的であり、先人の蓄積に正直驚いた。頭を垂れるしかない。</p>
-
-<p>PHP の拡張機能は増加の一途を辿っているし、ChangeLog を正しい状態に維持するだけでも大変な状態(※ 注1) なので、皆が読む部分だけでも維持するのを手伝えればな、と思う。 少なくとも「少し手を加えれば最新になる」部分については。</p>
-
-<p>ということで、ここ2週間の作業で、reference/ 以外の翻訳はとりあえず最新にした。<br/>
-力を入れず、「皆が読む部分の最新を維持できれば良い」程度の力の入れ具合で行きたい。</p>
-
-<p>あと、もっと多くの人を巻き込むべく、<a href="https://phpusers-ja.slack.com/">PHPユーザーズの Slack</a> でも #phpmanual というチャンネルを作ってもらった。<a href="https://news-web.php.net/php.doc/969387428">phpdoc の git への移行もゆっくりながら進んでいる</a> ので、さらに多くの人を巻き込めるようにしておきたい。</p>
-
-<p>(※ 注1) 業を煮やした cmb が、<a href="https://news-web.php.net/php.doc/969387407">PHP 5.4.0 より前のマニュアル消そうぜ、という提案を最近する</a> 程度には大変である。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page2">&larr; Older</a>
@@ -443,6 +436,10 @@ PHPマニュアル のビルド方法
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
       </li>
     
@@ -462,10 +459,6 @@ PHPマニュアル のビルド方法
         <a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -479,7 +472,7 @@ PHPマニュアル のビルド方法
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2020 - mumumu(Yoshinari Takaoka) -
+  Copyright &copy; 2021 - mumumu(Yoshinari Takaoka) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
   - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
   <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
