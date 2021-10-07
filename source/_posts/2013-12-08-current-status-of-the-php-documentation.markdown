@@ -8,7 +8,7 @@ categories: [documentation, php]
 
 <b>[Update September 19th 23:29 JST by m ]</b>
 
-ここに書いた内容は、更新も含めて [PHP マニュアル 日本語版について](https://gist.github.com/8464d879ccb939365d729cda242dbf14) に移動しています。最新の内容はそちらを参照して下さい。
+ここに書いた内容は、更新も含めて [PHP マニュアル 日本語版について](https://github.com/php/doc-ja/blob/master/README_About_ThisManual.md) に移動しています。最新の内容はそちらを参照して下さい。
 
 ----  
 　  
