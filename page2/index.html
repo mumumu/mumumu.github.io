@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395 ChromeBook をいろいろ試した 結果、やはり自分は Linux をVMや他のOSを介さずに使いたい人なんだ、という結論を得るに至った。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/page2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://mumumu.github.io/rss.xml" rel="alternate" type="application/rss+xml" title="mumumu の日記" />
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-674328-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://mumumu.github.io/rss.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2020-01-25 20:03:30 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/thinkpad_x395.png" width="800"/></p>
+
+<p><a href="https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395">https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395</a></p>
+
+<p><a href="/blog/2019/12/05/chromebook/">ChromeBook をいろいろ試した</a> 結果、やはり自分は Linux をVMや他のOSを介さずに使いたい人なんだ、という結論を得るに至った。Linux が動くノートパソコン、かつ日本語キーボードなものといえば？ といえばやはり ThinkPad に落ち着いた。このディストリビューションが動くよ、という<a href="https://support.lenovo.com/jp/ja/solutions/PD031426">実績を示してくれている</a> のもポイントが高い。</p>
+
+<p>Lenovo の公式サイトからの直販ではeクーポンがついていて売られていた。Full HD のディスプレイに変更し、延長修理5年を付けても 112,596 JPY で購入できた。安い。</p>
+
+<p>最初は上記の実績にない Ubuntu 19.10 を入れていろいろ試してしまい、Linux Kernel 5.3 と RIZEN の相性の悪さに苦しんだ。AC アダプタを繋がない放電状態だとフリーズが多発してしまい、いろいろ試してみたが駄目だった。Ubuntu 18.04 を入れ、Kernel 5.0 にしたら動作が落ち着いた。Kernel 5.3 にしてしまうと駄目なようなので、留意しておきたい。</p>
+
+<p>Linux Kernel だけは面倒がないようにapt-mark hold しておいたが、Ubuntu 20.04 LTS になったときにうまく移行できるのか、心配ではある。</p>
+
+<p>とはいうものの、とても動作は安定している。クリエイティブな用途にでも使わない限り、メモリ 16GB である必要もないという学びを得たのも収穫だった。会社の環境もクラウド上にあるので、ダム端(死語)として使うもよし、ローカルで小さめの開発に使うもよし、ネイティブでLinuxが動くことの喜びを噛み締めている。軽いし、180度まで開いて平らに使うことができるのもいい。唯一の欠点は、ビルド時に筐体の右側がかなり熱くなるという点だけかな。</p>
+
+<p>(次にこの手の何かを買う時は、Intel を選びたいかな... Kernel との相性という意味で安心感があるよ。やっぱり。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2019-12-24 21:30:11 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2019/12/24/php-documentation-maintenance-work/">phpdoc メンテナンス業を少し強化する気になった</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>自分は PHP マニュアルのコミット権限を持っているが、<a href="http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation/">2013年に chm のビルドインフラを引き継いだ時</a> 以来、その権限をまともに行使したことはあまりなかった。実際 <a href="https://bugs.php.net/search.php?search_for=chm&amp;boolean=0&amp;limit=30&amp;order_by=&amp;direction=DESC&amp;cmd=display&amp;status=Closed&amp;bug_type=All&amp;project=All&amp;php_os=&amp;phpver=&amp;cve_id=&amp;assign=mumumu&amp;author_email=&amp;bug_age=0&amp;bug_updated=0&amp;commented_by=">自分が対応した chm のビルドインフラのバグ報告は4回</a> しかないし、phpdoc 本体のコミット数も 2013年 - 2018年までの間を数えてみると 10 回あるかないかだ。</p>
+
+<p>今年になり、PHPマニュアル自体があまりメンテナンスされてないっぽいな、という感覚になった。なぜかというと、高木さんや吉田さんなど、これまでよくコミットログで見かけた人たちの作業ログを見かけなくなったからである。</p>
+
+<p>それでも見渡すと、日本語ロケールで最新の更新を維持しているのは全体の6割であり、少し手を加えれば最新に更新できるものを含めると7割にも達する。現状でも全ロケールを並べるとトップレベルにある。</p>
+
+<p><img src="/images/phpdoc-all-locale-stats.png"/>
+<img src="/images/phpdoc-translation-stats-detail-ja.png"/></p>
+
+<p>「PHPマニュアル自体があまりメンテナンスされてないっぽいな、という感覚」を踏まえてもこの状況なのはかなり驚異的であり、先人の蓄積に正直驚いた。頭を垂れるしかない。</p>
+
+<p>PHP の拡張機能は増加の一途を辿っているし、ChangeLog を正しい状態に維持するだけでも大変な状態(※ 注1) なので、皆が読む部分だけでも維持するのを手伝えればな、と思う。 少なくとも「少し手を加えれば最新になる」部分については。</p>
+
+<p>ということで、ここ2週間の作業で、reference/ 以外の翻訳はとりあえず最新にした。<br/>
+力を入れず、「皆が読む部分の最新を維持できれば良い」程度の力の入れ具合で行きたい。</p>
+
+<p>あと、もっと多くの人を巻き込むべく、<a href="https://phpusers-ja.slack.com/">PHPユーザーズの Slack</a> でも #phpmanual というチャンネルを作ってもらった。<a href="https://news-web.php.net/php.doc/969387428">phpdoc の git への移行もゆっくりながら進んでいる</a> ので、さらに多くの人を巻き込めるようにしておきたい。</p>
+
+<p>(※ 注1) 業を煮やした cmb が、<a href="https://news-web.php.net/php.doc/969387407">PHP 5.4.0 より前のマニュアル消そうぜ、という提案を最近する</a> 程度には大変である。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2019-12-24 21:14:20 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/">Chrome のタブやアドレスバーが小さい時</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://superuser.com/questions/982560/chrome-tab-font-too-small/982565">https://superuser.com/questions/982560/chrome-tab-font-too-small/982565</a></p>
+
+<p>あれはいつだったからか。Linux で Google Chrome のアドレスバーやタブのフォントが小さすぎる問題にずっと悩んでいた。</p>
+
+<p>最初は 2560 x 1920 のディスプレイで Chrome を表示させた時だったと思う。別の時は、NVDIA なビデオカード上で Linux を動かしたときとか。とにかく、自分に丁度いい塩梅で Google Chrome のアドレスバーやタブのフォント の大きさが表示できたことが最近までなかった。</p>
+
+<p>最近 ThinkPad X395 に Linux を入れて使い始めたのだけど、同じ状態になった。<br/>
+いい加減何とかならんかなと思ってぐぐりまくると、上記の記事に行き着いた。</p>
+
+<p>これは Windows の記事だが、なんと X Window System 上でも通用したのでびっくりした。<br/>
+もしあなたが自分と同じ問題に悩んでいるのなら、コマンドラインから、以下のようにして Google Chrome を起動してみるとよい。</p>
+
+<p>1.5 の数値は、自分の環境に合わせて適度に調整可能である。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ google-chrome --force-device-scale-factor=1.5</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今は自分でこれらのサイズを調整できるようになって、とてもしあわせだ(｀ー´)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2019-12-21 22:02:33 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2019/12/21/mac-screenshot-on-linux-2/">Linux で Mac のようにスクリーンショットを撮る その2</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/">http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/</a></p>
+
+<p>以前は、maim を使ったスクリーンショット撮影コマンドにショートカットキーを割り当てていた。
+今日 KDE を触っていてよく見ると、そもそもそういう機能が KDE には備わっていることに気がついた。</p>
+
+<p>もともと矩形のスクリーンショットを撮影するショートカットが、KDE システム設定で割り当てられているので、それの割当てキーを、Mac っぽいものに変更すればよかった。あっはっは(´ー｀; )</p>
+
+<p><img src="/images/kde-shortcut-setting.png"/></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2019-12-05 03:53:10 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2019/12/05/chromebook/">Chromebook</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://www.google.com/intl/ja_jp/chromebook/">https://www.google.com/intl/ja_jp/chromebook/</a></p>
+
+<p>最近、Chromebook に注目している。「Linuxクライアントを手軽に入手/維持したい」というニーズは以前から一貫して持っていたので、その手段の一つとして注目している。</p>
+
+<p>特に自分の中で熱量が上がったのが、 <a href="https://japan.zdnet.com/article/35136835/">2019年発売の全てのChromebookがLinux対応にする</a> と Google が表明したことだ。Chromebook はスペックが高いものでなければ3万円台から手に入ることから、自分のニーズを完全に満たせるのではないかと考えたのだ。</p>
+
+<p>そこで、Linux に対応していることがわかっている <a href="https://acerjapan.com/notebook/chromebook/spin11/R751T-N14N">Acer R751-N14N</a> を購入していろいろ試してみた。Linux 自体はまだベータ版なので、<a href="https://support.google.com/chromebook/answer/9145439?hl=ja">設定から有効にする</a> 必要がある。</p>
+
+<p>感想を並べると、以下のようになる。<br/>
+確かにお手軽ではあるものの、自分の中でまだまだだな、という印象だ。</p>
+
+<ul>
+<li>ハードのスペックが低いので、Linuxのコンテナ起動が重い</li>
+<li>vimでファイル編集をしようと思ったら、ターミナルがおかしいのか、日本語が潰れる。自分だけなのかもしれないが、ChromeOS 組み込みのエディタを使ったほうが現状ファイル編集は早い</li>
+<li>かといって、コンテナの中に X をまるごと入れようとは思わない</li>
+<li>X Window System を入れて使い慣れたアプリを弄った方が自分は心地よい。Chromebook に Android アプリを入れて動かすのも悪くはないのだが、普段遣いとなると Chromebook は厳しい</li>
+<li>リモートへの接続端末としてなら、悪くないかも</li>
+</ul>
+
+
+<hr />
+
+<p>　<br/>
+最終的に、普段使っているLinux環境を再現したい欲が強いのだと思う。多分自分の中では、<a href="https://galliumos.org/">GallumOS</a> を入れるか、リモートへの接続端末として使うのが最適解なのだろう...</p>
+
+<p><b>[ Update December 5th 2019 05:18 JST by mumumu ]</b></p>
+
+<p>Acer R751-T は <a href="https://github.com/GalliumOS/galliumos-distro/issues/364">Apollo Lake なので、まだ sound が動作しない</a>。GalliumOS を入れるのは一旦保留で。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page3">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+      
+      
+        <a class="next" href="/">Newer &rarr;</a>
+      
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python / Tech Lead / translator / PHP Manual maintainer(ja) / devoted husband.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="https://github.com/mumumu">Github</a>
+      </li>
+      <li class="post">
+        <a href="https://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+<!--
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+-->
+  </ul>
+</section>
+<!--
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+-->
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2022 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

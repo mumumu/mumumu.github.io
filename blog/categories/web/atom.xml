@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: web | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/web/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Can you trust software distributed via CDN?]]></title>
+    <link href="http://mumumu.github.io/blog/2013/12/28/can-you-trust-cdn/"/>
+    <updated>2013-12-28T23:19:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/12/28/can-you-trust-cdn</id>
+    <content type="html"><![CDATA[<p>皆様は CDN 経由で配布されるソフトウェアを信用しているだろうか。</p>
+
+<p>最近は scriptタグ で埋め込む JavaScript のライブラリも増えてきて、CDN でそれを配布するプロジェクトも増えてきた。代表例が <a href="http://jquery.com/">jQuery</a> である。jQuery は通常のjs や minify されたものの他に、以下のような CDN 経由での配布も可能にしている。</p>
+
+<p>```</p>
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+<p>```</p>
+
+<p>ダウンロードせず CDN に任せるということは、js のホストを外部に任せるということである。このことは以下の懸念に繋がる</p>
+
+<ol type="a">
+<li>インターネットに繋がっていないと開発できない</li>
+<li>CDN 上のファイルが動かない形に変更されたら困る</li>
+<li>CDN がサービスを停止したらどうするか</li>
+<li>プロジェクト自体が活動を停止し、配布をやめたときにソースが手に入らなくなる</li>
+</ol>
+
+
+<p>上記の理由から、自分は CDN を信用していない。jQuery の場合は、絶対に手元にダウンロードして利用する。自分の制御下にないところにホストを任せることほど危険なことはないと思う。</p>
+
+<p>だが、自分の制御下にないソフトウェアを利用せざるを得ない場合がある。</p>
+
+<p>JavaScript のグラフライブラリである <a href="https://developers.google.com/chart/">Google Chart</a> はその代表例だ。これは <a href="https://developers.google.com/chart/terms">利用規約</a> でライブラリをダウンロードすることを認めていない。バージョンアップと配布は Google にお任せである。こういうものに全面的に依存したサービスを作るのは、サービスの生死を Google に握られているようなものだ。現にこれを使っていて、ホスト先のファイルが勝手に互換性がない形で変更されて動かなくなり困ったことがある。</p>
+
+<p>Google Chart を使ってから、自分の制御下にないソフトウェアはますます信用できなくなった。 <br/>
+同僚は「開発段階では CDN を使ってもいいけど、Production にする段階で手元に引き上げてきてそれを使うかなー」と言っていたけど、自分的にはそれすら生ぬるいと思う。</p>
+]]></content>
+  </entry>
+  
+</feed>

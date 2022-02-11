@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Convert CPC into CPM - mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="インターネット広告業界では、よく使われる単位として以下の4つがある。 ・広告を1回Webページに表示することを1インプレッションと言う
+・1000インプレッションあたりにかかる料金を CPM (Cost per mille) と言う
+・広告を1クリックされるごとにかかる料金を CPC (Cost &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/blog/2014/04/28/convert-cpc-into-cpm/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://mumumu.github.io/rss.xml" rel="alternate" type="application/rss+xml" title="mumumu の日記" />
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-674328-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://mumumu.github.io/rss.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-04-28 18:50:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title">Convert CPC into CPM</h1>
+    
+  </header>
+
+
+<div class="entry-content"><p>インターネット広告業界では、よく使われる単位として以下の4つがある。</p>
+
+<p>・広告を1回Webページに表示することを1インプレッションと言う<br/>
+・1000インプレッションあたりにかかる料金を CPM (Cost per mille) と言う<br/>
+・広告を1クリックされるごとにかかる料金を CPC (Cost per click) と言う。つまり、1クリックの値段<br/>
+・広告を表示した回数(インプレッションの数) のうち、クリックされた割合(パーセント)を CTR (Click Through Rate) と言う</p>
+
+<p>CPM と CPC は一見関係なさそうに見えるが、インプレッションがあってこそクリックがあるので、ちゃんと関係があるし、相互に変換が可能だ。ここでは、これらの相互変換のやり方を改めて言葉にしておきたい。</p>
+
+<p>CPM と 1000インプレッションあたりのクリック数 が出れば、1クリックの値段は出る。つまり、以下のような比の関係が成り立つ。</p>
+
+<pre>
+1000インプレッションの値段 : 1000インプレッションのクリック数 = 1クリックの値段 : 1クリック
+</pre>
+
+
+<p>これを既に紹介した単位で言い換えると以下のようになる。</p>
+
+<pre>
+CPM : 1000インプレッションあたりのクリック数 = CPC : 1クリック
+</pre>
+
+
+<p>1000インプレッションあたりのクリック数 は、CTR を使えば以下のように表せる。</p>
+
+<p>CTR =  (1000インプレッションあたりのクリック数 / 1000) * 100<br/>
+1000インプレッションあたりのクリック数 = (CTR / 100) * 1000</p>
+
+<p>このことから、以下のように変形でき...</p>
+
+<pre>
+CPM : (CTR / 100) * 1000 = CPC : 1
+</pre>
+
+
+<p>結果として、CPC と CPM の関係は、 CTR を介して以下のように表せる。CPC と CTR があれば素直に CPM が出せるのだ。</p>
+
+<pre>
+CPM = 10 * CPC * CTR
+CPC = CPM / (10 * CTR)
+</pre>
+
+
+<h2>まとめ</h2>
+
+<p>CPM と CPC は、CTR を介して以下のように表せる</p>
+
+<pre>
+CPM = 10 * CPC * CTR
+CPC = CPM / (10 * CTR)
+</pre>
+
+
+<p>たとえば CPM 80 円で、CTR が 0.02 % だったとすると、CPC は 400 円になる。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">mumumu(Yoshinari Takaoka)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  2014-04-28 18:50:00 +0900
+
+
+
+
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/memo/'>memo</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2014/04/28/convert-cpc-into-cpm/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2014/04/28/convert-cpc-into-cpm/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/04/24/fitbit-one/" title="Previous Post: Fitbit One">&laquo; Fitbit One</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/05/02/xeon-e5-2618lv2/" title="Next Post: Xeon E5 2618Lv2">Xeon E5 2618Lv2 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python / Tech Lead / translator / PHP Manual maintainer(ja) / devoted husband.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="https://github.com/mumumu">Github</a>
+      </li>
+      <li class="post">
+        <a href="https://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+<!--
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+-->
+  </ul>
+</section>
+<!--
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+-->
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2022 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

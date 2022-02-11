@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tips | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/tips/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Chrome のタブやアドレスバーが小さい時]]></title>
+    <link href="http://mumumu.github.io/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/"/>
+    <updated>2019-12-24T21:14:20+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small</id>
+    <content type="html"><![CDATA[<p><a href="https://superuser.com/questions/982560/chrome-tab-font-too-small/982565">https://superuser.com/questions/982560/chrome-tab-font-too-small/982565</a></p>
+
+<p>あれはいつだったからか。Linux で Google Chrome のアドレスバーやタブのフォントが小さすぎる問題にずっと悩んでいた。</p>
+
+<p>最初は 2560 x 1920 のディスプレイで Chrome を表示させた時だったと思う。別の時は、NVDIA なビデオカード上で Linux を動かしたときとか。とにかく、自分に丁度いい塩梅で Google Chrome のアドレスバーやタブのフォント の大きさが表示できたことが最近までなかった。</p>
+
+<p>最近 ThinkPad X395 に Linux を入れて使い始めたのだけど、同じ状態になった。<br/>
+いい加減何とかならんかなと思ってぐぐりまくると、上記の記事に行き着いた。</p>
+
+<p>これは Windows の記事だが、なんと X Window System 上でも通用したのでびっくりした。<br/>
+もしあなたが自分と同じ問題に悩んでいるのなら、コマンドラインから、以下のようにして Google Chrome を起動してみるとよい。</p>
+
+<p>1.5 の数値は、自分の環境に合わせて適度に調整可能である。</p>
+
+<pre><code>$ google-chrome --force-device-scale-factor=1.5
+</code></pre>
+
+<p>今は自分でこれらのサイズを調整できるようになって、とてもしあわせだ(｀ー´)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux で Mac のようにスクリーンショットを撮る その2]]></title>
+    <link href="http://mumumu.github.io/blog/2019/12/21/mac-screenshot-on-linux-2/"/>
+    <updated>2019-12-21T22:02:33+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/12/21/mac-screenshot-on-linux-2</id>
+    <content type="html"><![CDATA[<p><a href="http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/">http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/</a></p>
+
+<p>以前は、maim を使ったスクリーンショット撮影コマンドにショートカットキーを割り当てていた。
+今日 KDE を触っていてよく見ると、そもそもそういう機能が KDE には備わっていることに気がついた。</p>
+
+<p>もともと矩形のスクリーンショットを撮影するショートカットが、KDE システム設定で割り当てられているので、それの割当てキーを、Mac っぽいものに変更すればよかった。あっはっは(´ー｀; )</p>
+
+<p><img src="http://mumumu.github.io/images/kde-shortcut-setting.png"/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux で Mac のようにスクリーンショットを撮る]]></title>
+    <link href="http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/"/>
+    <updated>2018-02-24T23:29:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/naelstrof/maim">https://github.com/naelstrof/maim</a></p>
+
+<p>職場で Mac をデフォルトであてがわれることが多くなり、スクリーンショットを撮るのに Cmd+Shift+4 するのに慣れてしまった。そんな自分が、Linux で同じことをしたくなったときどうするか？</p>
+
+<p>基本的には、以下のようになる。</p>
+
+<p>A) 範囲指定でスクリーンショットを撮ることが出来るプログラムを探し、インストールする<br/>
+　 但し、GUI が呼ばれるプログラムは不可。CLI である必要がある<br/>
+B) 上記を呼び出すようにショートカットキーを割り当てる</p>
+
+<p>だが、A) を満たすプログラムがなかなか見つからない。どれも GUI を呼ぶか、範囲指定ができてもborderがわからなかったりするなど使いにくいものばかりだった。 <a href="https://wiki.archlinux.org/index.php/taking_a_screenshot">Arch Linux のページ</a> にあるソフトウェアをもろもろ調べ、結局選んだのが maim だった。</p>
+
+<p>だが、こいつが Ubuntu だけ何故かパッケージが用意されていなかった(*注1)ので、git リポジトリから最新版をインストールする羽目に。いろいろ依存していてビルドが大変だったが、Ubuntu 16.04 LTS では以下をインストールすれば(*注2)、あとは <a href="https://github.com/naelstrof/maim#install-using-cmake-requires-cmake-git-libxrander-libxfixes-libglm">指示通りにすれば</a> インストールできる。</p>
+
+<pre><code>$ sudo apt-get install  cmake libxrender-dev libxfixes-dev libglm-dev libglew-dev libglfw3-dev libgles2-mesa-dev libx11-dev libxcomposite-dev
+</code></pre>
+
+<p>あとは、以下のコマンドを Ctrl+Shift+F4 にマッピングした。</p>
+
+<pre><code>$ maim -s ~/screenshot-$(date +%s).png
+</code></pre>
+
+<p>自分は KDE を使っているので <a href="https://docs.kde.org/trunk5/en/kde-workspace/kcontrol/khotkeys/manage.html#manage-add-shortcut">Command/URL を選んで Custom Shortcutを割り当てる</a> 方法を使ったが、他のデスクトップ環境でも似たような機能はきっとあるだろう。</p>
+
+<p>(*注1) 他の主要ディストリビューションにはある (Debian 含) のに、Ubuntu だけ何故... (´ー｀; )<br/>
+(*注2) 他に必要なものもあるかもしれない。build-essential とかは当然の前提よ(*゜ー゜)</p>
+
+<p><strong>[Update 19th May 2018 05:39 JST by m]</strong></p>
+
+<p>Kubuntu 18.04 LTS では、ソースからビルドしなくても maim パッケージ一発で maim が入るようになっていました。しあわせ(｀ー´)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[restore github page from source branch]]></title>
+    <link href="http://mumumu.github.io/blog/2015/04/26/restore-github-page-from-source-branch/"/>
+    <updated>2015-04-26T07:17:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2015/04/26/restore-github-page-from-source-branch</id>
+    <content type="html"><![CDATA[<p>github page を <a href="http://octopress.org/">Octopress</a> で公開している人は、きっと master が HTML と CSS だけで出来たリポジトリを github に持っており、かつ source ブランチでそれを生成するための Rakefile や <code>_config.yml</code>、ブログエントリの markdown、テーマなどをバックアップしているはずだ。</p>
+
+<p>では、何かの拍子にブログを書く環境を壊してしまい、source ブランチから復活させなければならなくなった場合はどうだろうか。今朝ちょうどそういう状況に陥ってしまい、復旧に少し手間取ったのでメモしておく。</p>
+
+<p>要するに clone した後、source ブランチに移動し、 <code>_deploy</code> ディレクトリを生成する。そこで git リポジトリを再初期化し、github page へのリポジトリを remote に加えるだけだ。 要するに、 <a href="https://github.com/imathis/octopress/blob/5080107cb9e4c7bad8feb719f7e57c1da3b20c65/Rakefile#L352">setup_github_pagesタスクの後半</a> を真似ただけである。</p>
+
+<pre><code>$ git clone git@github.com:mumumu/mumumu.github.io.git blog
+$ cd blog
+$ git checkout -b source origin/source
+$ gem install bundler
+$ bundle install
+$ mkdir _deploy
+$ cd _deploy
+$ git init
+$ git remote add origin git@github.com:mumumu/mumumu.github.io
+</code></pre>
+
+<p>あとは <code>rake new_post["some title"]</code> で記事を書き、<code>rake generate</code> や <code>rake gen_deploy</code> の操作でいつも通り記事が公開できるようになる。</p>
+
+<p>こうしたリストアの操作と、 <code>git push origin source</code> というバックアップ操作が面倒くさかったので、以下のような patch を Rakefile に足しておいた。</p>
+
+<p>まずは バックアップの操作が <code>rake gen_deploy</code>後に自動で行われるようにした。</p>
+
+<pre><code>@@ -252,16 +252,38 @@ multitask :push do
+   Rake::Task[:copydot].invoke(public_dir, deploy_dir)
+   puts "\n## copying #{public_dir} to #{deploy_dir}"
+   cp_r "#{public_dir}/.", deploy_dir
++  message = "Site updated at #{Time.now.utc}"
+   cd "#{deploy_dir}" do
+     system "git add ."
+     system "git add -u"
+     puts "\n## Commiting: Site updated at #{Time.now.utc}"
+-    message = "Site updated at #{Time.now.utc}"
+     system "git commit -m \"#{message}\""
+     puts "\n## Pushing generated #{deploy_dir} website"
+     system "git push origin #{deploy_branch} --force"
++  end
++
++  cd "#{deploy_dir}/../source" do
++    system "git add *"
++    puts "\n## Commiting: Site updated at #{Time.now.utc}"
++    system "git commit -m \"#{message}\""
++    puts "\n## Pushing source branch as backup"
++    system "git push origin source"
+     puts "\n## Github Pages deploy complete"
+   end
++
++end
+</code></pre>
+
+<p>github page のソースを clone した後、<code>_deploy</code> ディレクトリを再生成し、master として remote を足すタスクも追加した。</p>
+
+<pre><code>+
++desc "restore github pages directory"
++task :restore_github_pages_directory do
++  puts "\n## Re-creating deploy directory"
++  rm_rf "#{deploy_dir}"
++  mkdir_p "#{deploy_dir}"
++
++  cd "#{deploy_dir}" do
++    repo_url = "git@github.com:mumumu/mumumu.github.io"
++    system "git init"
++    system "git remote add origin #{repo_url}"
++  end
++ end
+
+ desc "Update configurations to support publishing to root or sub directory"
+</code></pre>
+
+<p><strong>[Update September 30th 2018 13:38 JST by m]</strong></p>
+
+<p>Ruby 2.5.1 に環境をアップデートしたことをきっかけに、少し手順を追加しました。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[seq -w and zero padding]]></title>
+    <link href="http://mumumu.github.io/blog/2014/01/20/seq-w/"/>
+    <updated>2014-01-20T12:03:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/01/20/seq-w</id>
+    <content type="html"><![CDATA[<p><a href="http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html">http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html</a><br/>
+<a href="http://at-aka.blogspot.jp/2006/11/seq-0-padding.html">http://at-aka.blogspot.jp/2006/11/seq-0-padding.html</a></p>
+
+<p>seq(1) ってコマンドラインから連番を作るときにとても便利だ。ただ、この値を0埋めしたいときがある。<br/>
+その場合は -w オプションを付けろといろんなブログに書いてある。以下のような具合だ。</p>
+
+<pre><code>$ seq -w 1 10
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+</code></pre>
+
+<p>けど、これは指定する最大値が二桁以上の場合だ。上記の 10 を一桁の値、たとえば 5 に変えるとうまくいかなくなる。</p>
+
+<pre><code>$ seq -w 1 5
+1
+2
+3
+4
+5
+</code></pre>
+
+<p>これは -w オプションが最大の桁数に合わせて0埋めするためだ。だから、以下のようにすると同じように通用する。</p>
+
+<pre><code>$ seq -w 01 5
+01
+02
+03
+04
+05
+</code></pre>
+
+<p>最初 -f オプションでフォーマットしようかと思ったのだけど、printf の %d を指定すると以下のように怒られる。<br/>
+これは、数値を内部的に浮動小数点で扱っているためだった。 <a href="http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html">マニュアル</a> にもしっかり書いてある。</p>
+
+<pre><code>$ seq -f "%02d" 01 5
+seq: FORMAT `%02d' に不明な %d 指定があります
+</code></pre>
+
+<p>なので、g を指定してあげるとちゃんとうまくいく。</p>
+
+<pre><code>$ seq -f "%02g" 1 5
+01
+02
+03
+04
+05
+</code></pre>
+
+<p>まあ、以下が一番スマートかなー、と思う次第(*´〜｀)</p>
+
+<pre><code>$ seq -w 01 5
+01
+02
+03
+04
+05
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

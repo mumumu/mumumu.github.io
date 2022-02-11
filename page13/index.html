@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="http://www.nongnu.org/dmidecode/
+http://man.cx/dmidecode%288%29 自作とかしてないと dmidecode とか使わないよなぁ、と心の隅に置いていただけのコマンドであるが、自分サーバ自作してたんだった(´ー｀；) &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/page13/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://mumumu.github.io/rss.xml" rel="alternate" type="application/rss+xml" title="mumumu の日記" />
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-674328-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://mumumu.github.io/rss.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-07-04 18:01:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/04/dmidecode/">dmidecode</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.nongnu.org/dmidecode/">http://www.nongnu.org/dmidecode/</a><br/>
+<a href="http://man.cx/dmidecode%288%29">http://man.cx/dmidecode%288%29</a></p>
+
+<p>自作とかしてないと dmidecode とか使わないよなぁ、と心の隅に置いていただけのコマンドであるが、自分サーバ自作してたんだった(´ー｀；)<br/>
+オプションなしで実行すると山盛りの情報が出てくるので、--type だけはちゃんと覚えておこう。</p>
+
+<pre><code>-t, --type TYPE
+    Only  display  the  entries  of type TYPE. TYPE can be either a DMI type number, or a comma-separated list of type numbers, or a
+    keyword from the following list: bios, system, baseboard, chassis, processor, memory, cache, connector, slot. Refer to  the  DMI
+    TYPES  section  below for details.  If this option is used more than once, the set of displayed entries will be the union of all
+    the given types.  If TYPE is not provided or not valid, a list of all valid keywords is printed  and  dmidecode  exits  with  an
+    error.
+</code></pre>
+
+<p>Thinkpad X230 でプロセッサ情報を見ると以下のようになる。</p>
+
+<pre><code>$ sudo dmidecode  --type processor
+# dmidecode 2.11
+SMBIOS 2.7 present.
+
+Handle 0x0001, DMI type 4, 42 bytes
+Processor Information
+        Socket Designation: CPU Socket - U3E1
+        Type: Central Processor
+        Family: Core i5
+        Manufacturer: Intel(R) Corporation
+        ID: A9 06 03 00 FF FB EB BF
+        Signature: Type 0, Family 6, Model 58, Stepping 9
+        Flags:
+                FPU (Floating-point unit on-chip)
+                VME (Virtual mode extension)
+                DE (Debugging extension)
+                PSE (Page size extension)
+                TSC (Time stamp counter)
+                MSR (Model specific registers)
+                PAE (Physical address extension)
+                MCE (Machine check exception)
+                CX8 (CMPXCHG8 instruction supported)
+                APIC (On-chip APIC hardware supported)
+                SEP (Fast system call)
+                MTRR (Memory type range registers)
+                PGE (Page global enable)
+                MCA (Machine check architecture)
+                CMOV (Conditional move instruction supported)
+                PAT (Page attribute table)
+                PSE-36 (36-bit page size extension)
+                CLFSH (CLFLUSH instruction supported)
+                DS (Debug store)
+                ACPI (ACPI supported)
+                MMX (MMX technology supported)
+                FXSR (FXSAVE and FXSTOR instructions supported)
+                SSE (Streaming SIMD extensions)
+                SSE2 (Streaming SIMD extensions 2)
+                SS (Self-snoop)
+                HTT (Multi-threading)
+                TM (Thermal monitor supported)
+                PBE (Pending break enabled)
+        Version: Intel(R) Core(TM) i5-3320M CPU @ 2.60GHz
+        Voltage: 0.9 V
+        External Clock: 100 MHz
+        Max Speed: 2600 MHz
+        Current Speed: 2600 MHz
+        Status: Populated, Enabled
+        Upgrade: Socket rPGA988B
+        L1 Cache Handle: 0x0003
+        L2 Cache Handle: 0x0004
+        L3 Cache Handle: 0x0005
+        Serial Number: None
+        Asset Tag: None
+        Part Number: None
+        Core Count: 2
+        Core Enabled: 2
+        Thread Count: 4
+        Characteristics:
+                64-bit capable
+</code></pre>
+
+<p>メモリの情報は以下のような感じだ。現状 4G しか載ってないが最大16GBらしい。今度頼んでおこう(*´〜｀)</p>
+
+<pre><code>$ sudo dmidecode  --type memory
+# dmidecode 2.11
+SMBIOS 2.7 present.
+
+Handle 0x0007, DMI type 16, 23 bytes
+Physical Memory Array
+        Location: System Board Or Motherboard
+        Use: System Memory
+        Error Correction Type: None
+        Maximum Capacity: 16 GB
+        Error Information Handle: Not Provided
+        Number Of Devices: 2
+
+Handle 0x0008, DMI type 17, 34 bytes
+Memory Device
+        Array Handle: 0x0007
+        Error Information Handle: Not Provided
+        Total Width: 64 bits
+        Data Width: 64 bits
+        Size: 4096 MB
+        Form Factor: SODIMM
+        Set: None
+        Locator: ChannelA-DIMM0
+        Bank Locator: BANK 0
+        Type: DDR3
+        Type Detail: Synchronous
+        Speed: 1600 MHz
+        Manufacturer: Hynix/Hyundai
+        Serial Number: 1082DC09
+        Asset Tag: None
+        Part Number: HMT351S6CFR8C-PB  
+        Rank: Unknown
+        Configured Clock Speed: 1600 MHz
+
+Handle 0x0009, DMI type 17, 34 bytes
+Memory Device
+        Array Handle: 0x0007
+        Error Information Handle: Not Provided
+        Total Width: Unknown
+        Data Width: Unknown
+        Size: No Module Installed
+        Form Factor: DIMM
+        Set: None
+        Locator: ChannelB-DIMM0
+        Bank Locator: BANK 2
+        Type: Unknown
+        Type Detail: None
+        Speed: Unknown
+        Manufacturer: Not Specified
+        Serial Number: Not Specified
+        Asset Tag: None
+        Part Number: Not Specified
+        Rank: Unknown
+        Configured Clock Speed: Unknown
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-07-01 11:13:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/01/new-environment/">New environment</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今日から新しい職場だ。とはいえ、よくある「XXXに入社しました！」とかいうエントリにはしない。<br/>
+自分の軸をブレさせることなく頑張る。それだけだ。</p>
+
+<blockquote>
+新しい仕事は新しい車に似ている。その車を買った翌朝は、ただ嬉しい。ガレージに停まっているのを見るだけで「ああ、新車だ。素晴らしい。何もかも新しい」そう思って感激する。しかし、車に乗り込んで実際に走らせてみると、はじめのう
+ちは、新車の匂いを感じて満足しているけれど、しばらくすると気づくのだ、「新車といえども車は車だ」と。
+
+転職先も同じである。新しい、というのはそれだけでいいように思えるが、新しさはすぐに失われる。新しさとは別の、独自の価値があるかどうかが大切である。もちろん、独自の価値、と一口に言っても、その種類は様々だろう。
+</blockquote>
+
+
+<p>(...中略)</p>
+
+<blockquote>
+会社に独自の価値があるか、また、その価値とは何かがわかれば、次に問うべきことは、「そこで本当に自分のやりたいことができるか」である。むしろこの方が重要な問いだろう。それが自分の将来を左右する。また、この問いに答えるには、自
+分が本当にやりたいことは何かを考えなくてはならない。
+</blockquote>
+
+
+
+
+<div style="float:rignt">(<a href="http://www.oreilly.co.jp/books/9784873114996/">Being Geek ギークであり続けるためのキャリア戦略</a><br /> P28. 「キャリアの形成」から引用)</div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-06-30 14:52:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/30/very-simple-chrome-extension-for-delicious-dot-com/">Very simple chrome extension for delicious.com</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://github.com/mumumu/simple-delicious-extension">https://github.com/mumumu/simple-delicious-extension</a></p>
+
+<p><a href="http://mumumu.github.io/blog/2013/06/22/put-delicious-browser-extensions-on-ice/">前のエントリでも触れた</a>通り、delicious.com のブラウザ拡張はカオスである。俺はシンプルに右クリックしてブックマークを保存したいだけなのに！ と思ってかっとなって拡張を書いた。</p>
+
+<p>だが、よーく探してみると<a href="https://chrome.google.com/webstore/detail/delicious-right/colfilefkcecabapocgddfkjpomiibjc">同じ実装してる拡張</a> があったｗｗｗ</p>
+
+<p><img src="/images/my-delicious-extension-screenshot.png" alt="screenshot" /></p>
+
+<p>ひどいオチだが、まぁ <a href="http://developer.chrome.com/extensions/index.html">Google Chrome Extention</a> の良い勉強になった、ということにしておく(*´〜｀)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-06-29 16:16:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/29/php-manual-generate-howto/">PHP manual generate HOWTO (version 2013-06-29)</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://d.hatena.ne.jp/anatoo/20120430/1335725004">http://d.hatena.ne.jp/anatoo/20120430/1335725004</a></p>
+
+<p>このエントリは、anatoo氏 による上記エントリの更新版である。</p>
+
+<p><b>[Update September 19th 23:29 JST by m ]</b></p>
+
+<p>ここに書いた内容は、更新も含めて <a href="https://github.com/php/doc-ja/blob/master/README_Building_HOWTO.md">PHPマニュアル のビルド方法</a> に移動しました。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2013-06-28 18:09:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/28/phpenv-without-php-build/">phpenv without php-build</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://github.com/phpenv/phpenv">https://github.com/phpenv/phpenv</a></p>
+
+<p>来週から Python を仕事で使うというのに、未だに PHP ばかりやっている mumumu です。こんばんは。</p>
+
+<p>さて、複数の PHP のバージョンをひとつのマシンに共存させ、使い分けたいと思った場合に、現在は <a href="https://github.com/CHH/phpenv">CHH 版の phpenv</a> が広まっているような気がする。けれども、自分は Ruby の複数バージョン共存に rbenv を使っているので、それと同じように使える phpenv/phpenv を使ってみたら思ったより便利だったので、ここで紹介する。</p>
+
+<hr />
+
+<p><br /></p>
+
+<p>ここでは、Ubuntu 12.10 (Quantal Quetzal) で、Apache2 のモジュールとしてPHPを複数共存させる手順を以下に示す。まずはインストールから。</p>
+
+<pre><code>$ git clone git://github.com/phpenv/phpenv.git .phpenv
+$ echo 'export PATH="$HOME/.phpenv/bin:$PATH"' &gt;&gt; ~/.bashrc
+$ echo 'eval "$(phpenv init -)"' &gt;&gt; ~/.bashrc
+$ . ~/.bashrc
+</code></pre>
+
+<p>これで完了。以下のように出れば成功である。</p>
+
+<pre><code>$ phpenv rehash
+phpenv v0.0.3-dev
+</code></pre>
+
+<p>インストール可能なバージョンを出してみる。<a href="https://github.com/php/php-src">github の php-src</a> をベースとしたバージョンが全てビルド可能であることが示されるはずだ。</p>
+
+<pre><code>$ phpenv install --releases
+phpenv v0.0.3-dev
+
+             init extensions  the clone source for additional extensions                      
+             init  the cloning source from php-src Github repo                     
+             Fetching  the latest PHP releases from Github repohpenv install --releases
+
+PHP releases as were available on:
+2013年  6月 28日 金曜日 18:49:23 JST
+
+php-5.5.0
+php-5.5.0RC1
+php-5.5.0RC2
+php-5.5.0RC3
+php-5.5.0alpha1
+php-5.5.0alpha2
+
+...
+
+php-5.4.17RC1
+php-5.4.16
+
+... 
+</code></pre>
+
+<p>PHP を Apacheモジュールとしてインストールしたことがある人なら御存知の通り、Linux での PHP のビルドには Apache モジュールをビルドするための apxs2、そして bison(re2c) 、Cコンパイラその他が必要なことは御存知な通りである。そこで、自分が必要なモノをここでインストールしておく。libcurl4, libreadlineとか、libxslt は自分がいつも設定しているモノなので正直適当である。</p>
+
+<pre><code>$ sudo apt-get install build-essential apache2-mpm-prefork apache2-prefork-dev bison re2c libxml2-dev libcurl4-openssl-dev libmcrypt-dev libreadline-dev libxslt-dev
+</code></pre>
+
+<p>さて、各バージョンのビルドである。ビルドオプションは各バージョンでコントロールできる。また、同じバージョンだが、ビルドオプションが違う複数のPHPをインストールすることもできる。ここでは、PHP 5.5.0 をインストールするので、それ用のオプションを設定しよう。</p>
+
+<pre><code>$ cd ~/.phpenv/etc
+$ vi php-5.5.Linux.source 
+</code></pre>
+
+<p>自分は以下のように設定した。はっきりいって適当である。ここは適宜調整し、ビルドに必要なヘッダファイルは適宜入れてください。</p>
+
+<p>あと、xdebug とかをデフォルトで入れようとしてくれるので、それはコメントアウトした。</p>
+
+<pre><code>CONFIGURE_OPTIONS="--with-apxs2=/usr/bin/apxs2
+                   --enable-zend-multibyte
+                   --enable-phar
+                   --disable-intl
+                   --with-libxml
+                   --with-openssl
+                   --with-kerberos=/usr
+                   --with-zlib
+                   --enable-mbstring
+                   --enable-mbregex
+                   --with-xmlrpc
+                   --with-xsl
+                   --with-pcre-regex
+                   --with-curl
+                   --with-mcrypt
+                   --with-gettext
+                   --with-mysql
+                   --with-mysqli
+                   --with-pdo-mysql
+                   --with-readline
+                   "
+
+#MANUAL_EXTENSIONS=('http' 'uri-template' 'xdebug')
+</code></pre>
+
+<p>そしてビルドし、インストールする。 成功したら、以下のように出るはずだ。</p>
+
+<pre><code>$ phpenv install php-5.5.0
+
+               [Fetching] |1| latest code from Github repo                                 
+               [Branching] |2| for a clean build environment                                
+               [Patching] |3| Applying patches to the source if any are applicable.        
+               [Configuring] |4| build options for selected release                           
+               [Compiling] |5| /home/mumumu/.phpenv/versions/5.5.0                          
+               make: success                                                          
+               make install: success                                                          
+               make clean: success                                                          
+               [Config ini] |6| appending add-on extention configuration to php.ini          
+                   [Pyrus] |7| downloading and installing from http://pear2.php.net/pyrus.phar
+               [Extensions] |8| No additional extensions configured for manual installation. 
+                   Success: The installation of the php-5.5.0 release was successfully completed.
+                   Info: The log files produced by the procedure are available, in the tmp folder, for your review:
+                   - Any warnings or messages sent to STDERR was logged to /tmp/phpenv-install-php-5.5.0.20130628182515.log.err
+                   - All messages sent to STDOUT was logged to /tmp/phpenv-install-php-5.5.0.20130628182515.log
+</code></pre>
+
+<p>インストールできたら、このマシンでは PHP 5.5.0 をメインで使う旨宣言する。</p>
+
+<pre><code>$ phpenv global 5.5.0
+phpenv v0.0.3-dev
+
+5.5.0
+$ php --version
+PHP 5.5.0 (cli) (built with phpenv v0.0.2: Jun 28 2013 18:31:35) 
+Copyright (c) 1997-2013 The PHP Group
+Zend Engine v2.5.0-dev, Copyright (c) 1998-2013 Zend Technologies
+</code></pre>
+
+<p>おっ、そういえば PHP 5.5.0 からは OPcache がデフォルトでビルドされるんだった。それも組み込んでおこう。php.ini もバージョン毎に使い分けができる</p>
+
+<pre><code>$ cd ~/.phpenv/versions/5.5.0/etc/php.ini
+</code></pre>
+
+<p>上記に以下を書き加えよう。</p>
+
+<pre><code>zend_extension=/home/mumumu/.phpenv/versions/5.5.0/lib/php/extensions/no-debug-non-zts-20121212/opcache.so
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=4000
+opcache.revalidate_freq=60
+opcache.fast_shutdown=1
+opcache.enable_cli=1
+</code></pre>
+
+<p>書き加えてバージョンを確かめると以下のようになる。</p>
+
+<pre><code>$ php --version
+PHP 5.5.0 (cli) (built with phpenv v0.0.2: Jun 28 2013 18:31:35) 
+Copyright (c) 1997-2013 The PHP Group
+Zend Engine v2.5.0-dev, Copyright (c) 1998-2013 Zend Technologies
+    with Zend OPcache v7.0.2-dev, Copyright (c) 1999-2013, by Zend Technologie
+</code></pre>
+
+<p>Apache モジュールも入っている。これは各バージョンの libexec ディレクトリ以下に入っているので、それを httpd.conf で切り替えれば Apache でのバージョンの切り替えも可能だ。</p>
+
+<pre><code>$ ls ~/.phpenv/versions/5.5.0/libexec
+libphp5.so
+</code></pre>
+
+<p>次に、PHP 5.5.0 をデバッグビルドして共存させてみる。ビルドの設定ファイルをコピーし、設定すればよいのだが、設定ファイルは &lt;php major release&gt;-&lt;optional specific build&gt;.&lt;platform&gt;.source という規約に従う必要がある。</p>
+
+<p>ここでは、PHP 5.5.0 のデバッグ版であることを示すために、optional specific build の部分を 550debug としている。ここでは、--enable-debug をオプションに加える。</p>
+
+<pre><code>$ cd ~/.phpenv/etc/
+$ cp php-5.5.Linux.source php-5.5-550debug.Linux.source
+</code></pre>
+
+<p>そしてインストールする。optional specific build をオプションとして指定し、さっき編集した設定ファイルが使われていることを確かめよう。</p>
+
+<pre><code>$ phpenv install php-5.5.0 550debug
+phpenv v0.0.3-dev
+
+Building 5.5.0-550debug with config options from: php-5.5-550debug.Linux.source
+....
+</code></pre>
+
+<p>ビルドが終わると、ふたつのバージョンが入っていることがわかる。</p>
+
+<pre><code>$ phpenv versions
+phpenv v0.0.3-dev
+
+* 5.5.0 (set by /home/mumumu/.phpenv/version)
+  5.5.0-550debug
+</code></pre>
+
+<p>最後に、5.5.0 のデバッグ版に切り替え、コンパイルオプションを確かめる。--enable-debug が加わっていること、デバッグ版としてバージョンが出ていることがわかる。</p>
+
+<pre><code>$ phpenv local 5.5.0-550debug
+$ php --version
+PHP 5.5.0 (cli) (built with phpenv v0.0.2: Jun 28 2013 19:27:20) (DEBUG)
+Copyright (c) 1997-2013 The PHP Group
+Zend Engine v2.5.0-dev, Copyright (c) 1998-2013 Zend Technologies
+$ php -i | grep configure
+Configure Command =&gt;  './configure'  '--with-apxs2=/usr/bin/apxs2' '--enable-zend-multibyte' '--enable-phar' '--disable-intl' '--with-libxml' '--with-openssl' '--with-kerberos=/usr' '--with-zlib' '--enable-mbstring' '--enable-mbregex' '--with-xmlrpc' '--with-xsl' '--with-pcre-regex' '--with-curl' '--with-mcrypt' '--with-gettext' '--with-mysql' '--with-mysqli' '--with-pdo-mysql' '--with-readline' '--enable-debug' '--with-config-file-path=/home/mumumu/.phpenv/versions/5.5.0-550debug/etc' '--with-config-file-scan-dir=/home/mumumu/.phpenv/versions/5.5.0-550debug/etc/conf.d' '--prefix=/home/mumumu/.phpenv/versions/5.5.0-550debug'
+</code></pre>
+
+<hr />
+
+<p><br />
+こんな感じだ。自分の中では rbenv と同じ感じで使えて、Apache モジュールの切り替えもうまいこといったのでいい感じである。また、同じバージョンで複数のビルドも共存できる。使っていて楽しい。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page14">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+      
+        <a class="next" href="/page12">Newer &rarr;</a>
+      
+      
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python / Tech Lead / translator / PHP Manual maintainer(ja) / devoted husband.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="https://github.com/mumumu">Github</a>
+      </li>
+      <li class="post">
+        <a href="https://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+<!--
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+-->
+  </ul>
+</section>
+<!--
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+-->
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2022 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

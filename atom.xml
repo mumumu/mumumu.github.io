@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[クレジット]]></title>
+    <link href="http://mumumu.github.io/blog/2021/02/21/credit/"/>
+    <updated>2021-02-21T23:45:47+09:00</updated>
+    <id>http://mumumu.github.io/blog/2021/02/21/credit</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540">https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540</a></p>
+
+<p><a href="https://www.php.net/manual/ja/">PHP Manual</a> 日本語版のメンテナを本格的に手がけるようになってから一年以上が経過した。</p>
+
+<p>去年の11月末に <a href="https://www.php.net/archive/2020.php#2020-11-26-3">PHP 8 がリリースされた</a>。それに伴う <a href="https://www.php.net/manual/ja/migration80.php">移行ドキュメント</a> や新機能の追加、名前付き引数の影響でもろもろの関数やメソッドのシグネチャが劇的に変化したことに伴う更新など、Manual に対する更新量は莫大だった。それでも PHP 7 の時と異なり、<a href="https://github.com/php/doc-en/pulls">github であらかじめ英語版のドキュメントの更新がドラフト時点から見られる</a> ことが助けとなり、日本語版については、更新にほぼリアルタイムで追随できている。</p>
+
+<p>PHP 8 にまつわる Manual の更新量が莫大だと書いたが、機械的に更新できる部分も、そうでない部分もある。</p>
+
+<p>そういう事情もあって、細かい部分の更新の整合性が雑になることも否めない。英語版のそういう雑な部分について、ある時から黙って修正をするようになった。それだけ、誰が見てもおかしい部分が割とあったのだ。</p>
+
+<p>そういった部分の更新 や、<a href="https://github.com/php/doc-en/pulls?q=is%3Apr+author%3Amumumu+versions.xml+">PHP 8 で使える関数のバージョン情報の英語版の更新</a> を黙ってやっていたところ、メイン開発者のひとりである <a href="https://people.php.net/cmb">cmb</a> (*1) から<a href="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540">クレジット</a> を貰った。言い換えると、<a href="https://www.php.net/manual/en/preface.php#contributors">自分の名前が PHP Manual の隅に載った</a> だけの話ではあるけれども、日々の活動を見てくれている人がいる、というのはやはり嬉しいものだ。</p>
+
+<p>PHP を使う以上、PHP Manual は避けて通れない。とても多くの人が見るものなのだ。既に PHP をメインで書かなくなって久しいが、Manual を作ってきた多くの先人や間違いを指摘して支えてくれる方々に感謝しつつ、微力ながら、裏からそれを支えていこうと思う(*´～｀)</p>
+
+<p>(*1)  Windows 版 PHPのメンテナンスや、PECL の複数のモジュールの Lead. PHP 7.3 のリリースマネージャーなど。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RTX 830 を挟んでみた話]]></title>
+    <link href="http://mumumu.github.io/blog/2021/01/05/rtx830-and-more/"/>
+    <updated>2021-01-05T00:53:23+09:00</updated>
+    <id>http://mumumu.github.io/blog/2021/01/05/rtx830-and-more</id>
+    <content type="html"><![CDATA[<p><a href="https://network.yamaha.com/products/routers/rtx830/index">https://network.yamaha.com/products/routers/rtx830/index</a></p>
+
+<p>最近自宅のインターネット接続が少しずつ不安定になり、不定期に切断されるようになった。</p>
+
+<p>無線ブロードバンドルータも3年近く使っているので、これを機会にいろいろ家のネットワークを見直してみることにした。</p>
+
+<h3>0. 見直す前</h3>
+
+<p>自宅のネットワーク構成は、 <a href="https://www.tp-link.com/jp/home-networking/wifi-router/archer-c5400/">TP-Linkの無線ブロードバンドルータ</a> と中継機経由でインターネットに接続していた。とてもシンプル。</p>
+
+<p>ONU より先は VDSL で外の光回線に繋がっている。</p>
+
+<p><img src="http://mumumu.github.io/images/mynetwork.png" /></p>
+
+<h3>1. 無線ブロードバンドルータを変えてみた</h3>
+
+<p>コロナ禍のさなか、IPv4 の PPPoE は混んできてるという話も飛び交うようになっていたので、これを機会にIPv6 に挑戦してみるか、という気持ちになった。</p>
+
+<p>なので、TP-Linkの無線ブロードバンドルータを <a href="https://www.aterm.jp/product/atermstation/product/warpstar/wx3000hp/">NEC の WX-3000HP</a> に変えてみた。これを採用した理由は、IPoE に対応していたことと、Wifi6 に対応していたから、の2つが理由である。</p>
+
+<p>だが、不安定なのは変わらなかった。既存の PPPoE 経由の IPv4 接続はもちろん、IPoE 接続 (DTI のトライアル光 や interlink の Zoot Native) を試してみたが、むしろさらに不安定になっていた感がある。</p>
+
+<p>よく調べて見ると、無線と PPPoE(or IPoE) を受け持つ WX-3000HP の IP に ping を打っても返ってこない状態が頻発していたので、ここが重いんだろうな、と推察された。そこで、ONU と直接繋がるルータについては、無線とは独立させて、実績のあるものを採用しようという気持ちになった。</p>
+
+<h3>2. RTX 830 を挟んでみた</h3>
+
+<p>インターネットと直接(PPPoE や IPoE で) 繋がるルータを無線と独立させるべく、<a href="https://network.yamaha.com/products/routers/rtx830/">RTX 830</a> を購入した。
+YAMAHA のルータは拠点間のルータとして安定性について評判が高く、インターネット上にも十分なノウハウが転がっていることから採用した。</p>
+
+<p>ONU と WX-3000HP の間にこれを挟み、PPPoE や IPoE 接続とパケットフィルタのみを受け持たせることにした。
+さらに、WX-3000HP はルータ機能を殺し、無線LAN のブリッジとしてのみ機能させるようにした。</p>
+
+<p>だが、やっぱり不安定なのは変わらなかったので、さらに原因を切り分けてみることにした。</p>
+
+<h3>3. 中継機を変えてみた</h3>
+
+<p>中継機については TP-Link のものを使っていたが、それを NEC のものに変えてみたりしたがやはり変わらなかった。</p>
+
+<h3>4. ONU を交換して貰った</h3>
+
+<p>中継機、ブロードバンドルータ、RTX を挟んでも変わらないとなると、最終的にこちらが手を出せるのはONUしかない。NTT に電話して事情を話し、ONU を交換してもらった。</p>
+
+<p>これは10年以上前から使っていたONUで、既に替えがないとのことだったので、最新のONU機器を持ってきてもらった。それをRTXと繋いだところ、劇的に安定した。これだったか...</p>
+
+<h3>まとめ</h3>
+
+<p>原因は IPv4 でもなんでもなく、単なる ONU の不良であった。それ以後、IPv4 の接続が不安定になったことはないので、引き続きこのままにしている。RTX は不要だったんじゃないかという説もあるが、まあ、いろいろ遊べたので良しとする。</p>
+
+<p><a href="https://www.editnet.ad.jp/">採用している草の根プロバイダ</a> も回線を増強し、<a href="https://www.editnet.ad.jp/news/210103.htm">さらに空いた回線を提供してくれるようになった</a> ので、引き続きそれを使って行こうと思う。このコロナ禍で大事なのは、回線の速度ではなく安定性なのだ。</p>
+
+<p><img src="http://mumumu.github.io/images/mynetwork_current.png" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PHPマニュアル メンテナンス用ドキュメント最新版]]></title>
+    <link href="http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto/"/>
+    <updated>2020-09-19T23:42:05+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto</id>
+    <content type="html"><![CDATA[<p>PHP マニュアルのメンテナの一人として、過去にいくつか文書を書いてきたが、それの最新版を全て github に集約した。</p>
+
+<ul>
+<li><a href="https://github.com/php/doc-ja/blob/master/README_About_ThisManual.md">PHP マニュアル 日本語版について</a></li>
+<li><a href="https://github.com/php/doc-ja/blob/master/README_Building_HOWTO.md">PHPマニュアル のビルド方法</a></li>
+<li><a href="https://github.com/php/doc-ja/blob/master/README_Maintain_HOWTO.md">メンテナ向け: PHPマニュアル のメンテナンス方法</a></li>
+<li><a href="https://gist.github.com/a84365a1c55934b8ececbb839a2f9ca1">メンテナ向け: PHPマニュアル の chm ビルド環境</a></li>
+</ul>
+
+
+<p>メンテナ向けの文書も含まれているので、自分がメンテナンスをやめても、引き継ぐ人がいれば作業は続くだろう。</p>
+
+<p>メンテナと直接話したい方や、PHPマニュアルの日本語版についてバグを報告したい方は、<a href="https://phpusers-ja.slack.com/">PHPユーザーズ Slack</a> が現状は一番話しやすいと思うので、是非おいでませ(｀ー´)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[新しい知識の学び方]]></title>
+    <link href="http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept/"/>
+    <updated>2020-07-27T02:40:26+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept</id>
+    <content type="html"><![CDATA[<p><a href="https://www.amazon.co.jp/dp/B0193M34D0">https://www.amazon.co.jp/dp/B0193M34D0</a><br/>
+<a href="https://hiyokko-hard.com/support/">https://hiyokko-hard.com/support/</a></p>
+
+<p>「バカに教える電子回路」という本がある。電子回路の設計知識についてとてもわかりやすく書かれた本だ。</p>
+
+<p>ふとソフトウェア的な論理回路に関する知識を参照したくなって開いたのだけれども、残念ながら求める知識はこの本には書かれていなかった。</p>
+
+<p>だけど、一番はじめに書かれている「技術書の読み方」についてはとても参考になったので以下に引用する。</p>
+
+<p>プロコンで様々な知識を繰り返し学び、実践する中で、うんうんそうだよね、と頷く部分が多い。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>技術書の読み方
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>技術書を読むときには必ずパソコンでテキストファイルを作り、出てきた用語や内容を
+</span><span class='line'>自分の言葉でまとめておきます．更に，読んでいてわからない単語や概念が出てきたら，
+</span><span class='line'>インターネットで調べて同じテキストファイルにまとめます．多少間違っていても構いません．
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>少し時間が経ってしまうと，内容や用語を忘れてしまい，再開するのが億劫になります．
+</span><span class='line'>そんな時にまとめたファイルを読み返すと再開しやすくなります．
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>再開させるときの心理的ハードルを下げるのはとても重要です．
+</span><span class='line'>
+</span><span class='line'>(中略)
+</span><span class='line'>
+</span><span class='line'>調べたいことは調べ，面倒なら飛ばします．面倒になった時点でどれだけ時間をかけても
+</span><span class='line'>身につきません．いくつか技術書を読んでいると(または実務でも)，同じ問題は何度もぶ
+</span><span class='line'>つかるので，いずれ分かるようになります．今全てを理解する必要はありません．実験で
+</span><span class='line'>試せるものについては，できるだけやったほうがいいです．こちらも面倒になった時点で
+</span><span class='line'>意味が無いので気分がノッてる時はやってみる・程度でいいと思います．
+</span><span class='line'>
+</span><span class='line'>読んでいて何を言っているか全くわからない，もしくは読みながら寝てしまうようであれ
+</span><span class='line'>ば，自分のレベルに合っていない可能性が高いです．その本は一旦諦め，他の技術書を読
+</span><span class='line'>みましょう．目安としては6割は頑張らずに理解できるくらいの本がちょうどいいと思いま
+</span><span class='line'>す．今はわからなくても，暫くしてから読むとわかるケースが多いので，捨てずにとって
+</span><span class='line'>おきましょう．</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[問題を解く]]></title>
+    <link href="http://mumumu.github.io/blog/2020/05/16/solve-problem/"/>
+    <updated>2020-05-16T01:22:10+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/05/16/solve-problem</id>
+    <content type="html"><![CDATA[<p><a href="https://pha.hateblo.jp/entry/2020/05/12/232121">https://pha.hateblo.jp/entry/2020/05/12/232121</a></p>
+
+<p>僕が問題を解くのは自分のためだ。自分が何かを考えたいから解くし、自分がなにかに納得したいから解く。解かないといつまでも同じところを堂々巡りしてしまうけれど、解くと思考や人生が前に進むような気がする。</p>
+
+<p>言うほど解いていないけれど、解くことをやめることはないだろうと思う(*´～｀)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ThinkPad X395]]></title>
+    <link href="http://mumumu.github.io/blog/2020/01/25/thinkpad-x395/"/>
+    <updated>2020-01-25T20:03:30+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/01/25/thinkpad-x395</id>
+    <content type="html"><![CDATA[<p><img src="http://mumumu.github.io/images/thinkpad_x395.png" width="800"/></p>
+
+<p><a href="https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395">https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395</a></p>
+
+<p><a href="http://mumumu.github.io/blog/2019/12/05/chromebook/">ChromeBook をいろいろ試した</a> 結果、やはり自分は Linux をVMや他のOSを介さずに使いたい人なんだ、という結論を得るに至った。Linux が動くノートパソコン、かつ日本語キーボードなものといえば？ といえばやはり ThinkPad に落ち着いた。このディストリビューションが動くよ、という<a href="https://support.lenovo.com/jp/ja/solutions/PD031426">実績を示してくれている</a> のもポイントが高い。</p>
+
+<p>Lenovo の公式サイトからの直販ではeクーポンがついていて売られていた。Full HD のディスプレイに変更し、延長修理5年を付けても 112,596 JPY で購入できた。安い。</p>
+
+<p>最初は上記の実績にない Ubuntu 19.10 を入れていろいろ試してしまい、Linux Kernel 5.3 と RIZEN の相性の悪さに苦しんだ。AC アダプタを繋がない放電状態だとフリーズが多発してしまい、いろいろ試してみたが駄目だった。Ubuntu 18.04 を入れ、Kernel 5.0 にしたら動作が落ち着いた。Kernel 5.3 にしてしまうと駄目なようなので、留意しておきたい。</p>
+
+<p>Linux Kernel だけは面倒がないようにapt-mark hold しておいたが、Ubuntu 20.04 LTS になったときにうまく移行できるのか、心配ではある。</p>
+
+<p>とはいうものの、とても動作は安定している。クリエイティブな用途にでも使わない限り、メモリ 16GB である必要もないという学びを得たのも収穫だった。会社の環境もクラウド上にあるので、ダム端(死語)として使うもよし、ローカルで小さめの開発に使うもよし、ネイティブでLinuxが動くことの喜びを噛み締めている。軽いし、180度まで開いて平らに使うことができるのもいい。唯一の欠点は、ビルド時に筐体の右側がかなり熱くなるという点だけかな。</p>
+
+<p>(次にこの手の何かを買う時は、Intel を選びたいかな... Kernel との相性という意味で安心感があるよ。やっぱり。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[phpdoc メンテナンス業を少し強化する気になった]]></title>
+    <link href="http://mumumu.github.io/blog/2019/12/24/php-documentation-maintenance-work/"/>
+    <updated>2019-12-24T21:30:11+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/12/24/php-documentation-maintenance-work</id>
+    <content type="html"><![CDATA[<p>自分は PHP マニュアルのコミット権限を持っているが、<a href="http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation/">2013年に chm のビルドインフラを引き継いだ時</a> 以来、その権限をまともに行使したことはあまりなかった。実際 <a href="https://bugs.php.net/search.php?search_for=chm&amp;boolean=0&amp;limit=30&amp;order_by=&amp;direction=DESC&amp;cmd=display&amp;status=Closed&amp;bug_type=All&amp;project=All&amp;php_os=&amp;phpver=&amp;cve_id=&amp;assign=mumumu&amp;author_email=&amp;bug_age=0&amp;bug_updated=0&amp;commented_by=">自分が対応した chm のビルドインフラのバグ報告は4回</a> しかないし、phpdoc 本体のコミット数も 2013年 - 2018年までの間を数えてみると 10 回あるかないかだ。</p>
+
+<p>今年になり、PHPマニュアル自体があまりメンテナンスされてないっぽいな、という感覚になった。なぜかというと、高木さんや吉田さんなど、これまでよくコミットログで見かけた人たちの作業ログを見かけなくなったからである。</p>
+
+<p>それでも見渡すと、日本語ロケールで最新の更新を維持しているのは全体の6割であり、少し手を加えれば最新に更新できるものを含めると7割にも達する。現状でも全ロケールを並べるとトップレベルにある。</p>
+
+<p><img src="http://mumumu.github.io/images/phpdoc-all-locale-stats.png"/>
+<img src="http://mumumu.github.io/images/phpdoc-translation-stats-detail-ja.png"/></p>
+
+<p>「PHPマニュアル自体があまりメンテナンスされてないっぽいな、という感覚」を踏まえてもこの状況なのはかなり驚異的であり、先人の蓄積に正直驚いた。頭を垂れるしかない。</p>
+
+<p>PHP の拡張機能は増加の一途を辿っているし、ChangeLog を正しい状態に維持するだけでも大変な状態(※ 注1) なので、皆が読む部分だけでも維持するのを手伝えればな、と思う。 少なくとも「少し手を加えれば最新になる」部分については。</p>
+
+<p>ということで、ここ2週間の作業で、reference/ 以外の翻訳はとりあえず最新にした。<br/>
+力を入れず、「皆が読む部分の最新を維持できれば良い」程度の力の入れ具合で行きたい。</p>
+
+<p>あと、もっと多くの人を巻き込むべく、<a href="https://phpusers-ja.slack.com/">PHPユーザーズの Slack</a> でも #phpmanual というチャンネルを作ってもらった。<a href="https://news-web.php.net/php.doc/969387428">phpdoc の git への移行もゆっくりながら進んでいる</a> ので、さらに多くの人を巻き込めるようにしておきたい。</p>
+
+<p>(※ 注1) 業を煮やした cmb が、<a href="https://news-web.php.net/php.doc/969387407">PHP 5.4.0 より前のマニュアル消そうぜ、という提案を最近する</a> 程度には大変である。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chrome のタブやアドレスバーが小さい時]]></title>
+    <link href="http://mumumu.github.io/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/"/>
+    <updated>2019-12-24T21:14:20+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small</id>
+    <content type="html"><![CDATA[<p><a href="https://superuser.com/questions/982560/chrome-tab-font-too-small/982565">https://superuser.com/questions/982560/chrome-tab-font-too-small/982565</a></p>
+
+<p>あれはいつだったからか。Linux で Google Chrome のアドレスバーやタブのフォントが小さすぎる問題にずっと悩んでいた。</p>
+
+<p>最初は 2560 x 1920 のディスプレイで Chrome を表示させた時だったと思う。別の時は、NVDIA なビデオカード上で Linux を動かしたときとか。とにかく、自分に丁度いい塩梅で Google Chrome のアドレスバーやタブのフォント の大きさが表示できたことが最近までなかった。</p>
+
+<p>最近 ThinkPad X395 に Linux を入れて使い始めたのだけど、同じ状態になった。<br/>
+いい加減何とかならんかなと思ってぐぐりまくると、上記の記事に行き着いた。</p>
+
+<p>これは Windows の記事だが、なんと X Window System 上でも通用したのでびっくりした。<br/>
+もしあなたが自分と同じ問題に悩んでいるのなら、コマンドラインから、以下のようにして Google Chrome を起動してみるとよい。</p>
+
+<p>1.5 の数値は、自分の環境に合わせて適度に調整可能である。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ google-chrome --force-device-scale-factor=1.5</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今は自分でこれらのサイズを調整できるようになって、とてもしあわせだ(｀ー´)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux で Mac のようにスクリーンショットを撮る その2]]></title>
+    <link href="http://mumumu.github.io/blog/2019/12/21/mac-screenshot-on-linux-2/"/>
+    <updated>2019-12-21T22:02:33+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/12/21/mac-screenshot-on-linux-2</id>
+    <content type="html"><![CDATA[<p><a href="http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/">http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/</a></p>
+
+<p>以前は、maim を使ったスクリーンショット撮影コマンドにショートカットキーを割り当てていた。
+今日 KDE を触っていてよく見ると、そもそもそういう機能が KDE には備わっていることに気がついた。</p>
+
+<p>もともと矩形のスクリーンショットを撮影するショートカットが、KDE システム設定で割り当てられているので、それの割当てキーを、Mac っぽいものに変更すればよかった。あっはっは(´ー｀; )</p>
+
+<p><img src="http://mumumu.github.io/images/kde-shortcut-setting.png"/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chromebook]]></title>
+    <link href="http://mumumu.github.io/blog/2019/12/05/chromebook/"/>
+    <updated>2019-12-05T03:53:10+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/12/05/chromebook</id>
+    <content type="html"><![CDATA[<p><a href="https://www.google.com/intl/ja_jp/chromebook/">https://www.google.com/intl/ja_jp/chromebook/</a></p>
+
+<p>最近、Chromebook に注目している。「Linuxクライアントを手軽に入手/維持したい」というニーズは以前から一貫して持っていたので、その手段の一つとして注目している。</p>
+
+<p>特に自分の中で熱量が上がったのが、 <a href="https://japan.zdnet.com/article/35136835/">2019年発売の全てのChromebookがLinux対応にする</a> と Google が表明したことだ。Chromebook はスペックが高いものでなければ3万円台から手に入ることから、自分のニーズを完全に満たせるのではないかと考えたのだ。</p>
+
+<p>そこで、Linux に対応していることがわかっている <a href="https://acerjapan.com/notebook/chromebook/spin11/R751T-N14N">Acer R751-N14N</a> を購入していろいろ試してみた。Linux 自体はまだベータ版なので、<a href="https://support.google.com/chromebook/answer/9145439?hl=ja">設定から有効にする</a> 必要がある。</p>
+
+<p>感想を並べると、以下のようになる。<br/>
+確かにお手軽ではあるものの、自分の中でまだまだだな、という印象だ。</p>
+
+<ul>
+<li>ハードのスペックが低いので、Linuxのコンテナ起動が重い</li>
+<li>vimでファイル編集をしようと思ったら、ターミナルがおかしいのか、日本語が潰れる。自分だけなのかもしれないが、ChromeOS 組み込みのエディタを使ったほうが現状ファイル編集は早い</li>
+<li>かといって、コンテナの中に X をまるごと入れようとは思わない</li>
+<li>X Window System を入れて使い慣れたアプリを弄った方が自分は心地よい。Chromebook に Android アプリを入れて動かすのも悪くはないのだが、普段遣いとなると Chromebook は厳しい</li>
+<li>リモートへの接続端末としてなら、悪くないかも</li>
+</ul>
+
+
+<hr />
+
+<p>　<br/>
+最終的に、普段使っているLinux環境を再現したい欲が強いのだと思う。多分自分の中では、<a href="https://galliumos.org/">GallumOS</a> を入れるか、リモートへの接続端末として使うのが最適解なのだろう...</p>
+
+<p><b>[ Update December 5th 2019 05:18 JST by mumumu ]</b></p>
+
+<p>Acer R751-T は <a href="https://github.com/GalliumOS/galliumos-distro/issues/364">Apollo Lake なので、まだ sound が動作しない</a>。GalliumOS を入れるのは一旦保留で。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[自炊はじめました]]></title>
+    <link href="http://mumumu.github.io/blog/2019/11/04/i-started-cooking/"/>
+    <updated>2019-11-04T20:01:11+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/11/04/i-started-cooking</id>
+    <content type="html"><![CDATA[<p>最近、妻が作るものとは別に、自分で好きなものを料理するようになった。</p>
+
+<h3>きっかけ</h3>
+
+<p>そもそものきっかけは、<a href="https://moneyforward.com/">マネーフォワード</a> で家計を見ていて、外食している部分について、もう少し食費を改善できないかなと思ったのと、Twitter で簡単なレシピがリツイートされてきたこと、そして<a href="https://www.amazon.co.jp/dp/B07KJ7NG6F/">「自炊力」</a> を読んだことである。</p>
+
+<p>特に最後の「自炊力」については、料理に対する心理的なハードルを下げるような物言いが随所になされている。「自炊ができないことは悪いことではない」「自炊ってこんなもんでいいんだよ」的な物言いは、自分的には割と救われたと思う。</p>
+
+<h3>参考にしているもの</h3>
+
+<p>「自炊力」には、料理のとっかかりとなる手掛かりがいろいろ書いてあるが、自分的には以下の2点ができれば今は十分だと思っている。</p>
+
+<p>a) 主食主菜副菜を考慮できること<br/>
+　献立を見て、あ、これ足りないね、と思えるだけで良い<br/>
+b) 複数のレシピが作れること<br/>
+　何がきっかけでも良いが、自分が作れるものを増やすこと</p>
+
+<p>「自炊力」では、レシピ本よりもテレビの料理番組を覚えるきっかけとして勧めているが、実際料理熱が高まっているのなら、なんでもいいと思う。自分は Kindle でいくつかレシピ本を漁った結果、以下をメインで見るようになった。</p>
+
+<p>・ <a href="https://www.amazon.co.jp/dp/B07PJ297TC/">これでいいんだ！自炊ごはん</a><br/>
+・ <a href="https://www.amazon.co.jp//dp/B076GYQDSV/">ゆる自炊BOOK</a></p>
+
+<p>どちらも初心者向けにビジュアルが工夫されていることと、レシピそのものも簡単な手順でできるものが多いので、今も割とよく見ている。</p>
+
+<h3>個人的なレパートリーメモ</h3>
+
+<p>以下は、いろんなところから拾ってきたりして、自分流にアレンジした個人的なレパートリーである。<br/>
+いいじゃん CookDo や XX の素そのまんまでも。それでいいと思う。</p>
+
+<p>・ <a href="https://twitter.com/nowar1024/status/1116907789626925057">叙々苑サラダのレシピ</a><br/>
+　  これさえあれば野菜を無限に食べられる。タンパク質的な意味で豆腐を加えても良い<br/>
+　　・ ごま油(大さじ1)<br/>
+　　・ サラダ油(大さじ1)<br/>
+　　・ しょうゆ(大さじ1)<br/>
+　　・ 味の素(小さじ1)<br/>
+　　・ 煎りごま(好きなだけ)<br/>
+・ ペペロンチーノ<br/>
+　　S&amp;B の <a href="https://www.sbfoods.co.jp/products/detail/15069.html">まぜるだけのスパゲッティソースペペロンチーノ</a> を使う<br/>
+　　・ パスタにベーコン炒めとサニーレタスを足すだけで、十二分においしい<br/>
+　　・ 子供もお気に入り<br/>
+・ <a href="https://cookpad.com/recipe/2543737">豚バラじゃが煮</a><br/>
+　　上記リンク先がベース。分量は個人的に以下の通りアレンジしている。<br/>
+　　「これでいいんだ！自炊ごはん」P34<br/>
+　　・ 豚バラ薄切り100g<br/>
+　　・ じゃがいも小2個200g<br/>
+　　・ サラダ油小さじ1<br/>
+　　・ 煮汁<br/>
+　　　　- 水(200ml) <br/>
+　　　　- しょうゆ(大さじ2)<br/>
+　　　　- みりん(大さじ2)<br/>
+　　　　- 砂糖(大さじ2)<br/>
+・ <a href="https://ddnavi.com/serial/548890/a/">豚もやしキムチ炒め</a> <br/>
+　　上記のリンクを完全に再現すればよい<br/>
+　　「これでいいんだ！自炊ごはん」P28.<br/>
+　　  ・ ポイントは、豚肉に塩コショウを強めにかけること<br/>
+・ <a href="https://www.ebarafoods.com/recipe/detail/recipe1179.php">豚肉の生姜焼き</a> <br/>
+　　エバラの「生姜焼きのタレ」を使ってすぐ出来る系<br/>
+・ 豚バラともやしのフライパン蒸し<br/>
+　　「これでいいんだ！自炊ごはん」P28.<br/>
+　　蒸したものにかけるタレがポイント<br/>
+・ レタス卵チャーハン<br/>
+　　<a href="http://www.nagatanien.co.jp/product/detail/93/">「焼豚チャーハンの素」</a> を使う<br/>
+　　　・これをベースに、焼豚を細切りにしたソーセージに置き換え、レタスを加える<br/>
+・ チーズトースト<br/>
+　　食パンにチーズを載せ、ベーコンを刻んだものを載せる。その上にマヨネーズを振って焼く<br/>
+・ チンジャオロース<br/>
+　　<a href="https://www.ajinomoto.co.jp/cookdo/lineup/awase_004.html">CookDo の 青椒肉絲用</a> をそのまま使うやつ<br/>
+・ 卵スープ<br/>
+　　<a href="https://www.ajinomoto.co.jp/products/detail/?ProductName=marudorigara_1">鶏ガラスープの素</a> をおおさじ1入れ、ちぎったレタスと溶き卵とともに煮る<br/>
+　　最後にこしょうをひと振り</p>
+
+<h3>これから作りたいと思っているもの</h3>
+
+<p>ポテトサラダ とか 豚汁とか。いろいろ目に付いたレシピを試していきたい</p>
+
+<h3>モチベーション</h3>
+
+<p>子供においしいと言ってもらえるのもひとつあるが、やはり自分で「うまい」と思えるものを作れた時は最高の達成感を得られる。特に上記の「豚バラじゃが煮」を再現できた時は本当に嬉しかった。</p>
+
+<p>以下がその写真である。</p>
+
+<p><img src="http://mumumu.github.io/images/P_20191104_173804.jpg" width="800" height="806"/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FireTV Stick とUSBケーブル]]></title>
+    <link href="http://mumumu.github.io/blog/2018/12/04/firetv-stick-and-usb-cable/"/>
+    <updated>2018-12-04T07:38:18+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/12/04/firetv-stick-and-usb-cable</id>
+    <content type="html"><![CDATA[<p><a href="https://www.amazon.co.jp/gp/product/B012WL4QMW/">https://www.amazon.co.jp/gp/product/B012WL4QMW/</a></p>
+
+<p>最近 FireTV Stick を買った。動機は Amazon Prime Video を市販のテレビにキャストしたかったのだ(*1)。</p>
+
+<p><img src="http://mumumu.github.io/images/fire_tv_stick.jpg" width="300" height="250"/></p>
+
+<p>これは電源をUSBケーブルから取る仕様なのだが、付属のケーブルは 長さが1.5m と短く、自分の環境では短過ぎた。だが、長いものを買おうにも、市販のケーブルで相性がいいものがなかなかなくて困った。</p>
+
+<p>いろいろ試した結果、以下の Anker のものに行き着いた。3m でよければ、これで十分だ。Anker は USBケーブル周りでかなり評判が良いようなので買ってみたが、評判通りだったと言えよう(*´～｀)</p>
+
+<p>(*1) PC から Google Chrome 経由で Amazon Prime Video をキャストさせたり、スマホ画面をキャストさせたりすれば見れるのは承知しているが、リモコンがあった方が家族には優しい</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[PATCH] Courier の TLS 証明書と秘密鍵ファイルを分離する]]></title>
+    <link href="http://mumumu.github.io/blog/2018/09/25/patch-separate-tls-private-key-from-imapd-pop3d-dot-pem/"/>
+    <updated>2018-09-25T20:36:39+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/09/25/patch-separate-tls-private-key-from-imapd-pop3d-dot-pem</id>
+    <content type="html"><![CDATA[<p>このエントリは、以下の Pull Request がマージされるまでの記録である。<br/>
+<a href="https://github.com/svarshavchik/courier-libs/pull/13">https://github.com/svarshavchik/courier-libs/pull/13</a></p>
+
+<h3>3行まとめ</h3>
+
+<p>1) <a href="http://www.courier-mta.org/">Courier Mail Server</a> (以下 Courier) という古いメールサーバに patch を書いてマージしてもらった<br/>
+2) いろいろ苦労しながら、やり遂げた記録<br/>
+3) 青臭いソフトウェアエンジニアも、成長するものだと思う</p>
+
+<h3>なぜこの patch を書いたか</h3>
+
+<p>始まりは、<a href="https://letsencrypt.org/">Let's Encrypt</a> を手元のサーバに導入しようとして、 <a href="http://www.courier-mta.org/imap/">Courier IMAP</a> にも適用しようとしたことだった。だが、一筋縄では行かなかった。どうしても TLS の通信に失敗するのだ。いろいろググった結果、Courier では、<a href="https://yeri.be/postfix-courier-letsencrypt">「TLS の秘密鍵と証明書は同一のファイルに入っていなければいけない」ことがわかった</a>。</p>
+
+<p>多くのサーバソフトウェアでは、TLS の秘密鍵と証明書のファイルパスは別々に設定できる。メールサーバで言えば <a href="http://www.postfix.org/postconf.5.html#smtp_tls_key_file">Postfix でもそうだ</a>。このことから、自分にとっては Courier のこの動きは直感に反する仕様であった。しかもこれに関するドキュメントが <strong>一切書かれていない</strong> ことにカッとなった。</p>
+
+<p>だから、<a href="https://github.com/svarshavchik/courier/issues/10">issueを立てて、秘密鍵と証明書を分離することを提案した</a> ところ、メンテナ的にはデフォルトの動きに fallback 出来るなら問題ないよ、とのことだったので、<a href="https://github.com/svarshavchik/courier-libs/pull/13">patch</a> を書いた。このエントリは、それがマージされたことの記録である。</p>
+
+<h3>当初はヤクの毛刈りに奔走</h3>
+
+<p>patch を書くのは一筋縄では行かなかった。当初はヤクの毛刈りに奔走させられた。当初は git のソースをまともにビルドすらできなかったので、ビルドをキックするスクリプトを修正することから始まり、メンテナと自分の開発するディストリビューションが異なる (*1) ことが原因の libtool まわりの修正から、ドキュメントの修正まで、送った patch は 6つに及んだ。</p>
+
+<p>メンテナにしてみれば、自分以外の環境で patch を書く人がいるとは思ってもいなかったのだろう。</p>
+
+<p>a) <a href="https://github.com/svarshavchik/courier/pulls?q=is%3Apr+is%3Aclosed+author%3Amumumu">Courier 本体側で 送った patchたち</a><br/>
+b) <a href="https://github.com/svarshavchik/courier-libs/pulls?q=is%3Apr+is%3Aclosed+author%3Amumumu">Courier Library 側で送った patch たち</a></p>
+
+<p>(*1) メンテナは Fedora で、自分は Ubuntu だった。</p>
+
+<h3>OpenSSL + GnuTLS の両方に対応</h3>
+
+<p>一通りコードを書く環境が整い、途中まで patch を書いてみると、Courier は TLS 通信に OpenSSL だけでなく、 <a href="https://www.gnutls.org/">GnuTLS</a> も並行してサポートしていることに気がついた。また、<a href="https://tools.ietf.org/rfc/rfc6066.txt">SNI(Server Name Indication)</a> や IPアドレスベースのバーチャルホストもサポートしていたので、それらもこれら両方のライブラリでサポートするように書かなければならなかった。</p>
+
+<p>さらに、これら2つのライブラリのコードは、実装されている機能がそれぞれに微妙に異なっていたので、どこまで実装するかを判断するために全コードを見る必要があり、対応は難航した。方針は以下に纏めた通りだが、正直 GnuTLS 側のコードは、よく [読めた|書けた] ものだと今振り返ってみて思う。</p>
+
+<p>c) <a href="https://gist.github.com/mumumu/650461670436c52a74b06e04725f78ab">couriertls の TLS_PRIVATE_KEY 対応方針</a></p>
+
+<h3>モチベーション</h3>
+
+<p>何故ここまで続いたのかは、正直わからない。本職で C++ を書くようになり、この手のソフトウェアの深追いには慣れていたことが割と大きかったように思う。あとは、少しずつでも、ゴールに近づいている感覚が確実にあったからだろうか。また、義務感なしに、気が向いた時に作業できたのも大きい。</p>
+
+<h3>メンテナについて</h3>
+
+<p>Courier のメンテナは、 <a href="https://www.linkedin.com/in/cplusplusguru">Sam Varshavchik</a> というロシア人だ。コードが良ければ黙ってマージしてくれるし、提案にもちゃんと真摯に返事を返してくれる人だった。コード自体は正直綺麗だとは思わないが、OSS ではコードを全面的に書き直すのでもない限り、相手の流儀に徹底的に合わせるのが基本なので、メンテナの流儀を踏襲する方向で動いた。</p>
+
+<h3>その他</h3>
+
+<p>Courier 自体は 1990年代末からある古いソフトウェアである。自分は 自宅サーバを立て始めたのが2004年で、その時は他の人が書いた手順を見よう見まねで自分の環境にいろいろ適用しては試行錯誤を繰り返していた。 <a href="https://srad.jp/~mumumu/journal/184844/">スラッシュドットの日記</a> にも、当時の青臭い記録が残っている。そんな糞エンジニアな自分が、こうして、patch を書くことなど思いもよらなかった。</p>
+
+<p>当時から、少しは成長したんだなあ、と思う。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PHP manual generate HOWTO (version 2018-06-16)]]></title>
+    <link href="http://mumumu.github.io/blog/2018/06/16/php-manual-generate-howto/"/>
+    <updated>2018-06-16T20:18:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/06/16/php-manual-generate-howto</id>
+    <content type="html"><![CDATA[<p><b>[Update September 19th 23:29 JST by m ]</b></p>
+
+<p>ここに書いた内容は、更新も含めて <a href="https://github.com/php/doc-ja/blob/master/README_Building_HOWTO.md">PHPマニュアル のビルド方法</a> に移動しました。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ThinkPad Keyboard を買った]]></title>
+    <link href="http://mumumu.github.io/blog/2018/03/04/thinkpad-keyboard/"/>
+    <updated>2018-03-04T18:45:12+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/03/04/thinkpad-keyboard</id>
+    <content type="html"><![CDATA[<p><a href="https://www3.lenovo.com/jp/ja/deals/sbiz/sbiz-accessory/KEYBOARD-Japanese/p/0B47181">https://www3.lenovo.com/jp/ja/deals/sbiz/sbiz-accessory/KEYBOARD-Japanese/p/0B47181</a></p>
+
+<p><img src="http://mumumu.github.io/images/3display.jpg" width="270" height="360"/></p>
+
+<p>最近、上のような形で3画面の環境にした。うん、良い。</p>
+
+<p>だが、ノートPC (<a href="https://www.asus.com/jp/Laptops/ASUS-ZenBook-Pro-UX550VD/">ASUS Zenbook Pro UX550VD</a>) のキーボードがあまりにもアレだった(*注1)。リターンキーの右側に PgUp や PgDown 等のキーが存在してて、邪魔。使いにくいことこの上ない。</p>
+
+<p><img src="http://mumumu.github.io/images/zenbook_pro_550_keyboard_dame.jpg" width="225" height="300" /></p>
+
+<p>自分のような糞エンジニアでも生産性に影響するレベルだったため、ThinkPad Keyboard (Bluetooth版) を買った。</p>
+
+<p><img src="http://mumumu.github.io/images/thinkpad_keyboard.jpeg" width="270" height="360"/></p>
+
+<p>こういう動機で買ったものの、上のような環境だと首を横に向ければ壁によっかかる形で作業できるので、非常に良い。これまではノートパソコンを寝ながら使いたいという動機から <a href="http://mumumu.github.io/blog/2016/10/12/yang-xiang-kegoroqin-desuku/">ゴロ寝デスクの類を使ってきた</a> が、ちょっと体勢を変えたいとか思った時も、デスクと違い、体の移動とかを考えなくても良い。</p>
+
+<p>もともと ThinkPad ユーザー (*注2) だったため、このキータッチには慣れているし、何より軽いので非常に楽に使える。あと、ノートPC と違い、筐体が熱くならないのも何気にポイント高い。唯一の欠点といえば、一番左下が Fn キーで、ソフトウェア的に他の Keymap の割当が不可能なことだが、慣れの問題と言い切れるので、自分は気にならない(*注3)。</p>
+
+<p>自分が本当に欲しかった環境って、「寝ながら使いたい」じゃなくて、「軽くて体がいろいろ動かしやすい」ことだったってことに今更気付いたのだった。。</p>
+
+<p>なので、ゴロ寝デスクはもう使わない... 多分。</p>
+
+<p>(*注1) じゃあなんで買ったし、というツッコミは尤もなんですが、急いでたので魔が差したというか...<br/>
+(*注2) 社会人なりたての時に、ThinkPad T40 とか使ってたし、ThinkPad が好きな社長の会社で働いていた時は、業務用のPCも ThinkPad だった。<br/>
+(*注3) 多分これが原因で Bluetooth 版を選んでない人相当いるんじゃないかと推測</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Canon IP7230 は Ubuntu 16.04 では何もインストールしなくても動く]]></title>
+    <link href="http://mumumu.github.io/blog/2018/02/26/canon-ip7230-on-ubuntu-16-dot-04/"/>
+    <updated>2018-02-26T05:40:13+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/02/26/canon-ip7230-on-ubuntu-16-dot-04</id>
+    <content type="html"><![CDATA[<p><a href="http://cweb.canon.jp/drv-upd/ij-sfp/linux-pd-ip7230-380.html">http://cweb.canon.jp/drv-upd/ij-sfp/linux-pd-ip7230-380.html</a></p>
+
+<p>Linux のドライバが動く、という理由で Canon IP7230 を5年前だかに導入した記憶がある。当時は Ubuntu にもドライバが出ていたのだが、現在は... ? ということで試してみたら、ネットワークに繋いだら DNS-SD 経由で自動で発見してくれ、ドライバも CUPS が持っているエントリから見つけることができた。</p>
+
+<p>いい時代になったものだ。</p>
+
+<p><img src="http://mumumu.github.io/images/canon-ip7200-ubuntu1604.png" width="540" height="960"/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux で Mac のようにスクリーンショットを撮る]]></title>
+    <link href="http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/"/>
+    <updated>2018-02-24T23:29:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/naelstrof/maim">https://github.com/naelstrof/maim</a></p>
+
+<p>職場で Mac をデフォルトであてがわれることが多くなり、スクリーンショットを撮るのに Cmd+Shift+4 するのに慣れてしまった。そんな自分が、Linux で同じことをしたくなったときどうするか？</p>
+
+<p>基本的には、以下のようになる。</p>
+
+<p>A) 範囲指定でスクリーンショットを撮ることが出来るプログラムを探し、インストールする<br/>
+　 但し、GUI が呼ばれるプログラムは不可。CLI である必要がある<br/>
+B) 上記を呼び出すようにショートカットキーを割り当てる</p>
+
+<p>だが、A) を満たすプログラムがなかなか見つからない。どれも GUI を呼ぶか、範囲指定ができてもborderがわからなかったりするなど使いにくいものばかりだった。 <a href="https://wiki.archlinux.org/index.php/taking_a_screenshot">Arch Linux のページ</a> にあるソフトウェアをもろもろ調べ、結局選んだのが maim だった。</p>
+
+<p>だが、こいつが Ubuntu だけ何故かパッケージが用意されていなかった(*注1)ので、git リポジトリから最新版をインストールする羽目に。いろいろ依存していてビルドが大変だったが、Ubuntu 16.04 LTS では以下をインストールすれば(*注2)、あとは <a href="https://github.com/naelstrof/maim#install-using-cmake-requires-cmake-git-libxrander-libxfixes-libglm">指示通りにすれば</a> インストールできる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install  cmake libxrender-dev libxfixes-dev libglm-dev libglew-dev libglfw3-dev libgles2-mesa-dev libx11-dev libxcomposite-dev</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとは、以下のコマンドを Ctrl+Shift+F4 にマッピングした。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ maim -s ~/screenshot-$(date +%s).png</span></code></pre></td></tr></table></div></figure>
+
+
+<p>自分は KDE を使っているので <a href="https://docs.kde.org/trunk5/en/kde-workspace/kcontrol/khotkeys/manage.html#manage-add-shortcut">Command/URL を選んで Custom Shortcutを割り当てる</a> 方法を使ったが、他のデスクトップ環境でも似たような機能はきっとあるだろう。</p>
+
+<p>(*注1) 他の主要ディストリビューションにはある (Debian 含) のに、Ubuntu だけ何故... (´ー｀; )<br/>
+(*注2) 他に必要なものもあるかもしれない。build-essential とかは当然の前提よ(*゜ー゜)</p>
+
+<p><strong>[Update 19th May 2018 05:39 JST by m]</strong></p>
+
+<p>Kubuntu 18.04 LTS では、ソースからビルドしなくても maim パッケージ一発で maim が入るようになっていました。しあわせ(｀ー´)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Slack mobile notifications not working (on Android)]]></title>
+    <link href="http://mumumu.github.io/blog/2017/10/23/slack-mobile-notifications-not-working/"/>
+    <updated>2017-10-23T00:59:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2017/10/23/slack-mobile-notifications-not-working</id>
+    <content type="html"><![CDATA[<p><a href="https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5">https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5</a></p>
+
+<p>システム運用時に、何かあった時のアラート等の通知を Slack で受け取っている人もいるだろう。</p>
+
+<p>特に、帰宅後や休暇時に一定の処置が必要なお知らせは重要である。Slack ではチャンネル単位でデスクトップとモバイルの通知の設定が細かく設定できるようになっているので、使い勝手では個人的にあまり困っていない。</p>
+
+<p>だが、自分に合った設定を施しても、一部の Notificaton が受け取れなかったり、通知が遅れたりするとちょっと問題だ。
+そういう時は、上記のリンクにあるヘルプの設定を確かめて設定をやり直してもうまくいかないことがある。そうした場合に、自分がやったのは、Android の電源設定を見直すことだった。</p>
+
+<p><img src="http://mumumu.github.io/images/Android_70_battery_setting.jpg" width="540" height="960"/></p>
+
+<p>最近の Android は、電源設定が割と細かくなっており、スリープ時にネットワーク接続が無効になる場合がある。</p>
+
+<p>自分はこれを上記のように常に接続されるように見なおしたところ、Slack のモバイル通知が思ったように受け取れるようになった。
+メモ程度の内容だが、これからも多分同じようなことが起こると思うので、ここにメモしておく。</p>
+
+<p><strong>[ Update Febrary 25th 02:04:50 JST by m ]</strong></p>
+
+<p>自分が持っている Zenfone 4 には、「自動起動マネージャー」と呼ばれる機能があり、そこでアプリを許可しておかないと、電池が足りない等の場合にアプリが終了させられて通知が遅れる場合がある。よって、通知をすぐに受け取りたいアプリは許可リストに入れておく必要がある。以下の例だと、メールクライアントや Slack がそうだ。</p>
+
+<p><img src="http://mumumu.github.io/images/auto-boot-manager.jpg" width="540" height="960"/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[PATCH] added socks support to Ruby httpclient]]></title>
+    <link href="http://mumumu.github.io/blog/2017/10/02/add-socks-support-to-ruby-httpclient/"/>
+    <updated>2017-10-02T04:27:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2017/10/02/add-socks-support-to-ruby-httpclient</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/nahi/httpclient/pull/380">https://github.com/nahi/httpclient/pull/380</a></p>
+
+<p>以下のような関係にある3つのホストがあり、server は firewall の外から名前解決もできないし、client からは ssh 経由でしか通信できないとする。また、firewall には curl(1) などのツール類はポリシー上一切入っていないとする。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------+          +-----------+         +------------+
+</span><span class='line'>|          |          |           |         |            |
+</span><span class='line'>|  client  +----------&gt; firewall  +---------&gt;   server   |
+</span><span class='line'>|          |   only   |           |         |            |
+</span><span class='line'>+----------+   ssh    +-----------+         +------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>そこで、client から server の状態を http 経由でもろもろ確認したいとする。
+以下のようにして、firewall に対して SOCKS プロキシを立てて通信したくなりはしないだろうか。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh -fN -D 9999 firewall
+</span><span class='line'>$ curl --socks5-hostname localhost:9999 http://server/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ただステータスコードを簡単に確認するためなら、これでも問題ない。だが、特定のプログラミング言語の HTTP通信ライブラリとかを使っていて細かい操作をしている場合、その通信ライブラリが SOCKS プロトコルに対応している必要がある。</p>
+
+<p>自分の場合、上記に類似した状況 (*注1) で Ruby 製のHTTPクライアントライブラリを使っていて、やはり Ruby 側を対応したほうが後々のためにも便利だよな、と思い、 <a href="https://github.com/nahi/httpclient/pull/380">httpclient の gem に対して patch を書いた</a>。これが取り込まれると、以下のようなことができるようになる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>require 'httpclient'
+</span><span class='line'>
+</span><span class='line'>#  ssh -fN -D 9999 remote_server
+</span><span class='line'>clnt = HTTPClient.new('socks4://localhost:9999')
+</span><span class='line'>
+</span><span class='line'>#clnt = HTTPClient.new('socks5://localhost:9999')
+</span><span class='line'>#clnt = HTTPClient.new('socks5://username:password@localhost:9999')
+</span><span class='line'>
+</span><span class='line'>#ENV['SOCKS_PROXY'] = 'socks5://localhost:9999'
+</span><span class='line'>#clnt = HTTPClient.new
+</span><span class='line'>
+</span><span class='line'>target = 'http://www.example.com/'
+</span><span class='line'>puts clnt.get(target).content
+</span><span class='line'>
+</span><span class='line'>target = 'https://www.google.co.jp/'
+</span><span class='line'>puts clnt.get(target).content</span></code></pre></td></tr></table></div></figure>
+
+
+<p>つまり、HTTPプロキシと同じ感覚で SOCKS プロキシが設定できるようになる。
+凄くニッチなニーズではあるけれども、取り込まれると良いな。</p>
+
+<p>やりたいことがはっきりしていたので、Ruby の経験の多寡に関わらず、意外にすんなり書けた。また、自動テストのためには SOCKSサーバが必要だったことと、プロトコル自体は非常に簡単だったため、それも自前で実装した。 <a href="https://github.com/net-ssh/net-ssh/tree/master/lib/net/ssh/proxy">Net::SSH::Proxy にクライアント実装があり</a>、それを拝借してきたお陰で、そんなに手間はかからなかった。</p>
+
+<p>Ruby を使い始めてそんなに経っていないので、Ruby のコードを書くにあたってのお作法が殆どわからなかった。そこで、 <a href="https://github.com/bbatsov/rubocop">rubocop</a> の助けを借りた。大したチェックはされないだろうとたかを括っていたが、コード上のメトリクスやベストプラクティスのあれこれまで細かく指摘されたのでびっくり。これを使ったお陰で、それなりに自信を持ってコードを書き進めることができた。</p>
+
+<p>特定のプログラミング言語の初心者のうちは、可能であれば lint の類を使いながら書いてみると良いかもしれない。</p>
+
+<p>(*注1) 実際はもっと複雑なのだが、そもそも、こんな状態を作っていること自体が筋が悪くて、firewall の中でなんとかすべき事案である。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[cmos error]]></title>
+    <link href="http://mumumu.github.io/blog/2017/05/10/cmos-error/"/>
+    <updated>2017-05-10T03:44:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2017/05/10/cmos-error</id>
+    <content type="html"><![CDATA[<p><a href="http://mumumu.github.io/blog/2015/01/13/luvbook-j/">http://mumumu.github.io/blog/2015/01/13/luvbook-j/</a></p>
+
+<p>2年前に買った風変わりなノートパソコンだが、CMOS の電池切れエラーが。。(´ー｀; )</p>
+
+<p>通常ならウラ面をパカっと開けて電池を交換するところだ。少し試みたけど挫折... 分解はそもそも想定してないらしい。
+よって、大人しくサポートに問い合わせてみることに。このエントリはその症状の記録である。</p>
+
+<ul>
+<li>システムを起動すると、"CMOS battery is bad or was recently replaced." と表示される。</li>
+</ul>
+
+
+<p><img src="http://mumumu.github.io/images/CMOS_battery_is_bad.jpg"/></p>
+
+<ul>
+<li>上記でOKを押すと "The CMOS defaults were loaded" と表示され、このシステムが続くようならユーザーガイドを見て下さいと表示される</li>
+</ul>
+
+
+<p><img src="http://mumumu.github.io/images/CMOS_default_is_loaded.jpg"/></p>
+
+<p><a href="http://www.mouse-jp.co.jp/mcj_service/mcj_service_01.html">3年サポート</a> に入ってるんで、無償修理になる想定である。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="https://github.com/mumumu/pep8-ja Python のコーディングスタイルのガイドとしてよく知られている PEP8 の日本語訳を公開した。 もともと、社内で PEP8 に従ってコードを書こう (もともと flake8 は採用しているのだけど、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/page10/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://mumumu.github.io/rss.xml" rel="alternate" type="application/rss+xml" title="mumumu の日記" />
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-674328-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://mumumu.github.io/rss.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-03-26 22:20:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/26/yet-another-pep8-japanese-version/">Yet Another PEP8 Japanese version</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://github.com/mumumu/pep8-ja">https://github.com/mumumu/pep8-ja</a></p>
+
+<p>Python のコーディングスタイルのガイドとしてよく知られている PEP8 の日本語訳を公開した。</p>
+
+<p>もともと、社内で PEP8 に従ってコードを書こう (もともと <a href="https://pypi.python.org/pypi/flake8">flake8</a> は採用しているのだけど、ローカルルールとかも含めて明示したいねという話) と言っているときに、日本語版があった方が話が早いと思ったのが翻訳を求めたきっかけである。既存の翻訳があればそれに越したことはなかったのだが、自分がお勧めできるクオリティの翻訳が存在しなかったので、あえて再発明に踏み切った次第だ。</p>
+
+<p>とはいえ、<a href="https://dl.dropboxusercontent.com/u/555254/pep-0008.ja.html">@methane さんの翻訳</a> は一部参考にさせて頂いている。特に最後の<a href="http://docs.python.jp/3.3/tutorial/controlflow.html#function-annotations">関数のアノテーション</a> に関する部分は Python 3.0 以降で有効な機能であり、自分も使ったことがないため正直曲者だった。ちゃんとPythonを書くようになっていろいろ学ぶことは多いが、広く使われているプラクティスの一覧という意味で、この翻訳からは得るものが大いにあった。社内でもこれを生かしていきたいし、他の方のお役に立つことがあれば嬉しい。</p>
+
+<p>github にあがっているので、異論反論オブジェクションについては、github Issue か Pull Request をお願いします(*´～｀)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-03-13 11:59:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/13/my-diy-server-spec/">My DIY server spec</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>このクラウド全盛の時代に、自分は自作したサーバを自宅で運用し続けている。その理由は複数あるが、以下のような感じだろうか。</p>
+
+<p><strong>・</strong> たとえコンシューマーレベルといえどハードウェアのトレンドは抑えておきたい<br/>
+<strong>・</strong> 自分の手元に置くことによるハードレベルに至るまでの自由度は捨てがたい<br/>
+<strong>・</strong> <a href="http://nekoya.github.io/blog/2014/03/07/jisakuserver/">自作サーバを未だに本番運用している変わった会社</a> に転職して、サーバの選定やコストに関する感覚にも生かせると思いはじめた</p>
+
+<p>運用やハードのコストさえ厭わなければ、はいはい頑張ってねという話に見える。コスト以外の問題点としては「CPU のトレンドが変わるたびに目移りしてしまう」点が挙げられる。自作をする人はお金が出せる範囲で最高のスペックのマシンをその時々で組みたがるのはもう病気... いやもとい本能のようなものだ。</p>
+
+<p>時は移り、コンシューマー向けの Intel CPU は 第4世代になった。現在運用しているマシンの CPU は <a href="http://ark.intel.com/ja/products/52215/Intel-Core-i7-2600S-Processor-8M-Cache-up-to-3_80-GHz">第3世代 Intel Core i7 2600S</a> なので、目移りに悩まされている。目移りするのはよいが、一体自分はどんなマシンを組みたいのか。そのポリシーを明らかにしなければいつまでたっても何も変わらない。そこで、現時点で組みたいサーバマシンのポリシーをここで明らかにしたいと思う。</p>
+
+<p>絶対に譲れないレベルのものを挙げていくと、以下のようなものだろう。<br/>
+遊びレベルなので、たとえばお金になる商売に使いたいとかいう動機はない。基本実験用。ただし、自分や友人に必要な最低限なサーバは運用する。そんな程度だ。
+予算はちなみに最大15万程度である。</p>
+
+<h3>必須</h3>
+
+<p>a) CPU の TDP は 65W 以下必須。<br/>
+　 - 電気代厳しい。。<br/>
+b) メモリは自分の予算が許す限り最大のものを。現状(32GB) 以上であること。<br/>
+　 - 現在、Non-ECC な DDR3 1333 なメモリ (8GBx4) を生かせれば最高。<br/>
+c) SSD もできる限り容量が大きいもの必須。</p>
+
+<h3>任意</h3>
+
+<p>d) 業務レベルの遊びが出来るマザーボードであればよりよい。<br/>
+　 IPMI とか bonding</p>
+
+<p>このポリシーに基づいて、転職してから半年以上目移りを続けている。最大の問題は <a href="http://pc.watch.impress.co.jp/docs/news/20130905_614086.html">Atom C2000 シリーズが発表</a> になり、<a href="http://ascii.jp/elem/000/000/842/842056/">TDP20W でありながらメモリが最大64GB載るコンシューマー向けのマザーボード</a> が出てきたことにある。ただし、基本 ECC なメモリが必須(Non-ECCでも動いたという報告はあるが) であり、現状のメモリを生かしたいという要求に合わないのが悩みの種であった。<a href="http://www.supermicro.com/products/motherboard/ATOM/">Supermicro の選択肢</a> も非常に魅力的ではあるものの、やはり ECC が求められる。</p>
+
+<p>そもそも 「32GB 以上のメモリを ECCなしで本番運用するのとかないわー」という失笑気味の反応が <a href="http://atnd.org/events/47968">自作サーバ同窓会</a> でも見られたのは事実なんだけど、そこは個人なんで、、ね(´ー｀; )</p>
+
+<p>今年に入って、もう TDP は諦めてもよいという気になった。そうなると有力な選択肢としてあがってくるのが Xeon である。TDP 90W 以下の低電圧版の Xeon もコア数を諦めれば最近は魅力的なものが揃ってきている。E5 2600番台とかを見ると、<a href="http://ark.intel.com/ja/products/75787/Intel-Xeon-Processor-E5-2609-v2-10M-Cache-2_50-GHz">4コアで TDP 80W でありながら、3万円程度で手に入る魅力的なもの</a> も存在している。これであれば、メモリが 32GB 以上載るマザーボードの選択肢はかなり広がる。Supermicro など、IPMI などが付いたマザーボードも選択肢に入り放題である。</p>
+
+<p>ということで、散々続いた目移りは以下の構成で終焉を迎えつつある。</p>
+
+<p>・ <a href="http://ark.intel.com/ja/products/75787/Intel-Xeon-Processor-E5-2609-v2-10M-Cache-2_50-GHz">Intel Xeon E5-2609 v2 (TDP 80W) 2.5GHz</a><br/>
+・ <a href="http://www.supermicro.com/products/motherboard/Xeon/C600/X9DRD-7LN4F.cfm">Supermicro X9DRD-7LN4F</a><br/>
+　- Support ECC and non-ECC UDIMMs ということで要求を満たす。<br/>
+　- GbE が 4port とか誰得なんでしょうね。<br/>
+　- IPMI はまぁ Supermicro ですしおすし。</p>
+
+<p>誰得としか思えないマシンが出来上がりそうです。2014年の 2Q までには完成させたいところ(*´～｀)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-01-20 12:03:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/20/seq-w/">seq -w and zero padding</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html">http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html</a><br/>
+<a href="http://at-aka.blogspot.jp/2006/11/seq-0-padding.html">http://at-aka.blogspot.jp/2006/11/seq-0-padding.html</a></p>
+
+<p>seq(1) ってコマンドラインから連番を作るときにとても便利だ。ただ、この値を0埋めしたいときがある。<br/>
+その場合は -w オプションを付けろといろんなブログに書いてある。以下のような具合だ。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -w 1 10
+</span><span class='line'>01
+</span><span class='line'>02
+</span><span class='line'>03
+</span><span class='line'>04
+</span><span class='line'>05
+</span><span class='line'>06
+</span><span class='line'>07
+</span><span class='line'>08
+</span><span class='line'>09
+</span><span class='line'>10</span></code></pre></td></tr></table></div></figure>
+
+
+<p>けど、これは指定する最大値が二桁以上の場合だ。上記の 10 を一桁の値、たとえば 5 に変えるとうまくいかなくなる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -w 1 5
+</span><span class='line'>1
+</span><span class='line'>2
+</span><span class='line'>3
+</span><span class='line'>4
+</span><span class='line'>5</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これは -w オプションが最大の桁数に合わせて0埋めするためだ。だから、以下のようにすると同じように通用する。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -w 01 5
+</span><span class='line'>01
+</span><span class='line'>02
+</span><span class='line'>03
+</span><span class='line'>04
+</span><span class='line'>05</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最初 -f オプションでフォーマットしようかと思ったのだけど、printf の %d を指定すると以下のように怒られる。<br/>
+これは、数値を内部的に浮動小数点で扱っているためだった。 <a href="http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html">マニュアル</a> にもしっかり書いてある。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -f "%02d" 01 5
+</span><span class='line'>seq: FORMAT `%02d' に不明な %d 指定があります</span></code></pre></td></tr></table></div></figure>
+
+
+<p>なので、g を指定してあげるとちゃんとうまくいく。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -f "%02g" 1 5
+</span><span class='line'>01
+</span><span class='line'>02
+</span><span class='line'>03
+</span><span class='line'>04
+</span><span class='line'>05</span></code></pre></td></tr></table></div></figure>
+
+
+<p>まあ、以下が一番スマートかなー、と思う次第(*´〜｀)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ seq -w 01 5
+</span><span class='line'>01
+</span><span class='line'>02
+</span><span class='line'>03
+</span><span class='line'>04
+</span><span class='line'>05</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-01-08 22:28:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/08/ebook-diy-example/">Ebook DIY Example</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><iframe src="http://www.slideshare.net/slideshow/embed_code/29792564" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px"></iframe>
+
+
+<p><br />
+<br />
+電子書籍の自炊について社内で LT をしたので記録しておく。</p>
+
+<p>このスライドには、「自炊代行業者は自分的にグレーゾーン」などと書いているが、はじめに調べた <a href="http://www.bookscan.co.jp/">BookScan</a> を見る限り、理屈の通った商売はしていると思う。だが、ユーザーに対して <a href="http://www.bookscan.co.jp/law.php">スキャンを頼む全ての著作物の著作権者への許可を求め</a> 、「何かトラブルがあったら許可を取らなかったあなたが悪い」的なやり方が (理屈が通っているとわかってはいても) どうにも気に入らなかったので、自分は自炊業者を使う気になれなかったというのが本当のところだ。</p>
+
+<p>そんなこんなでやってはみたものの、まあ後にも使えるノウハウが残ったのだから、自分的には別にいいや、という感じである。ただ本をバラバラにするという行為が、スライドを作っていてちょっと心が痛んだのも否定しない。だから、本当に後から紙で読み返したいと思う技術書については、やめとこうという気持ちになっている。</p>
+
+<p>「<a href="http://www.oversea-pub.com/books/gnu-development-tools">GNU Development Tools</a>」や、<a href="http://www.amazon.co.jp/dp/4756116396">エキスパートCプログラミング</a> などがそんな本だ。電子化して読んだ方が気持ちよいと思うのもあるが、やめとこうという気持ちになる本もあるという点は心に留めておきたい。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-01-01 00:06:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/01/2014-new-year/">2014 new year</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>始まりました。2014年。いやっほう！ヽ(´ー｀。)ノ<br/>
+旧年はお世話になりました。本年もどうぞ宜しくお願いします(*´〜｀)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page11">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+      
+        <a class="next" href="/page9">Newer &rarr;</a>
+      
+      
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python / Tech Lead / translator / PHP Manual maintainer(ja) / devoted husband.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="https://github.com/mumumu">Github</a>
+      </li>
+      <li class="post">
+        <a href="https://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+<!--
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+-->
+  </ul>
+</section>
+<!--
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+-->
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2022 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

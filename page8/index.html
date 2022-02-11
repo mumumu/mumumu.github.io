@@ -1,0 +1,812 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="最近 dpkg コマンドでパッケージ自体のデバッグをすることが多くなった。[Debian|Ubuntu] のアーカイブとはサポートポリシーが異なるアーカイブ のパッケージを採用することで、Pin Priority を設定する機会が増えたからだ。 Debian のパッケージには優先度( &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/page8/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://mumumu.github.io/rss.xml" rel="alternate" type="application/rss+xml" title="mumumu の日記" />
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-674328-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://mumumu.github.io/rss.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-08-09 23:37:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/09/dpkg/">dpkg related command</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近 dpkg コマンドでパッケージ自体のデバッグをすることが多くなった。[Debian|Ubuntu] のアーカイブとはサポートポリシーが異なるアーカイブ のパッケージを採用することで、Pin Priority を設定する機会が増えたからだ。</p>
+
+<p>Debian のパッケージには優先度(Priority) が設定されている。パッケージを apt-get コマンドなどに指定した場合、複数のインストール候補がある場合、優先度が高いモノがインストールされる。よって、、この優先度を操作することで、強制的にダウングレードを行わせたり、特定の条件に当てはまるパッケージのインストールを禁止することすら可能である。</p>
+
+<p>stable や unstable や testing などの ディストリビューションを指定することはまずない (本番環境ではstableでしょJK的な) ので、優先度を操作することが多い。</p>
+
+<p>ここでは、パッケージ単体の情報を扱うのにいくつか重宝しているコマンドがあるので、それをメモしておく。</p>
+
+<h2>dpkg</h2>
+
+<p>dpkg コマンドは、パッケージを扱う基本コマンドである。パッケージのインストールや情報の表示などを行う。dpkg は deb ファイルを扱う。</p>
+
+<p>ちなみに、これを内部的に使うことで apt は作られている。apt関連コマンド (apt-get, apt-cache ...etc) はそれをラップし、パッケージ名だけで扱えるようにしてくれ、依存関係の整理や debファイルの取得をネットワークから行い、dpkg に渡してくれる。</p>
+
+<h3>dpkg -l</h3>
+
+<p>インストール済みのパッケージの一覧を表示する。これを grep することで、特定のパッケージがインストールされているかを知るのによく使う</p>
+
+<h3>dpkg -L</h3>
+
+<p>パッケージ名を与えることで、インストールされたパッケージに含まれるファイル一覧を表示する。<code>rpm -ql</code> に相当する。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ dpkg -L /usr/bin/sg
+</span><span class='line'>
+</span><span class='line'>/.
+</span><span class='line'>/bin
+</span><span class='line'>/bin/login
+</span><span class='line'>/bin/su
+</span><span class='line'>/etc
+</span><span class='line'>/etc/login.defs
+</span><span class='line'>/etc/pam.d
+</span><span class='line'>/etc/pam.d/login
+</span><span class='line'>/etc/pam.d/su
+</span><span class='line'>/etc/securetty
+</span><span class='line'>/usr
+</span><span class='line'>/usr/bin
+</span><span class='line'>/usr/bin/faillog
+</span><span class='line'>/usr/bin/lastlog
+</span><span class='line'>
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>dpkg -S</h3>
+
+<p>ファイルのフルパスを与えることで、そのファイルがどのパッケージに属しているかを表示してくれる。自分はこれは apt-file コマンドでしかこれまでできないものだと思っていたが、インストール済みのファイルであれば dpkg でできたらしい(´ー｀; )</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ dpkg -S /usr/bin/which
+</span><span class='line'>debianutils: /usr/bin/which</span></code></pre></td></tr></table></div></figure>
+
+
+<p>逆に、インストールされていないファイルのパッケージを検索したいなら、apt-file とかが便利なようだ。</p>
+
+<h3>dpkg -i</h3>
+
+<p>dpkg は deb ファイルを扱う。それを指定して直接パッケージをインストールしてくれる。但し、依存関係を管理してくれるわけではないので、それが管理できていない、またはよくわからない状態で使うべきではない</p>
+
+<h2>apt</h2>
+
+<p>自分は一般ユーザなので、apt 関連コマンドを欠かすことは出来ない。けど、dpkg だとイマイチな出力をしない部分とかを補うのに使っているというのが正直なところか(*゜ー゜)</p>
+
+<h3>apt-cache show</h3>
+
+<p>パッケージ名を与えることで、その詳細を表示してくれる。apt show や dpkg -s でもほぼ同様の情報が見られたりもするが、日本語で詳細情報の説明が見れたりするので、自分はこれを使っている。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ apt-cache show build-essential 
+</span><span class='line'>Package: build-essential
+</span><span class='line'>Priority: optional
+</span><span class='line'>Section: devel
+</span><span class='line'>Installed-Size: 37
+</span><span class='line'>Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+</span><span class='line'>Original-Maintainer: Matthias Klose &lt;doko@debian.org&gt;
+</span><span class='line'>Architecture: amd64
+</span><span class='line'>Version: 11.6ubuntu6
+</span><span class='line'>Depends: libc6-dev | libc-dev, gcc (&gt;= 4:4.4.3), g++ (&gt;= 4:4.4.3), make, dpkg-dev (&gt;= 1.13.5)
+</span><span class='line'>Filename: pool/main/b/build-essential/build-essential_11.6ubuntu6_amd64.deb
+</span><span class='line'>Size: 4838
+</span><span class='line'>MD5sum: 6fa3d082885a7440d512236685cd24fd
+</span><span class='line'>SHA1: 488c10084cd20cafec7f8b917e752bad45a4f983
+</span><span class='line'>SHA256: 50c00d2da704e131855abda2f823f3ac2589ab1579f511ccd005be421f0a3954
+</span><span class='line'>Description-ja: build-essential なパッケージの一覧情報
+</span><span class='line'> Debian パッケージを構築するつもりがないのであれば、本パッケージは不要です。 1.14.18 以降の dpkg では、Debian
+</span><span class='line'> パッケージの構築に本パッケージは必須です。
+</span><span class='line'> .
+</span><span class='line'>
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>apt-cache policy</h3>
+
+<p>これがパッケージが衝突したときや特定のパッケージのバージョンが意図したモノにならない場合などに特によく使う。<br/>
+パッケージ名を与えない場合は、各パッケージリポジトリ毎の優先度が表示される。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ apt-cache policy 
+</span><span class='line'>パッケージファイル:
+</span><span class='line'> 100 /var/lib/dpkg/status
+</span><span class='line'>     release a=now
+</span><span class='line'> 500 http://dl.google.com/linux/chrome/deb/ stable/main i386 Packages
+</span><span class='line'>     release v=1.0,o=Google, Inc.,a=stable,n=stable,l=Google,c=main
+</span><span class='line'>     origin dl.google.com
+</span><span class='line'>
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>パッケージ名を与えることで、インストール候補とそれぞれに与えられる優先度が表示される。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ apt-cache policy build-essential
+</span><span class='line'>build-essential:
+</span><span class='line'>  インストールされているバージョン: 11.6ubuntu6
+</span><span class='line'>  候補:               11.6ubuntu6
+</span><span class='line'>  バージョンテーブル:
+</span><span class='line'> `***` 11.6ubuntu6 0
+</span><span class='line'>        500 http://jp.archive.ubuntu.com/ubuntu/ trusty/main amd64 Packages
+</span><span class='line'>        100 /var/lib/dpkg/status</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>apt source</h3>
+
+<p>パッケージ名を与えることで、パッケージのソースパッケージをダウンロードできる。
+後述する build-dep と組み合わせると便利。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ apt source login
+</span><span class='line'>
+</span><span class='line'> apt source login
+</span><span class='line'>パッケージリストを読み込んでいます... 完了
+</span><span class='line'>'login' の代わりに 'shadow' をソースパッケージとして選出しています
+</span><span class='line'>注意: 'shadow' パッケージは以下の場所の 'Git' バージョン制御システムで保守されています:
+</span><span class='line'>https://anonscm.debian.org/git/pkg-shadow/shadow.git
+</span><span class='line'>パッケージの最新の (まだリリースされていないかもしれない) 更新を取得するには、
+</span><span class='line'>git clone https://anonscm.debian.org/git/pkg-shadow/shadow.git
+</span><span class='line'>を使用してください。
+</span><span class='line'>1,818 kB のソースアーカイブを取得する必要があります。
+</span><span class='line'>取得:1 http://archive.ubuntu.com/ubuntu bionic-updates/main shadow 1:4.5-1ubuntu2 (dsc) [2,426 B]
+</span><span class='line'>取得:2 http://archive.ubuntu.com/ubuntu bionic-updates/main shadow 1:4.5-1ubuntu2 (tar) [1,345 kB]
+</span><span class='line'>取得:3 http://archive.ubuntu.com/ubuntu bionic-updates/main shadow 1:4.5-1ubuntu2 (diff) [471 kB]
+</span><span class='line'>1,818 kB を 8秒 で取得しました (240 kB/s)
+</span><span class='line'>
+</span><span class='line'>dpkg-source: info: extracting shadow in shadow-4.5
+</span><span class='line'>
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>apt build-dep</h3>
+
+<p>パッケージ名を与えることで、そのソースパッケージをビルドするのに必要なパッケージがダウンロードできる</p>
+
+<p><strong> [ Update October 16th 4:23 JST by m ]</strong></p>
+
+<p><code>dpkg -L</code> <code>apt source</code> <code>apt build-dep</code> を追加しました</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-07-05 22:22:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/05/disk-partition-over-2tb/">disk partition over 2TB</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ストレージって普段意識せずに使うモノだから、ハードウェア障害とかでいざ交換とか再初期化とかいう話になると、オペレーションを思い出すのに一瞬うっとなることが多い。今日もそんな日だった。</p>
+
+<p>ちょっと重要なサーバのストレージが死にかけたので、代替機を作ろうという話になった。ストレージは 480GB のSSD と Western Digital の 3TB。/dev/sda, /dev/sdb に割り当てられているのはわかっている。どちらがSSDで、どちらがHDDか？</p>
+
+<p>今までは dmesg とかを目grepしてどちらが何であるかを見ていた。なんとも原始的で情けない話だ。<br/>
+けれども、hdparm 使えば簡単だということを教わった。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>nn@op3:~$ sudo hdparm -i /dev/sda
+</span><span class='line'>
+</span><span class='line'>/dev/sda:
+</span><span class='line'>
+</span><span class='line'> Model=WDC WD30EZRX-00AZ6B0, FwRev=80.00A80, SerialNo=WD-WCC070146118
+</span><span class='line'> Config={ HardSect NotMFM HdSw&gt;15uSec SpinMotCtl Fixed DTR&gt;5Mbs FmtGapReq }
+</span><span class='line'> RawCHS=16383/16/63, TrkSize=0, SectSize=0, ECCbytes=50
+</span><span class='line'> BuffType=unknown, BuffSize=unknown, MaxMultSect=16, MultSect=16
+</span><span class='line'> CurCHS=16383/16/63, CurSects=16514064, LBA=yes, LBAsects=5860533168
+</span><span class='line'> IORDY=on/off, tPIO={min:120,w/IORDY:120}, tDMA={min:120,rec:120}
+</span><span class='line'> PIO modes:  pio0 pio3 pio4 
+</span><span class='line'> DMA modes:  mdma0 mdma1 mdma2 
+</span><span class='line'> UDMA modes: udma0 udma1 udma2 udma3 udma4 udma5 *udma6 
+</span><span class='line'> AdvancedPM=no WriteCache=enabled
+</span><span class='line'> Drive conforms to: Unspecified:  ATA/ATAPI-1,2,3,4,5,6,7
+</span><span class='line'>
+</span><span class='line'> * signifies the current active mode</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今回は /dev/sda に何故か HDD が割り当てられていることがわかった。パーティーションを一つだけ切って、それに全ての容量を割り当て、ext4 でフォーマットしようぜ、という話になった。自分は fdisk でこれまでパーティーションを切ることに慣れていたので、fdiskでパーティーションを切ったところ、以下のように2TB分しか切られない。なんでだ。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/dev/sda1                2.0T  199M  1.9T   1% /hoge</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>と思ったら、Linux の fdisk は <a href="http://ja.wikipedia.org/wiki/GUID%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB">GUIDパーティーションテーブル(GPT)</a> に対応していないので、 2TiB 以上のパーティーションは作れないようだ。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo parted /dev/sda
+</span><span class='line'>(parted) mklabel gpt
+</span><span class='line'>(parted) mkpart primary 0% 100%
+</span><span class='line'>(parted) print
+</span><span class='line'>Model: ATA WDC WD30EZRX-00A (scsi)
+</span><span class='line'>Disk /dev/sda: 3001GB
+</span><span class='line'>Sector size (logical/physical): 512B/4096B
+</span><span class='line'>Partition Table: gpt
+</span><span class='line'>
+</span><span class='line'>Number  Start   End     Size    File system  Name     Flags
+</span><span class='line'>1      1049kB  3001GB  3001GB               primary</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで 2TB 以上のディスクを普通に扱えるようになった。これまでも2TB以上のディスクに普通に fdisk を使ってきた自分が恥ずかしいわ(´ー｀；)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-05-12 13:20:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/12/my-diy-server-spec-final/">My DIY Server Spec final</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://mumumu.github.io/blog/2014/05/02/my-diy-server-spec-2/">http://mumumu.github.io/blog/2014/05/02/my-diy-server-spec-2/</a></p>
+
+<p>紆余曲折あった末、最終的な構成は以下の通り。<br/>
+SSD と HDD は予備的なもの。はじめに予想してたモノより随分お高くはなったけど、<br/>
+流石にこれ以上おカネを使うことはない(´ー｀; )</p>
+
+<table>
+<thead>
+<tr>
+<th>パーツ項目 </th>
+<th> 品名 </th>
+<th> 価格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU       </td>
+<td> Xeon E5-2618Lv2 (2.0G) 6core/12thread TDP50W </td>
+<td> 69,929</td>
+</tr>
+<tr>
+<td>マザーボード </td>
+<td> GIGABYTE GA-6PXSV4 </td>
+<td> 41,999</td>
+</tr>
+<tr>
+<td>RAM        </td>
+<td> Kingston DDR3-1600(PC3-12800) ECC Registered DIMM KVR16R11D4/16 2枚 </td>
+<td> 43,390</td>
+</tr>
+<tr>
+<td>SSD      </td>
+<td> Samsung SSD840EVO 250GB MZ-7TE250B/IT </td>
+<td> 14,780</td>
+</tr>
+<tr>
+<td>HDD      </td>
+<td> Seagate ST3000DM001 3TB SATA </td>
+<td> 12,004</td>
+</tr>
+<tr>
+<td>ケース      </td>
+<td> Coolermaster Silencio 652 </td>
+<td> 18,900</td>
+</tr>
+<tr>
+<td>電源       </td>
+<td> 玄人志向 SSシリーズ 350W 80PLUS GOLD KRPW-SS350W/90+ </td>
+<td> 6,234</td>
+</tr>
+<tr>
+<td>CPUクーラー </td>
+<td>  Dynatron R24 </td>
+<td> 5,250</td>
+</tr>
+<tr>
+<td>合計       </td>
+<td>                                  </td>
+<td> 212,486</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-05-12 11:25:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/12/disable-akonadi/">Disable Akonadi</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://userbase.kde.org/Akonadi#Disabling_the_Akonadi_subsystem">http://userbase.kde.org/Akonadi#Disabling_the_Akonadi_subsystem</a></p>
+
+<p>Kubuntu 14.04 LTS には KDE 4.13 が入っているが、このバージョンから有効になっているデスクトップ検索がどうにも糞で、起動して10分くらいCPUを毎回占有してくれる。</p>
+
+<p>業を煮やして無効にした。以下のコマンドを実行 (rootである必要はない) して、上のリンクにあるとおり、カレンダーのイベント表示を無効にすればよい。実はこのやり方は Akonadi サブシステムを無効にするものだが、Akonadi を使っている機能はどれも俺は使ってないので一気に無効にしたった(´ー｀; )</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ akonadictl stop</span></code></pre></td></tr></table></div></figure>
+
+
+<p>カレンダーのイベント表示は以下のように "Display events" となっているので、そのチェックを外す。</p>
+
+<p><img src="/images/disable_akonadi_on_calendar.png" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2014-05-07 00:15:00 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/07/narrow-ilm-v-dot-s-square-ilm/">Narrow ILM v.s Square ILM</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.servethehome.com/narrow-ilm-square-ilm-lga2011-heatsink-differences/">http://www.servethehome.com/narrow-ilm-square-ilm-lga2011-heatsink-differences/</a></p>
+
+<p>自作をやった人なら御存知かもしれないが、Intel な CPU をマザーボードのCPUソケットに固定するための部品を ILM (Independent Loading Mechanism) という。手元にあるマザーボードだと、以下の長方形の部分になる。レバーを上げてCPUをおいて、カバーを付けてレバーを下げると固定されるという具合だ。</p>
+
+<p><img src="/images/ilm.jpg" width="480" height="320" /></p>
+
+<p>今回自分が購入したマザーボードの CPUソケットは LGA 2011 である。LGA 2011 の ILM には二つの種類がある。Square ILM と Narrow ILM だ。</p>
+
+<p>a) Square ILM<br/>
+　- サイズ 80x80mm の正方形<br/>
+　- コンシューマー向けのマザーボードのソケットのほとんどはこれ<br/>
+b) Narrow ILM<br/>
+　- サイズ 56x94mm<br/>
+　- マザーボードに載せる機能が多いため、ヒートシンクの面積を制限する理由があるサーバ向けのマザーボードに採用例が多い</p>
+
+<p>これらの何が違うかというと、ソケットの上に載せることになるヒートシンクのサイズである。ほとんどの人が自作に使うマザーボードについては、Square ILM が前提になっており、ヒートシンクもそれを前提にして LGA 2011 対応とのみ謳っている。これがフツーのヒートシンクである。</p>
+
+<p>だが、今回自分が購入した <a href="http://b2b.gigabyte.com/products/product-page.aspx?pid=4466">GIGABYTE GA-6PXSV4</a> については、Narrow ILM が採用されていたため、フツーのヒートシンクが付かなかった。。 <a href="http://www.scythe.co.jp/cooler/katana4.html">Katana4</a>  というクーラーを買っていたのだが、これも Square ILM を前提にしていたのである。</p>
+
+<p>Narrow ILM はこのような性格から情報が少ない上、国内で Narrow ILM 対応と謳って売っているヒートシンクも少ない傾向にある。<a href="http://www.oliospec.com/index.php?action=item_search&amp;rootCategoryId=161">オリオで売っている Noctua のやつ</a> くらいだろうか。また、機能を詰め込んだマザーボードに採用されているため、推奨するヒートシンクの面積すら指定されているマザーボードだとますます適合品が少なくなる傾向にある。</p>
+
+<p>自分が買った Gigabyte GA-6PXSV4 だと、<a href="http://b2b.gigabyte.com/products/product-page.aspx?pid=4466#sp">「Recommended cooling device dimension: 70x106mm」となっていた</a> ため 泣く泣くそれに適合する <a href="http://www.dynatron-corp.com/en/product_detail_1.aspx?cv=&amp;id=238&amp;in=0">Dynatron のヒートシンク</a> を発注するハメになった。</p>
+
+<h2>まとめ</h2>
+
+<p>・ Supermicro とかのサーバ向けマザーボードでは、ILM のサイズに注意<br/>
+・ ILM に適合するヒートシンクを発注しよう！ 但しコンシューマー向けマザーボードでは気にする必要はない。<br/>
+・ 参考文献<br/>
+　- <a href="http://www.servethehome.com/narrow-ilm-square-ilm-lga2011-heatsink-differences/">Narrow ILM v. Square ILM – LGA2011 Heatsink Differences</a><br/>
+　- <a href="http://www.intel.com/content/dam/www/public/us/en/documents/design-guides/xeon-e5-1600-2600-4600-thermal-guide.pdf">Xeon E5-1600/2600/4600 v1 and v2 Thermal / Mechanical Design Guide(PDF)</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page9">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+      
+        <a class="next" href="/page7">Newer &rarr;</a>
+      
+      
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python / Tech Lead / translator / PHP Manual maintainer(ja) / devoted husband.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="https://github.com/mumumu">Github</a>
+      </li>
+      <li class="post">
+        <a href="https://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+<!--
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+-->
+  </ul>
+</section>
+<!--
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+-->
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2022 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

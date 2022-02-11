@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> - Articles</title>
+    <description>Diary of mumumu, mainly technotes.</description>
+    <link>
+    http://mumumu.github.io</link>
+    
+      
+      <item>
+        <title>クレジット</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540&quot;&gt;https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 21 Feb 2021 23:45:47 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2021/02/21/credit/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2021/02/21/credit/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>RTX 830 を挟んでみた話</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://network.yamaha.com/products/routers/rtx830/index&quot;&gt;https://network.yamaha.com/products/routers/rtx830/index&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 05 Jan 2021 00:53:23 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2021/01/05/rtx830-and-more/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2021/01/05/rtx830-and-more/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>PHPマニュアル メンテナンス用ドキュメント最新版</title>
+        
+          <description>&lt;p&gt;PHP マニュアルのメンテナの一人として、過去にいくつか文書を書いてきたが、それの最新版を全て github に集約した。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 19 Sep 2020 23:42:05 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>新しい知識の学び方</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://www.amazon.co.jp/dp/B0193M34D0&quot;&gt;https://www.amazon.co.jp/dp/B0193M34D0&lt;/a&gt;&lt;br/&gt;
+&lt;a href=&quot;https://hiyokko-hard.com/support/&quot;&gt;https://hiyokko-hard.com/support/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 27 Jul 2020 02:40:26 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>問題を解く</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://pha.hateblo.jp/entry/2020/05/12/232121&quot;&gt;https://pha.hateblo.jp/entry/2020/05/12/232121&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 16 May 2020 01:22:10 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2020/05/16/solve-problem/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2020/05/16/solve-problem/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>ThinkPad X395</title>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/images/thinkpad_x395.png&quot; width=&quot;800&quot;/&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 25 Jan 2020 20:03:30 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2020/01/25/thinkpad-x395/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2020/01/25/thinkpad-x395/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>phpdoc メンテナンス業を少し強化する気になった</title>
+        
+          <description>&lt;p&gt;自分は PHP マニュアルのコミット権限を持っているが、&lt;a href=&quot;http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation/&quot;&gt;2013年に chm のビルドインフラを引き継いだ時&lt;/a&gt; 以来、その権限をまともに行使したことはあまりなかった。実際 &lt;a href=&quot;https://bugs.php.net/search.php?search_for=chm&amp;amp;boolean=0&amp;amp;limit=30&amp;amp;order_by=&amp;amp;direction=DESC&amp;amp;cmd=display&amp;amp;status=Closed&amp;amp;bug_type=All&amp;amp;project=All&amp;amp;php_os=&amp;amp;phpver=&amp;amp;cve_id=&amp;amp;assign=mumumu&amp;amp;author_email=&amp;amp;bug_age=0&amp;amp;bug_updated=0&amp;amp;commented_by=&quot;&gt;自分が対応した chm のビルドインフラのバグ報告は4回&lt;/a&gt; しかないし、phpdoc 本体のコミット数も 2013年 - 2018年までの間を数えてみると 10 回あるかないかだ。&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 24 Dec 2019 21:30:11 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2019/12/24/php-documentation-maintenance-work/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2019/12/24/php-documentation-maintenance-work/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Chrome のタブやアドレスバーが小さい時</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://superuser.com/questions/982560/chrome-tab-font-too-small/982565&quot;&gt;https://superuser.com/questions/982560/chrome-tab-font-too-small/982565&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 24 Dec 2019 21:14:20 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Linux で Mac のようにスクリーンショットを撮る その2</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/&quot;&gt;http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 21 Dec 2019 22:02:33 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2019/12/21/mac-screenshot-on-linux-2/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2019/12/21/mac-screenshot-on-linux-2/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Chromebook</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://www.google.com/intl/ja_jp/chromebook/&quot;&gt;https://www.google.com/intl/ja_jp/chromebook/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 05 Dec 2019 03:53:10 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2019/12/05/chromebook/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2019/12/05/chromebook/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>自炊はじめました</title>
+        
+          <description>&lt;p&gt;最近、妻が作るものとは別に、自分で好きなものを料理するようになった。&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 04 Nov 2019 20:01:11 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2019/11/04/i-started-cooking/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2019/11/04/i-started-cooking/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>FireTV Stick とUSBケーブル</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://www.amazon.co.jp/gp/product/B012WL4QMW/&quot;&gt;https://www.amazon.co.jp/gp/product/B012WL4QMW/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 04 Dec 2018 07:38:18 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2018/12/04/firetv-stick-and-usb-cable/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2018/12/04/firetv-stick-and-usb-cable/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>[PATCH] Courier の TLS 証明書と秘密鍵ファイルを分離する</title>
+        
+          <description>&lt;p&gt;このエントリは、以下の Pull Request がマージされるまでの記録である。&lt;br/&gt;
+&lt;a href=&quot;https://github.com/svarshavchik/courier-libs/pull/13&quot;&gt;https://github.com/svarshavchik/courier-libs/pull/13&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 25 Sep 2018 20:36:39 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2018/09/25/patch-separate-tls-private-key-from-imapd-pop3d-dot-pem/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2018/09/25/patch-separate-tls-private-key-from-imapd-pop3d-dot-pem/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>PHP manual generate HOWTO (version 2018-06-16)</title>
+        
+          <description>&lt;p&gt;&lt;b&gt;[Update September 19th 23:29 JST by m ]&lt;/b&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 16 Jun 2018 20:18:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2018/06/16/php-manual-generate-howto/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2018/06/16/php-manual-generate-howto/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>ThinkPad Keyboard を買った</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://www3.lenovo.com/jp/ja/deals/sbiz/sbiz-accessory/KEYBOARD-Japanese/p/0B47181&quot;&gt;https://www3.lenovo.com/jp/ja/deals/sbiz/sbiz-accessory/KEYBOARD-Japanese/p/0B47181&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 04 Mar 2018 18:45:12 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2018/03/04/thinkpad-keyboard/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2018/03/04/thinkpad-keyboard/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Canon IP7230 は Ubuntu 16.04 では何もインストールしなくても動く</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://cweb.canon.jp/drv-upd/ij-sfp/linux-pd-ip7230-380.html&quot;&gt;http://cweb.canon.jp/drv-upd/ij-sfp/linux-pd-ip7230-380.html&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 26 Feb 2018 05:40:13 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2018/02/26/canon-ip7230-on-ubuntu-16-dot-04/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2018/02/26/canon-ip7230-on-ubuntu-16-dot-04/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Linux で Mac のようにスクリーンショットを撮る</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://github.com/naelstrof/maim&quot;&gt;https://github.com/naelstrof/maim&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 24 Feb 2018 23:29:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2018/02/24/mac-screenshot-on-linux/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Slack mobile notifications not working (on Android)</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5&quot;&gt;https://get.slack.help/hc/ja/articles/201398457-%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E9%80%9A%E7%9F%A5&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 23 Oct 2017 00:59:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2017/10/23/slack-mobile-notifications-not-working/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2017/10/23/slack-mobile-notifications-not-working/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>[PATCH] added socks support to Ruby httpclient</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://github.com/nahi/httpclient/pull/380&quot;&gt;https://github.com/nahi/httpclient/pull/380&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 02 Oct 2017 04:27:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2017/10/02/add-socks-support-to-ruby-httpclient/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2017/10/02/add-socks-support-to-ruby-httpclient/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>cmos error</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://mumumu.github.io/blog/2015/01/13/luvbook-j/&quot;&gt;http://mumumu.github.io/blog/2015/01/13/luvbook-j/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 10 May 2017 03:44:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2017/05/10/cmos-error/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2017/05/10/cmos-error/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Specific file update checker on Git Repository</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://github.com/mumumu/repos_file_update_checker&quot;&gt;https://github.com/mumumu/repos_file_update_checker&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 19 Oct 2016 06:26:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2016/10/19/specific-file-update-checker-on-git-repository/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2016/10/19/specific-file-update-checker-on-git-repository/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Aomuke Gorone Desk</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.thanko.jp/shopdetail/000000002595/&quot;&gt;http://www.thanko.jp/shopdetail/000000002595/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 12 Oct 2016 05:58:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2016/10/12/yang-xiang-kegoroqin-desuku/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2016/10/12/yang-xiang-kegoroqin-desuku/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>[PATCH] fixed invalid atom-log feed url in file log page</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://patchwork.mercurial-scm.org/patch/12367/&quot;&gt;https://patchwork.mercurial-scm.org/patch/12367/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 29 Dec 2015 23:34:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2015/12/29/patch-fixed-invalid-atom-log-feed-url-in-file-log-page/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2015/12/29/patch-fixed-invalid-atom-log-feed-url-in-file-log-page/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>2015 Retrospective</title>
+        
+          <description>&lt;p&gt;2015年ももう少しで終わろうとしているので、今年がどんな一年だったかを振り返っておこうと思う。&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 29 Dec 2015 22:22:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2015/12/29/2015-retrospective/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2015/12/29/2015-retrospective/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>update test environment of redis-py</title>
+        
+          <description>&lt;p&gt;2015年は Redis と戯れていた一年と言っても良い。&lt;a href=&quot;http://redis.io/topics/cluster-spec&quot;&gt;Redis Cluster&lt;/a&gt; を Production 環境に導入し、&lt;a href=&quot;https://github.com/Grokzen/redis-py-cluster&quot;&gt;redis-py-cluster&lt;/a&gt; に &lt;a href=&quot;https://github.com/Grokzen/redis-py-cluster/pull/76&quot;&gt;READONLY 対応の patch を送った&lt;/a&gt; りした。&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 29 Dec 2015 21:56:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2015/12/29/update-test-environment-of-redis-py/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2015/12/29/update-test-environment-of-redis-py/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Silly patch - could not detect repository update</title>
+        
+          <description>&lt;p&gt;PEP8 のファイル更新を監視するのに、 &lt;a href=&quot;https://github.com/mumumu/mercurial_file_update_checker&quot;&gt;Mercurial リポジトリ更新チェックツール&lt;/a&gt; というのを書いている。コミットメールや &lt;a href=&quot;https://hg.python.org/&quot;&gt;hg.python.org&lt;/a&gt; の RSS を見れたりすれば一番良いのだが、前者はPEPの編集者や開発者にしか開放されておらず、後者はファイル単位の更新を見せるようにはできていない(*1) 。このツールはファイル単位での更新があったらメールしてくれるというもので、自分のニーズを満たすための単純なものだ。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 26 Dec 2015 03:06:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2015/12/26/silly-patch-could-not-detect-repository-update/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2015/12/26/silly-patch-could-not-detect-repository-update/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>restore github page from source branch</title>
+        
+          <description>&lt;p&gt;github page を &lt;a href=&quot;http://octopress.org/&quot;&gt;Octopress&lt;/a&gt; で公開している人は、きっと master が HTML と CSS だけで出来たリポジトリを github に持っており、かつ source ブランチでそれを生成するための Rakefile や &lt;code&gt;_config.yml&lt;/code&gt;、ブログエントリの markdown、テーマなどをバックアップしているはずだ。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 26 Apr 2015 07:17:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2015/04/26/restore-github-page-from-source-branch/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2015/04/26/restore-github-page-from-source-branch/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>mini router plan</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://blog.livedoor.jp/connect_staff/archives/1804038.html&quot;&gt;http://blog.livedoor.jp/connect_staff/archives/1804038.html&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 26 Apr 2015 03:48:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2015/04/26/mini-router-plan/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2015/04/26/mini-router-plan/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Luvbook J</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.mouse-jp.co.jp/m-book/luvbookj/series.html&quot;&gt;http://www.mouse-jp.co.jp/m-book/luvbookj/series.html&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 13 Jan 2015 00:34:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2015/01/13/luvbook-j/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2015/01/13/luvbook-j/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>baby shutdown my server</title>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/images/baby_close_to_my_server.jpg&quot; /&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 05 Jan 2015 00:01:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2015/01/05/baby-shutdowns-my-server/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2015/01/05/baby-shutdowns-my-server/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>look back at 2014</title>
+        
+          <description>&lt;p&gt;2014年を簡潔にまとめると、以下の３つに明け暮れた一年だった。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 03 Jan 2015 02:19:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2015/01/03/look-back-at-2014/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2015/01/03/look-back-at-2014/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Silly patch - Octopress does not open new entry file immediately</title>
+        
+          <description>&lt;p&gt;github Page を github で管理するためのソフトウェア &lt;a href=&quot;http://octopress.org/&quot;&gt;Octopress&lt;/a&gt; では、新しいエントリを書くときにいちいちエディタを開くコマンドを打たねばならない。最初は気にならなかったのだが、&lt;a href=&quot;http://mumumu.github.io/blog/2014/08/17/ranger-file-manager-with-vi-keybindings/&quot;&gt;ranger を導入したあたり&lt;/a&gt; からそれがどうにも煩雑だと感じるようになった。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 30 Aug 2014 20:50:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/08/30/silly-patch/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/08/30/silly-patch/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>change of mind</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://dictionary.goo.ne.jp/leaf/jn2/200443/m0u/&quot;&gt;http://dictionary.goo.ne.jp/leaf/jn2/200443/m0u/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 30 Aug 2014 05:46:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/08/30/change-of-mind/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/08/30/change-of-mind/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>ranger - file manager with VI keybindings</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://ranger.nongnu.org/&quot;&gt;http://ranger.nongnu.org/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 17 Aug 2014 00:58:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/08/17/ranger-file-manager-with-vi-keybindings/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/08/17/ranger-file-manager-with-vi-keybindings/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Virtualbox USB device on Windows guest</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.igune.com/20140529/1637-40/&quot;&gt;http://www.igune.com/20140529/1637-40/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 17 Aug 2014 00:55:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/08/17/virtualbox-usb-device-on-windows-guest/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/08/17/virtualbox-usb-device-on-windows-guest/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>dpkg related command</title>
+        
+          <description>&lt;p&gt;最近 dpkg コマンドでパッケージ自体のデバッグをすることが多くなった。[Debian|Ubuntu] のアーカイブとはサポートポリシーが異なるアーカイブ のパッケージを採用することで、Pin Priority を設定する機会が増えたからだ。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 09 Aug 2014 23:37:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/08/09/dpkg/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/08/09/dpkg/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>disk partition over 2TB</title>
+        
+          <description>&lt;p&gt;ストレージって普段意識せずに使うモノだから、ハードウェア障害とかでいざ交換とか再初期化とかいう話になると、オペレーションを思い出すのに一瞬うっとなることが多い。今日もそんな日だった。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 05 Jul 2014 22:22:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/07/05/disk-partition-over-2tb/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/07/05/disk-partition-over-2tb/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>My DIY Server Spec final</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://mumumu.github.io/blog/2014/05/02/my-diy-server-spec-2/&quot;&gt;http://mumumu.github.io/blog/2014/05/02/my-diy-server-spec-2/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 12 May 2014 13:20:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/05/12/my-diy-server-spec-final/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/05/12/my-diy-server-spec-final/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Disable Akonadi</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://userbase.kde.org/Akonadi#Disabling_the_Akonadi_subsystem&quot;&gt;http://userbase.kde.org/Akonadi#Disabling_the_Akonadi_subsystem&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 12 May 2014 11:25:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/05/12/disable-akonadi/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/05/12/disable-akonadi/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Narrow ILM v.s Square ILM</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.servethehome.com/narrow-ilm-square-ilm-lga2011-heatsink-differences/&quot;&gt;http://www.servethehome.com/narrow-ilm-square-ilm-lga2011-heatsink-differences/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 07 May 2014 00:15:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/05/07/narrow-ilm-v-dot-s-square-ilm/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/05/07/narrow-ilm-v-dot-s-square-ilm/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>My DIY Server Spec(2)</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://mumumu.github.io/blog/2014/03/13/my-diy-server-spec/&quot;&gt;http://mumumu.github.io/blog/2014/03/13/my-diy-server-spec/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 02 May 2014 18:10:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/05/02/my-diy-server-spec-2/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/05/02/my-diy-server-spec-2/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Xeon E5 2618Lv2</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://ark.intel.com/ja/products/75788/Intel-Xeon-Processor-E5-2618L-v2-15M-Cache-2_00-GHz&quot;&gt;http://ark.intel.com/ja/products/75788/Intel-Xeon-Processor-E5-2618L-v2-15M-Cache-2_00-GHz&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 02 May 2014 17:01:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/05/02/xeon-e5-2618lv2/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/05/02/xeon-e5-2618lv2/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Convert CPC into CPM</title>
+        
+          <description>&lt;p&gt;インターネット広告業界では、よく使われる単位として以下の4つがある。&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 28 Apr 2014 18:50:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/04/28/convert-cpc-into-cpm/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/04/28/convert-cpc-into-cpm/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Fitbit One</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://www.fitbit.com/jp/one&quot;&gt;https://www.fitbit.com/jp/one&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 24 Apr 2014 00:15:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/04/24/fitbit-one/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/04/24/fitbit-one/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>RapidSSL(2) - HeartBleed related</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://heartbleed.com/&quot;&gt;http://heartbleed.com/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 13 Apr 2014 23:03:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/04/13/rapidssl-2-heartbleed-related/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/04/13/rapidssl-2-heartbleed-related/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Yet Another PEP8 Japanese version</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://github.com/mumumu/pep8-ja&quot;&gt;https://github.com/mumumu/pep8-ja&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 26 Mar 2014 22:20:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/03/26/yet-another-pep8-japanese-version/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/03/26/yet-another-pep8-japanese-version/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>My DIY server spec</title>
+        
+          <description>&lt;p&gt;このクラウド全盛の時代に、自分は自作したサーバを自宅で運用し続けている。その理由は複数あるが、以下のような感じだろうか。&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 13 Mar 2014 11:59:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/03/13/my-diy-server-spec/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/03/13/my-diy-server-spec/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>seq -w and zero padding</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html&quot;&gt;http://linuxjm.sourceforge.jp/html/gnumaniak/man1/seq.1.html&lt;/a&gt;&lt;br/&gt;
+&lt;a href=&quot;http://at-aka.blogspot.jp/2006/11/seq-0-padding.html&quot;&gt;http://at-aka.blogspot.jp/2006/11/seq-0-padding.html&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 20 Jan 2014 12:03:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/01/20/seq-w/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/01/20/seq-w/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Ebook DIY Example</title>
+        
+          <description>&lt;iframe src=&quot;http://www.slideshare.net/slideshow/embed_code/29792564&quot; width=&quot;427&quot; height=&quot;356&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px&quot;&gt;&lt;/iframe&gt;
+
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+電子書籍の自炊について社内で LT をしたので記録しておく。&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 08 Jan 2014 22:28:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/01/08/ebook-diy-example/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/01/08/ebook-diy-example/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>2014 new year</title>
+        
+          <description>&lt;p&gt;始まりました。2014年。いやっほう！ヽ(´ー｀。)ノ&lt;br/&gt;
+旧年はお世話になりました。本年もどうぞ宜しくお願いします(*´〜｀)&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 01 Jan 2014 00:06:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2014/01/01/2014-new-year/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2014/01/01/2014-new-year/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>End of 2013</title>
+        
+          <description>&lt;p&gt;2013年がもうすぐ終わる。このエントリで今年を振り返っておこうと思う。&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 31 Dec 2013 19:20:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/12/31/end-of-2013/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/12/31/end-of-2013/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>SQLAlchemy - When do I construct a Session, commit, and close it?</title>
+        
+          <description>&lt;p&gt;以下は、&lt;a href=&quot;http://www.sqlalchemy.org/&quot;&gt;SQLAlchemy&lt;/a&gt; の &lt;a href=&quot;http://docs.sqlalchemy.org/en/rel_0_8/orm/session.html#when-do-i-construct-a-session-when-do-i-commit-it-and-when-do-i-close-it&quot;&gt;When do I construct a Session, when do I commit it, and when do I close it?&lt;/a&gt; の全訳である。この文章はデータベースへのクエリを発行するのに使う &lt;a href=&quot;http://docs.sqlalchemy.org/en/rel_0_8/orm/session.html#sqlalchemy.orm.session.Session&quot;&gt;Sessionクラス&lt;/a&gt; を原則的にどう扱うべきかを説明しているが、途中でスコープという概念を持ち込んで説明しているので異常に英語がわかりづらくなっている。&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 30 Dec 2013 05:35:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/12/30/sqlalchemy-when-do-i-construct-a-session/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/12/30/sqlalchemy-when-do-i-construct-a-session/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Can you trust software distributed via CDN?</title>
+        
+          <description>&lt;p&gt;皆様は CDN 経由で配布されるソフトウェアを信用しているだろうか。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 28 Dec 2013 23:19:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/12/28/can-you-trust-cdn/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/12/28/can-you-trust-cdn/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Tiarra over SSL without stone</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.clovery.jp/tiarra/&quot;&gt;Tiarra&lt;/a&gt; といえば Perl で書かれた日本では著名な IRC Proxy であるが、&lt;a href=&quot;https://www.google.co.jp/search?q=tiarra+ssl&amp;amp;amp;oq=tiarra+ssl&quot;&gt;SSL 経由で接続しようと思ってぐぐる&lt;/a&gt; と 「&lt;a href=&quot;http://www.gcd.org/sengoku/stone/Welcome.ja.html&quot;&gt;stone&lt;/a&gt; 経由で接続する」 Howto がたくさん出てくる。果ては tiarra では SSL 接続できないから znc に移行した。とかいうエントリまで出てくる。&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 24 Dec 2013 00:08:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/12/24/tiarra-over-ssl/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/12/24/tiarra-over-ssl/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Current status of the PHP Documentation</title>
+        
+          <description>&lt;p&gt;&lt;b&gt;[Update September 19th 23:29 JST by m ]&lt;/b&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 08 Dec 2013 00:00:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/12/08/current-status-of-the-php-documentation/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Fabric Essentials</title>
+        
+          <description>&lt;iframe src=&quot;http://www.slideshare.net/slideshow/embed_code/28142569&quot; width=&quot;427&quot; height=&quot;356&quot; style=&quot;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px&quot; allowfullscreen&gt; &lt;/iframe&gt;
+
+
+&lt;p&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 14 Nov 2013 12:36:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/11/14/fabric-essentials/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/11/14/fabric-essentials/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>mumumu++</title>
+        
+          <description>&lt;p&gt;今日またひとつ歳をとった。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 13 Oct 2013 03:53:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/10/13/mumumu-plus-plus/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/10/13/mumumu-plus-plus/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>debugging server with strace</title>
+        
+          <description>&lt;iframe src=&quot;http://www.slideshare.net/slideshow/embed_code/27094034&quot; width=&quot;427&quot; height=&quot;356&quot; style=&quot;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px&quot; allowfullscreen&gt; &lt;/iframe&gt;
+
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;br/&gt;
+社内LT で strace について喋ったので記録しておく。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 13 Oct 2013 02:20:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/10/13/debugging-server-with-strace/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/10/13/debugging-server-with-strace/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>passion for translation</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://daipresents.com/2013/translators-blues/&quot;&gt;http://daipresents.com/2013/translators-blues/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 04 Oct 2013 14:35:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/10/04/passion-for-translation/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/10/04/passion-for-translation/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>&#39;X not in Y&#39; or &#39;not X in Y&#39;?</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://docs.python.jp/2/reference/expressions.html#summary&quot;&gt;http://docs.python.jp/2/reference/expressions.html#summary&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 12 Sep 2013 13:29:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/09/12/x-not-in-y-or-not-x-in-y/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/09/12/x-not-in-y-or-not-x-in-y/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>dmidecode</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.nongnu.org/dmidecode/&quot;&gt;http://www.nongnu.org/dmidecode/&lt;/a&gt;&lt;br/&gt;
+&lt;a href=&quot;http://man.cx/dmidecode%288%29&quot;&gt;http://man.cx/dmidecode%288%29&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 04 Jul 2013 18:01:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/07/04/dmidecode/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/07/04/dmidecode/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>New environment</title>
+        
+          <description>&lt;p&gt;今日から新しい職場だ。とはいえ、よくある「XXXに入社しました！」とかいうエントリにはしない。&lt;br/&gt;
+自分の軸をブレさせることなく頑張る。それだけだ。&lt;/p&gt;
+</description>
+        
+        <pubDate>Mon, 01 Jul 2013 11:13:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/07/01/new-environment/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/07/01/new-environment/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Very simple chrome extension for delicious.com</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://github.com/mumumu/simple-delicious-extension&quot;&gt;https://github.com/mumumu/simple-delicious-extension&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 30 Jun 2013 14:52:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/30/very-simple-chrome-extension-for-delicious-dot-com/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/30/very-simple-chrome-extension-for-delicious-dot-com/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>PHP manual generate HOWTO (version 2013-06-29)</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://d.hatena.ne.jp/anatoo/20120430/1335725004&quot;&gt;http://d.hatena.ne.jp/anatoo/20120430/1335725004&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 29 Jun 2013 16:16:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/29/php-manual-generate-howto/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/29/php-manual-generate-howto/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>phpenv without php-build</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://github.com/phpenv/phpenv&quot;&gt;https://github.com/phpenv/phpenv&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 28 Jun 2013 18:09:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/28/phpenv-without-php-build/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/28/phpenv-without-php-build/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Chm file from internet</title>
+        
+          <description>&lt;p&gt;インターネットからダウンロードしてきた chm ファイルを開いても中身がまともに見えないことがあった。最近は以下みたいにブロックされるのねー、と。&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 27 Jun 2013 23:20:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/27/chm-file-from-internet/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/27/chm-file-from-internet/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>revert to past revision on svn</title>
+        
+          <description>&lt;p&gt;自分がやっているタスクでは、たまーーーに別の言語のツリーにコミットされるというアフォな現象が起きる(注1)。その場合、過去のリビジョンに遡って元に戻したい場合がある。Subversion でその手順を良く忘れるのでメモ。&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 27 Jun 2013 06:58:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/27/revert-to-past-revision-on-svn/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/27/revert-to-past-revision-on-svn/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>phpdoc_rev_compare.py</title>
+        
+          <description>&lt;p&gt;PHP のドキュメントは毎日凄い勢いで更新されている。これについていくのは &lt;a href=&quot;http://d.hatena.ne.jp/takagimasahiro/&quot;&gt;高木神&lt;/a&gt; も面倒だと思っているはずである。だが、&lt;a href=&quot;http://doc.php.net/php/ja/revcheck.php?p=missfiles&quot;&gt;revcheck.php&lt;/a&gt; をいちいち目視で確認するなんて俺の中では最悪だ。これがどこまで機能してるかだってわからない。&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 27 Jun 2013 04:31:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/27/phpdoc-rev-compare-dot-py/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/27/phpdoc-rev-compare-dot-py/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>PHP 5.5.0 with Zend OPcache</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.php.net/manual/en/book.opcache.php&quot;&gt;http://www.php.net/manual/en/book.opcache.php&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 22 Jun 2013 21:51:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/22/php-5-dot-5-0-with-zend-opcache/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/22/php-5-dot-5-0-with-zend-opcache/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Put delicious Browser Extensions on Ice</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://blog.delicious.com/2012/01/update-on-the-browser-extensions/&quot;&gt;http://blog.delicious.com/2012/01/update-on-the-browser-extensions/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 22 Jun 2013 13:32:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/22/put-delicious-browser-extensions-on-ice/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/22/put-delicious-browser-extensions-on-ice/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Change Job</title>
+        
+          <description>&lt;p&gt;今の会社を今月末付で退職する。&lt;br/&gt;
+今日が最終出社日である。&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 18 Jun 2013 13:47:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/18/change-job/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/18/change-job/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>X-Forwarded-For</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://ja.wikipedia.org/wiki/X-Forwarded-For&quot;&gt;http://ja.wikipedia.org/wiki/X-Forwarded-For&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 13 Jun 2013 22:49:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/13/x-forwarded-for/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/13/x-forwarded-for/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Migrating MySQL 5.5 to 5.6</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.mysql.com/&quot;&gt;MySQL&lt;/a&gt;5.5 からビルドは &lt;a href=&quot;http://www.cmake.org&quot;&gt;cmake&lt;/a&gt; でするようになったが、ビルドオプションが手元に残らない（誰か &lt;a href=&quot;http://www.gnu.org/software/automake/&quot;&gt;Autotool&lt;/a&gt; でいうところの config.status みたいなものがあれば教えて!)。そして、MySQL の新しいメジャーバージョンが出る度に公式ドキュメントの一般的な手順を追うのも面倒臭い。&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 07 Jun 2013 12:47:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/07/migrating-mysql-5-dot-5-to-5-dot-6/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/07/migrating-mysql-5-dot-5-to-5-dot-6/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Jubatus Casual Talks #1</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://blog.jubat.us/2013/06/jubatus-casual-talks-1.html&quot;&gt;http://blog.jubat.us/2013/06/jubatus-casual-talks-1.html&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 05 Jun 2013 10:19:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/05/jubatus-casual-talks-number-1/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/05/jubatus-casual-talks-number-1/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>7 port usb charger</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://item.rakuten.co.jp/donya/84527&quot;&gt;http://item.rakuten.co.jp/donya/84527&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 05 Jun 2013 09:30:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/06/05/7-port-usb-charger/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/06/05/7-port-usb-charger/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Date Calculation</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html&quot;&gt;http://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 31 May 2013 10:44:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/05/31/date-calculation/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/05/31/date-calculation/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Firefox profile setting on Selenium</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/2405714/selenium-and-https-ssl&quot;&gt;http://stackoverflow.com/questions/2405714/selenium-and-https-ssl&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 30 May 2013 21:02:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/05/30/firefox-profile-setting-on-selenium/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/05/30/firefox-profile-setting-on-selenium/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Password Change Festival</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://keepass.info/&quot;&gt;http://keepass.info/&lt;/a&gt;&lt;br/&gt;
+&lt;a href=&quot;http://japan.cnet.com/news/business/35032224/&quot;&gt;ヤフー、最大2200万件のIDが流出の可能性--確認ツールも公開&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 19 May 2013 23:19:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/05/19/password-change-festival/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/05/19/password-change-festival/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Crossed the Rubicon river(3)</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://ja.wikipedia.org/wiki/%E3%83%AB%E3%83%93%E3%82%B3%E3%83%B3%E5%B7%9D#.E6.AD.B4.E5.8F.B2&quot;&gt;ルビコン川(Wikipedia)&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 19 May 2013 23:00:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/05/19/crossed-the-rubicon-river-2/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/05/19/crossed-the-rubicon-river-2/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Rotate Image depending on exif:orientation value</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://beradrian.wordpress.com/2008/11/14/rotate-exif-images/&quot;&gt;http://beradrian.wordpress.com/2008/11/14/rotate-exif-images/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 15 May 2013 00:26:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/05/15/rotate-image-depending-on-exif-orientation-value/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/05/15/rotate-image-depending-on-exif-orientation-value/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Appeal in communitation</title>
+        
+          <description>&lt;p&gt;数年前、とあるソーシャルゲームな会社の人と飲む機会があった。彼が「日本のエンジニアは着飾る（＝自分のことをアピールする。よく見せる）のが極めて下手糞だ」と強調していたのを今でもよく覚えている。&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 14 May 2013 01:16:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/05/14/appeal-in-communitation/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/05/14/appeal-in-communitation/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>IMAP4rev1 client command</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://tools.ietf.org/html/rfc3501&quot;&gt;http://tools.ietf.org/html/rfc3501&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 09 May 2013 11:26:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/05/09/imap4rev1-client-command/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/05/09/imap4rev1-client-command/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Fabric</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://fabfile.org&quot;&gt;http://fabfile.org/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 09 May 2013 01:32:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/05/09/fabric/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/05/09/fabric/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Debian GNU/Linux 7.0 Wheezy</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.debian.org/News/2013/20130504&quot;&gt;http://www.debian.org/News/2013/20130504&lt;/a&gt;&lt;br/&gt;
+&lt;a href=&quot;http://www.debian.org/releases/wheezy/releasenotes]&quot;&gt;http://www.debian.org/releases/wheezy/releasenotes&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 05 May 2013 23:21:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/05/05/debian-gnu-slash-linux-7-dot-0-wheezy/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/05/05/debian-gnu-slash-linux-7-dot-0-wheezy/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Selectors, Specificity, and the Cascade</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.oreilly.co.jp/books/9784873116037/&quot;&gt;
+&lt;img src=&quot;http://www.oreilly.co.jp/books/images/picture_large978-4-87311-603-7.jpeg&quot; width=&quot;290&quot; height=&quot;380&quot; alt=&quot;セレクタ、詳細度、カスケード 奥付&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 04 May 2013 13:11:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/05/04/selectors-specificity-and-the-cascade/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/05/04/selectors-specificity-and-the-cascade/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Gunosy App on Android</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://gunosy.com&quot;&gt;http://gunosy.com/&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 28 Apr 2013 00:31:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/04/28/gunosy-on-android/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/04/28/gunosy-on-android/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Ruby 2.0.0-p0</title>
+        
+          <description>&lt;p&gt;さて、このブログは &lt;a href=&quot;http://octopress.org/&quot;&gt;Octopress&lt;/a&gt; という Github Pages の上でブログを書くためのフレームワークを使って書かれている。Octopress にしてもその上位にある &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll&lt;/a&gt; にしても Ruby で書かれているので、Ruby を触らざるを得ない。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sat, 27 Apr 2013 08:59:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/04/27/ruby-2-dot-0-0-p0/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/04/27/ruby-2-dot-0-0-p0/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>trying to write blog on github.io</title>
+        
+          <description>&lt;p&gt;「github.io にブログ書く人って意識高い人だ」とか勝手な偏見を持っていたので、&lt;a href=&quot;http://pages.github.com/&quot;&gt;Github Pages&lt;/a&gt; の存在は今まで完全スルーしていた。けれども、久しくブログを書いていないのと、&lt;a href=&quot;http://support.google.com/blogger/bin/answer.py?hl=ja&amp;amp;answer=2402711&quot;&gt;Google による TLD 勝手リダイレクト事件&lt;/a&gt; とかもあって結構 &lt;a href=&quot;http://mumumuorg.blogspot.com/&quot;&gt;blogger&lt;/a&gt; にも足が遠のいていたのも事実である。&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 26 Apr 2013 18:22:00 +0900</pubDate>
+        <link>
+        http://mumumu.github.io/blog/2013/04/26/trying-to-write-blog-on-github-dot-io/</link>
+        <guid isPermaLink="true">http://mumumu.github.io/blog/2013/04/26/trying-to-write-blog-on-github-dot-io/</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

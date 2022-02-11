@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: software | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/software/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ranger - file manager with VI keybindings]]></title>
+    <link href="http://mumumu.github.io/blog/2014/08/17/ranger-file-manager-with-vi-keybindings/"/>
+    <updated>2014-08-17T00:58:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/08/17/ranger-file-manager-with-vi-keybindings</id>
+    <content type="html"><![CDATA[<p><a href="http://ranger.nongnu.org/">http://ranger.nongnu.org/</a></p>
+
+<p>比較的大きな規模のプロジェクトになると、ディレクトリツリーの階層もそれなりに深くなる場合が多い。しかも同じディレクトリに常にとどまって作業をしていればいいという話にならなくなってくる。ディレクトリを移動する度に cd /path/to/foo とか cd /another/path/fuga とかもう打ってられないことに気がついた。</p>
+
+<p>vim とかのエディタ内のファイルマネージャーを使えばいいじゃない、と一時期は考えて <a href="http://www.vim.org/scripts/script.php?script_id=1075">netrw</a> とか <a href="https://github.com/scrooloose/nerdtree">nerdtree</a> とかを我慢して使っていた時期もあったが、どうもディレクトリの移動の度に<a href="https://www.google.co.jp/search?q=%E3%83%83%E3%82%BF%E3%83%BC%E3%83%B3%EF%BC%81">リターンキーを「ッターン！」</a> しなければいけないのがつらく、結局使わなくなった。</p>
+
+<p>ある日、コンソール上で画像ファイルをプレビューしたくなった。そんなソフトはないかと捜していたら、<a href="http://ranger.nongnu.org/">ranger</a> にいきついた。いざ使ってみると、ファイルやディレクトリの移動、そしてファイルを開く操作が全て hjkl だけで済むのが異常に心地よいことに気がついた。<a href="http://w3m.sourceforge.net/">w3m</a> を入れて設定に一行足せば、以下のように画像ファイルのプレビューも出来る。cd /path/to/foo/bar するよりはかなり速い。 また、ranger を開きながら Shift+s でシェルに落ちることもできる。これもかなり楽。</p>
+
+<p><img src="http://mumumu.github.io/images/ranger.png"/></p>
+
+<p>また、vim の場合だと、ファイルを開きながら、別のファイルを選んで開くときも、 netrw とかを使わずに ranger を使えるモードがあることに気がついた。<a href="https://github.com/hut/ranger/blob/master/doc/examples/vim_file_chooser.vim">こんな設定</a> を ~/.vimrc に書けば、&lt;leader&gt;r を押すことで ranger でファイルを選ぶことができる。</p>
+
+<p>そんな感じで喜んで使っていたのだが、Pythonのファイルを扱っていると若干問題があった。types.py というファイルがディレクトリに存在すると、それを vim から ranger で開こうとした時点でエラーになってしまうのだ。</p>
+
+<pre><code>Traceback (most recent call last):
+  File "C:\Python27\lib\site.py", line 62, in &lt;module&gt;
+    import os
+  File "C:\Python27\lib\os.py", line 398, in &lt;module&gt;
+    import UserDict
+  File "C:\Python27\lib\UserDict.py", line 83, in &lt;module&gt;
+    import _abcoll
+  File "C:\Python27\lib\_abcoll.py", line 70, in &lt;module&gt;
+    Iterable.register(str)
+  File "C:\Python27\lib\abc.py", line 107, in register
+    if not isinstance(subclass, (type, types.ClassType)):
+AttributeError: 'module' object has no attribute 'ClassType'
+</code></pre>
+
+<p>これは ranger 自体が Python で書かれていることと、<a href="http://stackoverflow.com/questions/17717090/attributeerror-module-object-has-no-attribute-classtype">Pythonインタプリタ自体の問題</a> が重なったことによって起こることだった。けれども、今の職場で主に使われているのは Python なので、どうにかして解消しなければ ranger は使えないという話になってしまう。</p>
+
+<p>仕方なく、<a href="https://github.com/mumumu/ranger/commit/d4791468897ab4136edceabe640360110dfd810e">細かすぎて伝わらないpatch</a> を書いた... vim ファイルだけではなくて、コアのイベントアクションにまで手を加えているので、全く受け入れられる気がしない... それに vim 連携のためだけに types.py を特別扱いするとかアフォかと。俺がメンテナなら多分 Reject するだろうなと思いつつ、fork したコードだけは置いておくのであった(´ー｀; )</p>
+
+<p><a href="https://github.com/mumumu/ranger">https://github.com/mumumu/ranger</a></p>
+]]></content>
+  </entry>
+  
+</feed>

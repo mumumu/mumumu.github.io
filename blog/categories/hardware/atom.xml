@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: hardware | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/hardware/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ThinkPad X395]]></title>
+    <link href="http://mumumu.github.io/blog/2020/01/25/thinkpad-x395/"/>
+    <updated>2020-01-25T20:03:30+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/01/25/thinkpad-x395</id>
+    <content type="html"><![CDATA[<p><img src="http://mumumu.github.io/images/thinkpad_x395.png" width="800"/></p>
+
+<p><a href="https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395">https://www.lenovo.com/jp/ja/notebooks/thinkpad/x-series/X395/p/22TP2TXX395</a></p>
+
+<p><a href="/blog/2019/12/05/chromebook/">ChromeBook をいろいろ試した</a> 結果、やはり自分は Linux をVMや他のOSを介さずに使いたい人なんだ、という結論を得るに至った。Linux が動くノートパソコン、かつ日本語キーボードなものといえば？ といえばやはり ThinkPad に落ち着いた。このディストリビューションが動くよ、という<a href="https://support.lenovo.com/jp/ja/solutions/PD031426">実績を示してくれている</a> のもポイントが高い。</p>
+
+<p>Lenovo の公式サイトからの直販ではeクーポンがついていて売られていた。Full HD のディスプレイに変更し、延長修理5年を付けても 112,596 JPY で購入できた。安い。</p>
+
+<p>最初は上記の実績にない Ubuntu 19.10 を入れていろいろ試してしまい、Linux Kernel 5.3 と RIZEN の相性の悪さに苦しんだ。AC アダプタを繋がない放電状態だとフリーズが多発してしまい、いろいろ試してみたが駄目だった。Ubuntu 18.04 を入れ、Kernel 5.0 にしたら動作が落ち着いた。Kernel 5.3 にしてしまうと駄目なようなので、留意しておきたい。</p>
+
+<p>Linux Kernel だけは面倒がないようにapt-mark hold しておいたが、Ubuntu 20.04 LTS になったときにうまく移行できるのか、心配ではある。</p>
+
+<p>とはいうものの、とても動作は安定している。クリエイティブな用途にでも使わない限り、メモリ 16GB である必要もないという学びを得たのも収穫だった。会社の環境もクラウド上にあるので、ダム端(死語)として使うもよし、ローカルで小さめの開発に使うもよし、ネイティブでLinuxが動くことの喜びを噛み締めている。軽いし、180度まで開いて平らに使うことができるのもいい。唯一の欠点は、ビルド時に筐体の右側がかなり熱くなるという点だけかな。</p>
+
+<p>(次にこの手の何かを買う時は、Intel を選びたいかな... Kernel との相性という意味で安心感があるよ。やっぱり。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chromebook]]></title>
+    <link href="http://mumumu.github.io/blog/2019/12/05/chromebook/"/>
+    <updated>2019-12-05T03:53:10+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/12/05/chromebook</id>
+    <content type="html"><![CDATA[<p><a href="https://www.google.com/intl/ja_jp/chromebook/">https://www.google.com/intl/ja_jp/chromebook/</a></p>
+
+<p>最近、Chromebook に注目している。「Linuxクライアントを手軽に入手/維持したい」というニーズは以前から一貫して持っていたので、その手段の一つとして注目している。</p>
+
+<p>特に自分の中で熱量が上がったのが、 <a href="https://japan.zdnet.com/article/35136835/">2019年発売の全てのChromebookがLinux対応にする</a> と Google が表明したことだ。Chromebook はスペックが高いものでなければ3万円台から手に入ることから、自分のニーズを完全に満たせるのではないかと考えたのだ。</p>
+
+<p>そこで、Linux に対応していることがわかっている <a href="https://acerjapan.com/notebook/chromebook/spin11/R751T-N14N">Acer R751-N14N</a> を購入していろいろ試してみた。Linux 自体はまだベータ版なので、<a href="https://support.google.com/chromebook/answer/9145439?hl=ja">設定から有効にする</a> 必要がある。</p>
+
+<p>感想を並べると、以下のようになる。<br/>
+確かにお手軽ではあるものの、自分の中でまだまだだな、という印象だ。</p>
+
+<ul>
+<li>ハードのスペックが低いので、Linuxのコンテナ起動が重い</li>
+<li>vimでファイル編集をしようと思ったら、ターミナルがおかしいのか、日本語が潰れる。自分だけなのかもしれないが、ChromeOS 組み込みのエディタを使ったほうが現状ファイル編集は早い</li>
+<li>かといって、コンテナの中に X をまるごと入れようとは思わない</li>
+<li>X Window System を入れて使い慣れたアプリを弄った方が自分は心地よい。Chromebook に Android アプリを入れて動かすのも悪くはないのだが、普段遣いとなると Chromebook は厳しい</li>
+<li>リモートへの接続端末としてなら、悪くないかも</li>
+</ul>
+
+
+<hr />
+
+<p>　<br/>
+最終的に、普段使っているLinux環境を再現したい欲が強いのだと思う。多分自分の中では、<a href="https://galliumos.org/">GallumOS</a> を入れるか、リモートへの接続端末として使うのが最適解なのだろう...</p>
+
+<p><b>[ Update December 5th 2019 05:18 JST by mumumu ]</b></p>
+
+<p>Acer R751-T は <a href="https://github.com/GalliumOS/galliumos-distro/issues/364">Apollo Lake なので、まだ sound が動作しない</a>。GalliumOS を入れるのは一旦保留で。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ThinkPad Keyboard を買った]]></title>
+    <link href="http://mumumu.github.io/blog/2018/03/04/thinkpad-keyboard/"/>
+    <updated>2018-03-04T18:45:12+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/03/04/thinkpad-keyboard</id>
+    <content type="html"><![CDATA[<p><a href="https://www3.lenovo.com/jp/ja/deals/sbiz/sbiz-accessory/KEYBOARD-Japanese/p/0B47181">https://www3.lenovo.com/jp/ja/deals/sbiz/sbiz-accessory/KEYBOARD-Japanese/p/0B47181</a></p>
+
+<p><img src="http://mumumu.github.io/images/3display.jpg" width="270" height="360"/></p>
+
+<p>最近、上のような形で3画面の環境にした。うん、良い。</p>
+
+<p>だが、ノートPC (<a href="https://www.asus.com/jp/Laptops/ASUS-ZenBook-Pro-UX550VD/">ASUS Zenbook Pro UX550VD</a>) のキーボードがあまりにもアレだった(*注1)。リターンキーの右側に PgUp や PgDown 等のキーが存在してて、邪魔。使いにくいことこの上ない。</p>
+
+<p><img src="http://mumumu.github.io/images/zenbook_pro_550_keyboard_dame.jpg" width="225" height="300" /></p>
+
+<p>自分のような糞エンジニアでも生産性に影響するレベルだったため、ThinkPad Keyboard (Bluetooth版) を買った。</p>
+
+<p><img src="http://mumumu.github.io/images/thinkpad_keyboard.jpeg" width="270" height="360"/></p>
+
+<p>こういう動機で買ったものの、上のような環境だと首を横に向ければ壁によっかかる形で作業できるので、非常に良い。これまではノートパソコンを寝ながら使いたいという動機から <a href="http://mumumu.github.io/blog/2016/10/12/yang-xiang-kegoroqin-desuku/">ゴロ寝デスクの類を使ってきた</a> が、ちょっと体勢を変えたいとか思った時も、デスクと違い、体の移動とかを考えなくても良い。</p>
+
+<p>もともと ThinkPad ユーザー (*注2) だったため、このキータッチには慣れているし、何より軽いので非常に楽に使える。あと、ノートPC と違い、筐体が熱くならないのも何気にポイント高い。唯一の欠点といえば、一番左下が Fn キーで、ソフトウェア的に他の Keymap の割当が不可能なことだが、慣れの問題と言い切れるので、自分は気にならない(*注3)。</p>
+
+<p>自分が本当に欲しかった環境って、「寝ながら使いたい」じゃなくて、「軽くて体がいろいろ動かしやすい」ことだったってことに今更気付いたのだった。。</p>
+
+<p>なので、ゴロ寝デスクはもう使わない... 多分。</p>
+
+<p>(*注1) じゃあなんで買ったし、というツッコミは尤もなんですが、急いでたので魔が差したというか...<br/>
+(*注2) 社会人なりたての時に、ThinkPad T40 とか使ってたし、ThinkPad が好きな社長の会社で働いていた時は、業務用のPCも ThinkPad だった。<br/>
+(*注3) 多分これが原因で Bluetooth 版を選んでない人相当いるんじゃないかと推測</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[cmos error]]></title>
+    <link href="http://mumumu.github.io/blog/2017/05/10/cmos-error/"/>
+    <updated>2017-05-10T03:44:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2017/05/10/cmos-error</id>
+    <content type="html"><![CDATA[<p><a href="http://mumumu.github.io/blog/2015/01/13/luvbook-j/">http://mumumu.github.io/blog/2015/01/13/luvbook-j/</a></p>
+
+<p>2年前に買った風変わりなノートパソコンだが、CMOS の電池切れエラーが。。(´ー｀; )</p>
+
+<p>通常ならウラ面をパカっと開けて電池を交換するところだ。少し試みたけど挫折... 分解はそもそも想定してないらしい。
+よって、大人しくサポートに問い合わせてみることに。このエントリはその症状の記録である。</p>
+
+<ul>
+<li>システムを起動すると、"CMOS battery is bad or was recently replaced." と表示される。</li>
+</ul>
+
+
+<p><img src="http://mumumu.github.io/images/CMOS_battery_is_bad.jpg"/></p>
+
+<ul>
+<li>上記でOKを押すと "The CMOS defaults were loaded" と表示され、このシステムが続くようならユーザーガイドを見て下さいと表示される</li>
+</ul>
+
+
+<p><img src="http://mumumu.github.io/images/CMOS_default_is_loaded.jpg"/></p>
+
+<p><a href="http://www.mouse-jp.co.jp/mcj_service/mcj_service_01.html">3年サポート</a> に入ってるんで、無償修理になる想定である。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mini router plan]]></title>
+    <link href="http://mumumu.github.io/blog/2015/04/26/mini-router-plan/"/>
+    <updated>2015-04-26T03:48:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2015/04/26/mini-router-plan</id>
+    <content type="html"><![CDATA[<p><a href="http://blog.livedoor.jp/connect_staff/archives/1804038.html">http://blog.livedoor.jp/connect_staff/archives/1804038.html</a></p>
+
+<p>自分が使っているプロバイダが突如サービス終了するというアナウンスがあった。<a href="http://www.din.or.jp/">代替のプロバイダはもうほぼ決めた</a> のだけど、これを機会にブロードバンドルータもどうにかしようという気になった。<a href="http://jp.yamaha.com/products/network/routers/rtx1210/">RTX1210</a> を中古で買うか、マシンをもう一台組んで <a href="http://vyos.net/wiki/Main_Page">VyOS</a> を入れてしまう案の二つが上がったが、結果として後者、つまりマシンを新たにもう一台組むことにした。</p>
+
+<p>・ ルータに使うマシンなので、大きなマシンは組みたくない<br/>
+　・ Mini-ITX がいいんじゃないですかね<br/>
+・ ファンレスがいいよね。じゃあ前欲しがってた Atom C2000 シリーズあたりでいきますか</p>
+
+<p>という思考から、以下のような構成を考えたのでメモしておく。メモリを16GBにする必要がどこにあるのかというツッコミは禁止します。</p>
+
+<p>Mini-ITX はそのコンパクトさ故に電源やケースの組み合わせに注意が必要で、特にケースと電源選びは非常に面倒であった。電源は SFX電源とか考えるのが面倒だったので ATX 電源、かつ奥行き140mm で300W 以下、となると玄人指向のものしか残らなかった。Mini-ITX のケースは自分が考える最小のコンパクトさと電源のサイズをベースに考えていった結果、バランスのとれたモノとして Silverstone のものを選んだということである。</p>
+
+<p>85k は安くはない。RTX1210 はこれより中古で安く買えるのでかつては迷ったが、やはり手元の自由度を選ぶと自作が最高だ。いつ組もうかなぁ(´ー｀；)</p>
+
+<table>
+<thead>
+<tr>
+<th>パーツ項目 </th>
+<th> 品名 </th>
+<th> 価格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU        </td>
+<td>  Intel Atom processor C2750, SoC, FCBGA 1283, 20W 8-Core </td>
+<td> -</td>
+</tr>
+<tr>
+<td>マザーボード </td>
+<td> <a href="http://www.supermicro.com/products/motherboard/atom/x10/a1sai-2750f.cfm">Supermicro A1SAi-2750F</a> </td>
+<td> 54,647</td>
+</tr>
+<tr>
+<td>RAM        </td>
+<td>  <a href="https://www.ark-pc.co.jp/i/11702324/">SanMax Technologies SMD-N16G28ECTP-16KL-D</a> </td>
+<td> 17,990</td>
+</tr>
+<tr>
+<td>ケース      </td>
+<td> <a href="https://www.ark-pc.co.jp/i/15300667/">Silverstone SST-SG13B</a> </td>
+<td> 7,538</td>
+</tr>
+<tr>
+<td>電源       </td>
+<td> <a href="http://www.kuroutoshikou.com/product/power/atx/krpw-pb300w_85_/">玄人志向 80PLUS BRONZE取得 ATX電源 300W KRPW-PB300W/85+</a>  </td>
+<td> 5,674</td>
+</tr>
+<tr>
+<td>合計       </td>
+<td>                                  </td>
+<td> 85,849</td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
+  
+</feed>

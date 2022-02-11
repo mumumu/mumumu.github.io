@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: network | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/network/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[RTX 830 を挟んでみた話]]></title>
+    <link href="http://mumumu.github.io/blog/2021/01/05/rtx830-and-more/"/>
+    <updated>2021-01-05T00:53:23+09:00</updated>
+    <id>http://mumumu.github.io/blog/2021/01/05/rtx830-and-more</id>
+    <content type="html"><![CDATA[<p><a href="https://network.yamaha.com/products/routers/rtx830/index">https://network.yamaha.com/products/routers/rtx830/index</a></p>
+
+<p>最近自宅のインターネット接続が少しずつ不安定になり、不定期に切断されるようになった。</p>
+
+<p>無線ブロードバンドルータも3年近く使っているので、これを機会にいろいろ家のネットワークを見直してみることにした。</p>
+
+<h3>0. 見直す前</h3>
+
+<p>自宅のネットワーク構成は、 <a href="https://www.tp-link.com/jp/home-networking/wifi-router/archer-c5400/">TP-Linkの無線ブロードバンドルータ</a> と中継機経由でインターネットに接続していた。とてもシンプル。</p>
+
+<p>ONU より先は VDSL で外の光回線に繋がっている。</p>
+
+<p><img src="http://mumumu.github.io/images/mynetwork.png" /></p>
+
+<h3>1. 無線ブロードバンドルータを変えてみた</h3>
+
+<p>コロナ禍のさなか、IPv4 の PPPoE は混んできてるという話も飛び交うようになっていたので、これを機会にIPv6 に挑戦してみるか、という気持ちになった。</p>
+
+<p>なので、TP-Linkの無線ブロードバンドルータを <a href="https://www.aterm.jp/product/atermstation/product/warpstar/wx3000hp/">NEC の WX-3000HP</a> に変えてみた。これを採用した理由は、IPoE に対応していたことと、Wifi6 に対応していたから、の2つが理由である。</p>
+
+<p>だが、不安定なのは変わらなかった。既存の PPPoE 経由の IPv4 接続はもちろん、IPoE 接続 (DTI のトライアル光 や interlink の Zoot Native) を試してみたが、むしろさらに不安定になっていた感がある。</p>
+
+<p>よく調べて見ると、無線と PPPoE(or IPoE) を受け持つ WX-3000HP の IP に ping を打っても返ってこない状態が頻発していたので、ここが重いんだろうな、と推察された。そこで、ONU と直接繋がるルータについては、無線とは独立させて、実績のあるものを採用しようという気持ちになった。</p>
+
+<h3>2. RTX 830 を挟んでみた</h3>
+
+<p>インターネットと直接(PPPoE や IPoE で) 繋がるルータを無線と独立させるべく、<a href="https://network.yamaha.com/products/routers/rtx830/">RTX 830</a> を購入した。
+YAMAHA のルータは拠点間のルータとして安定性について評判が高く、インターネット上にも十分なノウハウが転がっていることから採用した。</p>
+
+<p>ONU と WX-3000HP の間にこれを挟み、PPPoE や IPoE 接続とパケットフィルタのみを受け持たせることにした。
+さらに、WX-3000HP はルータ機能を殺し、無線LAN のブリッジとしてのみ機能させるようにした。</p>
+
+<p>だが、やっぱり不安定なのは変わらなかったので、さらに原因を切り分けてみることにした。</p>
+
+<h3>3. 中継機を変えてみた</h3>
+
+<p>中継機については TP-Link のものを使っていたが、それを NEC のものに変えてみたりしたがやはり変わらなかった。</p>
+
+<h3>4. ONU を交換して貰った</h3>
+
+<p>中継機、ブロードバンドルータ、RTX を挟んでも変わらないとなると、最終的にこちらが手を出せるのはONUしかない。NTT に電話して事情を話し、ONU を交換してもらった。</p>
+
+<p>これは10年以上前から使っていたONUで、既に替えがないとのことだったので、最新のONU機器を持ってきてもらった。それをRTXと繋いだところ、劇的に安定した。これだったか...</p>
+
+<h3>まとめ</h3>
+
+<p>原因は IPv4 でもなんでもなく、単なる ONU の不良であった。それ以後、IPv4 の接続が不安定になったことはないので、引き続きこのままにしている。RTX は不要だったんじゃないかという説もあるが、まあ、いろいろ遊べたので良しとする。</p>
+
+<p><a href="https://www.editnet.ad.jp/">採用している草の根プロバイダ</a> も回線を増強し、<a href="https://www.editnet.ad.jp/news/210103.htm">さらに空いた回線を提供してくれるようになった</a> ので、引き続きそれを使って行こうと思う。このコロナ禍で大事なのは、回線の速度ではなく安定性なのだ。</p>
+
+<p><img src="http://mumumu.github.io/images/mynetwork_current.png" /></p>
+]]></content>
+  </entry>
+  
+</feed>

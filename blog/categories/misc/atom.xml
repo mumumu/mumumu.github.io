@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: misc | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/misc/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[クレジット]]></title>
+    <link href="http://mumumu.github.io/blog/2021/02/21/credit/"/>
+    <updated>2021-02-21T23:45:47+09:00</updated>
+    <id>http://mumumu.github.io/blog/2021/02/21/credit</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540">https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540</a></p>
+
+<p><a href="https://www.php.net/manual/ja/">PHP Manual</a> 日本語版のメンテナを本格的に手がけるようになってから一年以上が経過した。</p>
+
+<p>去年の11月末に <a href="https://www.php.net/archive/2020.php#2020-11-26-3">PHP 8 がリリースされた</a>。それに伴う <a href="https://www.php.net/manual/ja/migration80.php">移行ドキュメント</a> や新機能の追加、名前付き引数の影響でもろもろの関数やメソッドのシグネチャが劇的に変化したことに伴う更新など、Manual に対する更新量は莫大だった。それでも PHP 7 の時と異なり、<a href="https://github.com/php/doc-en/pulls">github であらかじめ英語版のドキュメントの更新がドラフト時点から見られる</a> ことが助けとなり、日本語版については、更新にほぼリアルタイムで追随できている。</p>
+
+<p>PHP 8 にまつわる Manual の更新量が莫大だと書いたが、機械的に更新できる部分も、そうでない部分もある。</p>
+
+<p>そういう事情もあって、細かい部分の更新の整合性が雑になることも否めない。英語版のそういう雑な部分について、ある時から黙って修正をするようになった。それだけ、誰が見てもおかしい部分が割とあったのだ。</p>
+
+<p>そういった部分の更新 や、<a href="https://github.com/php/doc-en/pulls?q=is%3Apr+author%3Amumumu+versions.xml+">PHP 8 で使える関数のバージョン情報の英語版の更新</a> を黙ってやっていたところ、メイン開発者のひとりである <a href="https://people.php.net/cmb">cmb</a> (*1) から<a href="https://github.com/php/doc-en/commit/516e504ab18c5d2f8da91f47220bcb119ed76540">クレジット</a> を貰った。言い換えると、<a href="https://www.php.net/manual/en/preface.php#contributors">自分の名前が PHP Manual の隅に載った</a> だけの話ではあるけれども、日々の活動を見てくれている人がいる、というのはやはり嬉しいものだ。</p>
+
+<p>PHP を使う以上、PHP Manual は避けて通れない。とても多くの人が見るものなのだ。既に PHP をメインで書かなくなって久しいが、Manual を作ってきた多くの先人や間違いを指摘して支えてくれる方々に感謝しつつ、微力ながら、裏からそれを支えていこうと思う(*´～｀)</p>
+
+<p>(*1)  Windows 版 PHPのメンテナンスや、PECL の複数のモジュールの Lead. PHP 7.3 のリリースマネージャーなど。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PHPマニュアル メンテナンス用ドキュメント最新版]]></title>
+    <link href="http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto/"/>
+    <updated>2020-09-19T23:42:05+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/09/19/php-manual-maintaining-howto</id>
+    <content type="html"><![CDATA[<p>PHP マニュアルのメンテナの一人として、過去にいくつか文書を書いてきたが、それの最新版を全て github に集約した。</p>
+
+<ul>
+<li><a href="https://github.com/php/doc-ja/blob/master/README_About_ThisManual.md">PHP マニュアル 日本語版について</a></li>
+<li><a href="https://github.com/php/doc-ja/blob/master/README_Building_HOWTO.md">PHPマニュアル のビルド方法</a></li>
+<li><a href="https://github.com/php/doc-ja/blob/master/README_Maintain_HOWTO.md">メンテナ向け: PHPマニュアル のメンテナンス方法</a></li>
+<li><a href="https://gist.github.com/a84365a1c55934b8ececbb839a2f9ca1">メンテナ向け: PHPマニュアル の chm ビルド環境</a></li>
+</ul>
+
+
+<p>メンテナ向けの文書も含まれているので、自分がメンテナンスをやめても、引き継ぐ人がいれば作業は続くだろう。</p>
+
+<p>メンテナと直接話したい方や、PHPマニュアルの日本語版についてバグを報告したい方は、<a href="https://phpusers-ja.slack.com/">PHPユーザーズ Slack</a> が現状は一番話しやすいと思うので、是非おいでませ(｀ー´)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[新しい知識の学び方]]></title>
+    <link href="http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept/"/>
+    <updated>2020-07-27T02:40:26+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/07/27/how-to-learn-new-concept</id>
+    <content type="html"><![CDATA[<p><a href="https://www.amazon.co.jp/dp/B0193M34D0">https://www.amazon.co.jp/dp/B0193M34D0</a><br/>
+<a href="https://hiyokko-hard.com/support/">https://hiyokko-hard.com/support/</a></p>
+
+<p>「バカに教える電子回路」という本がある。電子回路の設計知識についてとてもわかりやすく書かれた本だ。</p>
+
+<p>ふとソフトウェア的な論理回路に関する知識を参照したくなって開いたのだけれども、残念ながら求める知識はこの本には書かれていなかった。</p>
+
+<p>だけど、一番はじめに書かれている「技術書の読み方」についてはとても参考になったので以下に引用する。</p>
+
+<p>プロコンで様々な知識を繰り返し学び、実践する中で、うんうんそうだよね、と頷く部分が多い。</p>
+
+<pre><code>技術書の読み方
+
+(中略)
+
+技術書を読むときには必ずパソコンでテキストファイルを作り、出てきた用語や内容を
+自分の言葉でまとめておきます．更に，読んでいてわからない単語や概念が出てきたら，
+インターネットで調べて同じテキストファイルにまとめます．多少間違っていても構いません．
+
+(中略)
+
+少し時間が経ってしまうと，内容や用語を忘れてしまい，再開するのが億劫になります．
+そんな時にまとめたファイルを読み返すと再開しやすくなります．
+
+(中略)
+
+再開させるときの心理的ハードルを下げるのはとても重要です．
+
+(中略)
+
+調べたいことは調べ，面倒なら飛ばします．面倒になった時点でどれだけ時間をかけても
+身につきません．いくつか技術書を読んでいると(または実務でも)，同じ問題は何度もぶ
+つかるので，いずれ分かるようになります．今全てを理解する必要はありません．実験で
+試せるものについては，できるだけやったほうがいいです．こちらも面倒になった時点で
+意味が無いので気分がノッてる時はやってみる・程度でいいと思います．
+
+読んでいて何を言っているか全くわからない，もしくは読みながら寝てしまうようであれ
+ば，自分のレベルに合っていない可能性が高いです．その本は一旦諦め，他の技術書を読
+みましょう．目安としては6割は頑張らずに理解できるくらいの本がちょうどいいと思いま
+す．今はわからなくても，暫くしてから読むとわかるケースが多いので，捨てずにとって
+おきましょう．
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[問題を解く]]></title>
+    <link href="http://mumumu.github.io/blog/2020/05/16/solve-problem/"/>
+    <updated>2020-05-16T01:22:10+09:00</updated>
+    <id>http://mumumu.github.io/blog/2020/05/16/solve-problem</id>
+    <content type="html"><![CDATA[<p><a href="https://pha.hateblo.jp/entry/2020/05/12/232121">https://pha.hateblo.jp/entry/2020/05/12/232121</a></p>
+
+<p>僕が問題を解くのは自分のためだ。自分が何かを考えたいから解くし、自分がなにかに納得したいから解く。解かないといつまでも同じところを堂々巡りしてしまうけれど、解くと思考や人生が前に進むような気がする。</p>
+
+<p>言うほど解いていないけれど、解くことをやめることはないだろうと思う(*´～｀)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chrome のタブやアドレスバーが小さい時]]></title>
+    <link href="http://mumumu.github.io/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small/"/>
+    <updated>2019-12-24T21:14:20+09:00</updated>
+    <id>http://mumumu.github.io/blog/2019/12/24/chrome-address-bar-or-tab-font-too-small</id>
+    <content type="html"><![CDATA[<p><a href="https://superuser.com/questions/982560/chrome-tab-font-too-small/982565">https://superuser.com/questions/982560/chrome-tab-font-too-small/982565</a></p>
+
+<p>あれはいつだったからか。Linux で Google Chrome のアドレスバーやタブのフォントが小さすぎる問題にずっと悩んでいた。</p>
+
+<p>最初は 2560 x 1920 のディスプレイで Chrome を表示させた時だったと思う。別の時は、NVDIA なビデオカード上で Linux を動かしたときとか。とにかく、自分に丁度いい塩梅で Google Chrome のアドレスバーやタブのフォント の大きさが表示できたことが最近までなかった。</p>
+
+<p>最近 ThinkPad X395 に Linux を入れて使い始めたのだけど、同じ状態になった。<br/>
+いい加減何とかならんかなと思ってぐぐりまくると、上記の記事に行き着いた。</p>
+
+<p>これは Windows の記事だが、なんと X Window System 上でも通用したのでびっくりした。<br/>
+もしあなたが自分と同じ問題に悩んでいるのなら、コマンドラインから、以下のようにして Google Chrome を起動してみるとよい。</p>
+
+<p>1.5 の数値は、自分の環境に合わせて適度に調整可能である。</p>
+
+<pre><code>$ google-chrome --force-device-scale-factor=1.5
+</code></pre>
+
+<p>今は自分でこれらのサイズを調整できるようになって、とてもしあわせだ(｀ー´)</p>
+]]></content>
+  </entry>
+  
+</feed>

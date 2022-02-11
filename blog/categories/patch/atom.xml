@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: patch | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/patch/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[PATCH] Courier の TLS 証明書と秘密鍵ファイルを分離する]]></title>
+    <link href="http://mumumu.github.io/blog/2018/09/25/patch-separate-tls-private-key-from-imapd-pop3d-dot-pem/"/>
+    <updated>2018-09-25T20:36:39+09:00</updated>
+    <id>http://mumumu.github.io/blog/2018/09/25/patch-separate-tls-private-key-from-imapd-pop3d-dot-pem</id>
+    <content type="html"><![CDATA[<p>このエントリは、以下の Pull Request がマージされるまでの記録である。<br/>
+<a href="https://github.com/svarshavchik/courier-libs/pull/13">https://github.com/svarshavchik/courier-libs/pull/13</a></p>
+
+<h3>3行まとめ</h3>
+
+<p>1) <a href="http://www.courier-mta.org/">Courier Mail Server</a> (以下 Courier) という古いメールサーバに patch を書いてマージしてもらった<br/>
+2) いろいろ苦労しながら、やり遂げた記録<br/>
+3) 青臭いソフトウェアエンジニアも、成長するものだと思う</p>
+
+<h3>なぜこの patch を書いたか</h3>
+
+<p>始まりは、<a href="https://letsencrypt.org/">Let's Encrypt</a> を手元のサーバに導入しようとして、 <a href="http://www.courier-mta.org/imap/">Courier IMAP</a> にも適用しようとしたことだった。だが、一筋縄では行かなかった。どうしても TLS の通信に失敗するのだ。いろいろググった結果、Courier では、<a href="https://yeri.be/postfix-courier-letsencrypt">「TLS の秘密鍵と証明書は同一のファイルに入っていなければいけない」ことがわかった</a>。</p>
+
+<p>多くのサーバソフトウェアでは、TLS の秘密鍵と証明書のファイルパスは別々に設定できる。メールサーバで言えば <a href="http://www.postfix.org/postconf.5.html#smtp_tls_key_file">Postfix でもそうだ</a>。このことから、自分にとっては Courier のこの動きは直感に反する仕様であった。しかもこれに関するドキュメントが <strong>一切書かれていない</strong> ことにカッとなった。</p>
+
+<p>だから、<a href="https://github.com/svarshavchik/courier/issues/10">issueを立てて、秘密鍵と証明書を分離することを提案した</a> ところ、メンテナ的にはデフォルトの動きに fallback 出来るなら問題ないよ、とのことだったので、<a href="https://github.com/svarshavchik/courier-libs/pull/13">patch</a> を書いた。このエントリは、それがマージされたことの記録である。</p>
+
+<h3>当初はヤクの毛刈りに奔走</h3>
+
+<p>patch を書くのは一筋縄では行かなかった。当初はヤクの毛刈りに奔走させられた。当初は git のソースをまともにビルドすらできなかったので、ビルドをキックするスクリプトを修正することから始まり、メンテナと自分の開発するディストリビューションが異なる (*1) ことが原因の libtool まわりの修正から、ドキュメントの修正まで、送った patch は 6つに及んだ。</p>
+
+<p>メンテナにしてみれば、自分以外の環境で patch を書く人がいるとは思ってもいなかったのだろう。</p>
+
+<p>a) <a href="https://github.com/svarshavchik/courier/pulls?q=is%3Apr+is%3Aclosed+author%3Amumumu">Courier 本体側で 送った patchたち</a><br/>
+b) <a href="https://github.com/svarshavchik/courier-libs/pulls?q=is%3Apr+is%3Aclosed+author%3Amumumu">Courier Library 側で送った patch たち</a></p>
+
+<p>(*1) メンテナは Fedora で、自分は Ubuntu だった。</p>
+
+<h3>OpenSSL + GnuTLS の両方に対応</h3>
+
+<p>一通りコードを書く環境が整い、途中まで patch を書いてみると、Courier は TLS 通信に OpenSSL だけでなく、 <a href="https://www.gnutls.org/">GnuTLS</a> も並行してサポートしていることに気がついた。また、<a href="https://tools.ietf.org/rfc/rfc6066.txt">SNI(Server Name Indication)</a> や IPアドレスベースのバーチャルホストもサポートしていたので、それらもこれら両方のライブラリでサポートするように書かなければならなかった。</p>
+
+<p>さらに、これら2つのライブラリのコードは、実装されている機能がそれぞれに微妙に異なっていたので、どこまで実装するかを判断するために全コードを見る必要があり、対応は難航した。方針は以下に纏めた通りだが、正直 GnuTLS 側のコードは、よく [読めた|書けた] ものだと今振り返ってみて思う。</p>
+
+<p>c) <a href="https://gist.github.com/mumumu/650461670436c52a74b06e04725f78ab">couriertls の TLS_PRIVATE_KEY 対応方針</a></p>
+
+<h3>モチベーション</h3>
+
+<p>何故ここまで続いたのかは、正直わからない。本職で C++ を書くようになり、この手のソフトウェアの深追いには慣れていたことが割と大きかったように思う。あとは、少しずつでも、ゴールに近づいている感覚が確実にあったからだろうか。また、義務感なしに、気が向いた時に作業できたのも大きい。</p>
+
+<h3>メンテナについて</h3>
+
+<p>Courier のメンテナは、 <a href="https://www.linkedin.com/in/cplusplusguru">Sam Varshavchik</a> というロシア人だ。コードが良ければ黙ってマージしてくれるし、提案にもちゃんと真摯に返事を返してくれる人だった。コード自体は正直綺麗だとは思わないが、OSS ではコードを全面的に書き直すのでもない限り、相手の流儀に徹底的に合わせるのが基本なので、メンテナの流儀を踏襲する方向で動いた。</p>
+
+<h3>その他</h3>
+
+<p>Courier 自体は 1990年代末からある古いソフトウェアである。自分は 自宅サーバを立て始めたのが2004年で、その時は他の人が書いた手順を見よう見まねで自分の環境にいろいろ適用しては試行錯誤を繰り返していた。 <a href="https://srad.jp/~mumumu/journal/184844/">スラッシュドットの日記</a> にも、当時の青臭い記録が残っている。そんな糞エンジニアな自分が、こうして、patch を書くことなど思いもよらなかった。</p>
+
+<p>当時から、少しは成長したんだなあ、と思う。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[PATCH] fixed invalid atom-log feed url in file log page]]></title>
+    <link href="http://mumumu.github.io/blog/2015/12/29/patch-fixed-invalid-atom-log-feed-url-in-file-log-page/"/>
+    <updated>2015-12-29T23:34:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2015/12/29/patch-fixed-invalid-atom-log-feed-url-in-file-log-page</id>
+    <content type="html"><![CDATA[<p><a href="https://patchwork.mercurial-scm.org/patch/12367/">https://patchwork.mercurial-scm.org/patch/12367/</a></p>
+
+<p><a href="https://www.mercurial-scm.org/">Mercurial</a> に patch を送ったんだけど、<a href="https://www.mercurial-scm.org/wiki/ContributingChanges#Submission_checklist">patchを投稿するにあたっての規約</a> がいろいろと面倒だった。なんとか順応できたけど、普段から GitHub に慣れきっているとこういうのはつらい。逆に言えば、Pull Request という共通のプロトコルを提供している GitHub の偉大さを体で思い知ったというところか。</p>
+
+<p>やまねさんの物言いは、そういう意味でもっともだと思いました。まる。</p>
+
+<blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">OSSはライセンシングという共通プロトコルによってリーガルコストを下げた。GitHubはプロジェクト・プロダクトごとの決まりを共通化したプロトコルを導入することでコミュニケーションコストを下げた。OSSという観点ではコストを下げてアウトプットを最大化しているのだから正しい</p>&mdash; henrich (@henrich) <a href="https://twitter.com/henrich/status/681371626437382144">December 28, 2015</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[update test environment of redis-py]]></title>
+    <link href="http://mumumu.github.io/blog/2015/12/29/update-test-environment-of-redis-py/"/>
+    <updated>2015-12-29T21:56:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2015/12/29/update-test-environment-of-redis-py</id>
+    <content type="html"><![CDATA[<p>2015年は Redis と戯れていた一年と言っても良い。<a href="http://redis.io/topics/cluster-spec">Redis Cluster</a> を Production 環境に導入し、<a href="https://github.com/Grokzen/redis-py-cluster">redis-py-cluster</a> に <a href="https://github.com/Grokzen/redis-py-cluster/pull/76">READONLY 対応の patch を送った</a> りした。</p>
+
+<p>Redis Cluster は Redis 3.0 で加わった新機能であり、もうじき 3.2 が出ようとしている。そんな状態の中で 2.8 でしかテストされていないのはどうなの？ と思い、以下の 2つの patch を送っておいた。</p>
+
+<ul>
+<li>redis-py のビルド環境を 3.0 対応にする
+
+<ul>
+<li><a href="https://github.com/andymccurdy/redis-py/pull/697">https://github.com/andymccurdy/redis-py/pull/697</a></li>
+</ul>
+</li>
+<li>RESTORE コマンドに 3.0 で加わった REPLACE修飾子に対応
+
+<ul>
+<li><a href="https://github.com/andymccurdy/redis-py/pull/698">https://github.com/andymccurdy/redis-py/pull/698</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>特に前者は、2.8 によるテスト環境をごっそり 3.0 に入れ替えるものなので、割とドラスティックである。Redis 側で 2.8 をいつまでサポートするのか、というポリシーが明確ではないので、取り込むタイミングは流動的だと思われる。</p>
+
+<p>ただ、3.x 特有の機能が増えていく中で、一石を投じる必要としては今がいいんじゃないかな、と思った次第である。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Silly patch - could not detect repository update]]></title>
+    <link href="http://mumumu.github.io/blog/2015/12/26/silly-patch-could-not-detect-repository-update/"/>
+    <updated>2015-12-26T03:06:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2015/12/26/silly-patch-could-not-detect-repository-update</id>
+    <content type="html"><![CDATA[<p>PEP8 のファイル更新を監視するのに、 <a href="https://github.com/mumumu/mercurial_file_update_checker">Mercurial リポジトリ更新チェックツール</a> というのを書いている。コミットメールや <a href="https://hg.python.org/">hg.python.org</a> の RSS を見れたりすれば一番良いのだが、前者はPEPの編集者や開発者にしか開放されておらず、後者はファイル単位の更新を見せるようにはできていない(*1) 。このツールはファイル単位での更新があったらメールしてくれるというもので、自分のニーズを満たすための単純なものだ。</p>
+
+<p>ところがこのツール、ちゃんと動いていなかった。更新がリモートリポジトリにあってもちゃんと検知できていなかったのだ。ダメぢゃん！<br/>
+原因は <a href="https://www.mercurial-scm.org/wiki/GitConcepts#Command_equivalence_table">git pull にあたるコマンド</a> を hg update だと思い込んでいたというもので、単純に Mercurial の理解不足である。</p>
+
+<p>なので、こういうお馬鹿な patch を書いてしまうんですね。ハイ(´ー｀; )<br/>
+誰の役にも立たないんで、ますますお馬鹿度が増すという...</p>
+
+<pre><code>diff --git a/rev_update_checker.py b/rev_update_checker.py
+index b6109fe..af39899 100644
+--- a/rev_update_checker.py
++++ b/rev_update_checker.py
+@@ -22,7 +22,7 @@ class TargetRepository(object):
+
+     def update(self):
+         os.chdir(self.repository_path)
+-        subprocess.check_output(['hg', 'update'])
++        subprocess.check_output(['hg', 'pull', '-u'])
+
+
+ class TargetFileRevision(object):
+</code></pre>
+
+<p>(*1) だったら hgweb に patch 投げればいいやん、と思って、<a href="/blog/2015/12/29/patch-fixed-invalid-atom-log-feed-url-in-file-log-page/">投げておきました</a> ...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Silly patch - Octopress does not open new entry file immediately]]></title>
+    <link href="http://mumumu.github.io/blog/2014/08/30/silly-patch/"/>
+    <updated>2014-08-30T20:50:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/08/30/silly-patch</id>
+    <content type="html"><![CDATA[<p>github Page を github で管理するためのソフトウェア <a href="http://octopress.org/">Octopress</a> では、新しいエントリを書くときにいちいちエディタを開くコマンドを打たねばならない。最初は気にならなかったのだが、<a href="http://mumumu.github.io/blog/2014/08/17/ranger-file-manager-with-vi-keybindings/">ranger を導入したあたり</a> からそれがどうにも煩雑だと感じるようになった。</p>
+
+<p>こんなの誰でも思いつくだろと思って Octopress の github を調べると、<a href="https://github.com/imathis/octopress/pull/749">こんな Pull Request</a> が見つかり...</p>
+
+<p>これをよく読んでいくと以下のように、「俺たちの流儀ぢゃねえからこれに類する提案は皆 Reject だよハゲ」という話になっていて...そもそもこういう路線の patch は本体に取り込まれる見込みがないことが明確になっていた(´ー｀; )</p>
+
+<p><a href="https://github.com/imathis/octopress/pull/749#issuecomment-11451776">https://github.com/imathis/octopress/pull/749#issuecomment-11451776</a></p>
+
+<p>なので、仕方なく自分は必要な部分のみ糞 patch を当てるわけです。。</p>
+
+<p><a href="https://github.com/mumumu/mumumu.github.io/commit/a139bf79c3af9346c1f607ef04acce6e442a32df">https://github.com/mumumu/mumumu.github.io/commit/a139bf79c3af9346c1f607ef04acce6e442a32df</a></p>
+
+<p>またもや下らぬ patch を書いてしまった。。これもうシリーズ化しようかなって思うんですけど、どないですかね(´ー｀; )</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: life | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/life/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[baby shutdown my server]]></title>
+    <link href="http://mumumu.github.io/blog/2015/01/05/baby-shutdowns-my-server/"/>
+    <updated>2015-01-05T00:01:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2015/01/05/baby-shutdowns-my-server</id>
+    <content type="html"><![CDATA[<p><img src="http://mumumu.github.io/images/baby_close_to_my_server.jpg" /></p>
+
+<p>赤子に Xeonサーバをシャットダウンされました。。上の画像のような感じでサーバを置いていて、なんか触ってるなーと思ったらLEDの光が消えてました。。</p>
+
+<p>名前解決結果のキャッシュサーバをこのサーバが兼ねていたのでネットが不通になったり、ビルドが走っていたWindowsサーバが電プチによって起動しなくなったりなど、少なからざる被害をもたらしました。</p>
+
+<p>「子供の手の届かない場所に置きましょう」という注意書き一般を鼻で笑い飛ばしていたのを死ぬほど後悔した次第です(´ー｀; )</p>
+
+<p>この注意書きで言うところの「子供」とは、赤ちゃんが歩き始める時期が既に該当してるんですね。世界中の赤子と向き合うエンジニアに <strong>「サーバは子供の手の届かない場所に置きましょう」</strong> と注意喚起したいと思います...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fitbit One]]></title>
+    <link href="http://mumumu.github.io/blog/2014/04/24/fitbit-one/"/>
+    <updated>2014-04-24T00:15:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/04/24/fitbit-one</id>
+    <content type="html"><![CDATA[<p><a href="https://www.fitbit.com/jp/one">https://www.fitbit.com/jp/one</a></p>
+
+<p>最近また<a href="http://mumumu-meshi.blogspot.jp/">飯日記</a> によるレコーディングダイエットをはじめたのだが、どうしても食べる量を記録しながら調整するだけではリバウンドしやすいし、ペースも維持しにくい。やはり運動との併用は不可欠だなと思っていたところなのだが、誰かに何か言われても自分からは絶対に運動なんてやらない。</p>
+
+<p>じゃあ飯日記と同じように可視化ツールを使おうぜ、という発想から <a href="https://www.fitbit.com/jp/one">Fitbit One</a> を購入した。万歩計であれば何でもいいわけでもなく、飯日記と同じ観点から、以下の要件を立てて選んだ。</p>
+
+<p>・ 歩数以外でも可視化する機能が多いこと<br/>
+・ スマホとの連携が簡単なこと</p>
+
+<p>これらを満たしているツールはそれなりにあるとは思うのだが、自分が持っている <a href="http://www.google.co.jp/nexus/5/">Nexus 5</a> との <a href="https://help.fitbit.com/customer/portal/articles/987861-android-device-compatibility">相性が保証されていて</a>、Bluetooth と アプリで簡単にWebとも連携できるという要件が揃っていたのは Fitbit One だけだった。</p>
+
+<p>ということで、早速職場から帰宅する時に10000歩歩いてみた。思ったよりきつい、、結局6駅分歩いた挙げ句、90分もかかった。これを毎日続けるのって至難の業じゃね？</p>
+
+<p>続けている人は余程の暇人か健脚の持ち主に相違ないと思う次第だ(´ー｀; )</p>
+
+<p><img src="http://mumumu.github.io/images/fitbitone_10000.png" width="360" height="640" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2014 new year]]></title>
+    <link href="http://mumumu.github.io/blog/2014/01/01/2014-new-year/"/>
+    <updated>2014-01-01T00:06:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2014/01/01/2014-new-year</id>
+    <content type="html"><![CDATA[<p>始まりました。2014年。いやっほう！ヽ(´ー｀。)ノ<br/>
+旧年はお世話になりました。本年もどうぞ宜しくお願いします(*´〜｀)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[End of 2013]]></title>
+    <link href="http://mumumu.github.io/blog/2013/12/31/end-of-2013/"/>
+    <updated>2013-12-31T19:20:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/12/31/end-of-2013</id>
+    <content type="html"><![CDATA[<p>2013年がもうすぐ終わる。このエントリで今年を振り返っておこうと思う。</p>
+
+<p>個人的には転職したことが一番大きい。<a href="http://www.python.org">Python</a> を書き始め、<a href="http://jenkins-ci.org/">Jenkins</a> とか <a href="http://fabfile.org">Fabric</a> とか導入した気がする。社内での勉強会が始まってからは LT を沢山やった気がする。ピアレビュー の習慣もいろいろなバックグラウンドの人がいる中で楽しくやれている。ピアレビューは、自分が主張する際に根拠を持った言葉を持っていることが大きな意味を持つ。コードを良くすることにとどまらず、自分の中で技術的な重みを持つ言葉を増やす手段として、大いに役に立つ習慣だ。</p>
+
+<p>今の職場は ソフトウェアエンジニア の文化という意味で、自分のキャリアの中では一番合う職場だ。この文化を大事にするとともに、来年はもっとコードのアウトプットを増やし、いろいろな立場の人との相互作用をもっと楽しみたい。</p>
+
+<p>家族が増えたことも大きな出来事の一つだ。転職と重なり、なかなかに両立がハードな部分もあった。だが、こうした節目が重なったことで以前よりアウトプットしようという気概は強くなったと思う。ちょっとしたことでも言葉やコードにして多くの人に見て貰うことに喜びを見いだせたことも今年の大きな成果の一つだったのではないか。結婚などの人生における大きなイベントが、アウトプットの量の上下に影響するということはよく言われる話だが、自分的には良い方向に持って行けたのではないかという気がする。</p>
+
+<p>一方で、プライベートでコードを書くことがあまりできなかった気がする。自分はもともと 0 を 1 にするのが得意な人ではないようだ。お気に入りのソフトウェアを見つけてはそれを良くしていくことに喜びを見いだすらしい。そうであっても、もっとやりようはあったのではないかという気がする。0 を 1 にした方が、当たったときにそれなりのやり甲斐を見い出せるのは間違いないだろうが、それは問題を見つけ出す能力にも直結している。つまるところ、そういう問題領域やプラットフォームを未だ見つけ出していないということなのだろう。ある意味自分探しに似ている部分もある気がするが、見つけ出すことを諦めたつもりは毛頭ないので、来年も引き続き課題として取り組んでいきたい。</p>
+
+<p>今年もいろいろな方にお世話になりました。家族や周囲の助けがなければ、今の自分はないし、それはこれからも同じだろう。来年も引き続き宜しくお願いします(*´〜｀)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[mumumu++]]></title>
+    <link href="http://mumumu.github.io/blog/2013/10/13/mumumu-plus-plus/"/>
+    <updated>2013-10-13T03:53:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/10/13/mumumu-plus-plus</id>
+    <content type="html"><![CDATA[<p>今日またひとつ歳をとった。</p>
+
+<p>職場が変わったり、家族が増えたりと、予想通り慌しい一年になった。<br/>
+変わっていないものってほとんどないように見えるけれども、ソフトウェアエンジニアとしての原点だけはブレていないと思う。</p>
+
+<p>いろんな変化を楽しみつつ、変わらないもの、そして家族を大事にしたい、と思いました。<br/>
+そして、お世話になっている周囲の方々にも感謝を。これからも宜しくお願いします。</p>
+]]></content>
+  </entry>
+  
+</feed>

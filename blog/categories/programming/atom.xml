@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: programming | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[PATCH] added socks support to Ruby httpclient]]></title>
+    <link href="http://mumumu.github.io/blog/2017/10/02/add-socks-support-to-ruby-httpclient/"/>
+    <updated>2017-10-02T04:27:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2017/10/02/add-socks-support-to-ruby-httpclient</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/nahi/httpclient/pull/380">https://github.com/nahi/httpclient/pull/380</a></p>
+
+<p>以下のような関係にある3つのホストがあり、server は firewall の外から名前解決もできないし、client からは ssh 経由でしか通信できないとする。また、firewall には curl(1) などのツール類はポリシー上一切入っていないとする。</p>
+
+<pre><code>+----------+          +-----------+         +------------+
+|          |          |           |         |            |
+|  client  +----------&gt; firewall  +---------&gt;   server   |
+|          |   only   |           |         |            |
++----------+   ssh    +-----------+         +------------+
+</code></pre>
+
+<p>そこで、client から server の状態を http 経由でもろもろ確認したいとする。
+以下のようにして、firewall に対して SOCKS プロキシを立てて通信したくなりはしないだろうか。</p>
+
+<pre><code>$ ssh -fN -D 9999 firewall
+$ curl --socks5-hostname localhost:9999 http://server/
+</code></pre>
+
+<p>ただステータスコードを簡単に確認するためなら、これでも問題ない。だが、特定のプログラミング言語の HTTP通信ライブラリとかを使っていて細かい操作をしている場合、その通信ライブラリが SOCKS プロトコルに対応している必要がある。</p>
+
+<p>自分の場合、上記に類似した状況 (*注1) で Ruby 製のHTTPクライアントライブラリを使っていて、やはり Ruby 側を対応したほうが後々のためにも便利だよな、と思い、 <a href="https://github.com/nahi/httpclient/pull/380">httpclient の gem に対して patch を書いた</a>。これが取り込まれると、以下のようなことができるようになる。</p>
+
+<pre><code>require 'httpclient'
+
+#  ssh -fN -D 9999 remote_server
+clnt = HTTPClient.new('socks4://localhost:9999')
+
+#clnt = HTTPClient.new('socks5://localhost:9999')
+#clnt = HTTPClient.new('socks5://username:password@localhost:9999')
+
+#ENV['SOCKS_PROXY'] = 'socks5://localhost:9999'
+#clnt = HTTPClient.new
+
+target = 'http://www.example.com/'
+puts clnt.get(target).content
+
+target = 'https://www.google.co.jp/'
+puts clnt.get(target).content
+</code></pre>
+
+<p>つまり、HTTPプロキシと同じ感覚で SOCKS プロキシが設定できるようになる。
+凄くニッチなニーズではあるけれども、取り込まれると良いな。</p>
+
+<p>やりたいことがはっきりしていたので、Ruby の経験の多寡に関わらず、意外にすんなり書けた。また、自動テストのためには SOCKSサーバが必要だったことと、プロトコル自体は非常に簡単だったため、それも自前で実装した。 <a href="https://github.com/net-ssh/net-ssh/tree/master/lib/net/ssh/proxy">Net::SSH::Proxy にクライアント実装があり</a>、それを拝借してきたお陰で、そんなに手間はかからなかった。</p>
+
+<p>Ruby を使い始めてそんなに経っていないので、Ruby のコードを書くにあたってのお作法が殆どわからなかった。そこで、 <a href="https://github.com/bbatsov/rubocop">rubocop</a> の助けを借りた。大したチェックはされないだろうとたかを括っていたが、コード上のメトリクスやベストプラクティスのあれこれまで細かく指摘されたのでびっくり。これを使ったお陰で、それなりに自信を持ってコードを書き進めることができた。</p>
+
+<p>特定のプログラミング言語の初心者のうちは、可能であれば lint の類を使いながら書いてみると良いかもしれない。</p>
+
+<p>(*注1) 実際はもっと複雑なのだが、そもそも、こんな状態を作っていること自体が筋が悪くて、firewall の中でなんとかすべき事案である。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Specific file update checker on Git Repository]]></title>
+    <link href="http://mumumu.github.io/blog/2016/10/19/specific-file-update-checker-on-git-repository/"/>
+    <updated>2016-10-19T06:26:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2016/10/19/specific-file-update-checker-on-git-repository</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/mumumu/repos_file_update_checker">https://github.com/mumumu/repos_file_update_checker</a></p>
+
+<p>以前 PEP 8 のファイル更新だけをチェックしたくて、 <a href="http://mumumu.github.io/blog/2015/12/26/silly-patch-could-not-detect-repository-update/">Mercurial 向けのファイルチェッカを書いた</a> 。<br/>
+今年になって <a href="https://github.com/python/">Python のリポジトリが Github に移行した</a> ため、それが役に立たなくなった。よって、以前書いたものを Git にも対応させ、プラグイン化してかっこ良くしたものが上記である。</p>
+
+<p>みんな大好き Github ... といえども特定ファイルの git log 出力を RSS で吐いてくれたりはしないんですよね。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Date Calculation]]></title>
+    <link href="http://mumumu.github.io/blog/2013/05/31/date-calculation/"/>
+    <updated>2013-05-31T10:44:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/05/31/date-calculation</id>
+    <content type="html"><![CDATA[<p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html">http://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html</a></p>
+
+<p>以下のように日付を足したり引いたりして、その参照を使い回すと極めて危険である。<br/>
+... っていうネタはあるあるだと思うんですけど、今日そのワナを踏んでしまって泣きそう( ;´Д⊂ヽ <br/>
+これは Java の例だけれども、当然 Java に限った話ではない。</p>
+
+<pre><code>Calendar now = Calendar.getInstance();  // instance of 5/31
+now.add(Calendar.MONTH, -3);           // 3 month before -&gt; 2/28
+
+//  some processing...
+
+now.add(Calendar.MONTH, +3);           // not 5/31, but 5/28 !!!
+</code></pre>
+
+<p>要するに、たまたま3ヶ月前が2月末だったので、ずれるという話です。<br/>
+こんな馬鹿なことするのは俺だけだって？ デスヨネー(´ー｀; )</p>
+]]></content>
+  </entry>
+  
+</feed>

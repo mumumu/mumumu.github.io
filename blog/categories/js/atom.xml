@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: js | mumumu の日記]]></title>
+  <link href="http://mumumu.github.io/blog/categories/js/atom.xml" rel="self"/>
+  <link href="http://mumumu.github.io/"/>
+  <updated>2022-02-11T21:21:09+09:00</updated>
+  <id>http://mumumu.github.io/</id>
+  <author>
+    <name><![CDATA[mumumu(Yoshinari Takaoka)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Very simple chrome extension for delicious.com]]></title>
+    <link href="http://mumumu.github.io/blog/2013/06/30/very-simple-chrome-extension-for-delicious-dot-com/"/>
+    <updated>2013-06-30T14:52:00+09:00</updated>
+    <id>http://mumumu.github.io/blog/2013/06/30/very-simple-chrome-extension-for-delicious-dot-com</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/mumumu/simple-delicious-extension">https://github.com/mumumu/simple-delicious-extension</a></p>
+
+<p><a href="http://mumumu.github.io/blog/2013/06/22/put-delicious-browser-extensions-on-ice/">前のエントリでも触れた</a>通り、delicious.com のブラウザ拡張はカオスである。俺はシンプルに右クリックしてブックマークを保存したいだけなのに！ と思ってかっとなって拡張を書いた。</p>
+
+<p>だが、よーく探してみると<a href="https://chrome.google.com/webstore/detail/delicious-right/colfilefkcecabapocgddfkjpomiibjc">同じ実装してる拡張</a> があったｗｗｗ</p>
+
+<p><img src="/images/my-delicious-extension-screenshot.png" alt="screenshot" /></p>
+
+<p>ひどいオチだが、まぁ <a href="http://developer.chrome.com/extensions/index.html">Google Chrome Extention</a> の良い勉強になった、ということにしておく(*´〜｀)</p>
+]]></content>
+  </entry>
+  
+</feed>

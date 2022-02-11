@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>RTX 830 を挟んでみた話 - mumumu の日記</title>
+  <meta name="author" content="mumumu(Yoshinari Takaoka)">
+
+  
+  <meta name="description" content="https://network.yamaha.com/products/routers/rtx830/index 最近自宅のインターネット接続が少しずつ不安定になり、不定期に切断されるようになった。 無線ブロードバンドルータも3年近く使っているので、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mumumu.github.io/blog/2021/01/05/rtx830-and-more/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://mumumu.github.io/rss.xml" rel="alternate" type="application/rss+xml" title="mumumu の日記" />
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-674328-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">mumumu の日記</a></h1>
+  
+    <h2>Development, Translation, daily life, thoughts, and so on.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://mumumu.github.io/rss.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mumumu.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    <p style="color:#aaa">
+      
+
+
+
+
+
+
+
+
+  2021-01-05 00:53:23 +0900
+
+
+
+
+    </p>
+    
+      <h1 class="entry-title">RTX 830 を挟んでみた話</h1>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="https://network.yamaha.com/products/routers/rtx830/index">https://network.yamaha.com/products/routers/rtx830/index</a></p>
+
+<p>最近自宅のインターネット接続が少しずつ不安定になり、不定期に切断されるようになった。</p>
+
+<p>無線ブロードバンドルータも3年近く使っているので、これを機会にいろいろ家のネットワークを見直してみることにした。</p>
+
+<h3>0. 見直す前</h3>
+
+<p>自宅のネットワーク構成は、 <a href="https://www.tp-link.com/jp/home-networking/wifi-router/archer-c5400/">TP-Linkの無線ブロードバンドルータ</a> と中継機経由でインターネットに接続していた。とてもシンプル。</p>
+
+<p>ONU より先は VDSL で外の光回線に繋がっている。</p>
+
+<p><img src="/images/mynetwork.png" /></p>
+
+<h3>1. 無線ブロードバンドルータを変えてみた</h3>
+
+<p>コロナ禍のさなか、IPv4 の PPPoE は混んできてるという話も飛び交うようになっていたので、これを機会にIPv6 に挑戦してみるか、という気持ちになった。</p>
+
+<p>なので、TP-Linkの無線ブロードバンドルータを <a href="https://www.aterm.jp/product/atermstation/product/warpstar/wx3000hp/">NEC の WX-3000HP</a> に変えてみた。これを採用した理由は、IPoE に対応していたことと、Wifi6 に対応していたから、の2つが理由である。</p>
+
+<p>だが、不安定なのは変わらなかった。既存の PPPoE 経由の IPv4 接続はもちろん、IPoE 接続 (DTI のトライアル光 や interlink の Zoot Native) を試してみたが、むしろさらに不安定になっていた感がある。</p>
+
+<p>よく調べて見ると、無線と PPPoE(or IPoE) を受け持つ WX-3000HP の IP に ping を打っても返ってこない状態が頻発していたので、ここが重いんだろうな、と推察された。そこで、ONU と直接繋がるルータについては、無線とは独立させて、実績のあるものを採用しようという気持ちになった。</p>
+
+<h3>2. RTX 830 を挟んでみた</h3>
+
+<p>インターネットと直接(PPPoE や IPoE で) 繋がるルータを無線と独立させるべく、<a href="https://network.yamaha.com/products/routers/rtx830/">RTX 830</a> を購入した。
+YAMAHA のルータは拠点間のルータとして安定性について評判が高く、インターネット上にも十分なノウハウが転がっていることから採用した。</p>
+
+<p>ONU と WX-3000HP の間にこれを挟み、PPPoE や IPoE 接続とパケットフィルタのみを受け持たせることにした。
+さらに、WX-3000HP はルータ機能を殺し、無線LAN のブリッジとしてのみ機能させるようにした。</p>
+
+<p>だが、やっぱり不安定なのは変わらなかったので、さらに原因を切り分けてみることにした。</p>
+
+<h3>3. 中継機を変えてみた</h3>
+
+<p>中継機については TP-Link のものを使っていたが、それを NEC のものに変えてみたりしたがやはり変わらなかった。</p>
+
+<h3>4. ONU を交換して貰った</h3>
+
+<p>中継機、ブロードバンドルータ、RTX を挟んでも変わらないとなると、最終的にこちらが手を出せるのはONUしかない。NTT に電話して事情を話し、ONU を交換してもらった。</p>
+
+<p>これは10年以上前から使っていたONUで、既に替えがないとのことだったので、最新のONU機器を持ってきてもらった。それをRTXと繋いだところ、劇的に安定した。これだったか...</p>
+
+<h3>まとめ</h3>
+
+<p>原因は IPv4 でもなんでもなく、単なる ONU の不良であった。それ以後、IPv4 の接続が不安定になったことはないので、引き続きこのままにしている。RTX は不要だったんじゃないかという説もあるが、まあ、いろいろ遊べたので良しとする。</p>
+
+<p><a href="https://www.editnet.ad.jp/">採用している草の根プロバイダ</a> も回線を増強し、<a href="https://www.editnet.ad.jp/news/210103.htm">さらに空いた回線を提供してくれるようになった</a> ので、引き続きそれを使って行こうと思う。このコロナ禍で大事なのは、回線の速度ではなく安定性なのだ。</p>
+
+<p><img src="/images/mynetwork_current.png" /></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">mumumu(Yoshinari Takaoka)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  2021-01-05 00:53:23 +0900
+
+
+
+
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/network/'>network</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mumumu.github.io/blog/2021/01/05/rtx830-and-more/" data-via="mumumu" data-counturl="http://mumumu.github.io/blog/2021/01/05/rtx830-and-more/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2020/09/19/php-manual-maintaining-howto/" title="Previous Post: PHPマニュアル メンテナンス用ドキュメント最新版">&laquo; PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2021/02/21/credit/" title="Next Post: クレジット">クレジット &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section style="margin-top:-20px">
+  <h1>BIO</h1>
+  <p>
+    <img src="/images/mumumu_bigger.jpg" alt="mumumu's image"/>	
+    Half-way developer, using C, C++, PHP, Python / Tech Lead / translator / PHP Manual maintainer(ja) / devoted husband.
+  </p>
+</section>
+<section>
+  <h1>CONTACT</h1>
+  <p>
+    reversethis -> gro tod umumum ta umumum
+  </p>
+</section>
+<section>
+  <h1>My Profile Sites</h1>
+  <ul id="profile_sites">
+      <li class="post">
+        <a href="https://github.com/mumumu">Github</a>
+      </li>
+      <li class="post">
+        <a href="https://twitter.com/mumumu">twitter</a>
+      </li>
+      <li class="post">
+        <a href="http://mumumuorg.blogspot.com/">Old Blog Archive(Blogger)</a>
+      </li>
+      <li class="post">
+        <a href="http://slashdot.jp/mumumu/journal">Old Blog Archive(slashdot.jp)</a>
+      </li>
+<!--
+      <li class="post">
+        <a href="http://slashdot.jp/~mumumu/journal/279672">FAQ:２ちゃんねる.jpやmumumu.muのmumumuさんと同一人物ですか?</a>
+      </li>
+-->
+  </ul>
+</section>
+<!--
+<section>
+  <h1>My Favorite Sites</h1>
+  <ul id="favorite_sites">
+      <li class="post">
+        <a href="http://github.com">Github - Social coding!</a>
+      </li>
+      <li class="post">
+        <a href="http://producingoss.com">Producing Open Source Software</a>
+      </li>
+      <li class="post">
+        <a href="http://oreilly.com">Oreilly Media</a>
+      </li>
+      <li class="post">
+        <a href="http://www.kde.org/">K Desktop Environment</a>
+      </li>
+      <li class="post">
+        <a href="http://www.python.org/">Python Programming Language – Official Website</a>
+      </li>
+      <li class="post">
+        <a href="http://www.php.net/">PHP - HyperText Preprocessor</a>
+      </li>
+      <li class="post">
+        <a href="http://konversation.kde.org/">Konversation - User friendly IRC Client</a>
+      </li>
+  </ul>
+</section>
+-->
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2021/02/21/credit/">クレジット</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2021/01/05/rtx830-and-more/">RTX 830 を挟んでみた話</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/09/19/php-manual-maintaining-howto/">PHPマニュアル メンテナンス用ドキュメント最新版</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/07/27/how-to-learn-new-concept/">新しい知識の学び方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/05/16/solve-problem/">問題を解く</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2020/01/25/thinkpad-x395/">ThinkPad X395</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2022 - mumumu(Yoshinari Takaoka) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
