@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "update test environment of redis-py"
+title: "[PATCH] update test environment of redis-py"
 date: 2015-12-29 21:56
 comments: true
 categories: [patch]
