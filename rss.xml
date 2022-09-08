@@ -346,7 +346,7 @@
     
       
       <item>
-        <title>update test environment of redis-py</title>
+        <title>[PATCH] update test environment of redis-py</title>
         
           <description>&lt;p&gt;2015年は Redis と戯れていた一年と言っても良い。&lt;a href=&quot;http://redis.io/topics/cluster-spec&quot;&gt;Redis Cluster&lt;/a&gt; を Production 環境に導入し、&lt;a href=&quot;https://github.com/Grokzen/redis-py-cluster&quot;&gt;redis-py-cluster&lt;/a&gt; に &lt;a href=&quot;https://github.com/Grokzen/redis-py-cluster/pull/76&quot;&gt;READONLY 対応の patch を送った&lt;/a&gt; りした。&lt;/p&gt;
 </description>
